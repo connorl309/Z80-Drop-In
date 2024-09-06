@@ -20,7 +20,25 @@
 // The "core" of the Z80
 module z80core(
     input clock,
-    output[`NUM_PINS-1:0] pinout
+    
+    output m1,
+    output mreq,
+    output iorq,
+    output rd,
+    output wr,
+    output rfsh,
+    output halt,
+    
+    input waitpin,
+    input int,
+    input nmi,
+    input reset,
+    
+    input busrq,
+    output busack,
+    
+    output [15:0] address_out, 
+    wire [7:0] data
 );
 
 // 2D arrays - regfile[0] is register "A", each one is 8 bits
