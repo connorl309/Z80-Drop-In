@@ -47,7 +47,7 @@ reg [3:0] tcycle;
 reg [3:0] mcycle;
 reg isNewCycle;
 
-// 2D arrays - regfile[0] is register "A", each one is 8 bits
+// 2D arrays - regfile[0] is register "A" (accumulator), each one is 8 bits
 // use the defines in this file for better naming
 // https://www.zilog.com/docs/z80/um0080.pdf - Page 16 on the PDF
 reg [7:0] regfile[2:0];

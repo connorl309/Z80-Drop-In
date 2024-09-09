@@ -2,6 +2,14 @@
 // Indices are 1 less than their actual pin number because 0-indexed
 // https://www.retrocompute.co.uk/zilog-z80-pinout/
 
+// https://area51.dev/asm/z80/about/flags/
+`define FLAG_S 7
+`define FLAG_Z 6
+`define FLAG_H 4
+`define FLAG_PV 2
+`define FLAG_N 1
+`define FLAG_C 0
+
 // Address bus pins - 16 bit
 // OUTPUT ONLY
 `define A0 29
