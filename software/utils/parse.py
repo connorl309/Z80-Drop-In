@@ -8,6 +8,11 @@ alu_ops = ["ADD", "ADC", "SUB", "SBC", "AND", "OR", "XOR", "CP"]
 
 def translate(input_line):
     output_list = []
+    if "/" in input_line[0]:
+        string = input_line[0]
+        orig1, orig2 = string.split("/")
+        input_line[0] = orig1
+        input_line.insert(1, orig2)
     for item in input_line:
         # Split the input by '/'
         #parts = item.split('/')
@@ -32,7 +37,7 @@ for a in lines:
         if ("ALU" in split[0]):
             for op in alu_ops:
                 res = translate(newlist)
-                print("{0:15}".format(split[0]), end="\t\t")
+                print("{0:15}".format(op + split[0].removeprefix("ALU")), end="\t\t")
                 for i in res:
                     print(i, end='\t')
                 print()
