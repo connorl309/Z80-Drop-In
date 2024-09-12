@@ -1,0 +1,20 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "dfe466fb-b491-4b6f-b4a4-b4c92305e7f3")
+	(paper "A0")
+	(title_block
+		(title "Z80 FPGA Board")
+		(date "2024-09-12")
+		(company "University of Texas at Austin / Phoenix Semiconductor")
+		(comment 1 "Designed by team IH1 - ECE364")
+		(comment 2 "Connor Leu, April Douglas, Nadia Houston, Luke Mason, Gage Miller, Gabriel Moore")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

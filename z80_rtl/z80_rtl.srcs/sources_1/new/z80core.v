@@ -35,8 +35,8 @@ module z80core(
     input busrq,
     output busack,
     
-    output [15:0] address_out, 
-    wire [7:0] data
+    output reg [15:0] address_out, 
+    reg [7:0] data
 );
 
 // internal data
