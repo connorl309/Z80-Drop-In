@@ -84,16 +84,8 @@ module ALU(
     // ALU Core
     reg [15:0] reg_alu_out, temp; // used for 16 bit adds, we should fetch the first register pair over the internal data bus and store it here before then fetching the HL reg pair over the internal data bus in the next clock cycle
     reg [7:0] alu_flag_out;
-    assign ALU_OUT = reg_alu_out;
+    //assign ALU_OUT = reg_alu_out;
     assign FLAG_OUT = alu_flag_out;
-    
-    
-    /* below needs to be rewritten like this to avoid the extra cycle
-              assign ALU_OUT = ALU_OP == ADD_8BIT ? extendTo16(add_8bit_wire[7:0]) :
-                     ALU_OP == ADD_C_8BIT ? extendTo16(add_c_8bit_wire[7:0]) :
-                     ALU_OP == SUB_8BIT ? extendTo16(sub_8bit_wire[7:0]) : etc etc
-     */
-
     
     localparam LOAD_TEMP = 0; // load TEMP
     localparam ADD_8BIT = 1; // 8-bit add
@@ -176,7 +168,36 @@ module ALU(
     localparam TEST_BASE = 33;
     localparam SET_BASE = TEST_BASE + 8; 
     localparam RESET_BASE = SET_BASE + 8; 
-
+    
+    
+    assign ALU_OUT = ALU_OP == ADD_8BIT         ? extendTo16(add_8bit_wire[7:0]) :
+                     ALU_OP == ADD_C_8BIT        ? extendTo16(add_c_8bit_wire[7:0]) :
+                     ALU_OP == SUB_8BIT          ? extendTo16(sub_8bit_wire[7:0]) : 
+                     ALU_OP == SUB_C_8BIT        ? extendTo16(sub_c_8bit_wire[7:0]) : 
+                     ALU_OP == AND_8BIT          ? {8'b0, and_wire} :
+                     ALU_OP == OR_8BIT           ? {8'b0, or_wire} :
+                     ALU_OP == XOR_8BIT          ? {8'b0, xor_wire} :
+                     ALU_OP == INC_8BIT          ? extendTo16(inc_8bit_wire) :
+                     ALU_OP == DEC_8BIT          ? extendTo16(dec_8bit_wire) :
+                     ALU_OP == ONES_8BIT         ? extendTo16(ones_8bit_wire) :
+                     ALU_OP == TWOS_8BIT         ? extendTo16(twos_8bit_wire) :
+                     ALU_OP == ADD_16BIT         ? add_16bit_wire :
+                     ALU_OP == ADD_C_16BIT       ? add_c_16bit_wire :
+                     ALU_OP == SUB_C_16BIT       ? sub_c_16bit_wire :
+                     ALU_OP == INC_16BIT         ? inc_16bit_wire :
+                     ALU_OP == DEC_16BIT         ? dec_16bit_wire :
+                     ALU_OP == ROTATE_LEFT       ? rotate_left_wire :
+                     ALU_OP == ROTATE_C_LEFT     ? rotate_c_left_wire :
+                     ALU_OP == ROTATE_LEFT_R     ? rotate_left_wire : 
+                     ALU_OP == ROTATE_LEFT_R_C   ? rotate_c_left_wire :
+                     ALU_OP == ROTATE_RIGHT      ? rotate_right_wire : 
+                     ALU_OP == ROTATE_C_RIGHT    ? rotate_c_right_wire :
+                     ALU_OP == ROTATE_RIGHT_R    ? rotate_right_wire :
+                     ALU_OP == ROTATE_RIGHT_R_C  ? rotate_c_right_wire :
+                     ALU_OP == SHIFT_A_LEFT      ? shift_left_wire :
+                     ALU_OP == SHIFT_A_RIGHT     ? arithmetic_shift_right_wire :
+                     ALU_OP == SHIFT_L_RIGHT     ? logical_shift_right_wire          : 0;
+    
     // TODO: confirm behavior of C and P/V flags during add/sub
     // TODO: H flag
    
