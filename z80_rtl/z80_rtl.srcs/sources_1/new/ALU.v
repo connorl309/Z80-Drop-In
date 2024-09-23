@@ -19,13 +19,19 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// Gates to the buses should be made outside of the module
+function [15:0] extendTo16;
+    input [7:0] num;
+    begin
+        extendTo16 = {num[7] ? 8'hFF : 8'b0, num};
+    end
+endfunction
 
+// Gates to the buses should be made outside of the module
 module ALU(
     input CLK,
     input [15:0] INT_DATA_BUS,
     input [7:0] EXT_DATA_BUS,
-    input [2:0] ALU_OP,
+    input [5:0] ALU_OP,
     input ALU_STABLE,
     input ALU_IN_MUX,
     input [1:0] ACC_IN_MUX,
@@ -79,24 +85,27 @@ module ALU(
     reg [15:0] reg_alu_out, temp; // used for 16 bit adds, we should fetch the first register pair over the internal data bus and store it here before then fetching the HL reg pair over the internal data bus in the next clock cycle
     reg [7:0] alu_flag_out;
     assign ALU_OUT = reg_alu_out;
+    assign FLAG_OUT = alu_flag_out;
     
     localparam NOP = 0; // NOP, duh
     localparam LOAD_TEMP = 1; // load TEMP
     localparam ADD_8BIT = 2; // 8-bit add
     localparam ADD_C_8BIT = 3; // 8-bit add with carry
+    wire [8:0] add_c_8bit_wire = acc + operand_mux[7:0] + flag[FLAG_C];
     wire [8:0] add_8bit_wire = acc + operand_mux[7:0];
     
     localparam SUB_8BIT = 4; // 8-bit sub
     localparam SUB_C_8BIT = 5; // 8-bit sub with carry
+    wire [8:0] sub_c_8bit_wire = acc - operand_mux[7:0] - flag[FLAG_C];
     wire [8:0] sub_8bit_wire = acc - operand_mux[7:0];
     
-    localparam AND = 6; // 8-bit AND 
+    localparam AND_8BIT = 6; // 8-bit AND 
     wire [7:0] and_wire = acc & operand_mux[7:0];
     
-    localparam OR = 7; // 8-bit OR 
+    localparam OR_8BIT = 7; // 8-bit OR 
     wire [7:0] or_wire = acc | operand_mux[7:0];
     
-    localparam XOR = 8; // 8-bit XOR 
+    localparam XOR_8BIT = 8; // 8-bit XOR 
     wire [7:0] xor_wire = acc ^ operand_mux[7:0];
     
     localparam CMP = 9; // 8-bit compare
@@ -116,15 +125,16 @@ module ALU(
     localparam SET_C = 15; // Set carry flag
     localparam ADD_16BIT = 16; // 16-bit add 
     localparam ADD_C_16BIT = 17; // 16-bit add with carry 
-    wire [15:0] add_16bit_wire = temp + operand_mux[15:0];
+    wire [16:0] add_c_16bit_wire = temp + operand_mux[15:0] + flag[FLAG_C];
+    wire [16:0] add_16bit_wire = temp + operand_mux[15:0];
     
     localparam SUB_C_16BIT = 18; // 16-bit sub with carry
-    wire [15:0] sub_16bit_wire = temp - operand_mux[15:0];
+    wire [16:0] sub_c_16bit_wire = temp - operand_mux[15:0] - flag[FLAG_C];
     
     localparam INC_16BIT = 19; // 16-bit increment
     wire [15:0] inc_16bit_wire = operand_mux[15:0] + 1;
     
-    localparam DEC_18BIT = 20; // 16-bit decrement
+    localparam DEC_16BIT = 20; // 16-bit decrement
     wire [15:0] dec_16bit_wire = operand_mux[15:0] - 1;
     
     localparam ROTATE_LEFT = 21; //  8-bit rotate left
@@ -154,13 +164,22 @@ module ALU(
 
     // TODO: confirm behavior of C and P/V flags during add/sub
     // TODO: H flag
+    
+    /*
+                reg_alu_out <= 
+                alu_flag_out[FLAG_S] <= 
+                alu_flag_out[FLAG_Z] <= 
+                alu_flag_out[FLAG_P_V] <= 
+                alu_flag_out[FLAG_N] <= 
+                alu_flag_out[FLAG_C] <= 
+    */
    
     always @(posedge CLK) begin
         case (ALU_OP)
             LOAD_TEMP:
                 temp <= operand_mux;
             ADD_8BIT: begin
-                reg_alu_out <= add_8bit_wire[7:0];
+                reg_alu_out <= extendTo16(add_8bit_wire[7:0]);
                 alu_flag_out[FLAG_S] <= add_8bit_wire[7];
                 alu_flag_out[FLAG_Z] <= add_8bit_wire == 0;
                 alu_flag_out[FLAG_P_V] <= add_8bit_wire[8]; 
@@ -168,28 +187,124 @@ module ALU(
                 alu_flag_out[FLAG_C] <= add_8bit_wire[8]; 
             end
             ADD_C_8BIT: begin
-                reg_alu_out <= add_8bit_wire[7:0] + flag[FLAG_C];
-                alu_flag_out[FLAG_S] <= add_8bit_wire[7];
-                alu_flag_out[FLAG_Z] <= add_8bit_wire == 0;
-                alu_flag_out[FLAG_P_V] <= add_8bit_wire[8]; 
+                reg_alu_out <= extendTo16(add_c_8bit_wire[7:0]);
+                alu_flag_out[FLAG_S] <= add_c_8bit_wire[7];
+                alu_flag_out[FLAG_Z] <= add_c_8bit_wire == 0;
+                alu_flag_out[FLAG_P_V] <= add_c_8bit_wire[8]; 
                 alu_flag_out[FLAG_N] <= 1'b0;
-                alu_flag_out[FLAG_C] <= add_8bit_wire[8]; 
+                alu_flag_out[FLAG_C] <= add_c_8bit_wire[8]; 
             end
             SUB_8BIT: begin
-                reg_alu_out <= sub_8bit_wire[7:0];
+                reg_alu_out <= extendTo16(sub_8bit_wire[7:0]);
                 alu_flag_out[FLAG_S] <= sub_8bit_wire[7];
                 alu_flag_out[FLAG_Z] <= sub_8bit_wire == 0;
-                alu_flag_out[FLAG_P_V] <= sub_8bit_wire[8]; 
+                alu_flag_out[FLAG_P_V] <= sub_8bit_wire[8]; // TODO: ???
                 alu_flag_out[FLAG_N] <= 1'b1;
                 alu_flag_out[FLAG_C] <= acc < operand_mux[7:0];
             end
             SUB_C_8BIT: begin
-                reg_alu_out <= sub_8bit_wire[7:0] - flag[FLAG_C];
-                alu_flag_out[FLAG_S] <= sub_8bit_wire[7];
-                alu_flag_out[FLAG_Z] <= sub_8bit_wire == 0;
-                alu_flag_out[FLAG_P_V] <= sub_8bit_wire[8]; 
+                reg_alu_out <= extendTo16(sub_c_8bit_wire[7:0]);
+                alu_flag_out[FLAG_S] <= sub_c_8bit_wire[7];
+                alu_flag_out[FLAG_Z] <= sub_c_8bit_wire == 0;
+                alu_flag_out[FLAG_P_V] <= sub_c_8bit_wire[8];  // TODO: ???
                 alu_flag_out[FLAG_N] <= 1'b1;
                 alu_flag_out[FLAG_C] <= acc < operand_mux[7:0];
+            end
+            AND_8BIT: begin
+                reg_alu_out <= {8'b0, and_wire};
+                alu_flag_out[FLAG_S] <= and_wire[7];
+                alu_flag_out[FLAG_Z] <= and_wire == 0;
+                alu_flag_out[FLAG_H] <= 1;
+                alu_flag_out[FLAG_P_V] <= 0; // TODO: ????????
+                alu_flag_out[FLAG_N] <= 0;
+                alu_flag_out[FLAG_C] <= 0;
+            end
+            OR_8BIT: begin
+                reg_alu_out <= {8'b0, or_wire};
+                alu_flag_out[FLAG_S] <= or_wire[7];
+                alu_flag_out[FLAG_Z] <= or_wire == 0;
+                alu_flag_out[FLAG_H] <= 0;
+                alu_flag_out[FLAG_P_V] <= 0; // TODO: ????????
+                alu_flag_out[FLAG_N] <= 0;
+                alu_flag_out[FLAG_C] <= 0;
+            end
+            XOR_8BIT: begin
+                reg_alu_out <= {8'b0, xor_wire};
+                alu_flag_out[FLAG_S] <= xor_wire[7];
+                alu_flag_out[FLAG_Z] <= xor_wire == 0;
+                alu_flag_out[FLAG_H] <= 0;
+                alu_flag_out[FLAG_P_V] <= !(^xor_wire); // even parity
+                alu_flag_out[FLAG_N] <= 0;
+                alu_flag_out[FLAG_C] <= 0;
+            end
+            CMP: begin
+                // TODO: ?????
+            end
+            INC_8BIT: begin
+                reg_alu_out <= extendTo16(inc_8bit_wire);
+                alu_flag_out[FLAG_S] <= inc_8bit_wire[7];
+                alu_flag_out[FLAG_Z] <= inc_8bit_wire == 0;
+                alu_flag_out[FLAG_P_V] <= operand_mux[7:0] == 8'h7F;
+                alu_flag_out[FLAG_N] <= 0;
+                alu_flag_out[FLAG_C] <= alu_flag_out[FLAG_C];
+            end
+            DEC_8BIT: begin
+                reg_alu_out <= extendTo16(dec_8bit_wire);
+                alu_flag_out[FLAG_S] <= dec_8bit_wire[7];
+                alu_flag_out[FLAG_Z] <= dec_8bit_wire == 0;
+                alu_flag_out[FLAG_P_V] <= operand_mux[7:0] == 8'h80;
+                alu_flag_out[FLAG_N] <= 1;
+                alu_flag_out[FLAG_C] <= alu_flag_out[FLAG_C];
+            end
+            ONES_8BIT: begin
+                reg_alu_out <= extendTo16(ones_8bit_wire);
+                alu_flag_out[FLAG_S] <= alu_flag_out[FLAG_S];
+                alu_flag_out[FLAG_Z] <= alu_flag_out[FLAG_Z];
+                alu_flag_out[FLAG_H] <= 1;
+                alu_flag_out[FLAG_P_V] <= alu_flag_out[FLAG_P_V];
+                alu_flag_out[FLAG_N] <= 1;
+                alu_flag_out[FLAG_C] <= alu_flag_out[FLAG_C];
+            end
+            TWOS_8BIT: begin
+                reg_alu_out <= extendTo16(twos_8bit_wire);
+                alu_flag_out[FLAG_S] <= twos_8bit_wire[7];
+                alu_flag_out[FLAG_Z] <= twos_8bit_wire == 0;
+                alu_flag_out[FLAG_P_V] <= operand_mux[7:0] == 8'h80;
+                alu_flag_out[FLAG_N] <= 1;
+                alu_flag_out[FLAG_C] <= operand_mux[7:0] == 8'h00;
+            end
+            INV_C: begin
+                alu_flag_out[FLAG_C] <= !alu_flag_out[FLAG_C];
+            end
+            SET_C: begin
+                alu_flag_out[FLAG_C] <= 1;
+            end
+            ADD_16BIT: begin
+                reg_alu_out <= add_16bit_wire;
+                alu_flag_out[FLAG_N] <= 1'b0;
+                alu_flag_out[FLAG_C] <= add_16bit_wire[15]; 
+            end
+            ADD_C_16BIT: begin
+                reg_alu_out <= add_c_16bit_wire;
+                alu_flag_out[FLAG_S] <= add_c_16bit_wire[15];
+                alu_flag_out[FLAG_Z] <= add_c_16bit_wire == 0;
+                alu_flag_out[FLAG_P_V] <= add_c_16bit_wire[16];
+                alu_flag_out[FLAG_N] <= 0;
+                alu_flag_out[FLAG_C] <= add_c_16bit_wire[16];
+            end
+            SUB_C_16BIT: begin
+                reg_alu_out <= sub_c_16bit_wire;
+                alu_flag_out[FLAG_S] <= sub_c_16bit_wire[15];
+                alu_flag_out[FLAG_Z] <= sub_c_16bit_wire == 0;
+                alu_flag_out[FLAG_P_V] <= sub_c_16bit_wire[16]; // TODO: ???
+                alu_flag_out[FLAG_N] <= 1;
+                alu_flag_out[FLAG_C] <= temp < (17'b0 + operand_mux[15:0] + flag[FLAG_C]);
+            end
+            INC_16BIT: begin
+                 reg_alu_out <= inc_16bit_wire;
+            end
+            DEC_16BIT: begin
+                reg_alu_out <= dec_16bit_wire;
             end
             
         endcase    
