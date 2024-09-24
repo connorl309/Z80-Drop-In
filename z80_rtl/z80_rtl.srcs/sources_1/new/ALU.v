@@ -140,23 +140,24 @@ module ALU_Core(
     wire [7:0] rotate_right_wire = {operandB[0], operandA[7:1]};
     
     localparam SHIFT_A_LEFT = 28; // 8-bit arithmetic shift left
-    wire [7:0] shift_left_wire = {operandB[6:0], 1'b0};
+    wire [7:0] shift_left_wire = {operandA[6:0], 1'b0};
     
     localparam SHIFT_A_RIGHT = 29; // 8-bit arithmetic shift right
-    wire [7:0] arithmetic_shift_right_wire = {operandB[7], operandB[7:1]};
+    wire [7:0] arithmetic_shift_right_wire = {operandA[7], operandA[7:1]};
     
     localparam SHIFT_L_RIGHT = 30; // 8-bit logical shift right
-    wire [7:0] logical_shift_right_wire = {1'b0, operandB[7:1]};
+    wire [7:0] logical_shift_right_wire = {1'b0, operandA[7:1]};
     
     localparam WEIRD_ROTATE_LEFT = 31; // weird ahhh left rotate through memory location and A (RLD opcode)
     localparam WEIRD_ROTATE_RIGHT = 32; // weird ahhh right rotate through memory location and A (RRD opcode)
     
     // these are always on an 8-bit value
     localparam TEST_BASE = 33;
+    wire [7:0] TEST_wire = (operandA[7:0] & (1'b1 << (ALU_OP - TEST_BASE)));
     localparam SET_BASE = TEST_BASE + 8; 
-    wire [7:0] set_wire = operandB[7:0] | (1'b1 << ALU_OP[2:0]);
+    wire [7:0] set_wire = operandA[7:0] | (ALU_OP - SET_BASE);
     localparam RESET_BASE = SET_BASE + 8; 
-    wire [7:0] reset_wire = operandB[7:0] & ~(8'b0 + (1'b1 << ALU_OP[2:0]));
+    wire [7:0] reset_wire = operandA[7:0] & ~(8'b0 + (1'b1 << (ALU_OP - RESET_BASE)));
     
     always @(*) begin
         FLAG_OUT[FLAG_Y] <= 0;
@@ -240,7 +241,7 @@ module ALU_Core(
                 FLAG_OUT[FLAG_C] <= 0;
             end
             CMP: begin
-                ALU_OUT <= 16'b0;
+                ALU_OUT <= {8'b0, operandB}; // see undocumented 8.4
                 FLAG_OUT[FLAG_S] <= sub_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= sub_8bit_wire == 0;
                 // FLAG_OUT[FLAG_Y] <= 0;
@@ -383,7 +384,7 @@ module ALU_Core(
                 FLAG_OUT[FLAG_C] <= operandA[7:0] == 8'h00;
             end
             INV_C: begin
-                ALU_OUT <= 16'b0;
+                ALU_OUT <= {8'b0, operandA}; // The A register must be exposed to operandA for this instruction
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
                 // FLAG_OUT[FLAG_Y] <= 0;
@@ -394,7 +395,7 @@ module ALU_Core(
                 FLAG_OUT[FLAG_C] <= !flag[FLAG_C];
             end
             SET_C: begin
-                ALU_OUT <= 16'b0;
+                ALU_OUT <= {8'b0, operandA}; // The A register must be exposed to operandA for this instruction
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
                 // FLAG_OUT[FLAG_Y] <= 0;
@@ -405,7 +406,7 @@ module ALU_Core(
                 FLAG_OUT[FLAG_C] <= 1;
             end
             ADD_16BIT: begin
-                ALU_OUT <= add_16bit_wire[15:0];
+                ALU_OUT <= add_16bit_wire[15:0]; // TODO Y and X should pull from the high byte of this
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
                 // FLAG_OUT[FLAG_Y] <= add_16bit_wire[5];
@@ -607,21 +608,21 @@ module ALU_Core(
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
             end
-            33, 
-            34,
-            35,
-            36,
-            37,
-            38,
-            39,
-            40: begin
-                ALU_OUT <= 16'b0;
-                FLAG_OUT[FLAG_S] <= flag[FLAG_S];
-                FLAG_OUT[FLAG_Z] <= (operandB[7:0] & (1'b1 << ALU_OP[2:0])) == 0;
+            TEST_BASE, 
+            TEST_BASE + 1,
+            TEST_BASE + 2,
+            TEST_BASE + 3,
+            TEST_BASE + 4,
+            TEST_BASE + 5,
+            TEST_BASE + 6,
+            TEST_BASE + 7: begin
+                ALU_OUT <= {8'b0, TEST_wire};
+                FLAG_OUT[FLAG_S] <= ALU_OP == TEST_BASE + 7 && operandA[7] == 1; // see undocumented
+                FLAG_OUT[FLAG_Z] <= TEST_wire == 0;
                 // FLAG_OUT[FLAG_Y] <= 0;
                 FLAG_OUT[FLAG_H] <= 1;
                 // FLAG_OUT[FLAG_X] <= 0;
-                FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
+                FLAG_OUT[FLAG_P_V] <= TEST_wire == 0;
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
             end
@@ -685,6 +686,8 @@ module ALU(
     input [1:0] ACC_IN_MUX,
     input LD_ACCUM,
     input LD_FLAG,
+    input [7:0] FLAG_IN,
+    input FLAG_MUX,
     input ACTIVE_REGS,
     output [15:0] ALU_OUT,
     output [7:0] FLAG_OUT,
@@ -697,6 +700,7 @@ module ALU(
 
     // F Register
     reg [7:0] flag, flag_prime;
+    wire [7:0] flag_mux = FLAG_MUX ? FLAG_IN : alu_flag_out;
     wire [7:0] FLAG_OUT_int = ACTIVE_REGS ? flag_prime : flag;
     always @(posedge CLK) begin
         if (LD_FLAG) begin
