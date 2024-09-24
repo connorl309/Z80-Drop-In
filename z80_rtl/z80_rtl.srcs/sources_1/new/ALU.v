@@ -44,7 +44,6 @@ module ALU_Core(
     localparam FLAG_N = 1;
     localparam FLAG_C = 0;
     
-    
     localparam ADD_8BIT = 0; // 8-bit add
     localparam ADD_C_8BIT = 1; // 8-bit add with carry
     wire [7:0] operandB8_plus_carry = operandB[7:0] + flag[FLAG_C];
@@ -151,7 +150,6 @@ module ALU_Core(
     
     localparam WEIRD_ROTATE_LEFT = 31; // weird ahhh left rotate through memory location and A (RLD opcode)
     localparam WEIRD_ROTATE_RIGHT = 32; // weird ahhh right rotate through memory location and A (RRD opcode)
-    // TODO make wire for this with guidance from FSM team
     
     // these are always on an 8-bit value
     localparam TEST_BASE = 33;
@@ -282,71 +280,51 @@ module ALU_Core(
                     ALU_OUT <= {8'b0, BCD_CASE_1};
                     FLAG_OUT[FLAG_S] <= operandA[7];
                     FLAG_OUT[FLAG_Z] <= operandA[7:0] == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_1[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_1[3];
                     FLAG_OUT[FLAG_P_V] <= !(^operandA[7:0]);
                 end else if (flag[FLAG_C] == 0 && operandA[7:4] <= 4'h9 && flag[FLAG_H] == 1 && operandA[3:0] <= 4'h9) begin
                     ALU_OUT <= {8'b0, BCD_CASE_2};
                     FLAG_OUT[FLAG_S] <= operandA[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_2 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_2[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_2[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_2);
                 end else if (flag[FLAG_C] == 0 && operandA[7:4] <= 4'h8 && operandA[3:0] >= 4'hA) begin
                     ALU_OUT <= {8'b0, BCD_CASE_3};
                     FLAG_OUT[FLAG_S] <= operandA[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_3 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_3[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_3[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_3);
                 end else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'hA && flag[FLAG_H] == 0 && operandA[3:0] <= 4'h9) begin
                     ALU_OUT <= {8'b0, BCD_CASE_4};
                     FLAG_OUT[FLAG_S] <= BCD_CASE_4[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_4 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_4[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_4[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_4);
                 end else if (flag[FLAG_C] == 1 && flag[FLAG_H] == 0 && operandA[3:0] <= 4'h9) begin
                     ALU_OUT <= {8'b0, BCD_CASE_5};
                     FLAG_OUT[FLAG_S] <= BCD_CASE_5[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_5 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_5[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_5[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_5);
                 end else if (flag[FLAG_C] == 1 && flag[FLAG_H] == 1 && operandA[3:0] <= 4'h9) begin
                     ALU_OUT <= {8'b0, BCD_CASE_6};
                     FLAG_OUT[FLAG_S] <= BCD_CASE_6[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_6 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_6[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_6[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_6);
                 end else if (flag[FLAG_C] == 1 && operandA[3:0] >= 4'hA) begin
                     ALU_OUT <= {8'b0, BCD_CASE_7};
                     FLAG_OUT[FLAG_S] <= BCD_CASE_7[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_7 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_7[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_7[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_7);
                 end else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'h9 && operandA[3:0] >= 4'hA) begin
                     ALU_OUT <= {8'b0, BCD_CASE_8};
                     FLAG_OUT[FLAG_S] <= BCD_CASE_8[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_8 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_8[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_8[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_8);
                 end else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'hA && flag[FLAG_H] == 1 && operandA[3:0] <= 4'h9) begin
                     ALU_OUT <= {8'b0, BCD_CASE_9};
                     FLAG_OUT[FLAG_S] <= BCD_CASE_9[7];
                     FLAG_OUT[FLAG_Z] <= BCD_CASE_9 == 0;
-                    // FLAG_OUT[FLAG_Y] <= BCD_CASE_9[5];
-                    // FLAG_OUT[FLAG_X] <= BCD_CASE_9[3];
                     FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_9);
                 end else begin
                     ALU_OUT <= {8'b0, operandA[7:0]};
                     FLAG_OUT[FLAG_S] <= operandA[7];
                     FLAG_OUT[FLAG_Z] <= operandA[7:0] == 0;
-                    // FLAG_OUT[FLAG_Y] <= operandA[5];
-                    // FLAG_OUT[FLAG_X] <= operandA[3];
                     FLAG_OUT[FLAG_P_V] <= !(^operandA[7:0]);
                 end
                 
@@ -602,6 +580,33 @@ module ALU_Core(
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[0];
             end
+            // these reotates output what goes to the accumulator to the high order byte and what goes back to memory to the low order byte
+            WEIRD_ROTATE_LEFT: begin
+                ALU_OUT[15:12] <= operandA[7:4];
+                ALU_OUT[11:8] <= operandB[7:4];
+                ALU_OUT[7:4] <= operandB[3:0];
+                ALU_OUT[3:0] <= operandA[3:0];
+                
+                FLAG_OUT[FLAG_S] <= operandA[7];
+                FLAG_OUT[FLAG_Z] <= {operandA[7:4], operandB[7:4]} == 0;
+                FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_P_V] <= !(^{operandA[7:4], operandB[7:4]});
+                FLAG_OUT[FLAG_N] <= 0;
+                FLAG_OUT[FLAG_C] <= flag[FLAG_C];
+            end
+            WEIRD_ROTATE_RIGHT: begin
+                ALU_OUT[15:12] <= operandA[7:4];
+                ALU_OUT[11:8] <= operandB[3:0];
+                ALU_OUT[7:4] <= operandA[3:0];
+                ALU_OUT[3:0] <= operandB[7:4];
+                
+                FLAG_OUT[FLAG_S] <= operandA[7];
+                FLAG_OUT[FLAG_Z] <= {operandA[7:4], operandB[3:0]} == 0;
+                FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_P_V] <= !(^{operandA[7:4], operandB[3:0]});
+                FLAG_OUT[FLAG_N] <= 0;
+                FLAG_OUT[FLAG_C] <= flag[FLAG_C];
+            end
             33, 
             34,
             35,
@@ -706,7 +711,7 @@ module ALU(
     reg [7:0] acc, acc_prime;
     wire [7:0] ACC_OUT_int = ACTIVE_REGS ? acc_prime : acc;
     assign ACC_OUT = ACC_OUT_int;
-    wire [7:0] acc_in_mux_out = ACC_IN_MUX == 0 ? ALU_OUT_int[7:0] : (ACC_IN_MUX == 1 ? INT_DATA_BUS_A[7:0] : (ACC_IN_MUX == 2 ? INT_DATA_BUS_B : 0));
+    wire [7:0] acc_in_mux_out = ACC_IN_MUX == 0 ? ALU_OUT_int[7:0] : (ACC_IN_MUX == 1 ? ALU_OUT_int[15:8] : (ACC_IN_MUX == 2 ? INT_DATA_BUS_A[7:0] : INT_DATA_BUS_B[7:0]));
     always @(posedge CLK) begin
         if (LD_ACCUM) begin
             if (ACTIVE_REGS)
