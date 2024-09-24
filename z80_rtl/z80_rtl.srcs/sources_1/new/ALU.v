@@ -38,9 +38,9 @@ module ALU_Core(
     
     localparam FLAG_S = 7;
     localparam FLAG_Z = 6;
-    localparam FLAG_X2 = 5;
+    localparam FLAG_Y = 5;
     localparam FLAG_H = 4;
-    localparam FLAG_X1 = 3;
+    localparam FLAG_X = 3;
     localparam FLAG_P_V = 2;
     localparam FLAG_N = 1;
     localparam FLAG_C = 0;
@@ -86,6 +86,16 @@ module ALU_Core(
     wire [8:0] dec_8bit_wire = operandA[7:0] - 1;
     
     localparam BCD_NONSENSE = 10;
+    wire [7:0] BCD_CASE_1 = {operandA[7:4] + 4'h0, operandA[3:0] + 4'h0};
+    wire [7:0] BCD_CASE_2 = {operandA[7:4] + 4'h0, operandA[3:0] + 4'h6};
+    wire [7:0] BCD_CASE_3 = {operandA[7:4] + 4'h0, operandA[3:0] + 4'h6};
+    wire [7:0] BCD_CASE_4 = {operandA[7:4] + 4'h6, operandA[3:0] + 4'h0};
+    wire [7:0] BCD_CASE_5 = {operandA[7:4] + 4'h6, operandA[3:0] + 4'h0};
+    wire [7:0] BCD_CASE_6 = {operandA[7:4] + 4'h6, operandA[3:0] + 4'h6};
+    wire [7:0] BCD_CASE_7 = {operandA[7:4] + 4'h6, operandA[3:0] + 4'h6};
+    wire [7:0] BCD_CASE_8 = {operandA[7:4] + 4'h6, operandA[3:0] + 4'h6};
+    wire [7:0] BCD_CASE_9 = {operandA[7:4] + 4'h6, operandA[3:0] + 4'h6};
+    
     
     localparam ONES_8BIT = 11; // 8-bit one's complement negation
     wire [7:0] ones_8bit_wire = ~operandA[7:0];
@@ -147,17 +157,19 @@ module ALU_Core(
     // these are always on an 8-bit value
     localparam TEST_BASE = 33;
     localparam SET_BASE = TEST_BASE + 8; 
+    wire [7:0] set_wire = operandB[7:0] | (1'b1 << ALU_OP[2:0]);
     localparam RESET_BASE = SET_BASE + 8; 
+    wire [7:0] reset_wire = operandB[7:0] & ~(8'b0 + (1'b1 << ALU_OP[2:0]));
     
     always @(*) begin
-        FLAG_OUT[FLAG_X1] <= 0;
-        FLAG_OUT[FLAG_X2] <= 0;
         case (ALU_OP)
             ADD_8BIT: begin
                 ALU_OUT <= extendTo16(add_8bit_wire[7:0]);
                 FLAG_OUT[FLAG_S] <= add_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= add_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= add_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= add_8bit_H; 
+                FLAG_OUT[FLAG_X] <= add_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= add_8bit_overflow; 
                 FLAG_OUT[FLAG_N] <= 1'b0;
                 FLAG_OUT[FLAG_C] <= add_8bit_wire[8]; 
@@ -166,7 +178,9 @@ module ALU_Core(
                 ALU_OUT <= extendTo16(add_c_8bit_wire[7:0]);
                 FLAG_OUT[FLAG_S] <= add_c_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= add_c_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= add_c_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= add_c_8bit_H;
+                FLAG_OUT[FLAG_X] <= add_c_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= add_c_8bit_overflow; 
                 FLAG_OUT[FLAG_N] <= 1'b0;
                 FLAG_OUT[FLAG_C] <= add_c_8bit_wire[8]; 
@@ -175,7 +189,9 @@ module ALU_Core(
                 ALU_OUT <= extendTo16(sub_8bit_wire[7:0]);
                 FLAG_OUT[FLAG_S] <= sub_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= sub_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= sub_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= sub_8bit_H;
+                FLAG_OUT[FLAG_X] <= sub_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= sub_8bit_overflow;
                 FLAG_OUT[FLAG_N] <= 1'b1;
                 FLAG_OUT[FLAG_C] <= $signed(operandA[7:0]) < $signed(operandB[7:0]);
@@ -184,7 +200,9 @@ module ALU_Core(
                 ALU_OUT <= extendTo16(sub_c_8bit_wire[7:0]);
                 FLAG_OUT[FLAG_S] <= sub_c_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= sub_c_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= sub_c_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= sub_c_8bit_H;
+                FLAG_OUT[FLAG_X] <= sub_c_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= sub_c_8bit_overflow;
                 FLAG_OUT[FLAG_N] <= 1'b1;
                 FLAG_OUT[FLAG_C] <= $signed(operandA[7:0]) < $signed(operandB[7:0]);
@@ -193,7 +211,9 @@ module ALU_Core(
                 ALU_OUT <= {8'b0, and_wire};
                 FLAG_OUT[FLAG_S] <= and_wire[7];
                 FLAG_OUT[FLAG_Z] <= and_wire == 0;
+                FLAG_OUT[FLAG_Y] <= and_wire[5];
                 FLAG_OUT[FLAG_H] <= 1;
+                FLAG_OUT[FLAG_X] <= and_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^and_wire); // even parity according to P/V subsection
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= 0;
@@ -202,7 +222,9 @@ module ALU_Core(
                 ALU_OUT <= {8'b0, or_wire};
                 FLAG_OUT[FLAG_S] <= or_wire[7];
                 FLAG_OUT[FLAG_Z] <= or_wire == 0;
+                FLAG_OUT[FLAG_Y] <= or_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= or_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^or_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= 0;
@@ -211,16 +233,20 @@ module ALU_Core(
                 ALU_OUT <= {8'b0, xor_wire};
                 FLAG_OUT[FLAG_S] <= xor_wire[7];
                 FLAG_OUT[FLAG_Z] <= xor_wire == 0;
+                FLAG_OUT[FLAG_Y] <= xor_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= xor_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^xor_wire); // even parity
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= 0;
             end
             CMP: begin
-                ALU_OUT <= 0;
+                ALU_OUT <= 16'b0;
                 FLAG_OUT[FLAG_S] <= sub_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= sub_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= 0;
                 FLAG_OUT[FLAG_H] <= sub_8bit_H;
+                FLAG_OUT[FLAG_X] <= 0;
                 FLAG_OUT[FLAG_P_V] <= sub_8bit_overflow;
                 FLAG_OUT[FLAG_N] <= 1;
                 FLAG_OUT[FLAG_C] <= $signed(operandA[7:0]) < $signed(operandB[7:0]);
@@ -229,7 +255,9 @@ module ALU_Core(
                 ALU_OUT <= extendTo16(inc_8bit_wire);
                 FLAG_OUT[FLAG_S] <= inc_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= inc_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= inc_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= inc_8bit_H;
+                FLAG_OUT[FLAG_X] <= inc_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= operandA[7:0] == 8'h7F;
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
@@ -238,19 +266,128 @@ module ALU_Core(
                 ALU_OUT <= extendTo16(dec_8bit_wire);
                 FLAG_OUT[FLAG_S] <= dec_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= dec_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= dec_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= operandB[3:0] == 0;
+                FLAG_OUT[FLAG_X] <= dec_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= operandA[7:0] == 8'h80;
                 FLAG_OUT[FLAG_N] <= 1;
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
             end
             BCD_NONSENSE: begin
+                // page 18 of https://datasheets.chipdb.org/Zilog/Z80/z80-documented-0.90.pdf 
+                
+                // Adjusted value
+                if (flag[FLAG_C] == 0 && operandA[7:4] <= 4'h9 && flag[FLAG_H] == 0 && operandA[3:0] <= 4'h9) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_1};
+                    FLAG_OUT[FLAG_S] <= operandA[7];
+                    FLAG_OUT[FLAG_Z] <= operandA[7:0] == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_1[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_1[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^operandA[7:0]);
+                end else if (flag[FLAG_C] == 0 && operandA[7:4] <= 4'h9 && flag[FLAG_H] == 1 && operandA[3:0] <= 4'h9) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_2};
+                    FLAG_OUT[FLAG_S] <= operandA[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_2 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_2[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_2[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_2);
+                end else if (flag[FLAG_C] == 0 && operandA[7:4] <= 4'h8 && operandA[3:0] >= 4'hA) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_3};
+                    FLAG_OUT[FLAG_S] <= operandA[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_3 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_3[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_3[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_3);
+                end else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'hA && flag[FLAG_H] == 0 && operandA[3:0] <= 4'h9) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_4};
+                    FLAG_OUT[FLAG_S] <= BCD_CASE_4[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_4 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_4[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_4[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_4);
+                end else if (flag[FLAG_C] == 1 && flag[FLAG_H] == 0 && operandA[3:0] <= 4'h9) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_5};
+                    FLAG_OUT[FLAG_S] <= BCD_CASE_5[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_5 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_5[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_5[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_5);
+                end else if (flag[FLAG_C] == 1 && flag[FLAG_H] == 1 && operandA[3:0] <= 4'h9) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_6};
+                    FLAG_OUT[FLAG_S] <= BCD_CASE_6[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_6 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_6[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_6[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_6);
+                end else if (flag[FLAG_C] == 1 && operandA[3:0] >= 4'hA) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_7};
+                    FLAG_OUT[FLAG_S] <= BCD_CASE_7[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_7 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_7[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_7[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_7);
+                end else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'h9 && operandA[3:0] >= 4'hA) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_8};
+                    FLAG_OUT[FLAG_S] <= BCD_CASE_8[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_8 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_8[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_8[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_8);
+                end else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'hA && flag[FLAG_H] == 1 && operandA[3:0] <= 4'h9) begin
+                    ALU_OUT <= {8'b0, BCD_CASE_9};
+                    FLAG_OUT[FLAG_S] <= BCD_CASE_9[7];
+                    FLAG_OUT[FLAG_Z] <= BCD_CASE_9 == 0;
+                    FLAG_OUT[FLAG_Y] <= BCD_CASE_9[5];
+                    FLAG_OUT[FLAG_X] <= BCD_CASE_9[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^BCD_CASE_9);
+                end else begin
+                    ALU_OUT <= {8'b0, operandA[7:0]};
+                    FLAG_OUT[FLAG_S] <= operandA[7];
+                    FLAG_OUT[FLAG_Z] <= operandA[7:0] == 0;
+                    FLAG_OUT[FLAG_Y] <= operandA[5];
+                    FLAG_OUT[FLAG_X] <= operandA[3];
+                    FLAG_OUT[FLAG_P_V] <= !(^operandA[7:0]);
+                end
+                
+                // Carry Flag
+                if (flag[FLAG_C] == 0 && operandA[7:4] <= 4'h9 && operandA[3:0] <= 4'h9)
+                    FLAG_OUT[FLAG_C] <= 0;
+                else if (flag[FLAG_C] == 0 && operandA[7:4] <= 4'h8 && operandA[3:0] >= 4'hA)
+                    FLAG_OUT[FLAG_C] <= 0;
+                else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'h9 && operandA[3:0] >= 4'hA)
+                    FLAG_OUT[FLAG_C] <= 1;
+                else if (flag[FLAG_C] == 0 && operandA[7:4] >= 4'hA && operandA[3:0] <= 4'h9)
+                    FLAG_OUT[FLAG_C] <= 1;
+                else if (flag[FLAG_C] == 1)
+                    FLAG_OUT[FLAG_C] <= 1;
+                else
+                    FLAG_OUT[FLAG_C] <= flag[FLAG_C];
+                
+                // Half Carry Flag
+                if (flag[FLAG_N] == 0 && operandA[3:0] <= 4'h9)
+                    FLAG_OUT[FLAG_H] <= 0;
+                else if (flag[FLAG_N] == 0 && operandA[3:0] >= 4'hA)
+                    FLAG_OUT[FLAG_H] <= 1;
+                else if (flag[FLAG_N] == 1 && flag[FLAG_H] == 0)
+                    FLAG_OUT[FLAG_H] <= 0;
+                else if (flag[FLAG_N] == 1 && flag[FLAG_H] == 1 && operandA[3:0] >= 4'h6)
+                    FLAG_OUT[FLAG_H] <= 0;
+                else if (flag[FLAG_N] == 1 && flag[FLAG_H] == 1 && operandA[3:0] <= 4'h5)
+                    FLAG_OUT[FLAG_H] <= 1;
+                else
+                    FLAG_OUT[FLAG_H] <= flag[FLAG_H];
+                    
+                // other flags
+                FLAG_OUT[FLAG_N] <= flag[FLAG_N];
                 
             end
             ONES_8BIT: begin
                 ALU_OUT <= extendTo16(ones_8bit_wire);
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= ones_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= 1;
+                FLAG_OUT[FLAG_X] <= ones_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 1;
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
@@ -259,185 +396,225 @@ module ALU_Core(
                 ALU_OUT <= extendTo16(twos_8bit_wire);
                 FLAG_OUT[FLAG_S] <= twos_8bit_wire[7];
                 FLAG_OUT[FLAG_Z] <= twos_8bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= twos_8bit_wire[5];
                 FLAG_OUT[FLAG_H] <= 0 < $signed(operandA[3:0]); // allegedly
+                FLAG_OUT[FLAG_X] <= twos_8bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= operandA[7:0] == 8'h80;
                 FLAG_OUT[FLAG_N] <= 1;
                 FLAG_OUT[FLAG_C] <= operandA[7:0] == 8'h00;
             end
             INV_C: begin
-                ALU_OUT <= 0;
+                ALU_OUT <= 16'b0;
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= 0;
                 FLAG_OUT[FLAG_H] <= flag[FLAG_H];
+                FLAG_OUT[FLAG_X] <= 0;
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= !flag[FLAG_C];
             end
             SET_C: begin
-                ALU_OUT <= 0;
+                ALU_OUT <= 16'b0;
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= 0;
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= 0;
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= 1;
             end
             ADD_16BIT: begin
-                ALU_OUT <= add_16bit_wire;
+                ALU_OUT <= add_16bit_wire[15:0];
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= add_16bit_wire[5];
                 FLAG_OUT[FLAG_H] <= add_16bit_H;
+                FLAG_OUT[FLAG_X] <= add_16bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= add_16bit_wire[15]; 
             end
             ADD_C_16BIT: begin
-                ALU_OUT <= add_c_16bit_wire;
+                ALU_OUT <= add_c_16bit_wire[15:0];
                 FLAG_OUT[FLAG_S] <= add_c_16bit_wire[15];
                 FLAG_OUT[FLAG_Z] <= add_c_16bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= add_c_16bit_wire[5];
                 FLAG_OUT[FLAG_H] <= add_c_16bit_H; 
+                FLAG_OUT[FLAG_X] <= add_c_16bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= add_c_16bit_overflow;
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= add_c_16bit_wire[16];
             end
             SUB_C_16BIT: begin
-                ALU_OUT <= sub_c_16bit_wire;
+                ALU_OUT <= sub_c_16bit_wire[15:0];
                 FLAG_OUT[FLAG_S] <= sub_c_16bit_wire[15];
                 FLAG_OUT[FLAG_Z] <= sub_c_16bit_wire == 0;
+                FLAG_OUT[FLAG_Y] <= sub_c_16bit_wire[5];
                 FLAG_OUT[FLAG_H] <= sub_c_16bit_H;
+                FLAG_OUT[FLAG_X] <= sub_c_16bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= sub_c_16bit_overflow;
                 FLAG_OUT[FLAG_N] <= 1;
                 FLAG_OUT[FLAG_C] <= $signed(operandA[15:0]) < $signed(operandB16_plus_carry[15:0]);
             end
             INC_16BIT: begin
-                ALU_OUT <= inc_16bit_wire;
+                ALU_OUT <= inc_16bit_wire[15:0];
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
-                FLAG_OUT[FLAG_H] <= flag[FLAG_H];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= inc_16bit_wire[5];
+                FLAG_OUT[FLAG_H] <= flag[FLAG_H];
+                FLAG_OUT[FLAG_X] <= inc_16bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= flag[FLAG_N];
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
             end
             DEC_16BIT: begin
-                ALU_OUT <= dec_16bit_wire;
+                ALU_OUT <= dec_16bit_wire[15:0];
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= dec_16bit_wire[5];
                 FLAG_OUT[FLAG_H] <= flag[FLAG_H];
+                FLAG_OUT[FLAG_X] <= dec_16bit_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= flag[FLAG_N];
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
             end
             ROTATE_LEFT: begin
-                ALU_OUT <= rotate_left_wire;
+                ALU_OUT <= {8'b0, rotate_left_wire};
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= rotate_left_wire[5];
                 FLAG_OUT[FLAG_H] <= 0; 
+                FLAG_OUT[FLAG_X] <= rotate_left_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[7];
             end
             ROTATE_C_LEFT: begin
-                ALU_OUT <= rotate_c_left_wire;
+                ALU_OUT <= {8'b0, rotate_c_left_wire};
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= rotate_c_left_wire[5];
                 FLAG_OUT[FLAG_H] <= 0; 
+                FLAG_OUT[FLAG_X] <= rotate_c_left_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[7];
             end
             ROTATE_LEFT_R: begin
-                ALU_OUT <= rotate_left_wire;
+                ALU_OUT <= {8'b0, rotate_left_wire};
                 FLAG_OUT[FLAG_S] <= rotate_left_wire[7];
                 FLAG_OUT[FLAG_Z] <= rotate_left_wire == 0;
+                FLAG_OUT[FLAG_Y] <= rotate_left_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= rotate_left_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^rotate_left_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[7];
             end
             ROTATE_LEFT_R_C: begin
-                ALU_OUT <= rotate_c_left_wire;
+                ALU_OUT <= {8'b0, rotate_c_left_wire};
                 FLAG_OUT[FLAG_S] <= rotate_c_left_wire[7];
                 FLAG_OUT[FLAG_Z] <= rotate_c_left_wire == 0;
+                FLAG_OUT[FLAG_Y] <= rotate_c_left_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= rotate_c_left_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^rotate_c_left_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[7];
             end
             ROTATE_RIGHT: begin
-                ALU_OUT <= rotate_right_wire;
+                ALU_OUT <= {8'b0, rotate_right_wire};
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= rotate_right_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= rotate_right_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[0];
             end
             ROTATE_C_RIGHT: begin
-                ALU_OUT <= rotate_c_right_wire;
+                ALU_OUT <= {8'b0, rotate_c_right_wire};
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= rotate_c_right_wire[5];
                 FLAG_OUT[FLAG_H] <= 0; 
+                FLAG_OUT[FLAG_X] <= rotate_c_right_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[0];
             end
             ROTATE_RIGHT_R: begin
-                ALU_OUT <= rotate_right_wire;
+                ALU_OUT <= {8'b0, rotate_right_wire};
                 FLAG_OUT[FLAG_S] <= rotate_right_wire[7];
                 FLAG_OUT[FLAG_Z] <= rotate_right_wire == 0;
+                FLAG_OUT[FLAG_Y] <= rotate_right_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= rotate_right_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^rotate_right_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[0];
             end
             ROTATE_RIGHT_R_C: begin
-                ALU_OUT <= rotate_c_right_wire;
+                ALU_OUT <= {8'b0, rotate_c_right_wire};
                 FLAG_OUT[FLAG_S] <= rotate_c_right_wire[7];
                 FLAG_OUT[FLAG_Z] <= rotate_c_right_wire == 0;
+                FLAG_OUT[FLAG_Y] <= rotate_c_right_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= rotate_c_right_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^rotate_c_right_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[0];
             end
             SHIFT_A_LEFT: begin
-                ALU_OUT <= shift_left_wire;
+                ALU_OUT <= extendTo16(shift_left_wire);
                 FLAG_OUT[FLAG_S] <= shift_left_wire[7];
                 FLAG_OUT[FLAG_Z] <= shift_left_wire == 0;
+                FLAG_OUT[FLAG_Y] <= shift_left_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= shift_left_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^shift_left_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[7];
             end
             SHIFT_A_RIGHT: begin
-                ALU_OUT <=  arithmetic_shift_right_wire;
+                ALU_OUT <= extendTo16(arithmetic_shift_right_wire);
                 FLAG_OUT[FLAG_S] <= arithmetic_shift_right_wire[7];
                 FLAG_OUT[FLAG_Z] <= arithmetic_shift_right_wire == 0;
+                FLAG_OUT[FLAG_Y] <= arithmetic_shift_right_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= arithmetic_shift_right_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^arithmetic_shift_right_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[0];
             end
             SHIFT_L_RIGHT: begin
-                ALU_OUT <= logical_shift_right_wire;
+                ALU_OUT <= extendTo16(logical_shift_right_wire);
                 FLAG_OUT[FLAG_S] <= 0;
                 FLAG_OUT[FLAG_Z] <= logical_shift_right_wire == 0;
+                FLAG_OUT[FLAG_Y] <= logical_shift_right_wire[5];
                 FLAG_OUT[FLAG_H] <= 0;
+                FLAG_OUT[FLAG_X] <= logical_shift_right_wire[3];
                 FLAG_OUT[FLAG_P_V] <= !(^logical_shift_right_wire);
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= operandA[0];
             end
-            TEST_BASE, 
-            TEST_BASE + 1,
-            TEST_BASE + 2,
-            TEST_BASE + 3,
-            TEST_BASE + 4,
-            TEST_BASE + 5,
-            TEST_BASE + 6,
-            TEST_BASE + 7: begin
-                ALU_OUT <= 0;
+            33, 
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40: begin
+                ALU_OUT <= 16'b0;
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= (operandB[7:0] & (1'b1 << ALU_OP[2:0])) == 0;
+                FLAG_OUT[FLAG_Y] <= 0;
                 FLAG_OUT[FLAG_H] <= 1;
+                FLAG_OUT[FLAG_X] <= 0;
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
@@ -450,10 +627,12 @@ module ALU_Core(
             SET_BASE + 5,
             SET_BASE + 6,
             SET_BASE + 7: begin
-                ALU_OUT <= operandB[7:0] | (1'b1 << ALU_OP[2:0]);
+                ALU_OUT <= {8'b0, set_wire};
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= set_wire[5];
                 FLAG_OUT[FLAG_H] <= flag[FLAG_H];
+                FLAG_OUT[FLAG_X] <= set_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= flag[FLAG_N];
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
@@ -466,19 +645,23 @@ module ALU_Core(
             RESET_BASE + 5,
             RESET_BASE + 6,
             RESET_BASE + 7: begin
-                ALU_OUT <= operandB[7:0] & ~(8'b0 + (1'b1 << ALU_OP[2:0]));
+                ALU_OUT <= {8'b0, reset_wire};
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= reset_wire[5];
                 FLAG_OUT[FLAG_H] <= flag[FLAG_H]; 
+                FLAG_OUT[FLAG_X] <= reset_wire[3];
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= flag[FLAG_N];
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
             end
             default: begin
-                ALU_OUT <= 0; // allegedly later assignments win so the later bit test/set/reset ifs should work
+                ALU_OUT <= 16'b0; // allegedly later assignments win so the later bit test/set/reset ifs should work
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
                 FLAG_OUT[FLAG_Z] <= flag[FLAG_Z];
+                FLAG_OUT[FLAG_Y] <= 0;
                 FLAG_OUT[FLAG_H] <= flag[FLAG_H]; 
+                FLAG_OUT[FLAG_X] <= 0;
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= flag[FLAG_N];
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
