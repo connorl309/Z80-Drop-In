@@ -20,7 +20,25 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+/*
+ALU Inputs
+CLK - clock, duh
+INT_DATA_BUS_A [15:0] - Holds one potential operand to be selected by the operandA input mux
+INT_DATA_BUS_B [15:0] - 2nd operand 
+ALU_OP [6:0] - chooses what function the ALU will execute
+ALU_OPA_MUX - chooses between the internal data bus A and the accumulator for operand A
+ACC_IN_MUX - controls input for the accumulator
+LD_ACCUM - controls loading of the accumulator
+LD_FLAG - controls loading of the flag register
+FLAG_MUX - chooses whether to load from the ALU flag output or an external FLAG_IN
+FLAG_IN [7:0] - see above
+ACTIVE_REGS - chooses what set of registers, normal or prime, to expose
 
+ALU Outputs
+ALU_OUT [15:0] - output to be gated on one of the busses
+FLAG_OUT [7:0] - current value of the flag register
+ACC_OUT [7:0] - current value of the accumulator 
+*/
 
 
 // Gates to the buses should be made outside of the module
