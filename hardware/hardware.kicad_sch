@@ -12,6 +12,18 @@
 		(comment 2 "Connor Leu, April Douglas, Nadia Houston, Luke Mason, Gage Miller, Gabriel Moore")
 	)
 	(lib_symbols)
+	(text "https://www.mouser.com/datasheet/2/916/NXB0104_Q100-1664477.pdf\n\nLevel shifters 5V<->3V3\nWe are using the XQFN12 package"
+		(exclude_from_sim no)
+		(at 110.49 35.56 0)
+		(effects
+			(font
+				(size 3 3)
+				(thickness 0.6)
+				(bold yes)
+			)
+		)
+		(uuid "92ef0ee2-6b74-4ca8-a57c-fc4ad3e3a079")
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
