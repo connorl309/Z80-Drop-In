@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "hardware")(type "KiCad")(uri "C:/Users/cclxb/Desktop/Z80-Drop-In/hardware.pretty")(options "")(descr ""))
+)
