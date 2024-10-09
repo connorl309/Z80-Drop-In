@@ -73,7 +73,7 @@
 				)
 			)
 			(pin input line
-				(at -5.08 6.35 180)
+				(at -5.08 6.35 0)
 				(length 2.54)
 				(name "VCC_A"
 					(effects
@@ -91,7 +91,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 19.05 -3.81 0)
+				(at 19.05 -3.81 180)
 				(length 2.54)
 				(name "B4"
 					(effects
@@ -109,7 +109,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 19.05 -1.27 0)
+				(at 19.05 -1.27 180)
 				(length 2.54)
 				(name "B3"
 					(effects
@@ -127,7 +127,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 19.05 1.27 0)
+				(at 19.05 1.27 180)
 				(length 2.54)
 				(name "B2"
 					(effects
@@ -145,7 +145,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at 19.05 3.81 0)
+				(at 19.05 3.81 180)
 				(length 2.54)
 				(name "B1"
 					(effects
@@ -163,7 +163,7 @@
 				)
 			)
 			(pin input line
-				(at 19.05 6.35 0)
+				(at 19.05 6.35 180)
 				(length 2.54)
 				(name "VCC_B"
 					(effects
@@ -181,7 +181,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at -5.08 3.81 180)
+				(at -5.08 3.81 0)
 				(length 2.54)
 				(name "A1"
 					(effects
@@ -199,7 +199,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at -5.08 1.27 180)
+				(at -5.08 1.27 0)
 				(length 2.54)
 				(name "A2"
 					(effects
@@ -217,7 +217,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at -5.08 -1.27 180)
+				(at -5.08 -1.27 0)
 				(length 2.54)
 				(name "A3"
 					(effects
@@ -235,7 +235,7 @@
 				)
 			)
 			(pin bidirectional line
-				(at -5.08 -3.81 180)
+				(at -5.08 -3.81 0)
 				(length 2.54)
 				(name "A4"
 					(effects
@@ -253,7 +253,7 @@
 				)
 			)
 			(pin no_connect line
-				(at -5.08 -6.35 180)
+				(at -5.08 -6.35 0)
 				(length 2.54)
 				(name "NC"
 					(effects
@@ -271,7 +271,7 @@
 				)
 			)
 			(pin input line
-				(at -5.08 -8.89 180)
+				(at -5.08 -8.89 0)
 				(length 2.54)
 				(name "GND"
 					(effects
@@ -289,7 +289,7 @@
 				)
 			)
 			(pin input line
-				(at 19.05 -8.89 0)
+				(at 19.05 -8.89 180)
 				(length 2.54)
 				(name "OE"
 					(effects
@@ -307,7 +307,7 @@
 				)
 			)
 			(pin no_connect line
-				(at 19.05 -6.35 0)
+				(at 19.05 -6.35 180)
 				(length 2.54)
 				(name "NC"
 					(effects

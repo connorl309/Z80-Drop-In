@@ -1,0 +1,524 @@
+(pcb C:/Users/cclxb/Desktop/Z80-Drop-In/hardware\freerouting.dsn
+  (parser
+    (string_quote ")
+    (space_in_quoted_tokens on)
+    (host_cad "KiCad's Pcbnew")
+    (host_version "8.0.1")
+  )
+  (resolution um 10)
+  (unit um)
+  (structure
+    (layer F.Cu
+      (type signal)
+      (property
+        (index 0)
+      )
+    )
+    (layer B.Cu
+      (type signal)
+      (property
+        (index 1)
+      )
+    )
+    (boundary
+      (path pcb 0  120358 -68836.4  120693 -68874.1  121021 -68949  121339 -69060.2
+            121642 -69206.3  121927 -69385.4  122191 -69595.3  122429 -69833.4
+            122639 -70096.6  122818 -70381.7  122964 -70685  123075 -71002.8
+            123150 -71331.1  123188 -71665.7  123190 -71834  123190 -119936
+            123188 -120104  123150 -120439  123075 -120767  122964 -121085
+            122818 -121388  122639 -121673  122429 -121937  122191 -122175
+            121927 -122385  121642 -122564  121339 -122710  121021 -122821
+            120693 -122896  120358 -122934  120190 -122936  64874.4 -122936
+            64706.1 -122934  64371.5 -122896  64043.2 -122821  63725.4 -122710
+            63422.1 -122564  63137 -122385  62873.8 -122175  62635.7 -121937
+            62425.8 -121673  62246.7 -121388  62100.6 -121085  61989.4 -120767
+            61914.5 -120439  61876.8 -120104  61874.4 -119936  61874.4 -71834
+            61876.8 -71665.7  61914.5 -71331.1  61989.4 -71002.8  62100.6 -70685
+            62246.7 -70381.7  62425.8 -70096.6  62635.7 -69833.4  62873.8 -69595.3
+            63137 -69385.4  63422.1 -69206.3  63725.4 -69060.2  64043.2 -68949
+            64371.5 -68874.1  64706.1 -68836.4  64874.4 -68834  120190 -68834
+            120358 -68836.4)
+    )
+    (plane +3V3 (polygon F.Cu 0  61722 -68580  61823.6 -122885  123190 -122885  123241 -68834
+            61722 -68580))
+    (plane GND (polygon B.Cu 0  61722 -68580  61823.6 -122885  123190 -122885  123241 -68834
+            61722 -68580))
+    (via "Via[0-1]_600:300_um")
+    (rule
+      (width 200)
+      (clearance 200)
+      (clearance 200 (type default_smd))
+      (clearance 50 (type smd_smd))
+    )
+  )
+  (placement
+    (component Connector_PinSocket_2.54mm:PinSocket_1x10_P2.54mm_Vertical
+      (place J1 64897.000000 -72009.000000 front 0.000000 (PN Conn_01x10_Socket))
+      (place J2 64897.000000 -97409.000000 front 0.000000 (PN Conn_01x10_Socket))
+      (place J4 120269.000000 -72009.000000 front 0.000000 (PN Conn_01x10_Socket))
+      (place J3 120269.000000 -97409.000000 front 0.000000 (PN Conn_01x10_Socket))
+    )
+    (component hardware:NXB0104_XQFN12
+      (place U6 112979.200000 -109474.000000 front 0.000000 (PN ~))
+      (place U2 68834.000000 -78892.400000 front 0.000000 (PN ~))
+      (place U3 68808.600000 -89484.200000 front 0.000000 (PN ~))
+      (place U9 112979.200000 -79095.600000 front 0.000000 (PN ~))
+      (place U5 68781.200000 -109575.600000 front 0.000000 (PN ~))
+      (place U1 68834.000000 -69164.200000 front 0.000000 (PN ~))
+      (place U8 112953.800000 -89179.400000 front 0.000000 (PN ~))
+      (place U10 112953.800000 -68808.600000 front 0.000000 (PN ~))
+      (place U7 112979.200000 -99568.000000 front 0.000000 (PN ~))
+      (place U4 68808.600000 -99390.200000 front 0.000000 (PN ~))
+    )
+    (component Resistor_SMD:R_0201_0603Metric
+      (place R7 114691.200000 -88442.800000 front 0.000000 (PN 10k))
+      (place R3 70510.400000 -99110.800000 front 0.000000 (PN 10k))
+      (place R1 70576.400000 -78943.200000 front 0.000000 (PN 10k))
+      (place R8 114645.000000 -99110.800000 front 0.000000 (PN 10k))
+      (place R10 114757.200000 -119075.200000 front 0.000000 (PN 10k))
+      (place R5 70459.600000 -119126.000000 front 0.000000 (PN 10k))
+      (place R6 114645.000000 -78333.600000 front 0.000000 (PN 10k))
+      (place R4 70550.600000 -108915.200000 front 0.000000 (PN 10k))
+      (place R2 70571.800000 -88595.200000 front 0.000000 (PN 10k))
+      (place R9 114706.400000 -109118.400000 front 0.000000 (PN 10k))
+    )
+    (component Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical
+      (place J7 99263.200000 -71932.800000 back 0.000000 (PN Conn_01x10_Pin))
+      (place J8 99263.200000 -97332.800000 back 0.000000 (PN Conn_01x10_Pin))
+      (place J6 84074.000000 -97383.600000 back 0.000000 (PN Conn_01x10_Pin))
+      (place J5 84074.000000 -71983.600000 back 0.000000 (PN Conn_01x10_Pin))
+    )
+  )
+  (library
+    (image Connector_PinSocket_2.54mm:PinSocket_1x10_P2.54mm_Vertical
+      (outline (path signal 120  -1330 -1270  -1330 -24190))
+      (outline (path signal 120  -1330 -1270  1330 -1270))
+      (outline (path signal 120  -1330 -24190  1330 -24190))
+      (outline (path signal 120  0 1330  1330 1330))
+      (outline (path signal 120  1330 1330  1330 0))
+      (outline (path signal 120  1330 -1270  1330 -24190))
+      (outline (path signal 50  -1800 1800  1750 1800))
+      (outline (path signal 50  -1800 -24600  -1800 1800))
+      (outline (path signal 50  1750 1800  1750 -24600))
+      (outline (path signal 50  1750 -24600  -1800 -24600))
+      (outline (path signal 100  -1270 1270  635 1270))
+      (outline (path signal 100  -1270 -24130  -1270 1270))
+      (outline (path signal 100  635 1270  1270 635))
+      (outline (path signal 100  1270 635  1270 -24130))
+      (outline (path signal 100  1270 -24130  -1270 -24130))
+      (pin Rect[A]Pad_1700x1700_um 1 0 0)
+      (pin Oval[A]Pad_1700x1700_um 2 0 -2540)
+      (pin Oval[A]Pad_1700x1700_um 3 0 -5080)
+      (pin Oval[A]Pad_1700x1700_um 4 0 -7620)
+      (pin Oval[A]Pad_1700x1700_um 5 0 -10160)
+      (pin Oval[A]Pad_1700x1700_um 6 0 -12700)
+      (pin Oval[A]Pad_1700x1700_um 7 0 -15240)
+      (pin Oval[A]Pad_1700x1700_um 8 0 -17780)
+      (pin Oval[A]Pad_1700x1700_um 9 0 -20320)
+      (pin Oval[A]Pad_1700x1700_um 10 0 -22860)
+    )
+    (image hardware:NXB0104_XQFN12
+      (outline (path signal 25  840 -5620  2540 -5620  2540 -7670.8  840 -7670.8))
+      (outline (path signal 100  711.2 -5435.6  695.071 -5490.53  651.806 -5528.02  595.141 -5536.17
+            543.066 -5512.38  512.116 -5464.22  512.116 -5406.98  543.066 -5358.82
+            595.141 -5335.03  651.806 -5343.18  695.071 -5380.67  711.2 -5435.6))
+      (pin Rect[T]Pad_500x200_um 1 1068.8 -5842)
+      (pin Rect[T]Pad_303.2x199.2_um (rotate 270) 1@1 1219.2 -5790.4)
+      (pin Rect[T]Pad_500x200_um 2 1068.8 -6248.4)
+      (pin Rect[T]Pad_500x200_um 3 1068.8 -6654.8)
+      (pin Rect[T]Pad_500x200_um 4 1068.8 -7061.2)
+      (pin Rect[T]Pad_500x200_um 5 1068.8 -7467.6)
+      (pin Rect[T]Pad_500x252.4_um (rotate 90) 6 1702.6 -7416.8)
+      (pin Rect[T]Pad_500x200_um 7 2286 -7467.6)
+      (pin Rect[T]Pad_500x200_um 8 2286 -7061.2)
+      (pin Rect[T]Pad_500x200_um 9 2286 -6654.8)
+      (pin Rect[T]Pad_500x200_um 10 2286 -6248.4)
+      (pin Rect[T]Pad_500x200_um 11 2286 -5842)
+      (pin Rect[T]Pad_500x252.4_um (rotate 90) 12 1701.8 -5867.4)
+    )
+    (image Resistor_SMD:R_0201_0603Metric
+      (outline (path signal 50  -700 350  700 350))
+      (outline (path signal 50  -700 -350  -700 350))
+      (outline (path signal 50  700 350  700 -350))
+      (outline (path signal 50  700 -350  -700 -350))
+      (outline (path signal 100  -300 150  300 150))
+      (outline (path signal 100  -300 -150  -300 150))
+      (outline (path signal 100  300 150  300 -150))
+      (outline (path signal 100  300 -150  -300 -150))
+      (pin RoundRect[T]Pad_460x400_100.381_um_0.000000_0 1 -320 0)
+      (pin RoundRect[T]Pad_460x400_100.381_um_0.000000_0 2 320 0)
+    )
+    (image Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical
+      (outline (path signal 120  -1330 -1270  1330 -1270))
+      (outline (path signal 120  1330 -1270  1330 -24190))
+      (outline (path signal 120  -1330 -24190  1330 -24190))
+      (outline (path signal 120  -1330 1330  0 1330))
+      (outline (path signal 120  -1330 0  -1330 1330))
+      (outline (path signal 120  -1330 -1270  -1330 -24190))
+      (outline (path signal 50  1800 -24650  1800 1800))
+      (outline (path signal 50  -1800 -24650  1800 -24650))
+      (outline (path signal 50  1800 1800  -1800 1800))
+      (outline (path signal 50  -1800 1800  -1800 -24650))
+      (outline (path signal 100  -635 1270  1270 1270))
+      (outline (path signal 100  1270 1270  1270 -24130))
+      (outline (path signal 100  -1270 635  -635 1270))
+      (outline (path signal 100  -1270 -24130  -1270 635))
+      (outline (path signal 100  1270 -24130  -1270 -24130))
+      (pin Rect[A]Pad_1700x1700_um 1 0 0)
+      (pin Oval[A]Pad_1700x1700_um 2 0 -2540)
+      (pin Oval[A]Pad_1700x1700_um 3 0 -5080)
+      (pin Oval[A]Pad_1700x1700_um 4 0 -7620)
+      (pin Oval[A]Pad_1700x1700_um 5 0 -10160)
+      (pin Oval[A]Pad_1700x1700_um 6 0 -12700)
+      (pin Oval[A]Pad_1700x1700_um 7 0 -15240)
+      (pin Oval[A]Pad_1700x1700_um 8 0 -17780)
+      (pin Oval[A]Pad_1700x1700_um 9 0 -20320)
+      (pin Oval[A]Pad_1700x1700_um 10 0 -22860)
+    )
+    (padstack Oval[A]Pad_1700x1700_um
+      (shape (path F.Cu 1700  0 0  0 0))
+      (shape (path B.Cu 1700  0 0  0 0))
+      (attach off)
+    )
+    (padstack RoundRect[T]Pad_460x400_100.381_um_0.000000_0
+      (shape (polygon F.Cu 0  -230.381 100  -222.74 138.414  -200.98 170.98  -168.414 192.74
+            -129.999 200.38  130 200.381  168.414 192.74  200.98 170.98
+            222.74 138.414  230.38 99.999  230.381 -100  222.74 -138.414
+            200.98 -170.98  168.414 -192.74  129.999 -200.38  -130 -200.381
+            -168.414 -192.74  -200.98 -170.98  -222.74 -138.414  -230.38 -99.999
+            -230.381 100))
+      (attach off)
+    )
+    (padstack Rect[T]Pad_303.2x199.2_um
+      (shape (rect F.Cu -151.6 -99.6 151.6 99.6))
+      (attach off)
+    )
+    (padstack Rect[T]Pad_500x200_um
+      (shape (rect F.Cu -250 -100 250 100))
+      (attach off)
+    )
+    (padstack Rect[T]Pad_500x252.4_um
+      (shape (rect F.Cu -250 -126.2 250 126.2))
+      (attach off)
+    )
+    (padstack Rect[A]Pad_1700x1700_um
+      (shape (rect F.Cu -850 -850 850 850))
+      (shape (rect B.Cu -850 -850 850 850))
+      (attach off)
+    )
+    (padstack "Via[0-1]_600:300_um"
+      (shape (circle F.Cu 600))
+      (shape (circle B.Cu 600))
+      (attach off)
+    )
+  )
+  (network
+    (net D3_FPGA
+      (pins J1-8 U2-5)
+    )
+    (net A14_FPGA
+      (pins J1-4 U1-5)
+    )
+    (net D5_FPGA
+      (pins J1-9 U3-2)
+    )
+    (net D4_FPGA
+      (pins J1-7 U2-4)
+    )
+    (net D6_FPGA
+      (pins J1-10 U3-3)
+    )
+    (net CLK
+      (pins J1-6 U2-3)
+    )
+    (net A15_FPGA
+      (pins J1-5 U2-2)
+    )
+    (net A12_FPGA
+      (pins J1-2 U1-3)
+    )
+    (net A13_FPGA
+      (pins J1-3 U1-4)
+    )
+    (net A11_FPGA
+      (pins J1-1 U1-2)
+    )
+    (net HALT_FPGA
+      (pins J2-8 U5-3)
+    )
+    (net MREQ_FPGA
+      (pins J2-9 U5-4)
+    )
+    (net NMI_FPGA
+      (pins J2-7 U5-2)
+    )
+    (net INT_FPGA
+      (pins J2-6 U4-5)
+    )
+    (net D0_FPGA
+      (pins J2-4 U4-3)
+    )
+    (net D7_FPGA
+      (pins J2-3 U4-2)
+    )
+    (net +3V3
+      (pins U6-1 U6-1@1 J2-1 U2-1 U2-1@1 R7-1 U3-1 U3-1@1 U9-1 U9-1@1 R3-1 R1-1 U5-1
+        U5-1@1 U1-1 U1-1@1 R8-1 U8-1 U8-1@1 U10-1 U10-1@1 R10-1 R5-1 R6-1 U7-1 U7-1@1
+        R4-1 U4-1 U4-1@1 R2-1 R9-1)
+    )
+    (net D2_FPGA
+      (pins J2-2 U3-5)
+    )
+    (net IORQ_FPGA
+      (pins J2-10 U5-5)
+    )
+    (net D1_FPGA
+      (pins J2-5 U4-4)
+    )
+    (net A1_FPGA
+      (pins J3-1 U8-4)
+    )
+    (net A2_FPGA
+      (pins J3-2 U8-5)
+    )
+    (net A5_FPGA
+      (pins J3-5 U7-4)
+    )
+    (net A4_FPGA
+      (pins J3-4 U7-3)
+    )
+    (net A8_FPGA
+      (pins U6-3 J3-8)
+    )
+    (net A9_FPGA
+      (pins U6-4 J3-9)
+    )
+    (net A3_FPGA
+      (pins J3-3 U7-2)
+    )
+    (net A7_FPGA
+      (pins U6-2 J3-7)
+    )
+    (net A6_FPGA
+      (pins J3-6 U7-5)
+    )
+    (net A10_FPGA
+      (pins U6-5 J3-10)
+    )
+    (net BUSAK_FPGA
+      (pins J4-3 U10-4)
+    )
+    (net M1_FPGA
+      (pins J4-7 U9-4)
+    )
+    (net WAIT_FPGA
+      (pins J4-4 U10-5)
+    )
+    (net RFSH_FPGA
+      (pins J4-8 U9-5)
+    )
+    (net A0_FPGA
+      (pins J4-10 U8-3)
+    )
+    (net RD_FPGA
+      (pins J4-1 U10-2)
+    )
+    (net BUSRQ_FPGA
+      (pins J4-5 U9-2)
+    )
+    (net "unconnected-(J4-Pin_9-Pad9)"
+      (pins J4-9)
+    )
+    (net WR_FPGA
+      (pins J4-2 U10-3)
+    )
+    (net RESET_FPGA
+      (pins J4-6 U9-3)
+    )
+    (net D3_5V
+      (pins U2-8 J5-8)
+    )
+    (net D6_5V
+      (pins U3-10 J5-10)
+    )
+    (net D4_5V
+      (pins U2-9 J5-7)
+    )
+    (net A11_5V
+      (pins U1-11 J5-1)
+    )
+    (net A14_5V
+      (pins U1-8 J5-4)
+    )
+    (net A13_5V
+      (pins U1-9 J5-3)
+    )
+    (net A12_5V
+      (pins U1-10 J5-2)
+    )
+    (net CLK_5V
+      (pins U2-10 J5-6)
+    )
+    (net A15_5V
+      (pins U2-11 J5-5)
+    )
+    (net D5_5V
+      (pins U3-11 J5-9)
+    )
+    (net MREQ_5V
+      (pins U5-9 J6-9)
+    )
+    (net IORQ_5V
+      (pins U5-8 J6-10)
+    )
+    (net D7_5V
+      (pins U4-11 J6-3)
+    )
+    (net D1_5V
+      (pins U4-9 J6-5)
+    )
+    (net HALT_5V
+      (pins U5-10 J6-8)
+    )
+    (net +5V
+      (pins U6-12 U2-12 U3-12 U9-12 U5-12 U1-12 U8-12 U10-12 U7-12 U4-12 J6-1)
+    )
+    (net D0_5V
+      (pins U4-10 J6-4)
+    )
+    (net INT_5V
+      (pins U4-8 J6-6)
+    )
+    (net NMI_5V
+      (pins U5-11 J6-7)
+    )
+    (net D2_5V
+      (pins U3-8 J6-2)
+    )
+    (net RD_5V
+      (pins U10-11 J7-1)
+    )
+    (net RFSH_5V
+      (pins U9-8 J7-8)
+    )
+    (net A0_5V
+      (pins U8-10 J7-10)
+    )
+    (net WR_5V
+      (pins U10-10 J7-2)
+    )
+    (net BUSAK_5V
+      (pins U10-9 J7-3)
+    )
+    (net BUSRQ_5V
+      (pins U9-11 J7-5)
+    )
+    (net M1_5V
+      (pins U9-9 J7-7)
+    )
+    (net RESET_5V
+      (pins U9-10 J7-6)
+    )
+    (net GND
+      (pins U6-6 U2-6 U3-6 U9-6 U5-6 U1-6 U8-6 U10-6 U7-6 U4-6 J7-9)
+    )
+    (net WAIT_5V
+      (pins U10-8 J7-4)
+    )
+    (net A7_5V
+      (pins U6-11 J8-7)
+    )
+    (net A5_5V
+      (pins U7-9 J8-5)
+    )
+    (net A8_5V
+      (pins U6-10 J8-8)
+    )
+    (net A6_5V
+      (pins U7-8 J8-6)
+    )
+    (net A9_5V
+      (pins U6-9 J8-9)
+    )
+    (net A3_5V
+      (pins U7-11 J8-3)
+    )
+    (net A10_5V
+      (pins U6-8 J8-10)
+    )
+    (net A1_5V
+      (pins U8-9 J8-1)
+    )
+    (net A4_5V
+      (pins U7-10 J8-4)
+    )
+    (net A2_5V
+      (pins U8-8 J8-2)
+    )
+    (net "Net-(U1-OE)"
+      (pins R1-2 U1-7)
+    )
+    (net "Net-(U2-OE)"
+      (pins U2-7 R2-2)
+    )
+    (net "Net-(U3-OE)"
+      (pins U3-7 R3-2)
+    )
+    (net "Net-(U4-OE)"
+      (pins R4-2 U4-7)
+    )
+    (net "Net-(U5-OE)"
+      (pins U5-7 R5-2)
+    )
+    (net "Net-(U10-OE)"
+      (pins U10-7 R6-2)
+    )
+    (net "Net-(U9-OE)"
+      (pins R7-2 U9-7)
+    )
+    (net "Net-(U8-OE)"
+      (pins R8-2 U8-7)
+    )
+    (net "Net-(U7-OE)"
+      (pins U7-7 R9-2)
+    )
+    (net "Net-(U6-OE)"
+      (pins U6-7 R10-2)
+    )
+    (net "unconnected-(U3-B3-Pad9)"
+      (pins U3-9)
+    )
+    (net "unconnected-(U3-A3-Pad4)"
+      (pins U3-4)
+    )
+    (net "unconnected-(U8-A1-Pad2)"
+      (pins U8-2)
+    )
+    (net "unconnected-(U8-B1-Pad11)"
+      (pins U8-11)
+    )
+    (class kicad_default "" +3V3 +5V A0_5V A0_FPGA A10_5V A10_FPGA A11_5V
+      A11_FPGA A12_5V A12_FPGA A13_5V A13_FPGA A14_5V A14_FPGA A15_5V A15_FPGA
+      A1_5V A1_FPGA A2_5V A2_FPGA A3_5V A3_FPGA A4_5V A4_FPGA A5_5V A5_FPGA
+      A6_5V A6_FPGA A7_5V A7_FPGA A8_5V A8_FPGA A9_5V A9_FPGA BUSAK_5V BUSAK_FPGA
+      BUSRQ_5V BUSRQ_FPGA CLK CLK_5V D0_5V D0_FPGA D1_5V D1_FPGA D2_5V D2_FPGA
+      D3_5V D3_FPGA D4_5V D4_FPGA D5_5V D5_FPGA D6_5V D6_FPGA D7_5V D7_FPGA
+      GND HALT_5V HALT_FPGA INT_5V INT_FPGA IORQ_5V IORQ_FPGA M1_5V M1_FPGA
+      MREQ_5V MREQ_FPGA NMI_5V NMI_FPGA "Net-(U1-OE)" "Net-(U10-OE)" "Net-(U2-OE)"
+      "Net-(U3-OE)" "Net-(U4-OE)" "Net-(U5-OE)" "Net-(U6-OE)" "Net-(U7-OE)"
+      "Net-(U8-OE)" "Net-(U9-OE)" RD_5V RD_FPGA RESET_5V RESET_FPGA RFSH_5V
+      RFSH_FPGA WAIT_5V WAIT_FPGA WR_5V WR_FPGA "unconnected-(J4-Pin_9-Pad9)"
+      "unconnected-(U3-A3-Pad4)" "unconnected-(U3-B3-Pad9)" "unconnected-(U8-A1-Pad2)"
+      "unconnected-(U8-B1-Pad11)"
+      (circuit
+        (use_via Via[0-1]_600:300_um)
+      )
+      (rule
+        (width 200)
+        (clearance 200)
+      )
+    )
+  )
+  (wiring
+  )
+)
