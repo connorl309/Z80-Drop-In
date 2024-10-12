@@ -1,4 +1,4 @@
-23126729711197370
+23128458473510584
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -94737,6 +94737,13 @@ Varistor VF
 0
 2
 2
+fpga_stuff
+BGA196C50P14X14_800X800X110
+CPG196 Chip-Scale BGA (0.5 mm Pitch)
+Integrated Circuit
+0
+196
+196
 hardware
 NXB0104_XQFN12
 
