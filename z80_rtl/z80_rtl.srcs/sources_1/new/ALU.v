@@ -38,6 +38,13 @@ ALU Outputs
 ALU_OUT [15:0] - output to be gated on one of the busses
 FLAG_OUT [7:0] - current value of the flag register
 ACC_OUT [7:0] - current value of the accumulator 
+
+The ALU has a temporary register TEMP that is loaded during the 16-bit add of the following instructions
+ADD HL, ss      (this is taken care of already)
+LD r, (IX+d)    (LD_TEMP must be asserted after the 16bit ADD to compute IX+d and fed back into the operandA of the ALU)
+JR e            (LD_TEMP must be asserted after the 16bit ADD to compute branch target and fed back into the operandA of the ALU)
+
+TEMP is used to set flags X and Y during a BIT instruction (see undocumented 4.1)
 */
 
 
@@ -99,9 +106,12 @@ module ALU_Core(
     localparam RLD = 32; // weird ahhh left rotate through memory location and A 
     localparam RRD = 33; // weird ahhh right rotate through memory location and A 
     
+    localparam LD_TEMP = 34;
     
-    localparam TEST_BASE = 34;
-    localparam SET_BASE = TEST_BASE + 8; 
+    localparam TEST_BASE = 35;
+    localparam TEST_IX_BASE = TEST_BASE + 8;
+    localparam TEST_HL_BASE = TEST_IX_BASE + 8;
+    localparam SET_BASE = TEST_HL_BASE + 8; 
     localparam RESET_BASE = SET_BASE + 8;
     
     function [15:0] extendTo16;
@@ -110,6 +120,8 @@ module ALU_Core(
             extendTo16 = {num[7] ? 8'hFF : 8'b0, num};
         end
     endfunction
+    
+    reg [7:0] TEMP;
     
     wire [7:0] operandB8_plus_carry = operandB[7:0] + flag[FLAG_C];
     wire [8:0] add_c_8bit_wire = operandA[7:0] + operandB[7:0] + flag[FLAG_C];
@@ -189,9 +201,10 @@ module ALU_Core(
     wire [15:0] dec_16bit_wire = operandA[15:0] - 1;
     
     
-    always @(*) begin
+    always @(ALU_OP, operandA, operandB, flag) begin
         FLAG_OUT[FLAG_Y] <= flag[FLAG_Y];
         FLAG_OUT[FLAG_X] <= flag[FLAG_X];
+        TEMP <= TEMP;
         case (ALU_OP)
             ADD_8BIT: begin
                 ALU_OUT <= add_c_8bit_wire[7:0];
@@ -509,11 +522,49 @@ module ALU_Core(
             TEST_BASE + 6,
             TEST_BASE + 7: begin
                 ALU_OUT <= {8'b0, TEST_wire};
-                FLAG_OUT[FLAG_S] <= ALU_OP == TEST_BASE + 7 && operandA[7] == 1; // see undocumented
+                FLAG_OUT[FLAG_S] <= TEST_wire[7]; // see undocumented
                 FLAG_OUT[FLAG_Z] <= TEST_wire[7:0] == 0;
                 FLAG_OUT[FLAG_Y] <= TEST_wire[5]; // this is only for BIT n,r
                 FLAG_OUT[FLAG_H] <= 1;
                 FLAG_OUT[FLAG_X] <= TEST_wire[3];
+                FLAG_OUT[FLAG_P_V] <= TEST_wire[7:0] == 0;
+                FLAG_OUT[FLAG_N] <= 0;
+                FLAG_OUT[FLAG_C] <= flag[FLAG_C];
+            end
+            TEST_IX_BASE, 
+            TEST_IX_BASE + 1,
+            TEST_IX_BASE + 2,
+            TEST_IX_BASE + 3,
+            TEST_IX_BASE + 4,
+            TEST_IX_BASE + 5,
+            TEST_IX_BASE + 6,
+            TEST_IX_BASE + 7: begin
+                // needs the original address of IX + d to be on operandB
+                ALU_OUT <= {8'b0, TEST_wire};
+                FLAG_OUT[FLAG_S] <= TEST_wire[7]; // see undocumented
+                FLAG_OUT[FLAG_Z] <= TEST_wire[7:0] == 0;
+                FLAG_OUT[FLAG_Y] <= operandB[13]; // this is only for BIT n, (IX+d)
+                FLAG_OUT[FLAG_H] <= 1;
+                FLAG_OUT[FLAG_X] <= operandB[11];
+                FLAG_OUT[FLAG_P_V] <= TEST_wire[7:0] == 0;
+                FLAG_OUT[FLAG_N] <= 0;
+                FLAG_OUT[FLAG_C] <= flag[FLAG_C];
+            end
+            TEST_HL_BASE, 
+            TEST_HL_BASE + 1,
+            TEST_HL_BASE + 2,
+            TEST_HL_BASE + 3,
+            TEST_HL_BASE + 4,
+            TEST_HL_BASE + 5,
+            TEST_HL_BASE + 6,
+            TEST_HL_BASE + 7: begin
+                // uses TEMP reg which must be updated on ADD HL, xx : LD r, (IX+d) : and  JR d
+                ALU_OUT <= {8'b0, TEST_wire};
+                FLAG_OUT[FLAG_S] <= TEST_wire[7]; // see undocumented
+                FLAG_OUT[FLAG_Z] <= TEST_wire[7:0] == 0;
+                FLAG_OUT[FLAG_Y] <= TEMP[5]; // this is only for BIT n, (HL)
+                FLAG_OUT[FLAG_H] <= 1;
+                FLAG_OUT[FLAG_X] <= TEMP[3];
                 FLAG_OUT[FLAG_P_V] <= TEST_wire[7:0] == 0;
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
@@ -554,6 +605,11 @@ module ALU_Core(
                 FLAG_OUT[FLAG_N] <= flag[FLAG_N];
                 FLAG_OUT[FLAG_C] <= flag[FLAG_C];
             end
+            LD_TEMP: begin
+                ALU_OUT <= 0;
+                FLAG_OUT <= 0;
+                TEMP <= operandA[15:8];
+            end
             ADD_16BIT: begin
                 ALU_OUT <= add_16bit_wire[15:0];
                 FLAG_OUT[FLAG_S] <= flag[FLAG_S];
@@ -564,6 +620,8 @@ module ALU_Core(
                 FLAG_OUT[FLAG_P_V] <= flag[FLAG_P_V];
                 FLAG_OUT[FLAG_N] <= 0;
                 FLAG_OUT[FLAG_C] <= add_16bit_wire[15]; 
+                
+                TEMP <= operandA[15:8]; // see undocumented 4.1
             end
             ADC_16BIT: begin
                 ALU_OUT <= add_c_16bit_wire[15:0]; 
