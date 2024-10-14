@@ -75,32 +75,132 @@ module z80RegisterFile(
     wire [7:0] W_BUS, Z_BUS;   
     reg [15:0] REG_BUS_INTERNAL;
     reg [15:0] REG_MUX_OUT, ALU_MUX_OUT;
+    
+    // flipflops that toggle during register exchange operations (EX, EXX)
+    /*
+        DEHL_TOGGLE: if low, DE instruction goes to DE. if high, DE instruction goes to HL
+        DEPHLP_TOGGLE: if low, DE' goes to DE'. if low, DE' goes to HL'
+        AFAFP_TOGGLE: AF vs AF', you get the idea    
+        BIG_TOGGLE: if high, BC/DE/HL goes instead to BC'/DE'/HL'  
+        
+        *NOTE: DEHL_TOGGLE and its counterpart are also used for toggling A/A' and F/F'
+    */
+    reg DEHL_TOGGLE = 0, DEPHLP_TOGGLE = 0, AFAFP_TOGGLE = 0, BIG_TOGGLE = 0; 
+    
    
 //register writes 
     always @(posedge CLK) begin
   
-      if (WR_DATA_BUS) begin //write from databus
+      if (WR_DATA_BUS) begin //write to register from databus
+      
+      //general flow: REG_PRIME -> BIG toggle -> DEHL or DEpHLp toggle
+        //0, 0, 0
         if (!REG_PRIME) begin
-            case (REG_MUX)
-                0: B <= DATA_BUS_HIGH;
-                1: C <= DATA_BUS_LOW;
-                2: D <= DATA_BUS_HIGH;
-                3: E <= DATA_BUS_LOW;
-                4: H <= DATA_BUS_HIGH;
-                5: L <= DATA_BUS_LOW;
-            endcase
+          if (!BIG_TOGGLE) begin
+            if (!DEHL_TOGGLE) begin
+              //0 0 0
+                case (REG_MUX)       
+                        0: B <= DATA_BUS_HIGH;
+                        1: C <= DATA_BUS_LOW;
+                        2: D <= DATA_BUS_HIGH;
+                        3: E <= DATA_BUS_LOW;
+                        4: H <= DATA_BUS_HIGH;
+                        5: L <= DATA_BUS_LOW;
+                endcase
+            end
+             
+            else begin //DEHL_TOGGLE is high, swap DE and HL
+               // 0 0 1
+                 case (REG_MUX)       
+                        0: B <= DATA_BUS_HIGH;
+                        1: C <= DATA_BUS_LOW;
+                        2: H <= DATA_BUS_HIGH;
+                        3: L <= DATA_BUS_LOW;
+                        4: D <= DATA_BUS_HIGH;
+                        5: E <= DATA_BUS_LOW;
+                 endcase     
+            end           
           end
-          else begin
-            case (REG_MUX)
-                0: Bp <= DATA_BUS_HIGH;
-                1: Cp <= DATA_BUS_LOW;
-                2: Dp <= DATA_BUS_HIGH;
-                3: Ep <= DATA_BUS_LOW;
-                4: Hp <= DATA_BUS_HIGH;
-                5: Lp <= DATA_BUS_LOW;
-                6: IX <= {DATA_BUS_HIGH, DATA_BUS_LOW};
-                7: IY <= {DATA_BUS_HIGH, DATA_BUS_LOW};
-            endcase
+          
+          else begin //BIG_TOGGLE is high, swap BC/DE/HL for their primes
+            if (!DEPHLP_TOGGLE) begin
+                // 0 1 0
+                case (REG_MUX)
+                    0: Bp <= DATA_BUS_HIGH;
+                    1: Cp <= DATA_BUS_LOW;
+                    2: Dp <= DATA_BUS_HIGH;
+                    3: Ep <= DATA_BUS_LOW;
+                    4: Hp <= DATA_BUS_HIGH;
+                    5: Lp <= DATA_BUS_LOW;
+                endcase
+            end
+            
+            else begin //swap between DEp and HLp
+                // 0 1 1
+                case (REG_MUX)
+                    0: Bp <= DATA_BUS_HIGH;
+                    1: Cp <= DATA_BUS_LOW;
+                    2: Hp <= DATA_BUS_HIGH;
+                    3: Lp <= DATA_BUS_LOW;
+                    4: Dp <= DATA_BUS_HIGH;
+                    5: Ep <= DATA_BUS_LOW;
+                endcase
+            end
+          end         
+        end
+        
+        
+        else begin //REG_PRIME is high
+          if (!BIG_TOGGLE)begin
+            if (!DEPHLP_TOGGLE) begin
+                // 1 0 0
+                case (REG_MUX)
+                    0: Bp <= DATA_BUS_HIGH;
+                    1: Cp <= DATA_BUS_LOW;
+                    2: Dp <= DATA_BUS_HIGH;
+                    3: Ep <= DATA_BUS_LOW;
+                    4: Hp <= DATA_BUS_HIGH;
+                    5: Lp <= DATA_BUS_LOW;
+                endcase
+            end
+            else begin //swamp DE' and HL'
+                // 1 0 1
+                case (REG_MUX)
+                    0: Bp <= DATA_BUS_HIGH;
+                    1: Cp <= DATA_BUS_LOW;
+                    2: Hp <= DATA_BUS_HIGH;
+                    3: Lp <= DATA_BUS_LOW;
+                    4: Dp <= DATA_BUS_HIGH;
+                    5: Ep <= DATA_BUS_LOW;
+                endcase
+            end  
+          end
+          
+          else begin //BIG_TOGGLE is high, use normal register set
+            if (!DEHL_TOGGLE) begin
+                // 1 1 0
+                case (REG_MUX)       
+                        0: B <= DATA_BUS_HIGH;
+                        1: C <= DATA_BUS_LOW;
+                        2: D <= DATA_BUS_HIGH;
+                        3: E <= DATA_BUS_LOW;
+                        4: H <= DATA_BUS_HIGH;
+                        5: L <= DATA_BUS_LOW;
+                 endcase 
+            end
+            else begin
+                // 1 1 1
+                case (REG_MUX) //swap DE and HL
+                    0: B <= DATA_BUS_HIGH;
+                    1: C <= DATA_BUS_LOW;
+                    2: H <= DATA_BUS_HIGH;
+                    3: L <= DATA_BUS_LOW;
+                    4: D <= DATA_BUS_HIGH;
+                    5: E <= DATA_BUS_LOW;
+                endcase    
+            end
+          end
+            
           end
           
           if(SELECT_IX) begin IX <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end
@@ -142,21 +242,36 @@ module z80RegisterFile(
       
       if(LD_W) begin W <= REG_BUS_INTERNAL; end// may want to load directly from instruction register in control block?
       if(LD_Z) begin Z <= REG_BUS_INTERNAL; end
-      
       //YOU CANNOT WRITE TO BOTH PC/IR AND GENERIC REGISTER SET AT THE SAME TIME
       //internal bus is gated between PC/IR and rest of regs so PC/IR can be updated while generic set is being read
+      
+      //flip flops for register exchanges
+      assign BIG_TOGGLE = EXXLATCH ? ~BIG_TOGGLE : BIG_TOGGLE;
+      assign DEHL_TOGGLE = EXLATCH ? ~DEHL_TOGGLE : DEHL_TOGGLE;
+      assign DEPHLP_TOGGLE = EXLATCH ? ~DEPHLP_TOGGLE : DEPHLP_TOGGLE;
      
     end 
     
 //register reads
-
+    // flipflops that toggle during register exchange operations (EX, EXX)
+    /*
+        DEHL_TOGGLE: if low, DE instruction goes to DE. if high, DE instruction goes to HL
+        DEPHLP_TOGGLE: if low, DE' goes to DE'. if high, DE' goes to HL'
+        AFAFP_TOGGLE: AF vs AF', you get the idea    
+        BIG_TOGGLE: if high, BC/DE/HL goes instead to BC'/DE'/HL'  
+    */
     always @(posedge CLK) begin
 
         //REG_MUX_OUT can go to ALU_BUS1 or DATABUS or Internal register bus?
         case(REG_MUX)
-            0: assign REG_MUX_OUT = REG_PRIME ? {Bp, Cp} : {B, C};
-            1: assign REG_MUX_OUT = REG_PRIME ? {Dp, Ep} : {D, E};
-            2: assign REG_MUX_OUT = REG_PRIME ? {Hp, Lp} : {H, L};
+            0: assign REG_MUX_OUT = REG_PRIME ? (BIG_TOGGLE ? {B,C} : {Bp,Cp}) : (BIG_TOGGLE ? {Bp,Cp} : {B,C});
+            
+            1: assign REG_MUX_OUT = REG_PRIME ? (BIG_TOGGLE ? (DEHL_TOGGLE ? {H,L} : {D,E}) : (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep})) : 
+                                                (BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep}) : (DEHL_TOGGLE ? {H,L} : {D,E})); 
+                                                
+            2: assign REG_MUX_OUT = REG_PRIME ? (BIG_TOGGLE ? (DEHL_TOGGLE ? {D,E} : {H,L}) : (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp})) : 
+                                                (BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}) : (DEHL_TOGGLE ? {D,E} : {H,L})); 
+                                                
         endcase
         if(SELECT_IX) begin assign REG_MUX_OUT = IX; end
         if(SELECT_IY) begin assign REG_MUX_OUT = IY; end
@@ -164,9 +279,13 @@ module z80RegisterFile(
                
         //output is TO_ALU_2
         case(REG_MUX_ALU) 
-            0: assign ALU_MUX_OUT = REG_PRIME ? {Bp, Cp} : {B, C};
-            1: assign ALU_MUX_OUT = REG_PRIME ? {Dp, Ep} : {D, E};
-            2: assign ALU_MUX_OUT = REG_PRIME ? {Hp, Lp} : {H, L};
+            0: assign ALU_MUX_OUT = REG_PRIME ? (BIG_TOGGLE ? {B,C} : {Bp,Cp}) : (BIG_TOGGLE ? {Bp,Cp} : {B,C});
+            
+            1: assign ALU_MUX_OUT = REG_PRIME ? (BIG_TOGGLE ? (DEHL_TOGGLE ? {H,L} : {D,E}) : (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep})) : 
+                                                (BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep}) : (DEHL_TOGGLE ? {H,L} : {D,E})); 
+                                                
+            2: assign ALU_MUX_OUT = REG_PRIME ? (BIG_TOGGLE ? (DEHL_TOGGLE ? {D,E} : {H,L}) : (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp})) : 
+                                                (BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}) : (DEHL_TOGGLE ? {D,E} : {H,L})); 
         endcase
         if(SELECT_IX) begin assign ALU_MUX_OUT = IX; end
         if(SELECT_IY) begin assign ALU_MUX_OUT = IY; end
