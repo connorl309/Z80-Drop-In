@@ -5,7 +5,9 @@
 // https://area51.dev/asm/z80/about/flags/
 `define FLAG_S 7
 `define FLAG_Z 6
+`define FLAG_Y 5
 `define FLAG_H 4
+`define FLAG_X 3
 `define FLAG_PV 2
 `define FLAG_N 1
 `define FLAG_C 0
