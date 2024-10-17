@@ -829,7 +829,7 @@
 		(at 140.305 103.31 180)
 		(descr "LED SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
 		(tags "LED")
-		(property "Reference" "INIT"
+		(property "Reference" "D6"
 			(at -0.125 0.99 180)
 			(layer "F.SilkS")
 			(uuid "65b82077-e211-4b87-89e9-294b40db323a")
@@ -2889,7 +2889,7 @@
 		(at 150.63 104.495 -90)
 		(descr "LED SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator")
 		(tags "LED")
-		(property "Reference" "DONE"
+		(property "Reference" "D2"
 			(at -1.185 0.03 180)
 			(layer "F.SilkS")
 			(uuid "7d8b7cc7-d486-42c6-b1dc-6dfc1ad393b9")
@@ -3189,7 +3189,7 @@
 		(path "/5cf2e7a6-31af-4a12-8299-e2482d574801")
 		(sheetname "Root")
 		(sheetfile "sip-board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom dnp)
 		(fp_line
 			(start -1.8 -1.8)
 			(end -1.8 24.65)
@@ -4515,7 +4515,7 @@
 		(path "/480da3a2-db45-4b5c-89f4-63d3346af555")
 		(sheetname "Root")
 		(sheetfile "sip-board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom dnp)
 		(fp_line
 			(start -1.8 -1.8)
 			(end -1.8 24.65)
@@ -5905,7 +5905,7 @@
 		(at 145.41 119.875 90)
 		(descr "SMD 3x-dip-switch SPST , Slide, row spacing 6.73 mm (264 mils), body size 6.7x9.18mm (see e.g. https://www.ctscorp.com/wp-content/uploads/219.pdf), SMD, LowProfile, JPin")
 		(tags "SMD DIP Switch SPST Slide 6.73mm 264mil SMD LowProfile JPin")
-		(property "Reference" "CFG"
+		(property "Reference" "SW1"
 			(at -2.635 -5.55 -90)
 			(layer "F.SilkS")
 			(uuid "65208b5a-c2c5-410d-b0f3-2df3ad68fb3b")
@@ -7289,7 +7289,7 @@
 		(path "/16a8fab0-5ff0-4650-8583-e30ed743f342")
 		(sheetname "Root")
 		(sheetfile "sip-board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom dnp)
 		(fp_line
 			(start -1.8 -1.8)
 			(end -1.8 24.65)
@@ -8763,7 +8763,7 @@
 		(path "/5ecf64e9-2048-45e6-beb2-7cc66c15ec92")
 		(sheetname "Root")
 		(sheetfile "sip-board.kicad_sch")
-		(attr through_hole)
+		(attr through_hole exclude_from_bom dnp)
 		(fp_line
 			(start -1.8 -1.8)
 			(end -1.8 24.65)
@@ -12773,7 +12773,7 @@
 		(at 145.41 110.71)
 		(descr "tactile push button, 6x6mm e.g. PTS645xx series, height=9.5mm")
 		(tags "tact sw push 6mm smd")
-		(property "Reference" "RST"
+		(property "Reference" "SW2"
 			(at -4.05 -0.08 90)
 			(layer "F.SilkS")
 			(uuid "9fa44556-d24d-4beb-9107-6b30731052cc")
