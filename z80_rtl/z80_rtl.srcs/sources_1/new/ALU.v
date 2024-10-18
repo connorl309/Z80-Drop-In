@@ -694,36 +694,36 @@ module ALU(
     // F Register
     reg [7:0] flag, flag_prime;
     wire [7:0] flag_mux = FLAG_MUX ? FLAG_IN : alu_flag_out;
-    wire [7:0] FLAG_OUT_int = ACTIVE_REGS ? flag_prime : flag;
     always @(posedge CLK) begin
         if (LD_FLAG) begin
-            if (ACTIVE_REGS)
+            if (ALU_OP == `ALU_SWAP_REGS) begin
+                flag <= flag_prime;
+                flag_prime <= flag;
+            end else
                 flag <= alu_flag_out;
-            else
-                flag_prime <= alu_flag_out;
         end
     end
     
     // A Register
     reg [7:0] acc, acc_prime;
-    wire [7:0] ACC_OUT_int = ACTIVE_REGS ? acc_prime : acc;
-    assign ACC_OUT = ACC_OUT_int;
+    assign ACC_OUT = acc;
     wire [7:0] acc_in_mux_out = ACC_IN_MUX == 0 ? ALU_OUT_int[7:0] : (ACC_IN_MUX == 1 ? ALU_OUT_int[15:8] : (ACC_IN_MUX == 2 ? INT_DATA_BUS_A[7:0] : INT_DATA_BUS_B[7:0]));
     always @(posedge CLK) begin
         if (LD_ACCUM) begin
-            if (ACTIVE_REGS)
+            if (ALU_OP == `ALU_SWAP_REGS) begin
+                acc <= acc_prime;
+                acc_prime <= acc; 
+            end else 
                 acc <= acc_in_mux_out;
-            else
-                acc_prime <= acc_in_mux_out;
         end
     end
     
     // ALU operand muxes
-    wire [15:0] operandA = ALU_OPA_MUX == 0 ? extendTo16(ACC_OUT_int) : INT_DATA_BUS_A[15:0];
+    wire [15:0] operandA = ALU_OPA_MUX == 0 ? extendTo16(acc) : INT_DATA_BUS_A[15:0];
     wire [15:0] operandB = INT_DATA_BUS_B[15:0];
     
     // ALU Core
-    ALU_Core core(.ALU_OP(ALU_OP), .operandA(operandA), .operandB(operandB), .flag(FLAG_OUT_int), .ALU_OUT(ALU_OUT_int), .FLAG_OUT(alu_flag_out));
+    ALU_Core core(.ALU_OP(ALU_OP), .operandA(operandA), .operandB(operandB), .flag(flag), .ALU_OUT(ALU_OUT_int), .FLAG_OUT(alu_flag_out));
     
     //wire [7:0] alu_flag_out_fixed = {alu_flag_out[7:6], ALU_OUT_int[5], alu_flag_out[4], ALU_OUT_int[3], alu_flag_out[2:0]};
     assign FLAG_OUT = alu_flag_out;
