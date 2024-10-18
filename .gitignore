@@ -66,6 +66,7 @@
 */*.runs/impl*/*.sh
 */*.runs/impl*/*.tcl
 */*.runs/impl*/*.bat
+behav
 !*/*.runs/impl*/*utilization*.rpt
 
 *.runs/impl*/*.xml
