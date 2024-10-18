@@ -103,8 +103,10 @@
 `define ALU_RRD 33 // weird ahhh right rotate through memory location and A 
 
 `define ALU_LD_TEMP 34
+`define ALU_PASSA 35
+`define ALU_PASSB 36
 
-`define ALU_TEST_BASE 35
+`define ALU_TEST_BASE 37
 `define ALU_TEST_IX_BASE `ALU_TEST_BASE + 8
 `define ALU_TEST_HL_BASE `ALU_TEST_IX_BASE + 8
 `define ALU_SET_BASE `ALU_TEST_HL_BASE + 8

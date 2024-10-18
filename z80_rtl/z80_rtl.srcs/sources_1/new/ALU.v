@@ -640,6 +640,14 @@ module ALU_Core(
                 FLAG_OUT[`FLAG_N] <= 0;
                 FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
             end
+            `ALU_PASSA: begin
+                ALU_OUT[15:0] <= operandA[15:0];
+                FLAG_OUT <= flag;
+            end
+            `ALU_PASSB: begin
+                ALU_OUT[15:0] <= operandB[15:0];
+                FLAG_OUT <= flag;
+            end
             default: begin
                 ALU_OUT <= 16'b0; // allegedly later assignments win so the later bit test/set/reset ifs should work
                 FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
