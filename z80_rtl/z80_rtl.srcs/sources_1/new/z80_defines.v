@@ -63,3 +63,49 @@
 `define CLK 5 // INPUT ONLY
 `define VCC 10 // Probably not needed
 `define GND 28 // Probably not needed
+
+// ALU opcodes
+`define ALU_ADD_8BIT 0 // 8-bit add
+`define ALU_ADC_8BIT 1 // 8-bit add with carry
+`define ALU_SUB_8BIT 2 // 8-bit sub
+`define ALU_SBC_8BIT 3 // 8-bit sub with carry
+`define ALU_AND_8BIT 4 // 8-bit AND 
+`define ALU_OR_8BIT 5 // 8-bit OR 
+`define ALU_XOR_8BIT 6 // 8-bit XOR 
+`define ALU_CP 7 // 8-bit compare
+`define ALU_DAA 8 // DAA instruction
+`define ALU_INC_8BIT 9 // 8-bit increment
+`define ALU_DEC_8BIT 10 // 8-bit decrement
+`define ALU_CPL 11 // 8-bit one's complement negation
+`define ALU_NEG 12 // 8-bit two's complement negation
+`define ALU_CCF 13 // Invert carry flag
+`define ALU_SCF 14 // Set carry flag
+
+`define ALU_ADD_16BIT 15 // 16-bit add 
+`define ALU_ADC_16BIT 16 // 16-bit add with carry
+`define ALU_SBC_16BIT 17 // 16-bit sub with carry
+`define ALU_INC_16BIT 18 // 16-bit increment
+`define ALU_DEC_16BIT 19 // 16-bit decrement
+
+`define ALU_RLCA 20 //  8-bit rotate left
+`define ALU_RLA 21 // 8-bit rotate left through carry 
+`define ALU_RLC 22 // 8-bit rotate left, different flag updates
+`define ALU_RL 23 // 8-bit rotate left through carry, different flag updates
+`define ALU_RRCA 24 // 8-bit rotate right
+`define ALU_RRA 25 // 8-bit rotate right through carry
+`define ALU_RRC 26 // 8-bit rotate right, different flag updates
+`define ALU_RR 27 // 8-bit rotate right through carry, different flag updates
+`define ALU_SLA 28 // 8-bit arithmetic shift left
+`define ALU_SLL 29 // undocumented instruction with CB[XX] opcode, this sets [0] instead of resetting it like SLA, see z80 undocumented 3.1
+`define ALU_SRA 30 // 8-bit arithmetic shift right
+`define ALU_SRL 31 // 8-bit logical shift right
+`define ALU_RLD 32 // weird ahhh left rotate through memory location and A 
+`define ALU_RRD 33 // weird ahhh right rotate through memory location and A 
+
+`define ALU_LD_TEMP 34
+
+`define ALU_TEST_BASE 35
+`define ALU_TEST_IX_BASE `ALU_TEST_BASE + 8
+`define ALU_TEST_HL_BASE `ALU_TEST_IX_BASE + 8
+`define ALU_SET_BASE `ALU_TEST_HL_BASE + 8
+`define ALU_RESET_BASE `ALU_SET_BASE + 8

@@ -19,16 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`define assert(signal, value) \
-        if (signal !== value) begin \
-            $display("ASSERTION FAILED in %m: signal != value"); \
-            $finish; \
-        end
-
+`define assert(signal, value, string) \
+        if (signal !== value) \
+            $display("ASSERTION FAILED in %m: signal != value for case %s", string)
 module tb_ALU(
     input CLK
     );
-    
     
     
     reg [6:0] ALU_OP;
@@ -52,28 +48,32 @@ module tb_ALU(
         operandB[7:0] = 11;
         flag = 0;
         #10;
-        `assert(ALU_OUT[7:0], 16);
-        `assert(FLAG_OUT, {1'b0, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0, 1'b0});
+        `assert(ALU_OUT[7:0], 16, "ALU ADD1");
+        `assert(FLAG_OUT, {1'b0, 1'b0, ALU_OUT[5], 1'b1, ALU_OUT[3], 1'b0, 1'b0, 1'b0}, "FLAG ADD1");
         
         operandA[7:0] = 5;
         operandB[7:0] = -6;
         flag = 0;
         #10;
-        `assert(ALU_OUT[7:0], 8'hFF);
-        `assert(FLAG_OUT, {1'b1, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0});
+        `assert(ALU_OUT[7:0], 8'hFF, "ALU ADD2");
+        `assert(FLAG_OUT, {1'b1, 1'b0, ALU_OUT[5], 1'b0, ALU_OUT[3], 1'b0, 1'b0, 1'b0}, "FLAG ADD2");
         
         operandA[7:0] = 127;
         operandB[7:0] = 1;
         flag = 0;
         #10;
-        `assert(ALU_OUT[7:0], 8'h80);
-        `assert(FLAG_OUT, {1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b1, 1'b0, 1'b0});
+        `assert(ALU_OUT[7:0], 8'h80, "ALU ADD3");
+        `assert(FLAG_OUT, {1'b1, 1'b0, ALU_OUT[5], 1'b1, ALU_OUT[3], 1'b1, 1'b0, 1'b0}, "FLAG ADD3");
         
         operandA[7:0] = -1;
         operandB[7:0] = 1;
         flag = 0;
         #10;
-        `assert(ALU_OUT[7:0], 0);
-        `assert(FLAG_OUT, {1'b0, 1'b1, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0, 1'b1});
+        `assert(ALU_OUT[7:0], 0, "ALU ADD4");
+        `assert(FLAG_OUT, {1'b0, 1'b1, ALU_OUT[5], 1'b1, ALU_OUT[3], 1'b0, 1'b0, 1'b1}, "FLAG ADD4");
+        
+        // ADC 8bit
+        //ALU_OP
+        
     end
 endmodule
