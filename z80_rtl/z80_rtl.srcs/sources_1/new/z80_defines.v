@@ -107,7 +107,10 @@
 `define ALU_PASSB 36
 `define ALU_SWAP_REGS 37
 
-`define ALU_TEST_BASE 38
+`define ALU_LDID 38
+`define ALU_CPID 39
+
+`define ALU_TEST_BASE 40
 `define ALU_TEST_IX_BASE `ALU_TEST_BASE + 8
 `define ALU_TEST_HL_BASE `ALU_TEST_IX_BASE + 8
 `define ALU_SET_BASE `ALU_TEST_HL_BASE + 8

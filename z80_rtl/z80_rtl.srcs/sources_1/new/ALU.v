@@ -648,6 +648,30 @@ module ALU_Core(
                 ALU_OUT[15:0] <= operandB[15:0];
                 FLAG_OUT <= flag;
             end
+            `ALU_LDID: begin
+                // BC must be on operandB
+                ALU_OUT <= 0;
+                FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
+                FLAG_OUT[`FLAG_Z] <= flag[`FLAG_Z];
+                FLAG_OUT[`FLAG_Y] <= add_8bit_wire[1];
+                FLAG_OUT[`FLAG_H] <= 0; 
+                FLAG_OUT[`FLAG_X] <= add_8bit_wire[3];
+                FLAG_OUT[`FLAG_PV] <= operandB == 0;
+                FLAG_OUT[`FLAG_N] <= flag[`FLAG_N];
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
+            end
+            `ALU_CPID: begin
+                // the same as a CP but with an extra pizazz
+                ALU_OUT <= operandB; // see undocumented 8.4
+                FLAG_OUT[`FLAG_S] <= sub_8bit_wire[7];
+                FLAG_OUT[`FLAG_Z] <= sub_8bit_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_Y] <= ((sub_8bit_wire - {7'b0, flag[`FLAG_H]}) & 2'b10) >> 1;
+                FLAG_OUT[`FLAG_H] <= sub_8bit_H;
+                FLAG_OUT[`FLAG_X] <= ((sub_8bit_wire - {7'b0, flag[`FLAG_H]}) & 4'b1000) >> 3;
+                FLAG_OUT[`FLAG_PV] <= sub_8bit_overflow;
+                FLAG_OUT[`FLAG_N] <= 1;
+                FLAG_OUT[`FLAG_C] <= $signed(operandA[7:0]) < $signed(operandB[7:0]);
+            end
             default: begin
                 ALU_OUT <= 16'b0; // allegedly later assignments win so the later bit test/set/reset ifs should work
                 FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
