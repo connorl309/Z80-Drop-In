@@ -17627,6 +17627,29 @@
 		)
 		(uuid "fc08010b-19d7-4fb1-8c46-633fdc2d2c4a")
 	)
+	(global_label "A15_FPGA"
+		(shape input)
+		(at 929.64 335.28 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "0679050b-848d-46f8-9489-9779f343c48e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 916.9864 335.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "CS"
 		(shape input)
 		(at 25.4 208.28 180)
@@ -17664,6 +17687,52 @@
 		(uuid "081b561d-6465-4646-9e00-9dac7316beb3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 269.5888 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "INT_FPGA"
+		(shape input)
+		(at 1013.46 236.22 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "090e5b6b-4632-4266-83ba-7300c899ed9a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.5089 236.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "WAIT_FPGA"
+		(shape input)
+		(at 929.64 152.4 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "0aba765d-f0e7-40e3-b52d-bba9ca1c8152")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 916.3816 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17733,6 +17802,52 @@
 		(uuid "1240c83f-4242-4be6-a43b-533987d07382")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 153.6559 405.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A6_FPGA"
+		(shape input)
+		(at 1013.46 190.5 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "13116d23-234e-44d6-b84b-95b87b1c5ace")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1024.9041 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RD_FPGA"
+		(shape input)
+		(at 929.64 149.86 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "13217c10-40b9-4947-9849-a8ca5969a37d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 917.954 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -17949,6 +18064,29 @@
 			)
 		)
 	)
+	(global_label "D5_FPGA"
+		(shape input)
+		(at 1013.46 299.72 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "224a905f-b1b7-4b15-9cbb-5c415720534e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 299.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "DIN"
 		(shape input)
 		(at 916.94 218.44 180)
@@ -17986,6 +18124,29 @@
 		(uuid "269eeb94-ba81-4144-a674-804cb5661765")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 50.8745 520.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "CLK"
+		(shape input)
+		(at 1013.46 121.92 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "2772e3d9-031b-44b3-93ed-fa6f6664a536")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1020.4893 121.92 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18078,6 +18239,52 @@
 		(uuid "2cc91216-a191-4722-8339-3ce6c20c1ff5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 90.2445 363.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "M1_FPGA"
+		(shape input)
+		(at 929.64 261.62 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "2cecb557-03f0-49ea-b35b-e407dfcdcbad")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 917.8331 261.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "D3_FPGA"
+		(shape input)
+		(at 1013.46 157.48 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "2e8393fb-9a9f-406b-9b50-aba526569026")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 157.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18294,6 +18501,29 @@
 			)
 		)
 	)
+	(global_label "D2_FPGA"
+		(shape input)
+		(at 1013.46 264.16 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "3a82fd31-ac8b-4643-ab6d-ada827c1ff56")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 264.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A12_5V"
 		(shape input)
 		(at 80.01 325.12 0)
@@ -18313,6 +18543,29 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A2_FPGA"
+		(shape input)
+		(at 929.64 368.3 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "3bd135a8-cf97-422c-97eb-a4204b155b33")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 918.1959 368.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -18386,6 +18639,52 @@
 			)
 		)
 	)
+	(global_label "D4_FPGA"
+		(shape input)
+		(at 1013.46 193.04 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "41352396-9a73-4277-8b87-836cdbcce72a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A11_FPGA"
+		(shape input)
+		(at 929.64 157.48 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "43b16826-b946-4c0f-8151-89ad7905493b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 916.9864 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "CCLK"
 		(shape input)
 		(at 74.93 199.39 90)
@@ -18432,6 +18731,52 @@
 			)
 		)
 	)
+	(global_label "A13_FPGA"
+		(shape input)
+		(at 929.64 228.6 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "469fb799-d4a7-4ca5-8705-923b76cb4981")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 916.9864 228.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "D7_FPGA"
+		(shape input)
+		(at 1013.46 195.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "48be15bf-b70e-4a1e-9436-4a3b11998c36")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 195.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A9_5V"
 		(shape input)
 		(at 77.47 563.88 0)
@@ -18451,6 +18796,29 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A1_FPGA"
+		(shape input)
+		(at 929.64 332.74 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "4b84ba1a-2c00-41c3-b111-7e087734bed5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 918.1959 332.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -18589,6 +18957,29 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BUSRQ_FPGA"
+		(shape input)
+		(at 929.64 190.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "5929203f-a2d4-4062-b2d9-cea6a9d7e25b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 914.0835 190.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -18754,6 +19145,29 @@
 			)
 		)
 	)
+	(global_label "A14_FPGA"
+		(shape input)
+		(at 929.64 264.16 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "5f10d459-3e9d-43e4-a5f7-84c9ccbf7b76")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 916.9864 264.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A2_5V"
 		(shape input)
 		(at 77.47 546.1 0)
@@ -18800,6 +19214,52 @@
 			)
 		)
 	)
+	(global_label "A3_FPGA"
+		(shape input)
+		(at 1013.46 152.4 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "64b04390-65db-4dda-966f-c07479a8bd85")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1024.9041 152.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "MREQ_FPGA"
+		(shape input)
+		(at 1013.46 340.36 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "68b1896d-925d-4d8c-bdef-77bc01b310fd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1027.8069 340.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A4_5V"
 		(shape input)
 		(at 77.47 551.18 0)
@@ -18814,6 +19274,52 @@
 		(uuid "6948a1ac-d27e-4cc9-9ec9-0a1a71a10eef")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 86.495 551.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A0_FPGA"
+		(shape input)
+		(at 929.64 330.2 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "6ab0cd08-fbc7-4122-8b32-3c423541a0d3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 918.1959 330.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "D6_FPGA"
+		(shape input)
+		(at 1013.46 266.7 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "6cc9e904-c0c6-4337-b634-51e62ece8455")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 266.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -18938,6 +19444,29 @@
 			)
 		)
 	)
+	(global_label "RFSH_FPGA"
+		(shape input)
+		(at 929.64 294.64 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "77432211-beaf-40a2-9d56-3e158e20de7c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 915.5954 294.64 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A11_5V"
 		(shape input)
 		(at 80.01 322.58 0)
@@ -18975,6 +19504,29 @@
 		(uuid "781d156b-644a-49f3-912a-9c0a0e377c7e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 1019.7636 279.4 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A7_FPGA"
+		(shape input)
+		(at 1013.46 261.62 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "781d56d7-1bed-41ad-89e0-8e5d7b86b947")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1024.9041 261.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19279,6 +19831,29 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "HALT_FPGA"
+		(shape input)
+		(at 1013.46 307.34 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "9100f386-e992-4444-a528-6727dd90631d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1027.0208 307.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -19628,6 +20203,29 @@
 			)
 		)
 	)
+	(global_label "IORQ_FPGA"
+		(shape input)
+		(at 1013.46 342.9 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "aac30135-52d1-415b-b65c-e230a58c6293")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1027.1418 342.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "CS"
 		(shape input)
 		(at 901.7 259.08 180)
@@ -19642,6 +20240,29 @@
 		(uuid "ac5b6c9b-e96a-47ba-86f0-19d5810b5b33")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 895.7593 259.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BUSAK_FPGA"
+		(shape input)
+		(at 929.64 220.98 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "ac62b2e7-7a86-4f60-aafd-d110c7de7f1b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 914.3254 220.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19734,6 +20355,29 @@
 		(uuid "af661360-efda-47ea-a99a-577704b53a75")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 86.495 541.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A8_FPGA"
+		(shape input)
+		(at 1013.46 297.18 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "afac1c0e-42ab-48fd-b5fa-1fda585f8bea")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1024.9041 297.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -19996,6 +20640,29 @@
 			)
 		)
 	)
+	(global_label "A9_FPGA"
+		(shape input)
+		(at 1013.46 332.74 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "c4f01f11-e188-4d87-b527-ca3f91371ac5")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1024.9041 332.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "BUSRQ_5V"
 		(shape input)
 		(at 189.23 363.22 0)
@@ -20015,6 +20682,29 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "WR_FPGA"
+		(shape input)
+		(at 929.64 185.42 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "c9af63e7-1d51-475c-8085-22ba6ac54505")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 917.7726 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -20134,6 +20824,29 @@
 			)
 		)
 	)
+	(global_label "A10_FPGA"
+		(shape input)
+		(at 1013.46 330.2 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "cde33b40-4252-4e4a-b905-6c6fcbc98a63")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1026.1136 330.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "D1_5V"
 		(shape input)
 		(at 40.64 553.72 0)
@@ -20222,6 +20935,29 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RESET_FPGA"
+		(shape input)
+		(at 929.64 226.06 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "d13af8a1-0037-4824-83ef-bdffa89ca82a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 914.7489 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -20387,6 +21123,29 @@
 			)
 		)
 	)
+	(global_label "D0_FPGA"
+		(shape input)
+		(at 1013.46 198.12 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "dbeebca1-f538-470f-9399-3c2c03318adb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 198.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "M1_CONFIG"
 		(shape input)
 		(at 1013.46 246.38 0)
@@ -20456,6 +21215,29 @@
 			)
 		)
 	)
+	(global_label "A4_FPGA"
+		(shape input)
+		(at 1013.46 154.94 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "e1704378-e58b-4f44-85ab-9ccd04615ce1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1024.9041 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "D5_5V"
 		(shape input)
 		(at 80.01 400.05 0)
@@ -20475,6 +21257,29 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A12_FPGA"
+		(shape input)
+		(at 929.64 193.04 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "e83ad42e-509c-40d9-a23b-d5d74de58124")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 916.9864 193.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -20640,6 +21445,29 @@
 			)
 		)
 	)
+	(global_label "NMI_FPGA"
+		(shape input)
+		(at 1013.46 304.8 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "ee337237-7922-47ca-9059-edc23a216b98")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.9927 304.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "M2_CONFIG"
 		(shape input)
 		(at 1013.46 248.92 0)
@@ -20682,6 +21510,29 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "D1_FPGA"
+		(shape input)
+		(at 1013.46 231.14 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "f5d1930a-254e-46f6-bb78-9643aee4abd8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1025.0855 231.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -20751,6 +21602,29 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A5_FPGA"
+		(shape input)
+		(at 1013.46 187.96 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "f880f0dd-ea72-4586-8f61-4894ccc118eb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 1024.9041 187.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
