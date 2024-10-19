@@ -22299,7 +22299,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2b21527c-8d65-4df9-9228-e380935993e7")
-		(property "Reference" "SW1"
+		(property "Reference" "CFG1"
 			(at 38.1 148.59 0)
 			(effects
 				(font
@@ -22363,7 +22363,7 @@
 		(instances
 			(project "sip-board"
 				(path "/4eae758a-da4d-4448-84d4-770db7217b0d"
-					(reference "SW1")
+					(reference "CFG1")
 					(unit 1)
 				)
 			)
@@ -23088,7 +23088,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "35338bcd-ba90-4e0e-a871-e5fb9caa428a")
-		(property "Reference" "D2"
+		(property "Reference" "DONE1"
 			(at 292.4175 93.98 0)
 			(effects
 				(font
@@ -23140,7 +23140,7 @@
 		(instances
 			(project "sip-board"
 				(path "/4eae758a-da4d-4448-84d4-770db7217b0d"
-					(reference "D2")
+					(reference "DONE1")
 					(unit 1)
 				)
 			)
@@ -23762,7 +23762,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "450ff3e8-7194-4641-b112-1c513fb0b3fc")
-		(property "Reference" "U4"
+		(property "Reference" "SPIPROM1"
 			(at 47.9141 195.58 0)
 			(effects
 				(font
@@ -23834,7 +23834,7 @@
 		(instances
 			(project "sip-board"
 				(path "/4eae758a-da4d-4448-84d4-770db7217b0d"
-					(reference "U4")
+					(reference "SPIPROM1")
 					(unit 1)
 				)
 			)
@@ -26354,7 +26354,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical_SMD_Pin1Right"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical_SMD_Pin1Left"
 			(at 21.59 240.03 0)
 			(effects
 				(font
@@ -34140,7 +34140,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dbe98fbb-f6fb-48c0-bfab-df7654184e11")
-		(property "Reference" "D6"
+		(property "Reference" "INIT1"
 			(at 1040.13 301.9424 90)
 			(effects
 				(font
@@ -34194,7 +34194,7 @@
 		(instances
 			(project "sip-board"
 				(path "/4eae758a-da4d-4448-84d4-770db7217b0d"
-					(reference "D6")
+					(reference "INIT1")
 					(unit 1)
 				)
 			)
