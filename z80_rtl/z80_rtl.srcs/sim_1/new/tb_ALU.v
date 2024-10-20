@@ -155,5 +155,242 @@ module tb_ALU(
         flag[`FLAG_C] = 1;
         #10;
         `assert(ALU_OUT[7:0], 8'hFE, "ALU SBC4");
+        
+        
+        // AND
+        ALU_OP = `ALU_AND_8BIT;
+        operandA[7:0] = 8'b10110110;
+        operandB[7:0] = 8'b11110000;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b10110000, "ALU AND");
+        
+        
+        // OR
+        ALU_OP = `ALU_OR_8BIT;
+        operandA[7:0] = 8'b10110110;
+        operandB[7:0] = 8'b11110000;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b11110110, "ALU OR");
+        
+        
+        // XOR
+        ALU_OP = `ALU_XOR_8BIT;
+        operandA[7:0] = 8'b10110110;
+        operandB[7:0] = 8'b11110000;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01000110, "ALU XOR");
+        
+        
+        // CP
+        ALU_OP = `ALU_CP;
+        operandA[7:0] = 8'b10110110;
+        operandB[7:0] = 8'b11110000;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 0, "ALU CP1");
+        
+        operandA[7:0] = 8'b11110000;
+        operandB[7:0] = 8'b11110000;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 1, "ALU CP2");
+        
+        
+        // INC
+        ALU_OP = `ALU_INC_8BIT;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b10110111, "ALU INC");
+        
+        
+        // DEC
+        ALU_OP = `ALU_DEC_8BIT;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b10110101, "ALU DEC");
+        
+        
+        // CPL
+        ALU_OP = `ALU_CPL;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01001001, "ALU CPL");
+        
+        
+        // NEG
+        ALU_OP = `ALU_NEG;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01001010, "ALU NEG");
+        
+        
+        // CCF
+        ALU_OP = `ALU_CCF;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(FLAG_OUT[`FLAG_C], 0, "ALU CCF1");
+        
+        flag[`FLAG_C] = 0;
+        #10;
+        `assert(FLAG_OUT[`FLAG_C], 1, "ALU CCF2");
+        
+        
+        // SCF
+        ALU_OP = `ALU_SCF;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(FLAG_OUT[`FLAG_C], 1, "ALU SCF1");
+        
+        flag[`FLAG_C] = 0;
+        #10;
+        `assert(FLAG_OUT[`FLAG_C], 1, "ALU SCF2");
+        
+        
+        // DAA TODO
+        
+        
+        // RLCA
+        ALU_OP = `ALU_RLCA;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 0;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01101101, "ALU RLCA");
+        `assert(FLAG_OUT[`FLAG_C], 1, "FLAG RLCA");
+        
+        
+        // RLA
+        ALU_OP = `ALU_RLA;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 0;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01101100, "ALU RLA");
+        `assert(FLAG_OUT[`FLAG_C], 1, "FLAG RLA");
+        
+        
+        // RLC
+        ALU_OP = `ALU_RLC;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 0;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01101101, "ALU RLC");
+        `assert(FLAG_OUT[`FLAG_C], 1, "FLAG RLC");
+        
+        
+        // RL
+        ALU_OP = `ALU_RL;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 0;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01101100, "ALU RL");
+        `assert(FLAG_OUT[`FLAG_C], 1, "FLAG RL");
+        
+        
+        // RRCA
+        ALU_OP = `ALU_RRCA;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01011011, "ALU RRCA");
+        `assert(FLAG_OUT[`FLAG_C], 0, "FLAG RRCA");
+        
+        
+        // RRA
+        ALU_OP = `ALU_RRA;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b11011011, "ALU RRA");
+        `assert(FLAG_OUT[`FLAG_C], 0, "FLAG RRA");
+        
+        
+        // RRC
+        ALU_OP = `ALU_RRC;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01011011, "ALU RRC");
+        `assert(FLAG_OUT[`FLAG_C], 0, "FLAG RRC");
+        
+        
+        // RR
+        ALU_OP = `ALU_RR;
+        operandA[7:0] = 8'b10110110;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b11011011, "ALU RR");
+        `assert(FLAG_OUT[`FLAG_C], 0, "FLAG RR");
+        
+        
+        // SLA
+        ALU_OP = `ALU_SLA;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01101100, "ALU SLA");
+        
+        
+        // SLL
+        ALU_OP = `ALU_SLL;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01101101, "ALU SLL");
+        
+        
+        // SRA
+        ALU_OP = `ALU_SRA;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b11011011, "ALU SRA");
+        
+        
+        // SRL
+        ALU_OP = `ALU_SRL;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b01011011, "ALU SRL");
+        
+        
+        // BIT
+        
+        ALU_OP = `ALU_LD_TEMP;
+        operandA[7:0] = 8'h77;
+        #10;
+        
+        ALU_OP = `ALU_TEST_BASE + 2;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 1, "ALU BIT1");
+        ALU_OP = `ALU_TEST_BASE;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 0, "ALU BIT2");
+        
+        ALU_OP = `ALU_TEST_IX_BASE + 2;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 1, "ALU BIT3");
+        ALU_OP = `ALU_TEST_IX_BASE;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 0, "ALU BIT4");
+        
+        ALU_OP = `ALU_TEST_HL_BASE + 2;
+        operandA[7:0] = 8'b10110110;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 1, "ALU BIT5");
+        ALU_OP = `ALU_TEST_HL_BASE;
+        #10;
+        `assert(FLAG_OUT[`FLAG_Z], 0, "ALU BIT6");
+        
+        
+        // SET
+        ALU_OP = `ALU_SET_BASE + 3;
+        operandA[7:0] = 8'b00000000;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b00001000, "ALU SET");
+        
+        
+        // RESET
+        ALU_OP = `ALU_RESET_BASE + 3;
+        operandA[7:0] = 8'b11111111;
+        #10;
+        `assert(ALU_OUT[7:0], 8'b11110111, "ALU RESET");
     end
 endmodule

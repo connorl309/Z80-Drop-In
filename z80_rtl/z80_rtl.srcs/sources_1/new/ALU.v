@@ -128,7 +128,9 @@ module ALU_Core(
     wire [7:0] logical_shift_right_wire = {1'b0, operandA[7:1]};
     
     wire [7:0] TEST_wire = (operandA[7:0] & (1'b1 << (ALU_OP - `ALU_TEST_BASE)));
-    wire [7:0] set_wire = operandA[7:0] | (ALU_OP - `ALU_SET_BASE);
+    wire [7:0] TEST_IX_wire = (operandA[7:0] & (1'b1 << (ALU_OP - (`ALU_TEST_IX_BASE))));
+    wire [7:0] TEST_HL_wire = (operandA[7:0] & (1'b1 << (ALU_OP - (`ALU_TEST_HL_BASE))));
+    wire [7:0] set_wire = operandA[7:0] | (1'b1 << (ALU_OP - `ALU_SET_BASE));
     wire [7:0] reset_wire = operandA[7:0] & ~(8'b0 + (1'b1 << (ALU_OP - `ALU_RESET_BASE)));
     
     wire [15:0] operandB16_plus_carry = operandB[15:0] + flag[`FLAG_C]; 
@@ -470,7 +472,7 @@ module ALU_Core(
             `ALU_TEST_BASE + 7: begin
                 ALU_OUT <= {8'b0, TEST_wire};
                 FLAG_OUT[`FLAG_S] <= TEST_wire[7]; // see undocumented
-                FLAG_OUT[`FLAG_Z] <= TEST_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_Z] <= TEST_wire[7:0] != 0;
                 FLAG_OUT[`FLAG_Y] <= TEST_wire[5]; // this is only for BIT n,r
                 FLAG_OUT[`FLAG_H] <= 1;
                 FLAG_OUT[`FLAG_X] <= TEST_wire[3];
@@ -487,13 +489,13 @@ module ALU_Core(
             `ALU_TEST_IX_BASE + 6,
             `ALU_TEST_IX_BASE + 7: begin
                 // needs the original address of IX + d to be on operandB
-                ALU_OUT <= {8'b0, TEST_wire};
-                FLAG_OUT[`FLAG_S] <= TEST_wire[7]; // see undocumented
-                FLAG_OUT[`FLAG_Z] <= TEST_wire[7:0] == 0;
+                ALU_OUT <= {8'b0, TEST_IX_wire};
+                FLAG_OUT[`FLAG_S] <= TEST_IX_wire[7]; // see undocumented
+                FLAG_OUT[`FLAG_Z] <= TEST_IX_wire[7:0] != 0;
                 FLAG_OUT[`FLAG_Y] <= operandB[13]; // this is only for BIT n, (IX+d)
                 FLAG_OUT[`FLAG_H] <= 1;
                 FLAG_OUT[`FLAG_X] <= operandB[11];
-                FLAG_OUT[`FLAG_PV] <= TEST_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_PV] <= TEST_IX_wire[7:0] == 0;
                 FLAG_OUT[`FLAG_N] <= 0;
                 FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
             end
@@ -506,13 +508,13 @@ module ALU_Core(
             `ALU_TEST_HL_BASE + 6,
             `ALU_TEST_HL_BASE + 7: begin
                 // uses TEMP reg which must be updated on ADD HL, xx : LD r, (IX+d) : and  JR d
-                ALU_OUT <= {8'b0, TEST_wire};
-                FLAG_OUT[`FLAG_S] <= TEST_wire[7]; // see undocumented
-                FLAG_OUT[`FLAG_Z] <= TEST_wire[7:0] == 0;
+                ALU_OUT <= {8'b0, TEST_HL_wire};
+                FLAG_OUT[`FLAG_S] <= TEST_HL_wire[7]; // see undocumented
+                FLAG_OUT[`FLAG_Z] <= TEST_HL_wire[7:0] != 0;
                 FLAG_OUT[`FLAG_Y] <= TEMP[5]; // this is only for BIT n, (HL)
                 FLAG_OUT[`FLAG_H] <= 1;
                 FLAG_OUT[`FLAG_X] <= TEMP[3];
-                FLAG_OUT[`FLAG_PV] <= TEST_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_PV] <= TEST_HL_wire[7:0] == 0;
                 FLAG_OUT[`FLAG_N] <= 0;
                 FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
             end
