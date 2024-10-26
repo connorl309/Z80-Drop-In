@@ -110,13 +110,17 @@ module ALU_Core(
     wire F = flag[`FLAG_N];
     wire G = operandA[3:0] < 4'h6;
     
-    wire [7:0] BCD_1 = {operandA[7:4] - (high_diff ? 6 : 0), operandA[3:0] - (low_diff ? 6 : 0)};
-    wire [7:0] BCD_2 = {operandA[7:4] + (high_diff ? 6 : 0), operandA[3:0] + (low_diff ? 6 : 0)};
-    
-    wire high_diff = (A) || (!C && !E) || (!B && !D && !E) || (!B && D && E);
-    wire low_diff = (!E) || (!C && D) || (B && D) || (A && D);
+    wire high_diff = (A) || (!B && E) || (!C && !E);
+    wire low_diff =  (D) || (!E);
     wire new_carry = (A) || (!C && !E) || (!B && E);
     wire new_half_carry = (!F && !E) || (F && D && G);
+    
+    wire [7:0] BCD;
+    assign BCD[7:4] = high_diff ? 6 : 0;
+    assign BCD[3:0] = low_diff ? 6 : 0;
+    
+    wire [7:0] BCD_1 = operandA[7:0] - BCD;
+    wire [7:0] BCD_2 = operandA[7:0] + BCD;
     
     wire [7:0] rotate_c_left_wire = {operandA[6:0], flag[`FLAG_C]};
     wire [7:0] rotate_left_wire = {operandA[6:0], operandA[7]};
@@ -700,7 +704,6 @@ module ALU(
     input LD_FLAG,
     input [7:0] FLAG_IN,
     input FLAG_MUX,
-    input ACTIVE_REGS,
     output [15:0] ALU_OUT,
     output [7:0] FLAG_OUT,
     output [7:0] ACC_OUT
@@ -726,7 +729,7 @@ module ALU(
                 flag <= flag_prime;
                 flag_prime <= flag;
             end else
-                flag <= alu_flag_out;
+                flag <= flag_mux;
         end
     end
     

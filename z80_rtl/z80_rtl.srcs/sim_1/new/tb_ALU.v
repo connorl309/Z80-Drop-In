@@ -35,7 +35,17 @@ module tb_ALU(
     wire [15:0] ALU_OUT;
     wire [7:0] FLAG_OUT;
     
-    ALU_Core alu (ALU_OP, operandA, operandB, flag, ALU_OUT, FLAG_OUT);
+    ALU_Core alu_core (ALU_OP, operandA, operandB, flag, ALU_OUT, FLAG_OUT);
+    
+    wire [15:0] ALU_OUT_E2E;
+    wire [7:0] FLAG_OUT_E2E;
+    wire [7:0] ACC;
+    
+    reg CLK, opA_mux, ld_acc, ld_flag, flag_mux;
+    reg [1:0] acc_in_mux;
+    reg [15:0] dataA, dataB;
+    
+    ALU alu (CLK, dataA, dataB, ALU_OP, opA_mux, acc_in_mux, ld_acc, ld_flag, flag, flag_mux, ALU_OUT_E2E, FLAG_OUT_E2E, ACC);
     
     initial begin
     
@@ -392,5 +402,242 @@ module tb_ALU(
         operandA[7:0] = 8'b11111111;
         #10;
         `assert(ALU_OUT[7:0], 8'b11110111, "ALU RESET");
+        
+        
+        // ADD 16-BIT
+        ALU_OP = `ALU_ADD_16BIT;
+        operandA = 300;
+        operandB = 567;
+        #10;
+        `assert(ALU_OUT, 16'h363, "ALU ADD 16BIT 1");
+        
+        operandA = 65535;
+        operandB = 1;
+        #10;
+        `assert(ALU_OUT, 16'h0, "ALU ADD 16BIT 2");
+        
+        operandA = -10;
+        operandB = 11;
+        #10;
+        `assert(ALU_OUT, 16'h1, "ALU ADD 16BIT 3");
+        
+        
+        // ADC 16-BIT
+        ALU_OP = `ALU_ADC_16BIT;
+        operandA = 300;
+        operandB = 567;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT, 16'h364, "ALU ADC 16BIT 1");
+        
+        operandA = 65535;
+        operandB = 0;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT, 16'h0, "ALU ADC 16BIT 2");
+        
+        operandA = -10;
+        operandB = 11;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT, 16'h2, "ALU ADC 16BIT 3");
+        
+        
+        // SBC 16-BIT
+        ALU_OP = `ALU_SBC_16BIT;
+        operandA = 300;
+        operandB = 567;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT, 16'hFEF4, "ALU SBC 16BIT 1");
+        
+        operandA = 0;
+        operandB = 0;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT, 16'hFFFF, "ALU SBC 16BIT 2");
+        
+        operandA = 10;
+        operandB = 11;
+        flag[`FLAG_C] = 1;
+        #10;
+        `assert(ALU_OUT, 16'hFFFE, "ALU SBC 16BIT 3");
+        
+        
+        // INC 16-BIT
+        ALU_OP = `ALU_INC_16BIT;
+        operandA = 555;
+        #10;
+        `assert(ALU_OUT, 556, "ALU INC 16BIT 1");
+        
+        operandA = 65535;
+        #10;
+        `assert(ALU_OUT, 0, "ALU INC 16BIT 2");
+        
+        
+        // DEC 16-BIT
+        ALU_OP = `ALU_DEC_16BIT;
+        operandA = 555;
+        #10;
+        `assert(ALU_OUT, 554, "ALU DEC 16BIT 1");
+        
+        operandA = 0;
+        #10;
+        `assert(ALU_OUT, 16'hFFFF, "ALU DEC 16BIT 2");
+        
+        // RLD
+        ALU_OP = `ALU_RLD;
+        operandA = 8'hDE;
+        operandB = 8'hAD;
+        #10;
+        `assert(ALU_OUT, 16'hDADE, "ALU RLD");
+        
+        
+        // RRD
+        ALU_OP = `ALU_RRD;
+        operandA = 8'hDE;
+        operandB = 8'hAD;
+        #10;
+        `assert(ALU_OUT, 16'hDDEA, "ALU RRD");
+        
+        
+        // End to end testing with DAA
+        // this will execute a series of BCD operations as if they were performed by the state machine
+        
+        CLK = 0;
+        #10;
+        dataA = 0;
+        dataB = 0;
+        ALU_OP = 0;
+        opA_mux = 0;
+        acc_in_mux = 2;
+        ld_acc = 1;
+        ld_flag = 1;
+        flag_mux = 1;
+        flag = 0;
+
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        acc_in_mux = 2;
+        dataA = 16'h57;
+        ld_acc = 1;
+        ld_flag = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        ALU_OP = `ALU_ADD_8BIT;
+        opA_mux = 0;
+        dataB = 16'h4;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        ALU_OP = `ALU_DAA;
+        opA_mux = 0;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        `assert(ACC, 8'h61, "ALU DAA 1");
+        
+        ALU_OP = `ALU_SUB_8BIT;
+        opA_mux = 0;
+        dataB = 16'h2;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        ALU_OP = `ALU_DAA;
+        opA_mux = 0;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        `assert(ACC, 8'h59, "ALU DAA 2");
+        
+        ALU_OP = `ALU_ADD_8BIT;
+        opA_mux = 0;
+        dataB = 16'h42;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        ALU_OP = `ALU_DAA;
+        opA_mux = 0;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        `assert(ACC, 8'h01, "ALU DAA 3");
+        
+        ALU_OP = `ALU_SUB_8BIT;
+        opA_mux = 0;
+        dataB = 16'h35;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        ALU_OP = `ALU_DAA;
+        opA_mux = 0;
+        ld_acc = 1;
+        acc_in_mux = 0;
+        ld_flag = 1;
+        flag_mux = 0;
+        #5;
+        CLK = 1;
+        #5;
+        CLK = 0;
+        #5;
+        
+        `assert(ACC, 8'h66, "ALU DAA 4");
     end
 endmodule
