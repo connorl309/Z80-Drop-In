@@ -38,18 +38,20 @@ module z80RegisterFile(
     input LD_I, //load I with high 8 bits of internal register bus
     input LD_R, //load R with low 8 bits of internal register bus (from incrementer)
     input WR_DATA_BUS, //enables writes to general purpose register set from the DATA bus
-    input GATE_REGBUS, //allows the general purpose register set to access the internal regfile bus 
+    
+    input LD_FROM_REGBUS, //allows the general purpose register set to access the internal regfile bus 
                        //when this is low, the PC, I, or R registers can be changed while general registers are being read onto other buses
                        //when high, data from the internal reg bus (probably coming from the incrementer/latch) can be written to general registers
    
-    input GATE_ALU1, //1st gate to 16 bit input to ALU
-    input GATE_ALU2, 
-    input GATE_DATABUS, //gate to 8 bit data bus
-    input RD_16, //put 16 bits from generic register set onto internal register bus
+    //input GATE_ALU1, //1st gate to 16 bit input to ALU      //MIGHT BE DELETED, TRISTATE STUFF WILL BE HANDLED IN DATAPATH
+    //input GATE_ALU2,                                        //MIGHT BE DELETED, TRISTATE STUFF WILL BE HANDLED IN DATAPATH
+    //input GATE_DATABUS, //gate to 8 bit data bus            //MIGHT BE DELETED, TRISTATE STUFF WILL BE HANDLED IN DATAPATH
+    
+    input GATE_REGBUS, //puts output of RegOut_Mux onto internal register file (to go to inc/dec latch)
     input LD_W, //load W with operand
     input LD_Z, //load Z with operand
-    input GATE_W, //output W directly to ALU
-    input GATE_Z,
+    //input GATE_W, //output W directly to ALU
+    //input GATE_Z,
     input SELECT_SP,
     input SELECT_IX,
     input SELECT_IY,
@@ -57,12 +59,13 @@ module z80RegisterFile(
     input EXTOGGLE_DEPHLP, //toggles DE' HL' latch if high
     input EXTOGGLE_AF, //toggles AF AF' latch if high
     input EXXTOGGLE, //should be high during EXX instruction execution
-    output reg [7:0] W_DATA,
-    output reg [7:0] Z_DATA,
-    output reg [15:0] TO_ALU_1,
-    output reg [15:0] TO_ALU_2,
-    output reg [15:0] TO_DATABUS, //get rid of reg here and above
-    output [15:0] TO_LATCH
+    output [7:0] W_DATA,
+    output [7:0] Z_DATA,
+    output [15:0] TO_ALU_1,
+    output [15:0] TO_ALU_2,
+    output  [15:0] TO_DATABUS, //get rid of reg here and above
+    output [15:0] TO_LATCH,
+    output AF_FLIPFLOP
     
     //output reg [15:0] To_AddressBus
     );
@@ -73,7 +76,8 @@ module z80RegisterFile(
     
     reg [15:0] PC, IX, IY, SP;
     
-    reg [15:0] REG_BUS_INTERNAL_IN, REG_BUS_INTERNAL_OUT;
+    wire [15:0] REG_BUS_INTERNAL_IN;
+    reg [15:0] REG_BUS_INTERNAL_OUT;
     reg [15:0] REG_MUX_OUT, ALU_MUX_OUT;
     
     // flipflops that toggle during register exchange operations (EX, EXX)
@@ -86,11 +90,13 @@ module z80RegisterFile(
     */
     reg DEHL_TOGGLE = 0, DEPHLP_TOGGLE = 0, AFAFP_TOGGLE = 0, BIG_TOGGLE = 0; 
     
-   
+    
+    assign REG_BUS_INTERNAL_IN = ADDR_BUS_FROM_LATCH;
+    
+        
     //register writes 
     always @(posedge CLK) begin
-    
-        REG_BUS_INTERNAL_IN = ADDR_BUS_FROM_LATCH;            
+           
         if (WR_DATA_BUS) begin //write to register from databus
           //general flow: BIG toggle -> DEHL or DEpHLp toggle, AF/AF' are not handled in the register file
           if (!BIG_TOGGLE) begin
@@ -156,7 +162,7 @@ module z80RegisterFile(
               
         end
           
-        else if(GATE_REGBUS) begin
+        else if(LD_FROM_REGBUS) begin
           if (!BIG_TOGGLE) begin
             if (!DEHL_TOGGLE) begin
               //0 0 
@@ -261,15 +267,14 @@ module z80RegisterFile(
         else if(SELECT_IY) begin ALU_MUX_OUT = IY; end
         else if(SELECT_SP) begin ALU_MUX_OUT = SP; end
         
-        TO_ALU_1 <= GATE_ALU1 ? REG_MUX_OUT : 'bz; //assign value on outside of mux
-        TO_ALU_2 <= GATE_ALU2 ? ALU_MUX_OUT : 'bz;
-   
-        W_DATA <= GATE_W ? W : 'bz;
-        Z_DATA <= GATE_Z ? Z : 'bz;
-       
-        if(GATE_DATABUS) begin TO_DATABUS <= REG_MUX_OUT; end
+        //TO_ALU_1 <= GATE_ALU1 ? REG_MUX_OUT : 'bz; //assign value on outside of mux
+        //TO_ALU_2 <= GATE_ALU2 ? ALU_MUX_OUT : 'bz;
+        //W_DATA <= GATE_W ? W : 8'bz;
+        //Z_DATA <= GATE_Z ? Z : 8'bz;
+
+
         
-        case({RD_16, GATE_PC, GATE_I, GATE_R})
+        case({GATE_REGBUS, GATE_PC, GATE_I, GATE_R})
             1: REG_BUS_INTERNAL_OUT <= {8'b0,R};
             2: REG_BUS_INTERNAL_OUT <= {I,8'b0};
             4: REG_BUS_INTERNAL_OUT <= PC;    
@@ -279,7 +284,22 @@ module z80RegisterFile(
           //else begin TO_LATCH = REG_BUS_INTERNAL; end //connect latch to internal register file bus
 
     end
+
+    //if(GATE_DATABUS) begin TO_DATABUS <= REG_MUX_OUT; end
+    assign TO_DATABUS = REG_MUX_OUT;
     
+    
+    
+    assign TO_ALU_1 = REG_MUX_OUT;
+    assign TO_ALU_2 = ALU_MUX_OUT;
+
+    assign W_DATA = W; 
+    assign Z_DATA = Z;
+
     assign TO_LATCH = REG_BUS_INTERNAL_OUT;
+    
+    assign AF_FLIPFLOP = AFAFP_TOGGLE;
+
+
 
 endmodule
