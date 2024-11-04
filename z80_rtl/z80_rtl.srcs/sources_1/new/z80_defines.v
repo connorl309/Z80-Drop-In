@@ -109,8 +109,14 @@
 
 `define ALU_LDID 38
 `define ALU_CPID 39
+`define ALU_LD_CP_DEC 40 
 
-`define ALU_TEST_BASE 40
+`define ALU_LDAIR 41
+
+`define ALU_IN 42
+`define ALU_IN_OUT_DEC 43
+
+`define ALU_TEST_BASE 44
 `define ALU_TEST_IX_BASE (`ALU_TEST_BASE + 8)
 `define ALU_TEST_HL_BASE (`ALU_TEST_IX_BASE + 8)
 `define ALU_SET_BASE (`ALU_TEST_HL_BASE + 8)

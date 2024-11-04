@@ -65,9 +65,6 @@ module ALU_Core(
         end
     endfunction
     
-    
-
-    
     reg [7:0] TEMP;
     
     wire [7:0] operandB8_plus_carry = operandB[7:0] + flag[`FLAG_C];
@@ -153,6 +150,7 @@ module ALU_Core(
     wire [15:0] inc_16bit_wire = operandA[15:0] + 1;
     wire [15:0] dec_16bit_wire = operandA[15:0] - 1;
     
+    wire [8:0] cpid_flag_wire = sub_8bit_wire - flag[`FLAG_H];
     
     always @(ALU_OP, operandA, operandB, flag) begin
         FLAG_OUT[`FLAG_Y] <= flag[`FLAG_Y];
@@ -655,28 +653,76 @@ module ALU_Core(
                 FLAG_OUT <= flag;
             end
             `ALU_LDID: begin
-                // BC must be on operandB
+                // Acc must be on operand A, (HL) must be on operandB
                 ALU_OUT <= 0;
                 FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
                 FLAG_OUT[`FLAG_Z] <= flag[`FLAG_Z];
                 FLAG_OUT[`FLAG_Y] <= add_8bit_wire[1];
                 FLAG_OUT[`FLAG_H] <= 0; 
                 FLAG_OUT[`FLAG_X] <= add_8bit_wire[3];
-                FLAG_OUT[`FLAG_PV] <= operandB == 0;
-                FLAG_OUT[`FLAG_N] <= flag[`FLAG_N];
+                FLAG_OUT[`FLAG_PV] <= flag[`FLAG_PV];
+                FLAG_OUT[`FLAG_N] <= 0;
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
+            end
+            `ALU_LD_CP_DEC: begin
+                // BC must be on operand A
+                // spits out BC-1 with the needed flag update
+                ALU_OUT <= dec_16bit_wire;
+                FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
+                FLAG_OUT[`FLAG_Z] <= flag[`FLAG_Z];
+                FLAG_OUT[`FLAG_Y] <= flag[`FLAG_Y];
+                FLAG_OUT[`FLAG_H] <= flag[`FLAG_H]; 
+                FLAG_OUT[`FLAG_X] <= flag[`FLAG_X];
+                FLAG_OUT[`FLAG_PV] <= dec_16bit_wire == 0;
+                FLAG_OUT[`FLAG_N] <= 0;
                 FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
             end
             `ALU_CPID: begin
-                // the same as a CP but with an extra pizazz
+                // the same as a CP but with extra pizazz
                 ALU_OUT <= operandB; // see undocumented 8.4
                 FLAG_OUT[`FLAG_S] <= sub_8bit_wire[7];
                 FLAG_OUT[`FLAG_Z] <= sub_8bit_wire[7:0] == 0;
-                FLAG_OUT[`FLAG_Y] <= ((sub_8bit_wire - {7'b0, flag[`FLAG_H]}) & 2'b10) >> 1;
+                FLAG_OUT[`FLAG_Y] <= cpid_flag_wire[1];
                 FLAG_OUT[`FLAG_H] <= sub_8bit_H;
-                FLAG_OUT[`FLAG_X] <= ((sub_8bit_wire - {7'b0, flag[`FLAG_H]}) & 4'b1000) >> 3;
-                FLAG_OUT[`FLAG_PV] <= sub_8bit_overflow;
+                FLAG_OUT[`FLAG_X] <= cpid_flag_wire[3];
+                FLAG_OUT[`FLAG_PV] <= flag[`FLAG_PV];
                 FLAG_OUT[`FLAG_N] <= 1;
-                FLAG_OUT[`FLAG_C] <= $signed(operandA[7:0]) < $signed(operandB[7:0]);
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
+            end
+            `ALU_LDAIR: begin
+                // needs IVR1/R on operandA and IFF2 on bit 0 of operandB
+                // NOTE: the value of IFF2 needs to be consistent with an interrupt happening during the LD A, I/R instruction
+                ALU_OUT <= 0;
+                FLAG_OUT[`FLAG_S] <= operandA[7];
+                FLAG_OUT[`FLAG_Z] <= operandA == 0;
+                FLAG_OUT[`FLAG_Y] <= operandA[5]; // this is unclear from the undocumented pdf
+                FLAG_OUT[`FLAG_H] <= 0;
+                FLAG_OUT[`FLAG_X] <= operandA[3]; // this is unclear from the undocumented pdf
+                FLAG_OUT[`FLAG_PV] <= operandB[0];
+                FLAG_OUT[`FLAG_N] <= 0;
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
+            end
+            `ALU_IN: begin
+                ALU_OUT <= operandA;
+                FLAG_OUT[`FLAG_S] <= operandA[7];
+                FLAG_OUT[`FLAG_Z] <= operandA == 0;
+                FLAG_OUT[`FLAG_Y] <= flag[`FLAG_Y];
+                FLAG_OUT[`FLAG_H] <= 0; 
+                FLAG_OUT[`FLAG_X] <= flag[`FLAG_X];
+                FLAG_OUT[`FLAG_PV] <= !(^operandA[7:0]);
+                FLAG_OUT[`FLAG_N] <= 0;
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
+            end
+            `ALU_INID_DEC: begin
+                ALU_OUT <= dec_8bit_wire; // should be changed if BC is being fed into operandA
+                FLAG_OUT[`FLAG_S] <= dec_8bit_wire[7];
+                FLAG_OUT[`FLAG_Z] <= dec_8bit_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_Y] <= dec_8bit_wire[5];
+                FLAG_OUT[`FLAG_H] <= flag[`FLAG_H];  // TODO, weird incantation of the C register and (HL)
+                FLAG_OUT[`FLAG_X] <= dec_8bit_wire[3];
+                FLAG_OUT[`FLAG_PV] <= dec_8bit_wire == 0; // TODO, weird incantation of the BC register pair and (HL)
+                FLAG_OUT[`FLAG_N] <= 0; // TODO needs to be bit 7 of the transferred byte, probably a TEMP angle
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C]; // TODO, weird incantation of the C register and (HL)
             end
             default: begin
                 ALU_OUT <= 16'b0; // allegedly later assignments win so the later bit test/set/reset ifs should work
