@@ -152,6 +152,26 @@ module ALU_Core(
     
     wire [8:0] cpid_flag_wire = sub_8bit_wire - flag[`FLAG_H];
     
+    //  ((HL) + ((C + 1) & 255)
+    wire [7:0] ini_HL_C_inc = operandB[7:0] + inc_8bit_wire[7:0];
+    wire ini_h_c_flag = ini_HL_C_inc[7:0] > 8'hFF;
+    
+    //  ((HL) + ((C - 1) & 255)
+    wire [7:0] ini_HL_C_dec = operandB[7:0] + dec_8bit_wire[7:0];
+    wire ind_h_c_flag = ini_HL_C_dec[7:0] > 8'hFF;
+    
+    // (((HL) + ((C + 1) & 255)) & 7) xor B)
+    wire ini_pv_flag = (ini_HL_C_inc[7:0] & 8'h7) ^ operandB[15:8];
+    
+    // (((HL) + ((C - 1) & 255)) & 7) xor B)
+    wire ind_pv_flag = (ini_HL_C_inc[7:0] & 8'h7) ^ operandB[15:8];
+    
+    // (HL) + L > 255 (carry happened)
+    // {B, (HL)} is on operandA, HL is on operandB
+    wire out_h_c_flag = add_8bit_wire[8];
+    
+    wire out_pv_flag = (add_8bit_wire[7:0] & 8'h7) ^ operandA[15:8];
+    
     always @(ALU_OP, operandA, operandB, flag) begin
         FLAG_OUT[`FLAG_Y] <= flag[`FLAG_Y];
         FLAG_OUT[`FLAG_X] <= flag[`FLAG_X];
@@ -713,16 +733,45 @@ module ALU_Core(
                 FLAG_OUT[`FLAG_N] <= 0;
                 FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
             end
-            `ALU_INID_DEC: begin
-                ALU_OUT <= dec_8bit_wire; // should be changed if BC is being fed into operandA
+            `ALU_INI_DEC: begin
+                // BC register pair must be fed into operandA, (HL), so the MDR, must be fed into operandB
+                // B is operandA[15:8], C is operandB[7:0]
+                ALU_OUT <= operandA[15:8] - 1; 
                 FLAG_OUT[`FLAG_S] <= dec_8bit_wire[7];
                 FLAG_OUT[`FLAG_Z] <= dec_8bit_wire[7:0] == 0;
                 FLAG_OUT[`FLAG_Y] <= dec_8bit_wire[5];
-                FLAG_OUT[`FLAG_H] <= flag[`FLAG_H];  // TODO, weird incantation of the C register and (HL)
+                FLAG_OUT[`FLAG_H] <= ini_h_c_flag;
                 FLAG_OUT[`FLAG_X] <= dec_8bit_wire[3];
-                FLAG_OUT[`FLAG_PV] <= dec_8bit_wire == 0; // TODO, weird incantation of the BC register pair and (HL)
-                FLAG_OUT[`FLAG_N] <= 0; // TODO needs to be bit 7 of the transferred byte, probably a TEMP angle
-                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C]; // TODO, weird incantation of the C register and (HL)
+                FLAG_OUT[`FLAG_PV] <= ini_pv_flag;
+                FLAG_OUT[`FLAG_N] <= operandB[7];
+                FLAG_OUT[`FLAG_C] <= ini_h_c_flag;
+            end
+            `ALU_IND_DEC: begin
+                // BC register pair must be fed into operandA, (HL), so the MDR, must be fed into operandB
+                // B is operandA[15:8], C is operandB[7:0]
+                ALU_OUT <= operandA[15:8] - 1; 
+                FLAG_OUT[`FLAG_S] <= dec_8bit_wire[7];
+                FLAG_OUT[`FLAG_Z] <= dec_8bit_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_Y] <= dec_8bit_wire[5];
+                FLAG_OUT[`FLAG_H] <= ind_h_c_flag;
+                FLAG_OUT[`FLAG_X] <= dec_8bit_wire[3];
+                FLAG_OUT[`FLAG_PV] <= ind_pv_flag;
+                FLAG_OUT[`FLAG_N] <= operandB[7];
+                FLAG_OUT[`FLAG_C] <= ind_h_c_flag;
+            end
+            // NOTE: this is making an assumption that the S, Z, Y, and F flags are still
+            // updated like DEC B for OTIR and OTDR and not just set to B=0 case the whole time
+            `ALU_OUT_DEC: begin
+                // {B, (HL)} is on operandA, HL is on operandB
+                ALU_OUT <= operandA[15:8] - 1; 
+                FLAG_OUT[`FLAG_S] <= dec_8bit_wire[7];
+                FLAG_OUT[`FLAG_Z] <= dec_8bit_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_Y] <= dec_8bit_wire[5];
+                FLAG_OUT[`FLAG_H] <= out_h_c_flag;
+                FLAG_OUT[`FLAG_X] <= dec_8bit_wire[3];
+                FLAG_OUT[`FLAG_PV] <= out_pv_flag;
+                FLAG_OUT[`FLAG_N] <= operandB[7];
+                FLAG_OUT[`FLAG_C] <= out_h_c_flag;
             end
             default: begin
                 ALU_OUT <= 16'b0; // allegedly later assignments win so the later bit test/set/reset ifs should work

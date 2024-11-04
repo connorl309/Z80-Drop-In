@@ -114,9 +114,12 @@
 `define ALU_LDAIR 41
 
 `define ALU_IN 42
-`define ALU_IN_OUT_DEC 43
+`define ALU_INI_DEC 43
+`define ALU_IND_DEC 44
 
-`define ALU_TEST_BASE 44
+`define ALU_OUT_DEC 45
+
+`define ALU_TEST_BASE 47
 `define ALU_TEST_IX_BASE (`ALU_TEST_BASE + 8)
 `define ALU_TEST_HL_BASE (`ALU_TEST_IX_BASE + 8)
 `define ALU_SET_BASE (`ALU_TEST_HL_BASE + 8)
