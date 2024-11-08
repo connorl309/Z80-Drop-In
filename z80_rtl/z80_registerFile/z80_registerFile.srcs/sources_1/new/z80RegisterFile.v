@@ -26,9 +26,10 @@ module z80RegisterFile(
     input [15:0] ADDR_BUS_FROM_LATCH,
     input [7:0] DATA_BUS_HIGH,
     input [7:0] DATA_BUS_LOW, //might just consolidate as DATA_BUS
-    input [1:0] RD_REG_MUX, // chooses between main registers (not IX, IY, SP, PC, W, Z, I, R)
+    input [2:0] RD_REG_MUX, // chooses between main registers (not IX, IY, SP, PC, W, Z, I, R)
+    input RD_16, //if high, a pair of registers is read with the 2 most sig bits of RD_REG_MUX
     input [2:0] WR_REG_MUX, //chooses which main register to write to
-    input [1:0] RD_REG_MUX_ALU, //selects an extra 16 bits seperate from the first mux to send down ALU_2
+    //input [1:0] RD_REG_MUX_ALU, //selects an extra 16 bits seperate from the first mux to send down ALU_2
     input REG_DOUBLE, // writing to a pair of registers, if this is low then only use the low 8 bits of incoming bus
 
     input WR_DATA_BUS, //writes data from data bus    
@@ -49,9 +50,10 @@ module z80RegisterFile(
     output [7:0] W_DATA,
     output [7:0] Z_DATA,
     output [15:0] TO_ALU_1,
-    output [15:0] TO_ALU_2,
+    //output [15:0] TO_ALU_2,
     output [15:0] TO_DATABUS, //get rid of reg here and above
-    output [15:0] TO_LATCH
+    output [15:0] TO_LATCH,
+    output [15:0] SPECIAL_REG_OUT
     
     
     //output reg [15:0] To_AddressBus
@@ -65,7 +67,9 @@ module z80RegisterFile(
     
     wire [15:0] REG_BUS_INTERNAL_IN;
     reg [15:0] REG_BUS_INTERNAL_OUT;
-    reg [15:0] REG_MUX_OUT, ALU_MUX_OUT;
+    reg [15:0] REG_MUX_OUT;// ALU_MUX_OUT;
+    reg [15:0] SPECIAL_REG_OUT_T;
+
     
     // flipflops that toggle during register exchange operations (EX, EXX)
     /*
@@ -224,22 +228,39 @@ module z80RegisterFile(
     always @(posedge CLK) begin
 
         //REG_MUX_OUT can go to ALU_BUS1 or DATABUS or Internal register bus depending on control signals in datapath
-        case({RD_SPECIAL, RD_REG_MUX})
-            0: REG_MUX_OUT = BIG_TOGGLE ? {Bp,Cp} : {B,C};
-            1: REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep}) : (DEHL_TOGGLE ? {H,L} : {D,E});                                                 
-            2: REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}) : (DEHL_TOGGLE ? {D,E} : {H,L});  
-            4: REG_MUX_OUT = IX; // 01 00
-            8: REG_MUX_OUT = IY; // 10 00
-            12: REG_MUX_OUT = SP;// 11 00
+        if (RD_16) begin
+            case(RD_REG_MUX)
+                0: REG_MUX_OUT = BIG_TOGGLE ? {Bp,Cp} : {B,C};// 000
+                2: REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep}) : (DEHL_TOGGLE ? {H,L} : {D,E});   //010                                              
+                4: REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}) : (DEHL_TOGGLE ? {D,E} : {H,L});  //100  
+            endcase
+        end
+        else begin //read 8 bits only
+            case(RD_REG_MUX)
+                0:  REG_MUX_OUT = BIG_TOGGLE ? {8'b0, Bp} : {8'b0, B}; //B
+                1:  REG_MUX_OUT =  BIG_TOGGLE ? {8'b0,Cp} : {8'b0,C};  //C
+                2:  REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {8'b0,Hp} : {8'b0, Dp}) : (DEHL_TOGGLE ? {8'b0,H} : {8'b0,D}); //D
+                3:  REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {8'b0,Lp} : {8'b0, Ep}) : (DEHL_TOGGLE ? {8'b0,L} : {8'b0,E}); //E      
+                4:  REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {8'b0,Dp} : {8'b0,Hp}) : (DEHL_TOGGLE ? {8'b0,D} : {8'b0,H});  //H
+                5:  REG_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {8'b0,Ep} : {8'b0,Lp}) : (DEHL_TOGGLE ? {8'b0,E} : {8'b0,L});  //L
+            
+            endcase        
+        end
+        
+        
+        case(RD_SPECIAL)
+            1: SPECIAL_REG_OUT_T = IX; // 01
+            2: SPECIAL_REG_OUT_T = IY; // 10
+            3: SPECIAL_REG_OUT_T = SP;// 11 
         endcase
-
+        
                
-        //output is TO_ALU_2, ALU_2 cannot read from SP, IX, or IY
-        case(RD_REG_MUX_ALU) 
-            0: ALU_MUX_OUT = BIG_TOGGLE ? {Bp,Cp} : {B,C};            
-            1: ALU_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep}) : (DEHL_TOGGLE ? {H,L} : {D,E});                                               
-            2: ALU_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}) : (DEHL_TOGGLE ? {D,E} : {H,L}); 
-        endcase
+//        //output is TO_ALU_2, ALU_2 cannot read from SP, IX, or IY
+//        case(RD_REG_MUX_ALU) 
+//            0: ALU_MUX_OUT = BIG_TOGGLE ? {Bp,Cp} : {B,C};            
+//            1: ALU_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Hp,Lp} : {Dp, Ep}) : (DEHL_TOGGLE ? {H,L} : {D,E});                                               
+//            2: ALU_MUX_OUT = BIG_TOGGLE ? (DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}) : (DEHL_TOGGLE ? {D,E} : {H,L}); 
+//        endcase
 
         if(GATE_REGBUS) begin REG_BUS_INTERNAL_OUT <= REG_MUX_OUT; end
   
@@ -249,12 +270,13 @@ module z80RegisterFile(
     assign TO_DATABUS = REG_MUX_OUT;
     
     assign TO_ALU_1 = REG_MUX_OUT;
-    assign TO_ALU_2 = ALU_MUX_OUT;
+//    assign TO_ALU_2 = ALU_MUX_OUT;
 
     assign W_DATA = W; 
     assign Z_DATA = Z;
 
     assign TO_LATCH = REG_BUS_INTERNAL_OUT;    
+    assign SPECIAL_REG_OUT = SPECIAL_REG_OUT_T;
 
 
 endmodule
