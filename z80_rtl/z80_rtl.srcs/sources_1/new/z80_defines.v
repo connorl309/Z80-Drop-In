@@ -107,19 +107,22 @@
 `define ALU_PASSB 36
 `define ALU_SWAP_REGS 37
 
-`define ALU_LDID 38
-`define ALU_CPID 39
-`define ALU_LD_CP_DEC 40 
+`define ALU_LDI_INC 38
+`define ALU_LDD_DEC 39
+`define ALU_CPID 40
+`define ALU_LD_DEC 41 
+`define ALU_CP_DEC 42
 
-`define ALU_LDAIR 41
+`define ALU_LDAIR 43
 
-`define ALU_IN 42
-`define ALU_INI_DEC 43
-`define ALU_IND_DEC 44
+`define ALU_IN 44
+`define ALU_INI_DEC 45
+`define ALU_IND_DEC 46
 
-`define ALU_OUT_DEC 45
+`define ALU_OUTI_DEC 47
+`define ALU_OUTD_DEC 48
 
-`define ALU_TEST_BASE 47
+`define ALU_TEST_BASE 49
 `define ALU_TEST_IX_BASE (`ALU_TEST_BASE + 8)
 `define ALU_TEST_HL_BASE (`ALU_TEST_IX_BASE + 8)
 `define ALU_SET_BASE (`ALU_TEST_HL_BASE + 8)

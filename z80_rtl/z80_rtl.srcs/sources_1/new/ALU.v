@@ -150,6 +150,10 @@ module ALU_Core(
     wire [15:0] inc_16bit_wire = operandA[15:0] + 1;
     wire [15:0] dec_16bit_wire = operandA[15:0] - 1;
     
+    // operandB[15:8] = ACC
+    // operandB[7:0] = (HL) or (DE)
+    wire [8:0] ldid_flag_add = operandB[15:8] + operandB[7:0];
+    
     wire [8:0] cpid_flag_wire = sub_8bit_wire - flag[`FLAG_H];
     
     //  ((HL) + ((C + 1) & 255)
@@ -168,7 +172,9 @@ module ALU_Core(
     
     // (HL) + L > 255 (carry happened)
     // {B, (HL)} is on operandA, HL is on operandB
-    wire out_h_c_flag = add_8bit_wire[8];
+    // L is supposed to be post inc/dec but this must run before that happens
+    wire outi_h_c_flag = operandA[7:0] + operandB[7:0] + 1;
+    wire outd_h_c_flag = operandA[7:0] + operandB[7:0] - 1;
     
     wire out_pv_flag = (add_8bit_wire[7:0] & 8'h7) ^ operandA[15:8];
     
@@ -178,7 +184,7 @@ module ALU_Core(
         TEMP <= TEMP;
         case (ALU_OP)
             `ALU_ADD_8BIT: begin
-                ALU_OUT <= add_c_8bit_wire[7:0];
+                ALU_OUT <= add_8bit_wire[7:0];
                 FLAG_OUT[`FLAG_S] <= add_8bit_wire[7];
                 FLAG_OUT[`FLAG_Z] <= add_8bit_wire[7:0] == 0;
                 FLAG_OUT[`FLAG_Y] <= add_8bit_wire[5];
@@ -672,19 +678,35 @@ module ALU_Core(
                 ALU_OUT[15:0] <= operandB[15:0];
                 FLAG_OUT <= flag;
             end
-            `ALU_LDID: begin
-                // Acc must be on operand A, (HL) must be on operandB
-                ALU_OUT <= 0;
+            `ALU_LDI_INC: begin
+                // operandA = register to be incremented at the same time
+                // operandB[15:8] = ACC
+                // operandB[7:0] = (HL) or (DE)
+                ALU_OUT <= inc_16bit_wire[15:0];
                 FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
                 FLAG_OUT[`FLAG_Z] <= flag[`FLAG_Z];
-                FLAG_OUT[`FLAG_Y] <= add_8bit_wire[1];
+                FLAG_OUT[`FLAG_Y] <= ldid_flag_add[1];
                 FLAG_OUT[`FLAG_H] <= 0; 
-                FLAG_OUT[`FLAG_X] <= add_8bit_wire[3];
+                FLAG_OUT[`FLAG_X] <= ldid_flag_add[3];
                 FLAG_OUT[`FLAG_PV] <= flag[`FLAG_PV];
                 FLAG_OUT[`FLAG_N] <= 0;
                 FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
             end
-            `ALU_LD_CP_DEC: begin
+            `ALU_LDD_DEC: begin
+                // operandA = register to be decremented at the same time
+                // operandB[15:8] = ACC
+                // operandB[7:0] = (HL) or (DE)
+                ALU_OUT <= dec_16bit_wire[15:0];
+                FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
+                FLAG_OUT[`FLAG_Z] <= flag[`FLAG_Z];
+                FLAG_OUT[`FLAG_Y] <= ldid_flag_add[1];
+                FLAG_OUT[`FLAG_H] <= 0; 
+                FLAG_OUT[`FLAG_X] <= ldid_flag_add[3];
+                FLAG_OUT[`FLAG_PV] <= flag[`FLAG_PV];
+                FLAG_OUT[`FLAG_N] <= 0;
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
+            end
+            `ALU_LD_DEC: begin
                 // BC must be on operand A
                 // spits out BC-1 with the needed flag update
                 ALU_OUT <= dec_16bit_wire;
@@ -695,6 +717,19 @@ module ALU_Core(
                 FLAG_OUT[`FLAG_X] <= flag[`FLAG_X];
                 FLAG_OUT[`FLAG_PV] <= dec_16bit_wire == 0;
                 FLAG_OUT[`FLAG_N] <= 0;
+                FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
+            end
+            `ALU_CP_DEC: begin
+                // BC must be on operand A
+                // spits out BC-1 with the needed flag update
+                ALU_OUT <= dec_16bit_wire;
+                FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
+                FLAG_OUT[`FLAG_Z] <= flag[`FLAG_Z];
+                FLAG_OUT[`FLAG_Y] <= flag[`FLAG_Y];
+                FLAG_OUT[`FLAG_H] <= flag[`FLAG_H]; 
+                FLAG_OUT[`FLAG_X] <= flag[`FLAG_X];
+                FLAG_OUT[`FLAG_PV] <= dec_16bit_wire == 0;
+                FLAG_OUT[`FLAG_N] <= 1;
                 FLAG_OUT[`FLAG_C] <= flag[`FLAG_C];
             end
             `ALU_CPID: begin
@@ -761,17 +796,31 @@ module ALU_Core(
             end
             // NOTE: this is making an assumption that the S, Z, Y, and F flags are still
             // updated like DEC B for OTIR and OTDR and not just set to B=0 case the whole time
-            `ALU_OUT_DEC: begin
-                // {B, (HL)} is on operandA, HL is on operandB
+            `ALU_OUTI_DEC: begin
+                // {B, (HL)} is on operandA, L is on operandB
                 ALU_OUT <= operandA[15:8] - 1; 
                 FLAG_OUT[`FLAG_S] <= dec_8bit_wire[7];
                 FLAG_OUT[`FLAG_Z] <= dec_8bit_wire[7:0] == 0;
                 FLAG_OUT[`FLAG_Y] <= dec_8bit_wire[5];
-                FLAG_OUT[`FLAG_H] <= out_h_c_flag;
+                FLAG_OUT[`FLAG_H] <= outi_h_c_flag;
                 FLAG_OUT[`FLAG_X] <= dec_8bit_wire[3];
                 FLAG_OUT[`FLAG_PV] <= out_pv_flag;
                 FLAG_OUT[`FLAG_N] <= operandB[7];
-                FLAG_OUT[`FLAG_C] <= out_h_c_flag;
+                FLAG_OUT[`FLAG_C] <= outi_h_c_flag;
+            end
+            // NOTE: this is making an assumption that the S, Z, Y, and F flags are still
+            // updated like DEC B for OTIR and OTDR and not just set to B=0 case the whole time
+            `ALU_OUTD_DEC: begin
+                // {B, (HL)} is on operandA, L is on operandB
+                ALU_OUT <= operandA[15:8] - 1; 
+                FLAG_OUT[`FLAG_S] <= dec_8bit_wire[7];
+                FLAG_OUT[`FLAG_Z] <= dec_8bit_wire[7:0] == 0;
+                FLAG_OUT[`FLAG_Y] <= dec_8bit_wire[5];
+                FLAG_OUT[`FLAG_H] <= outd_h_c_flag;
+                FLAG_OUT[`FLAG_X] <= dec_8bit_wire[3];
+                FLAG_OUT[`FLAG_PV] <= out_pv_flag;
+                FLAG_OUT[`FLAG_N] <= operandB[7];
+                FLAG_OUT[`FLAG_C] <= outd_h_c_flag;
             end
             default: begin
                 ALU_OUT <= 16'b0; // allegedly later assignments win so the later bit test/set/reset ifs should work
@@ -795,7 +844,7 @@ module ALU(
     input [6:0] ALU_OP,
     input ALU_OPA_MUX,
     input [1:0] ACC_IN_MUX,
-    input LD_ACCUM,
+    input LD_ACC,
     input LD_FLAG,
     input [7:0] FLAG_IN,
     input FLAG_MUX,
@@ -816,7 +865,9 @@ module ALU(
     assign ALU_OUT = ALU_OUT_int;
 
     // F Register
-    reg [7:0] flag, flag_prime;
+    reg [7:0] flag = 0;
+    reg [7:0] flag_prime = 0;
+    assign FLAG_OUT = flag;
     wire [7:0] flag_mux = FLAG_MUX ? FLAG_IN : alu_flag_out;
     always @(posedge CLK) begin
         if (LD_FLAG) begin
@@ -829,11 +880,12 @@ module ALU(
     end
     
     // A Register
-    reg [7:0] acc, acc_prime;
+    reg [7:0] acc = 0;
+    reg [7:0] acc_prime = 0;
     assign ACC_OUT = acc;
     wire [7:0] acc_in_mux_out = ACC_IN_MUX == 0 ? ALU_OUT_int[7:0] : (ACC_IN_MUX == 1 ? ALU_OUT_int[15:8] : (ACC_IN_MUX == 2 ? INT_DATA_BUS_A[7:0] : INT_DATA_BUS_B[7:0]));
     always @(posedge CLK) begin
-        if (LD_ACCUM) begin
+        if (LD_ACC) begin
             if (ALU_OP == `ALU_SWAP_REGS) begin
                 acc <= acc_prime;
                 acc_prime <= acc; 
@@ -850,6 +902,6 @@ module ALU(
     ALU_Core core(.ALU_OP(ALU_OP), .operandA(operandA), .operandB(operandB), .flag(flag), .ALU_OUT(ALU_OUT_int), .FLAG_OUT(alu_flag_out));
     
     //wire [7:0] alu_flag_out_fixed = {alu_flag_out[7:6], ALU_OUT_int[5], alu_flag_out[4], ALU_OUT_int[3], alu_flag_out[2:0]};
-    assign FLAG_OUT = alu_flag_out;
+    
     
 endmodule

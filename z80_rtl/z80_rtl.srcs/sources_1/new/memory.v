@@ -32,15 +32,16 @@ module memory(
     
     reg [7:0] mem [65534:0]; // memory
     
-    integer i;
+    integer i = 0;
     
     initial begin
+        DATA_OUT = 0;
         $display("Clearing Memory");
         for (i = 0; i < 65535; i = i + 1) begin
             mem[i] = 0;
         end
         $display("Loading Memory");
-        $readmemh("memory.txt", mem); // will load the hex binary contained in memory.txt
+        $readmemb("memory.txt", mem); // will load the hex binary contained in memory.txt
     end
     
     always @(negedge CLK) begin
