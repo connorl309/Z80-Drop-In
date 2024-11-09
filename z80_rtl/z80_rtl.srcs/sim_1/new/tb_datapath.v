@@ -55,8 +55,10 @@
     #0; MEM_RD = 0; \
     #4; CLK = 1; \
     #5; CLK = 0; \
+    #0; LD_MDR = 1; \
     #5; CLK = 1; \
     #2; $display("Fetched 0x%h at location 0x%h", MDR, MAR); \
+    #0; LD_MDR = 0; \
     #3; CLK = 0; \
     #0; MREQ = 1; \
     #0; MEM_RD = 1; \
@@ -74,6 +76,7 @@ module tb_datapath();
     reg CLK = 0;
     reg [2:0] PC_MUX = 0;
     reg LD_MAR = 0;
+    reg LD_MDR = 0;
     reg MREQ = 1;
     reg MEM_RD = 1;
     reg MEM_WR = 1;
@@ -106,6 +109,7 @@ module tb_datapath();
          CLK,
          PC_MUX,
          LD_MAR,
+         LD_MDR,
          MREQ,
          MEM_RD,
          MEM_WR,
@@ -150,9 +154,11 @@ module tb_datapath();
                 #0; LD_MAR = 0;
                 // cycle 2 
                 #5; CLK = 0; 
-                #5; CLK = 1; 
+                #1; LD_MDR = 1;
+                #4; CLK = 1; 
                 // cycle 3 
                 #2; $display("Fetched 0x%h at location 0x%h", MDR, MAR); 
+                #0; LD_MDR = 0;
                 #3; CLK = 0; 
                 #0; MREQ = 1; 
                 #0; MEM_RD = 1; 

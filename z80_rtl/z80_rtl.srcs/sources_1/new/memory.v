@@ -27,15 +27,24 @@ module memory(
     input WR,
     input [15:0] ADDR,
     input [7:0] DATA_IN,
-    output reg [7:0] DATA_OUT
+    output [7:0] DATA_OUT
     );
     
-    reg [7:0] mem [65534:0]; // memory
+  //  integer i = 0;
+   
     
-    integer i = 0;
+        // Memory
+    blk_mem_gen_0 RAM (
+        .clka(CLK),
+        .addra(ADDR),
+        .dina(DATA_IN),
+        .douta(DATA_OUT),
+        .ena(!MREQ && !RD),
+        .wea(!MREQ && !WR)
+    );
     
+    /*
     initial begin
-        DATA_OUT = 0;
         $display("Clearing Memory");
         for (i = 0; i < 65535; i = i + 1) begin
             mem[i] = 0;
@@ -43,13 +52,12 @@ module memory(
         $display("Loading Memory");
         $readmemb("memory.txt", mem); // will load the hex binary contained in memory.txt
     end
+    */
     
-    always @(negedge CLK) begin
-        if (!MREQ && !RD) begin
-            DATA_OUT <= mem[ADDR];
-        end else if (!MREQ && !WR) begin
-            mem[ADDR] <= DATA_IN;
-        end
-    end
+//    always @(negedge CLK) begin
+//        if (!MREQ && !WR) begin
+//            mem[ADDR] <= DATA;
+//        end
+//    end
     
 endmodule

@@ -119,11 +119,7 @@ module reg_file(
                 REG_IX:         IX <= REG_IN[15:0];
                 REG_IY:         IY <= REG_IN[15:0];
             endcase
-        end
-        
-        
-        
-        if (EXTOGGLE_DEHL) begin
+        end else if (EXTOGGLE_DEHL) begin
             H <= D;
             L <= E;
             D <= H;
