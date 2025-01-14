@@ -119,14 +119,14 @@
         "min_connection": 0.0,
         "min_copper_edge_clearance": 0.0,
         "min_hole_clearance": 0.0,
-        "min_hole_to_hole": 0.1,
-        "min_microvia_diameter": 0.1,
-        "min_microvia_drill": 0.1,
+        "min_hole_to_hole": 0.127,
+        "min_microvia_diameter": 0.0762,
+        "min_microvia_drill": 0.0762,
         "min_resolved_spokes": 2,
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8,
         "min_text_thickness": 0.08,
-        "min_through_hole_diameter": 0.1,
+        "min_through_hole_diameter": 0.0762,
         "min_track_width": 0.0762,
         "min_via_annular_width": 0.0762,
         "min_via_diameter": 0.0,
@@ -179,6 +179,7 @@
       "track_widths": [
         0.0,
         0.0762,
+        0.0762,
         0.1,
         0.2,
         0.3,
@@ -218,8 +219,12 @@
           "drill": 0.0
         },
         {
-          "diameter": 0.254,
-          "drill": 0.1
+          "diameter": 0.1524,
+          "drill": 0.0762
+        },
+        {
+          "diameter": 0.3048,
+          "drill": 0.1524
         }
       ],
       "zones_allow_external_fillets": false
