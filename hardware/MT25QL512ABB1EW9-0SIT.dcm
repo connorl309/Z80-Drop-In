@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MT25QL512ABB1EW9-0SIT
+D IC FLASH 512MBIT 108MHZ 8WDFN
+K
+F https://datasheet.datasheetarchive.com/originals/distributors/DKDS42/DSANUWW0045437.pdf
+$ENDCMP
+#
+#End Doc Library
