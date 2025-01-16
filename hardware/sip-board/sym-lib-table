@@ -4,4 +4,5 @@
   (lib (name "custom_symbols")(type "KiCad")(uri "${KIPRJMOD}/custom_symbols.kicad_sym")(options "")(descr ""))
   (lib (name "IS25LP016D-JNLE-TR")(type "KiCad")(uri "C:/Users/cclxb/Desktop/Z80-Drop-In/hardware/IS25LP016D-JNLE-TR.kicad_sym")(options "")(descr "")(disabled)(hidden))
   (lib (name "MT25QL512ABB1EW9-0SIT")(type "KiCad")(uri "${KIPRJMOD}/../MT25QL512ABB1EW9-0SIT.kicad_sym")(options "")(descr ""))
+  (lib (name "EVQ-P2R02W")(type "KiCad")(uri "${KIPRJMOD}/../EVQ-P2R02W.kicad_sym")(options "")(descr ""))
 )
