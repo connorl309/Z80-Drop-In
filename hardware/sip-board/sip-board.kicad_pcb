@@ -23326,6 +23326,19 @@
 		(layer "Edge.Cuts")
 		(uuid "34df48ee-025d-4d5f-8d92-c0247afbf190")
 	)
+	(gr_text "why are you looking down here?"
+		(at 116.0018 99.4918 0)
+		(layer "B.SilkS")
+		(uuid "f4410418-2f08-4479-bd9f-d1a6cc7509d4")
+		(effects
+			(font
+				(size 0.5 0.5)
+				(thickness 0.1)
+				(bold yes)
+			)
+			(justify left bottom mirror)
+		)
+	)
 	(gr_text "DQ3\n"
 		(at 112.903 55.1434 0)
 		(layer "F.SilkS" knockout)
@@ -23509,7 +23522,7 @@
 		)
 	)
 	(gr_text "Connor L/PSC\nUT Austin IH01\nZ80 SiP Drop-In\nSp '25"
-		(at 109.0422 53.6194 0)
+		(at 151.511 44.8564 0)
 		(layer "F.SilkS" knockout)
 		(uuid "a3c74301-341f-4dba-8ea3-732ffaf80f37")
 		(effects

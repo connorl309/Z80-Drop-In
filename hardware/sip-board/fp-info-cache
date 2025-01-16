@@ -1,4 +1,4 @@
-23527588973805927
+23529325973716955
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -96379,6 +96379,13 @@ hardware
 TAG_TC2030-IDC-NL
 
 
+0
+6
+6
+hardware
+WE-3-SPST-DIP
+416131160803-3
+Switch
 0
 6
 6
