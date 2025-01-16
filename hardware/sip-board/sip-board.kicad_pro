@@ -604,6 +604,26 @@
     [
       "4eae758a-da4d-4448-84d4-770db7217b0d",
       "Root"
+    ],
+    [
+      "a46b56d9-484a-49d6-9bad-33be422b4b3a",
+      "Voltage Regulators - 3V3, 1V8, 1V0"
+    ],
+    [
+      "3f6ff609-dd1f-43fe-8e72-8370b2cb8a84",
+      "Decaps"
+    ],
+    [
+      "bec04999-1df0-479c-be5a-25e6d92a06db",
+      "Config + Programming"
+    ],
+    [
+      "299b606c-7022-41b6-8ac4-9a5a071f99f1",
+      "Pinout"
+    ],
+    [
+      "a3ae8dcd-dfe3-49c1-9491-127695015762",
+      "FPGA"
     ]
   ],
   "text_variables": {}
