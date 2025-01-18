@@ -3352,7 +3352,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.we-online.com/components/products/datasheet/416131160803.pdf"
 			(at 41.91 45.72 0)
 			(effects
 				(font
