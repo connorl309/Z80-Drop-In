@@ -901,7 +901,4 @@ module ALU(
     // ALU Core
     ALU_Core core(.ALU_OP(ALU_OP), .operandA(operandA), .operandB(operandB), .flag(flag), .ALU_OUT(ALU_OUT_int), .FLAG_OUT(alu_flag_out));
     
-    //wire [7:0] alu_flag_out_fixed = {alu_flag_out[7:6], ALU_OUT_int[5], alu_flag_out[4], ALU_OUT_int[3], alu_flag_out[2:0]};
-    
-    
 endmodule

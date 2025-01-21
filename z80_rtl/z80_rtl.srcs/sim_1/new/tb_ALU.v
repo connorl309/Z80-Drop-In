@@ -515,7 +515,6 @@ module tb_ALU(
         ld_flag = 1;
         flag_mux = 1;
         flag = 0;
-
         #5;
         CLK = 1;
         #5;
