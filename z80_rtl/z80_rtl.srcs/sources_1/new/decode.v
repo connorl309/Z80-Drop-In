@@ -21,8 +21,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 //A_MUX chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE, A, I, R, IX, IY, PC, MDR as SR1
-`define A_MUX_SR1 4'd0 //uses P if RP is set
-`define A_MUX_Z 4'd1
+`define A_MUX_Y 4'd0 //uses P if RP is set
+`define A_MUX_Z 4'd1 //uses Z instead of Y
 `define A_MUX_HL 4'd2
 `define A_MUX_BC 4'd3
 `define A_MUX_DE 4'd4
@@ -33,11 +33,15 @@
 `define A_MUX_IY 4'd9
 `define A_MUX_PC 4'd10
 `define A_MUX_MDR 4'd11 //new from nadia's original drawing
+`define A_MUX_ZERO 4'd12 //new from nadia's original drawing
+`define A_MUX_B 4'd13 //new from nadia's original drawing
 
 //MARMUX chooses between SR1, MDR, MDR[7:0]`A
 `define MAR_MUX_SR1 0
 `define MAR_MUX_MDR 1
 `define MAR_MUX_MDR_A 2
+`define MAR_MUX_HL 3
+`define MAR_MUX_BC 4
 
 //DR_MUX chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE as DR
 `define DR_MUX_DR 3'd0 //uses P if RP is set
@@ -46,6 +50,7 @@
 `define DR_MUX_BC 3'd3
 `define DR_MUX_DE 3'd4
 `define DR_MUX_SP 3'd5
+`define DR_MUX_B 3'd6
 
 //MUX_EXEC_COND chooses between condition y, y-4, 0 (NZ), and 1 (Z)
 `define MUX_EXEC_COND_Y 2'd0
@@ -75,10 +80,15 @@
 `define A_MUX_2 8
 `define A_MUX_3 9
 `define A_MUX `A_MUX_3:`A_MUX_0
-`define B_MUX 10  //chooses between MDR and SR2 (which is r[z] I think)
+`define B_MUX_0 10  //chooses between MDR and SR2 (which is r[z] I think)
+`define B_MUX_1 11
+`define B_MUX `B_MUX_1:`B_MUX_0
 
+//B_MUX chooses between MDR, SR2, HL, and 16-bit negative 2
 `define B_MUX_MDR 0
 `define B_MUX_SR2 1 //SR2 is RP if SR_RP set, R otherwise
+`define B_MUX_HL 2
+`define B_MUX_NEGTWO 3
 
 
 `define DR_MUX_0 11  //chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE as DR
@@ -87,7 +97,8 @@
 `define DR_MUX `DR_MUX_2:`DR_MUX_0
 `define MAR_MUX_0 14
 `define MAR_MUX_1 15
-`define MAR_MUX `MAR_MUX_0:`MAR_MUX_1 //chooses between OP1, MDR, and MDR[7:0]`A
+`define MAR_MUX_2 16
+`define MAR_MUX `MAR_MUX_2:`MAR_MUX_0 //chooses between OP1, MDR, and MDR[7:0]`A
 
 
 //register file signals
@@ -102,7 +113,7 @@
 
 //ld signals other than reg file
 `define LD_PC 20
-`define LD_I 21
+`define LD_I 21 //loads I with output of ALU
 `define LD_R 22
 `define LD_REG 23
 `define LD_MDR 24 //loads MDR with data from MDR_MUX
@@ -120,7 +131,8 @@
 `define HALT 32   //does something in datapath somewhere
 `define INT_FF_RESET 33//sets 
 `define INT_FF_SET 34
-`define IFF2_to_IFF1 35//IFF2 --> IFF1
+`define IFF2_TO_IFF1 35//IFF2 --> IFF1
+`define LD_INT_MODE 36//loads interrupt mode with Y (I think 0 1 and 2 are only valid ones)
 
 //alu signals
 `define ZEXT6(VALUE) ({6{1'b0}} | (VALUE))
@@ -137,9 +149,11 @@
 
 `define SEXT_MDR 45 //reorganize later
 `define SR_RP 46 //output RP insted of R
+`define DR_RP 47 //store into RP instead of R
 `define EXEC_COND_MUX 47//chooses which condition to use if ld_CMET
 `define MDR_MUX 48 //chooses between ALU result and HL
 `define EX 49 //ex instruction for reg file
+
 
 `define CS_BITS 50
 
@@ -268,7 +282,7 @@ module decode(
                                                 MSTATES[M1][`LD_MDR] = 1;
                                                 MSTATES[M1][`SR_RP] = 1;
                                                 MSTATES[M1][`LD_MAR] = 1;
-                                                MSTATES[M3][`MAR_MUX] = 0;
+                                                MSTATES[M1][`MAR_MUX] = 0;
                                             end
                                             2'b10: begin
                                                 MSTATES[M3][`ALU_OP] = `ALU_PASSA;
@@ -318,7 +332,7 @@ module decode(
                                 case(q)
                                     1'b0: begin //increment rp[p]
                                         MSTATES[M1][`RP_TABLE] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_SR1;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_Y;
                                         MSTATES[M1][`ALU_OP] = `ALU_INC_16BIT;
                                         MSTATES[M1][`DR_MUX] = `DR_MUX_DR;
                                         MSTATES[M1][`LD_REG] = 1;
@@ -326,7 +340,7 @@ module decode(
                                     end
                                     1'b1: begin //decrement rp[p]
                                         MSTATES[M1][`RP_TABLE] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_SR1;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_Y;
                                         MSTATES[M1][`ALU_OP] = `ALU_DEC_16BIT;
                                         MSTATES[M1][`DR_MUX] = `DR_MUX_DR;
                                         MSTATES[M1][`LD_REG] = 1;
@@ -337,7 +351,7 @@ module decode(
                             3'b100:begin
                                 case(y)
                                     3'b110:begin //Increment r[y] (8 bit)
-                                        MSTATES[M1][`A_MUX] = `A_MUX_SR1;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_Y;
                                         MSTATES[M1][`ALU_OP] = `ALU_INC_8BIT;
                                         MSTATES[M1][`DR_MUX] = `DR_MUX_DR;
                                         MSTATES[M1][`LD_REG] = 1;
@@ -353,7 +367,7 @@ module decode(
                             3'b101:begin
                                 case(y)
                                     3'b110:begin //Decrement r[y] (8 bit)
-                                        MSTATES[M1][`A_MUX] = `A_MUX_SR1;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_Y;
                                         MSTATES[M1][`ALU_OP] = `ALU_DEC_8BIT;
                                         MSTATES[M1][`DR_MUX] = `DR_MUX_DR;
                                         MSTATES[M1][`LD_REG] = 1;
@@ -368,14 +382,15 @@ module decode(
                             end
                             3'b110:begin
                                 case(y)
-                                    3'b110:begin //in M2, mdr to r[y]
+                                    3'b110:begin //in M2, mdr to memory at HL
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        
+                                    end
+                                    default:begin //in M2, mdr to r[y]
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`DR_MUX] = `DR_MUX_DR;
                                         MSTATES[M2][`ALU_OP] = `ALU_PASSA;
                                         MSTATES[M2][`LD_REG] = 1;
-                                    end
-                                    default:begin //in M2, mdr to memory at HL
-                                        MSTATES[M2][`LD_MAR] = 1;
                                     end
                                 endcase
                             end
@@ -434,7 +449,7 @@ module decode(
                                     end
                                     default:begin //LD r[y], (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0  
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;  
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`DR_MUX] = `DR_MUX_DR;
                                         MSTATES[M2][`ALU_OP] = `ALU_PASSA;
@@ -467,7 +482,7 @@ module decode(
                                 case(y)
                                     3'b000:begin //ADD A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_ADD_8BIT;
@@ -475,7 +490,7 @@ module decode(
                                     end
                                     3'b001:begin //SUB A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_SUB_8BIT;
@@ -483,7 +498,7 @@ module decode(
                                     end
                                     3'b010:begin //AND A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_AND;
@@ -491,7 +506,7 @@ module decode(
                                     end
                                     3'b011:begin //OR A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_OR;
@@ -499,7 +514,7 @@ module decode(
                                     end
                                     3'b100:begin //ADC A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_ADC;
@@ -507,7 +522,7 @@ module decode(
                                     end
                                     3'b101:begin //SBC A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_SBC;
@@ -515,7 +530,7 @@ module decode(
                                     end
                                     3'b110:begin //XOR A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_XOR;
@@ -523,7 +538,7 @@ module decode(
                                     end
                                     3'b111:begin //CP A, (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`MAR_MUX] = 0;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`A_MUX] = `A_MUX_A;
                                         MSTATES[M2][`B_MUX] = `B_MUX_SR2;
                                         MSTATES[M2][`ALU_OP] = `ALU_CP;
@@ -699,7 +714,7 @@ module decode(
                             3'b101:begin
                                 case(q)
                                     1'b0:begin //PUSH rp2
-                                        MSTATES[M1][`A_MUX] = `A_MUX_SR1;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_Y;
                                         MSTATES[M1][`ALU_OP] = `ALU_PASSA;
                                         MSTATES[M1][`DR_MUX] = `DR_MUX_MDR;
                                         MSTATES[M1][`LD_MDR] = 1;
@@ -802,64 +817,56 @@ module decode(
                                 case(y)
                                     3'b000:begin //RLC (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_RLCA;
                                     end
                                     3'b001:begin //RRC (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_RRCA;
                                     end
                                     3'b010:begin //RL (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_RLA;
                                     end
                                     3'b011:begin //RR (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_RRA;
                                     end
                                     3'b100:begin //SLA (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_SLA;
                                     end
                                     3'b101:begin //SRA (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_SRA;
                                     end
                                     3'b110:begin //SLL (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_SLL;
                                     end
                                     3'b111:begin //SRL (HL)
                                         MSTATES[M1][`LD_MAR] = 1;
-                                        MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                        MSTATES[M1][`MARMUX] = 0;
+                                        MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                         MSTATES[M2][`LD_MDR] = 1;
                                         MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                         MSTATES[M2][`ALU_OP] = `ALU_SRL;
@@ -924,8 +931,7 @@ module decode(
                         case(z)
                             3'b110:begin //BIT y, (HL)
                                 MSTATES[M1][`LD_MAR] = 1;
-                                MSTA TES[M1][`A_MUX] = `A_MUX_HL;
-                                MSTATES[M1][`MARMUX] = 0;
+                                MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                 MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                 MSTATES[M2][`ALU_OP] = `ALU_TEST_BASE + y; //this might not work
                             end
@@ -939,8 +945,7 @@ module decode(
                         case(z)
                             3'b110:begin //RES y, (HL)
                                 MSTATES[M1][`LD_MAR] = 1;
-                                MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                MSTATES[M1][`MARMUX] = 0;
+                                MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                 MSTATES[M2][`LD_MDR] = 1;
                                 MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                 MSTATES[M2][`ALU_OP] = `ALU_RES_BASE + y;
@@ -957,8 +962,7 @@ module decode(
                         case(z)
                             3'b110:begin //SET y, (HL)
                                 MSTATES[M1][`LD_MAR] = 1;
-                                MSTATES[M1][`A_MUX] = `A_MUX_HL;
-                                MSTATES[M1][`MARMUX] = 0;
+                                MSTATES[M1][`MARMUX] = `MAR_MUX_HL;
                                 MSTATES[M2][`LD_MDR] = 1;
                                 MSTATES[M2][`A_MUX] = `A_MUX_MDR;
                                 MSTATES[M2][`ALU_OP] = `ALU_SET_BASE + y;
@@ -974,21 +978,616 @@ module decode(
                 endcase
             end
             2'b10:begin //this is the extra cringe PLA
-                case(z)
-                    3'b000:begin
-                        case(y)
-                            3'b110:begin //NOP
-                                //NOP
+                case(x)
+                    2'b01:begin
+                        case(z)
+                            3'b000:begin
+                                case(y)
+                                    3'b110:begin //NOP
+                                        //NOP
+                                    end
+                                    default:begin //IN r[y], (C)
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX
+                                    end
+                                endcase
                             end
-                            default:begin //IN r[y], (C)
+                            3'b001:begin
+                                case(y)
+                                    3'b110:begin //OUT (C), 0
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_ZERO
+                                        MSTATES[M1][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    default:begin //OUT (C), r[y]
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_Y
+                                        MSTATES[M1][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                endcase
+                            end
+                            3'b010:begin
+                                case(q)
+                                    1'b0:begin //SBC HL, rp[p]
+                                        MSTATES[M3][`A_MUX] = `A_MUX_Y;
+                                        MSTATES[M3][`B_MUX] = `B_MUX_HL;
+                                        MSTATES[M3][`SR_RP] = 1;
+                                        MSTATES[M3][`ALU_OP] = `ALU_DEC_16BIT; //is this fine?
+                                        MSTATES[M2][`STALL_1] = 1;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    1'b1:begin //ADC HL, rp[p]
+                                        MSTATES[M3][`A_MUX] = `A_MUX_Y;
+                                        MSTATES[M3][`B_MUX] = `B_MUX_HL;
+                                        MSTATES[M3][`SR_RP] = 1;
+                                        MSTATES[M3][`ALU_OP] = `ALU_INC_16BIT; //is this fine?
+                                        MSTATES[M2][`STALL_1] = 1;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                endcase
+                            end
+                            3'b011:begin
+                                case(q)
+                                    1'b0:begin //LD (nn), rp[p]
+                                        MSTATES[M3][`LD_MAR] = 1;
+                                        MSTATES[M3][`MAR_MUX] = `MAR_MUX_MDR;
+                                        MSTATES[M3][`LD_MDR] = 1;
+                                        MSTATES[M3][`MDR_MUX] = 0;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_Y;
+                                        MSTATES[M3][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M3][`SR_RP] = 1;
+                                    end
+                                    1'b1:begin //LD rp[p], (nn)
+                                        MSTATES[M3][`LD_MAR] = 1;
+                                        MSTATES[M3][`MAR_MUX] = `MAR_MUX_MDR;
+                                        MSTATES[M5][`LD_REG] = 1;
+                                        MSTATES[M5][`DR_MUX] = `DR_MUX_Y;
+                                        MSTATES[M5][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M5][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M5][`DR_RP] = 1;
+                                    end   
+                                endcase
+                            end
+                            3'b100:begin //NEG
+                                MSTATES[M1][`A_MUX] = `A_MUX_A;
+                                MSTATES[M1][`ALU_OP] = `ALU_NEG;
+                                MSTATES[M1][`LD_ACCUM] = 1;
+                            end
+                            3'b101:begin
+                                case(y)
+                                    3'b001:begin //RETI
+                                        MSTATES[M3][`LD_PC] = 1;
+                                        MSTATES[M3][`PCMUX] = `PCMUX_MDR;
+                                    end
+                                    default:begin //RETN
+                                        MSTATES[M3][`LD_PC] = 1;
+                                        MSTATES[M3][`PCMUX] = `PCMUX_MDR;
+                                        MSTATES[M3][`IFF2_TO_IFF1] = 1;
+                                    end
+                                endcase
+                            end
+                            3'b110:begin //IM y
+                                MSTATES[M1][`A_MUX] = `A_MUX_A;
+                                MSTATES[M1][`ALU_OP] = `ALU_PASSA;
+                                MSTATES[M1][`LD_INT_MODE] = 1;
+                            end
+                            3'b111:begin
+                                case(y)
+                                    3'b000:begin //LD I, A
+                                        MSTATES[M1][`A_MUX] = `A_MUX_A;
+                                        MSTATES[M1][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M1][`LD_I] = 1;
+                                        MSTATES[M1][`F_stall] = 2'd2;
+                                    end
+                                    3'b001:begin //LD R, A
+                                        MSTATES[M1][`A_MUX] = `A_MUX_A;
+                                        MSTATES[M1][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M1][`LD_R] = 1;
+                                        MSTATES[M1][`F_stall] = 2'd2;
+                                    end
+                                    3'b010:begin //LD A, I
+                                        MSTATES[M1][`A_MUX] = `A_MUX_I;
+                                        MSTATES[M1][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M1][`LD_ACCUM] = 1;
+                                        MSTATES[M1][`F_stall] = 2'd2;
+                                    end
+                                    3'b011:begin //LD A, R
+                                        MSTATES[M1][`A_MUX] = `A_MUX_R;
+                                        MSTATES[M1][`ALU_OP] = `ALU_PASSA;
+                                        MSTATES[M1][`LD_ACCUM] = 1;
+                                        MSTATES[M1][`F_stall] = 2'd2;
+                                    end
+                                    3'b100:begin //RRD
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M3][`LD_MDR] = 1;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M3][`ALU_OP] = `ALU_RRD;
+                                    end
+                                    3'b101:begin //RLD
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M3][`LD_MDR] = 1;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M3][`ALU_OP] = `ALU_RLD;
+                                    end
+                                    3'b110:begin //NOP
+                                        //NOP
+                                    end
+                                    3'b111:begin //NOP
+                                        //NOP
+                                    end
+                                endcase
+                            end
+                        endcase
+                    end
+                    2'b10:begin
+                        case(z)
+                            3'b000:begin
+                                case(y)
+                                    3'b000:begin //LDI
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_LD_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_DE;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_DE;
+                                        MSTATES[M2][`ALU_OP] = `ALU_LDI_INC;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_DE;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_INC_16BIT; //is this gonna mess with flags?
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    3'b001:begin //LDD
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_LD_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_DE;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_DE;
+                                        MSTATES[M2][`ALU_OP] = `ALU_LDD_DEC;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_DE;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    3'b010:begin //LDIR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_LD_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_DE;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_DE;
+                                        MSTATES[M2][`ALU_OP] = `ALU_LDI_INC;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_DE;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_INC_16BIT;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; //is this what we want?
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                    3'b011:begin //LDDR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_LD_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_DE;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_DE;
+                                        MSTATES[M2][`ALU_OP] = `ALU_LDD_DEC;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_DE;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; 
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                endcase
+                            end
+                            3'b001:begin
+                                case(y)
+                                    3'b100:begin //CPI
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_CP_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_A;
+                                        MSTATES[M2][`B_MUX] = `B_MUX_MDR;
+                                        MSTATES[M2][`ALU_OP] = `ALU_CPID;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_INC_16BIT;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                    end
 
+                                    3'b001:begin //CPD
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_CP_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_A;
+                                        MSTATES[M2][`B_MUX] = `B_MUX_MDR;
+                                        MSTATES[M2][`ALU_OP] = `ALU_CPID;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    3'b010:begin //CPIR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_CP_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_A;
+                                        MSTATES[M2][`B_MUX] = `B_MUX_MDR;
+                                        MSTATES[M2][`ALU_OP] = `ALU_CPID;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_INC_16BIT;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; 
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                    3'b011:begin //CPDR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_BC;
+                                        MSTATES[M1][`ALU_OP] = `ALU_CP_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_BC;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_A;
+                                        MSTATES[M2][`B_MUX] = `B_MUX_MDR;
+                                        MSTATES[M2][`ALU_OP] = `ALU_CPID;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M3][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M3][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M3][`LD_REG] = 1;
+                                        MSTATES[M3][`DR_MUX] = `DR_MUX_HL;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; 
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                endcase
                             end
+                            3'b010:begin
+                                case(y)
+                                    3'b000:begin //INI
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_INI_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_INC_16BIT;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    3'b001:begin //IND
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_IND_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    3'b010:begin //INIR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_INI_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_INC_16BIT;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_HL;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; 
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                    3'b011:begin //INDR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_IND_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_HL;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; 
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                endcase
+                            end
+                            3'b011:begin
+                                case(y)
+                                    3'b000:begin //OUTI
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_OUTI_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_BC; //is this ok even though we alr changed b?
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_INC_16BIT;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    3'b001:begin //OUTD
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_OUTD_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M2][`LD_REG] = 1;
+                                        MSTATES[M2][`DR_MUX] = `DR_MUX_HL;
+                                    end
+                                    3'b010:begin //OTIR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_OUTI_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_BC; //is this ok even though we alr changed b?
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_INC_16BIT;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; 
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                    3'b011:begin //OTDR
+                                        MSTATES[M1][`LD_MAR] = 1;
+                                        MSTATES[M1][`MAR_MUX] = `MAR_MUX_HL;
+                                        MSTATES[M1][`A_MUX] = `A_MUX_B;
+                                        MSTATES[M1][`ALU_OP] = `ALU_OUTD_DEC;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_B;
+                                        MSTATES[M2][`LD_MAR] = 1;
+                                        MSTATES[M2][`MAR_MUX] = `MAR_MUX_BC;
+                                        MSTATES[M2][`A_MUX] = `A_MUX_HL;
+                                        MSTATES[M2][`ALU_OP] = `ALU_DEC_16BIT;
+                                        MSTATES[M1][`DEC_MCTR_CC] = 1;
+                                        MSTATES[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Z;
+                                        MSTATES[M4][`A_MUX] = `A_MUX_PC;
+                                        MSTATES[M4][`ALU_OP] = `ALU_ADD_16BIT; 
+                                        MSTATES[M4][`LD_PC] = 1;
+                                        MSTATES[M4][`B_MUX] = `B_MUX_NEGTWO; 
+                                    end
+                                endcase
+                            end
+                        endcase
                     end
                 endcase
             end
             2'b11:begin //this is the cringe with IX or IY PLA
-            end
-            
+                case(x)
+                    2'b00:begin
+                        case(z)
+                            3'b110:begin 
+                                case(y)
+                                    3'b000:begin //RLC (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RLC;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    3'b001:begin //RRC (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RRC;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    3'b010:begin //RL (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RL;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    3'b011:begin //RR (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RR;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    3'b100:begin //SLA (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SLA;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    3'b101:begin //SRA (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SRA;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    3'b110:begin //SLL (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SLL;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                    3'b111:begin //SRL (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SRL;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                    end
+                                endcase
+                            end
+                            default:begin
+                                case(y)
+                                    3'b000:begin //RLC r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RLC;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                    3'b001:begin //RRC r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RRC;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                    3'b010:begin //RL r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RL;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                    3'b011:begin //RR r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_RR;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                    3'b100:begin //SLA r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SLA;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                    3'b101:begin //SRA r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SRA;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                    3'b110:begin //SLL r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SLL;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                    3'b111:begin //SRL r, (IX + D)
+                                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                        MSTATES[M1][`ALU_OP] = `ALU_SRL;
+                                        MSTATES[M1][`LD_MDR] = 1;
+                                        MSTATES[M1][`LD_REG] = 1;
+                                        MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                                    end
+                                endcase
+                            end
+                        endcase
+                    end
+                    2'b01:begin //BIT y, (IX + D)
+                        MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                        MSTATES[M2][`ALU_OP] = `ALU_TEST_BASE + y; //is it ok to just add y here? synth will save us I hope
+                    end
+                    2'b10:begin
+                        case(z)
+                            3'b110:begin //RES y, (IX + D)
+                                MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                MSTATES[M1][`ALU_OP] = `ALU_RES_BASE + y;
+                                MSTATES[M1][`LD_MDR] = 1;
+                            end
+                            default:begin //RES y, r[z], (IX + D)
+                                MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                MSTATES[M1][`ALU_OP] = `ALU_RES_BASE + y;
+                                MSTATES[M1][`LD_MDR] = 1;
+                                MSTATES[M1][`LD_REG] = 1;
+                                MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                            end
+                        endcase
+                    end
+                    2'b11:begin
+                        case(z)
+                            3'b110:begin //SET y, (IX + D)
+                                MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                MSTATES[M1][`ALU_OP] = `ALU_SET_BASE + y;
+                                MSTATES[M1][`LD_MDR] = 1;
+                            end
+                            default:begin //SET y, r[z], (IX + D)
+                                MSTATES[M1][`A_MUX] = `A_MUX_MDR;
+                                MSTATES[M1][`ALU_OP] = `ALU_SET_BASE + y;
+                                MSTATES[M1][`LD_MDR] = 1;
+                                MSTATES[M1][`LD_REG] = 1;
+                                MSTATES[M1][`DR_MUX] = `DR_MUX_Z;
+                            end
+                        endcase
+                    end
+                endcase
+            end           
         endcase
     end
     
