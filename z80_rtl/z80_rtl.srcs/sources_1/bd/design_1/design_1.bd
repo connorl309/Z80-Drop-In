@@ -1,0 +1,276 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x4405EFBCD51CF785",
+      "device": "xc7s50csga324-1",
+      "gen_directory": "../../../../z80_rtl.gen/sources_1/bd/design_1",
+      "name": "design_1",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.1"
+    },
+    "design_tree": {
+      "vio_0": "",
+      "ila_0": "",
+      "clk_wiz_0": "",
+      "c_counter_binary_0": "",
+      "c_addsub_0": "",
+      "c_counter_binary_1": "",
+      "util_vector_logic_0": "",
+      "xlslice_0": ""
+    },
+    "ports": {
+      "CLK1": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000"
+          }
+        }
+      },
+      "RESET": {
+        "type": "rst",
+        "direction": "I"
+      }
+    },
+    "components": {
+      "vio_0": {
+        "vlnv": "xilinx.com:ip:vio:3.0",
+        "ip_revision": "25",
+        "xci_name": "design_1_vio_0_0",
+        "xci_path": "ip\\design_1_vio_0_0\\design_1_vio_0_0.xci",
+        "inst_hier_path": "vio_0",
+        "parameters": {
+          "C_NUM_PROBE_IN": {
+            "value": "0"
+          },
+          "C_NUM_PROBE_OUT": {
+            "value": "2"
+          },
+          "C_PROBE_OUT0_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE_OUT1_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE_OUT2_WIDTH": {
+            "value": "1"
+          },
+          "C_PROBE_OUT4_WIDTH": {
+            "value": "2"
+          },
+          "C_PROBE_OUT7_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "ila_0": {
+        "vlnv": "xilinx.com:ip:ila:6.2",
+        "ip_revision": "15",
+        "xci_name": "design_1_ila_0_0",
+        "xci_path": "ip\\design_1_ila_0_0\\design_1_ila_0_0.xci",
+        "inst_hier_path": "ila_0",
+        "parameters": {
+          "ALL_PROBE_SAME_MU_CNT": {
+            "value": "1"
+          },
+          "C_ADV_TRIGGER": {
+            "value": "false"
+          },
+          "C_DATA_DEPTH": {
+            "value": "16384"
+          },
+          "C_MONITOR_TYPE": {
+            "value": "Native"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "3"
+          },
+          "C_PROBE0_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE1_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE2_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "14",
+        "xci_name": "design_1_clk_wiz_0_0",
+        "xci_path": "ip\\design_1_clk_wiz_0_0\\design_1_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "RESET_PORT": {
+            "value": "resetn"
+          },
+          "RESET_TYPE": {
+            "value": "ACTIVE_LOW"
+          },
+          "USE_RESET": {
+            "value": "false"
+          }
+        }
+      },
+      "c_counter_binary_0": {
+        "vlnv": "xilinx.com:ip:c_counter_binary:12.0",
+        "ip_revision": "19",
+        "xci_name": "design_1_c_counter_binary_0_0",
+        "xci_path": "ip\\design_1_c_counter_binary_0_0\\design_1_c_counter_binary_0_0.xci",
+        "inst_hier_path": "c_counter_binary_0",
+        "parameters": {
+          "CE": {
+            "value": "true"
+          },
+          "SINIT": {
+            "value": "true"
+          }
+        }
+      },
+      "c_addsub_0": {
+        "vlnv": "xilinx.com:ip:c_addsub:12.0",
+        "ip_revision": "18",
+        "xci_name": "design_1_c_addsub_0_0",
+        "xci_path": "ip\\design_1_c_addsub_0_0\\design_1_c_addsub_0_0.xci",
+        "inst_hier_path": "c_addsub_0",
+        "parameters": {
+          "A_Type": {
+            "value": "Unsigned"
+          },
+          "A_Width": {
+            "value": "16"
+          },
+          "B_Type": {
+            "value": "Unsigned"
+          },
+          "B_Value": {
+            "value": "0000000000000000"
+          },
+          "B_Width": {
+            "value": "16"
+          },
+          "CE": {
+            "value": "false"
+          },
+          "Latency": {
+            "value": "1"
+          },
+          "Out_Width": {
+            "value": "16"
+          }
+        }
+      },
+      "c_counter_binary_1": {
+        "vlnv": "xilinx.com:ip:c_counter_binary:12.0",
+        "ip_revision": "19",
+        "xci_name": "design_1_c_counter_binary_0_1",
+        "xci_path": "ip\\design_1_c_counter_binary_0_1\\design_1_c_counter_binary_0_1.xci",
+        "inst_hier_path": "c_counter_binary_1",
+        "parameters": {
+          "CE": {
+            "value": "true"
+          },
+          "Count_Mode": {
+            "value": "DOWN"
+          },
+          "SINIT": {
+            "value": "true"
+          },
+          "SINIT_Value": {
+            "value": "FFFF"
+          }
+        }
+      },
+      "util_vector_logic_0": {
+        "vlnv": "xilinx.com:ip:util_vector_logic:2.0",
+        "ip_revision": "4",
+        "xci_name": "design_1_util_vector_logic_0_0",
+        "xci_path": "ip\\design_1_util_vector_logic_0_0\\design_1_util_vector_logic_0_0.xci",
+        "inst_hier_path": "util_vector_logic_0",
+        "parameters": {
+          "C_OPERATION": {
+            "value": "or"
+          },
+          "C_SIZE": {
+            "value": "1"
+          }
+        }
+      },
+      "xlslice_0": {
+        "vlnv": "xilinx.com:ip:xlslice:1.0",
+        "ip_revision": "4",
+        "xci_name": "design_1_xlslice_0_0",
+        "xci_path": "ip\\design_1_xlslice_0_0\\design_1_xlslice_0_0.xci",
+        "inst_hier_path": "xlslice_0"
+      }
+    },
+    "nets": {
+      "CLK1_1": {
+        "ports": [
+          "CLK1",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "vio_0/probe_out0",
+          "c_counter_binary_0/CE",
+          "c_counter_binary_1/CE"
+        ]
+      },
+      "RESET_1": {
+        "ports": [
+          "RESET",
+          "util_vector_logic_0/Op1"
+        ]
+      },
+      "c_addsub_0_S": {
+        "ports": [
+          "c_addsub_0/S",
+          "ila_0/probe2"
+        ]
+      },
+      "c_counter_binary_0_Q": {
+        "ports": [
+          "c_counter_binary_0/Q",
+          "c_addsub_0/A",
+          "ila_0/probe0"
+        ]
+      },
+      "c_counter_binary_1_Q": {
+        "ports": [
+          "c_counter_binary_1/Q",
+          "c_addsub_0/B",
+          "ila_0/probe1"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "vio_0/clk",
+          "ila_0/clk",
+          "c_addsub_0/CLK",
+          "c_counter_binary_0/CLK",
+          "c_counter_binary_1/CLK"
+        ]
+      },
+      "util_vector_logic_0_Res": {
+        "ports": [
+          "util_vector_logic_0/Res",
+          "c_counter_binary_0/SINIT",
+          "c_counter_binary_1/SINIT"
+        ]
+      },
+      "vio_0_probe_out1": {
+        "ports": [
+          "vio_0/probe_out1",
+          "util_vector_logic_0/Op2"
+        ]
+      }
+    }
+  }
+}
