@@ -82,7 +82,7 @@
 `define ALU_SCF 14 // Set carry flag
 
 `define ALU_ADD_16BIT 15 // 16-bit add 
-`define ALU_ADC_16BIT 16 // 16-bit add with carry
+`define ALU_ADC_16BIT 16 // 16-bit add with carry //TODO - why are these here?
 `define ALU_SBC_16BIT 17 // 16-bit sub with carry
 `define ALU_INC_16BIT 18 // 16-bit increment
 `define ALU_DEC_16BIT 19 // 16-bit decrement

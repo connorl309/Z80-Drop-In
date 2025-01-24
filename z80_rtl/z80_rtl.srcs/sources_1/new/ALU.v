@@ -654,7 +654,7 @@ module ALU_Core(
                 ALU_OUT[15:0] <= operandB[15:0];
                 FLAG_OUT <= flag;
             end
-            `ALU_LDID: begin
+            `ALU_LD_DEC: begin
                 // BC must be on operandB
                 ALU_OUT <= 0;
                 FLAG_OUT[`FLAG_S] <= flag[`FLAG_S];
