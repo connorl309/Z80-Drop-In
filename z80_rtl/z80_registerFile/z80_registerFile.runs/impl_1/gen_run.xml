@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7k70tfbv676-1" LaunchTime="1731091406">
+<GenRun Id="impl_1" LaunchPart="xc7k70tfbv676-1" LaunchTime="1731351356">
   <File Type="ROUTE-PWR" Name="z80RegisterFile_power_routed.rpt"/>
   <File Type="PA-TCL" Name="z80RegisterFile.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="z80RegisterFile_power_summary_routed.pb"/>
