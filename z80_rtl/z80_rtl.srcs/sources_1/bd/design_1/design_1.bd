@@ -106,10 +106,10 @@
         "inst_hier_path": "clk_wiz_0",
         "parameters": {
           "RESET_PORT": {
-            "value": "resetn"
+            "value": "reset"
           },
           "RESET_TYPE": {
-            "value": "ACTIVE_LOW"
+            "value": "ACTIVE_HIGH"
           },
           "USE_RESET": {
             "value": "false"

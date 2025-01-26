@@ -10,10 +10,10 @@ set_property IOSTANDARD LVCMOS33 [get_ports CLK1]
 ####################################################################################################################
 #                                               FT2232H Signals                                                    #
 ####################################################################################################################
-set_property -dict { PACKAGE_PIN "L13"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { DATA[0] }]  ;               # IO_0_14                       Sch = FTDI-D0
-set_property -dict { PACKAGE_PIN "N13"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { DATA[1] }]  ;               # IO_L6N_T0_D08_VREF_14         Sch = FTDI-D1
-set_property -dict { PACKAGE_PIN "L17"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { DATA[2] }]  ;               # IO_L4P_T0_D04_14              Sch = FTDI-D2
-set_property -dict { PACKAGE_PIN "L18"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { DATA[3] }]  ;               # IO_L4N_T0_D05_14              Sch = FTDI-D3
+set_property -dict { PACKAGE_PIN "L13"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { RXD }]  ;               # IO_0_14                       Sch = FTDI-D0
+set_property -dict { PACKAGE_PIN "N13"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { TXD }]  ;               # IO_L6N_T0_D08_VREF_14         Sch = FTDI-D1
+set_property -dict { PACKAGE_PIN "L17"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { RTS }]  ;               # IO_L4P_T0_D04_14              Sch = FTDI-D2
+set_property -dict { PACKAGE_PIN "L18"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { CTS }]  ;               # IO_L4N_T0_D05_14              Sch = FTDI-D3
 set_property -dict { PACKAGE_PIN "M17"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { DATA[4] }]  ;               # IO_L7N_T1_D10_14              Sch = FTDI-D4
 set_property -dict { PACKAGE_PIN "M18"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { DATA[5] }]  ;               # IO_L8P_T1_D11_14              Sch = FTDI-D5
 set_property -dict { PACKAGE_PIN "M16"    IOSTANDARD LVCMOS33       SLEW FAST} [get_ports { DATA[6] }]  ;               # IO_L7P_T1_D09_14              Sch = FTDI-D6

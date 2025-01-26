@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 01/23/2025 06:31:46 PM
+// Create Date: 01/24/2025 04:44:36 PM
 // Design Name: 
-// Module Name: top
+// Module Name: FT245_FIFO
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,17 +20,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module top(
-    input CLK1,
-    input RESET,
-    input RXD,
-    output TXD
+module FT245_FIFO(
+    input CLKOUT,
+    inout [7:0] DATA,
+    input RXF_N,
+    input TXE_N,
+    output RD_N,
+    output WR_N,
+    output OE_N
     );
     
-    bd_tb_uart test (
-        .sys_clock(CLK1),
-        .reset(RESET),
-        .RX(RXD),
-        .TX(TXD)
-    );
+    assign DATA = 8'h41; // A in ASCII
+    assign WR_N = 1'b0;
+    assign OE_N = 1'b1;
+    assign RD_N = 1'b1;
 endmodule
