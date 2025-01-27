@@ -9,14 +9,52 @@
 `define AND 3'd4
 `define OR 3'd5
 `define XOR 3'd6
-module z80_alu(
-    input clock,
-    input [2:0] mode,
-    input rotate,
-    input [7:0] opA,
-    input [7:0] opB,
-    output reg [7:0] accum
+
+parameter DATA_WID = 8;
+// Gi = Ai * Bi
+// Pi = Ai + Bi ( we want to avoid xor op )
+wire [DATA_WID - 1:0] gen;
+wire [DATA_WID - 1:0] pro;
+wire [DATA_WID:0] carry_tmp;
+assign carry_tmp[0] = cin;
+
+generate
+genvar i, ii;
+// carry generator. effectively macro'd out during synthesis
+for (i = 0; i < DATA_WID; i = i+1) begin
+    assign gen[i] = opA[i] & opB[i];
+    assign pro[i] = opA[i] | opB[i];
+    assign carry_tmp[i+1] = gen[i] | (pro[i] & carry_tmp[i]);
+end
+assign carry_out = carry_tmp[DATA_WID];
+// sum generator
+genvar j;
+for (j = 0; j < DATA_WID; j=j+1) begin
+    assign sum[i] = opA[i] ^ opB[i] ^ carry_tmp[i];
+end
+endgenerate
+
+endmodule
+
+// 8 bit shifter modules
+// the Z80 only shifted by 1 in either direction
+// left shift
+module lshf8(
+    input [7:0] data,
+    output [7:0] out,
+    input wire rotate
 );
+assign out = {data[6:1], data[7] & rotate};
+endmodule
+// right shift
+module rshf8(
+    input [7:0] data,
+    output [7:0] out,
+    input wire rotate
+);
+assign out = {data[0] & rotate, data[7:1]};
+endmodule
+
 
 wire valid;
 wire [1:0] cout;
@@ -61,9 +99,14 @@ always @(posedge clock) begin
     end
 end
 
-endmodule
-
-// 8 bit CLA module
+module z80_alu(
+    input clock,
+    input [2:0] mode,
+    input rotate,
+    input [7:0] opA,
+    input [7:0] opB,
+    output reg [7:0] accum
+);
 module cla8(
     input [7:0] opA,
     input [7:0] opB,
@@ -71,46 +114,7 @@ module cla8(
     output carry_out,
     output [7:0] sum
 );
-parameter DATA_WID = 8;
-// Gi = Ai * Bi
-// Pi = Ai + Bi ( we want to avoid xor op )
-wire [DATA_WID - 1:0] gen;
-wire [DATA_WID - 1:0] pro;
-wire [DATA_WID:0] carry_tmp;
-assign carry_tmp[0] = cin;
-
-generate
-genvar i, ii;
-// carry generator. effectively macro'd out during synthesis
-for (i = 0; i < DATA_WID; i = i+1) begin
-    assign gen[i] = opA[i] & opB[i];
-    assign pro[i] = opA[i] | opB[i];
-    assign carry_tmp[i+1] = gen[i] | (pro[i] & carry_tmp[i]);
-end
-assign carry_out = carry_tmp[DATA_WID];
-// sum generator
-for (j = 0; j < DATA_WID; j=j+1) begin
-    assign sum[i] = opA[i] ^ opB[i] ^ carry_tmp[i];
-end
-endgenerate
 
 endmodule
 
-// 8 bit shifter modules
-// the Z80 only shifted by 1 in either direction
-// left shift
-module lshf8(
-    input [7:0] data,
-    output [7:0] out,
-    input wire rotate
-);
-assign out = {data[6:1], data[7] & rotate};
-endmodule
-// right shift
-module rshf8(
-    input [7:0] data,
-    output [7:0] out,
-    input wire rotate
-);
-assign out = {data[0] & rotate, data[7:1]};
-endmodule
+// 8 bit CLA module
