@@ -1,0 +1,290 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xDE8BE9AE40EFFB3F",
+      "device": "xc7s50csga324-1",
+      "gen_directory": "../../../../z80_rtl.gen/sources_1/bd/z80_debug",
+      "name": "z80_debug",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.1"
+    },
+    "design_tree": {
+      "system_ila_0": "",
+      "z80core_0": "",
+      "clk_wiz_0": ""
+    },
+    "ports": {
+      "CLK": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "FREQ_HZ": {
+            "value": "100000000"
+          }
+        }
+      },
+      "RESET": {
+        "type": "rst",
+        "direction": "I"
+      }
+    },
+    "components": {
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "ip_revision": "17",
+        "xci_name": "z80_debug_system_ila_0_0",
+        "xci_path": "ip\\z80_debug_system_ila_0_0\\z80_debug_system_ila_0_0.xci",
+        "inst_hier_path": "system_ila_0",
+        "parameters": {
+          "C_DATA_DEPTH": {
+            "value": "32768"
+          },
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "16"
+          },
+          "C_PROBE14_WIDTH": {
+            "value": "8"
+          },
+          "C_PROBE15_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE_WIDTH_PROPAGATION": {
+            "value": "MANUAL"
+          }
+        }
+      },
+      "z80core_0": {
+        "vlnv": "xilinx.com:module_ref:z80core:1.0",
+        "ip_revision": "1",
+        "xci_name": "z80_debug_z80core_0_0",
+        "xci_path": "ip\\z80_debug_z80core_0_0\\z80_debug_z80core_0_0.xci",
+        "inst_hier_path": "z80core_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "z80core",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clock": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "m1": {
+            "direction": "O"
+          },
+          "mreq": {
+            "direction": "O"
+          },
+          "iorq": {
+            "direction": "O"
+          },
+          "rd": {
+            "direction": "O"
+          },
+          "wr": {
+            "direction": "O"
+          },
+          "rfsh": {
+            "direction": "O"
+          },
+          "halt": {
+            "direction": "O"
+          },
+          "waitpin": {
+            "direction": "I"
+          },
+          "int": {
+            "direction": "I"
+          },
+          "nmi": {
+            "direction": "I"
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "busrq": {
+            "direction": "I"
+          },
+          "busack": {
+            "direction": "O"
+          },
+          "address_out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "data": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          }
+        }
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "14",
+        "xci_name": "z80_debug_clk_wiz_0_0",
+        "xci_path": "ip\\z80_debug_clk_wiz_0_0\\z80_debug_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "CLKOUT1_JITTER": {
+            "value": "631.442"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "346.848"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "5"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "130.958"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "98.575"
+          },
+          "CLKOUT2_USED": {
+            "value": "false"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "32.000"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "128.000"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "1"
+          },
+          "MMCM_DIVCLK_DIVIDE": {
+            "value": "5"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "1"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "false"
+          }
+        }
+      }
+    },
+    "nets": {
+      "CLK_1": {
+        "ports": [
+          "CLK",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
+      "Net": {
+        "ports": [
+          "z80core_0/waitpin",
+          "system_ila_0/probe0"
+        ]
+      },
+      "Net1": {
+        "ports": [
+          "z80core_0/int",
+          "system_ila_0/probe1"
+        ]
+      },
+      "Net2": {
+        "ports": [
+          "z80core_0/nmi",
+          "system_ila_0/probe2"
+        ]
+      },
+      "Net3": {
+        "ports": [
+          "z80core_0/busrq",
+          "system_ila_0/probe4"
+        ]
+      },
+      "RESET_1": {
+        "ports": [
+          "RESET",
+          "z80core_0/reset",
+          "system_ila_0/probe3"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "z80core_0/clock",
+          "system_ila_0/clk"
+        ]
+      },
+      "z80core_0_address_out": {
+        "ports": [
+          "z80core_0/address_out",
+          "system_ila_0/probe15"
+        ]
+      },
+      "z80core_0_busack": {
+        "ports": [
+          "z80core_0/busack",
+          "system_ila_0/probe12"
+        ]
+      },
+      "z80core_0_data": {
+        "ports": [
+          "z80core_0/data",
+          "system_ila_0/probe14"
+        ]
+      },
+      "z80core_0_halt": {
+        "ports": [
+          "z80core_0/halt",
+          "system_ila_0/probe11"
+        ]
+      },
+      "z80core_0_iorq": {
+        "ports": [
+          "z80core_0/iorq",
+          "system_ila_0/probe7"
+        ]
+      },
+      "z80core_0_m1": {
+        "ports": [
+          "z80core_0/m1",
+          "system_ila_0/probe5"
+        ]
+      },
+      "z80core_0_mreq": {
+        "ports": [
+          "z80core_0/mreq",
+          "system_ila_0/probe6"
+        ]
+      },
+      "z80core_0_rd": {
+        "ports": [
+          "z80core_0/rd",
+          "system_ila_0/probe8"
+        ]
+      },
+      "z80core_0_rfsh": {
+        "ports": [
+          "z80core_0/rfsh",
+          "system_ila_0/probe10"
+        ]
+      },
+      "z80core_0_wr": {
+        "ports": [
+          "z80core_0/wr",
+          "system_ila_0/probe9"
+        ]
+      }
+    }
+  }
+}

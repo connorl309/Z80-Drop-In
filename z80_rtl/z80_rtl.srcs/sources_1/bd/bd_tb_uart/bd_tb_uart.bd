@@ -1,0 +1,384 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xBED0EC1E9BEF1AA8",
+      "device": "xc7s50csga324-1",
+      "gen_directory": "../../../../z80_rtl.gen/sources_1/bd/bd_tb_uart",
+      "name": "bd_tb_uart",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "fifo_generator_0": "",
+      "uart_0": "",
+      "system_ila_0": "",
+      "clk_wiz_0": ""
+    },
+    "ports": {
+      "sys_clock": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "reset",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "bd_tb_uart_sys_clock",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "default"
+          }
+        }
+      },
+      "TX": {
+        "type": "data",
+        "direction": "O",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "RX": {
+        "type": "data",
+        "direction": "I",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "reset": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
+      }
+    },
+    "components": {
+      "fifo_generator_0": {
+        "vlnv": "xilinx.com:ip:fifo_generator:13.2",
+        "ip_revision": "10",
+        "xci_name": "bd_tb_uart_fifo_generator_0_0",
+        "xci_path": "ip\\bd_tb_uart_fifo_generator_0_0\\bd_tb_uart_fifo_generator_0_0.xci",
+        "inst_hier_path": "fifo_generator_0",
+        "parameters": {
+          "Fifo_Implementation": {
+            "value": "Common_Clock_Builtin_FIFO"
+          },
+          "Input_Data_Width": {
+            "value": "8"
+          }
+        }
+      },
+      "uart_0": {
+        "vlnv": "xilinx.com:module_ref:uart:1.0",
+        "ip_revision": "1",
+        "xci_name": "bd_tb_uart_uart_0_0",
+        "xci_path": "ip\\bd_tb_uart_uart_0_0\\bd_tb_uart_uart_0_0.xci",
+        "inst_hier_path": "uart_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "uart",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_HIGH",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "rx": {
+            "direction": "I",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": "undef",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "tx": {
+            "direction": "O"
+          },
+          "rx_fifo": {
+            "direction": "O",
+            "left": "7",
+            "right": "0"
+          },
+          "rx_fifo_wr": {
+            "direction": "O"
+          },
+          "rx_fifo_full": {
+            "direction": "I"
+          },
+          "tx_fifo": {
+            "direction": "I",
+            "left": "7",
+            "right": "0"
+          },
+          "tx_fifo_rd": {
+            "direction": "O"
+          },
+          "tx_fifo_empty": {
+            "direction": "I"
+          },
+          "rx_state": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "tx_state": {
+            "direction": "O",
+            "left": "1",
+            "right": "0"
+          },
+          "rx_delay_left": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "tx_delay_left": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "rx_bits_left": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "tx_bits_left": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          }
+        }
+      },
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "ip_revision": "17",
+        "xci_name": "bd_tb_uart_system_ila_0_0",
+        "xci_path": "ip\\bd_tb_uart_system_ila_0_0\\bd_tb_uart_system_ila_0_0.xci",
+        "inst_hier_path": "system_ila_0",
+        "parameters": {
+          "C_DATA_DEPTH": {
+            "value": "32768"
+          },
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "14"
+          },
+          "C_PROBE10_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE11_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE12_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE13_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE2_WIDTH": {
+            "value": "8"
+          },
+          "C_PROBE3_WIDTH": {
+            "value": "8"
+          },
+          "C_PROBE8_WIDTH": {
+            "value": "2"
+          },
+          "C_PROBE9_WIDTH": {
+            "value": "2"
+          },
+          "C_PROBE_WIDTH_PROPAGATION": {
+            "value": "MANUAL"
+          }
+        }
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "14",
+        "xci_name": "bd_tb_uart_clk_wiz_0_0",
+        "xci_path": "ip\\bd_tb_uart_clk_wiz_0_0\\bd_tb_uart_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "USE_LOCKED": {
+            "value": "false"
+          }
+        }
+      }
+    },
+    "nets": {
+      "RX_1": {
+        "ports": [
+          "RX",
+          "system_ila_0/probe1",
+          "uart_0/rx"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "fifo_generator_0/clk",
+          "system_ila_0/clk",
+          "uart_0/clk"
+        ]
+      },
+      "fifo_generator_0_dout": {
+        "ports": [
+          "fifo_generator_0/dout",
+          "system_ila_0/probe2",
+          "uart_0/tx_fifo"
+        ]
+      },
+      "fifo_generator_0_empty": {
+        "ports": [
+          "fifo_generator_0/empty",
+          "system_ila_0/probe4",
+          "uart_0/tx_fifo_empty"
+        ]
+      },
+      "fifo_generator_0_full": {
+        "ports": [
+          "fifo_generator_0/full",
+          "system_ila_0/probe5",
+          "uart_0/rx_fifo_full"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "reset",
+          "clk_wiz_0/reset",
+          "fifo_generator_0/rst",
+          "uart_0/reset"
+        ]
+      },
+      "sys_clock_1": {
+        "ports": [
+          "sys_clock",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
+      "uart_0_rx_bits_left": {
+        "ports": [
+          "uart_0/rx_bits_left",
+          "system_ila_0/probe12"
+        ]
+      },
+      "uart_0_rx_delay_left": {
+        "ports": [
+          "uart_0/rx_delay_left",
+          "system_ila_0/probe10"
+        ]
+      },
+      "uart_0_rx_fifo": {
+        "ports": [
+          "uart_0/rx_fifo",
+          "fifo_generator_0/din",
+          "system_ila_0/probe3"
+        ]
+      },
+      "uart_0_rx_fifo_wr": {
+        "ports": [
+          "uart_0/rx_fifo_wr",
+          "fifo_generator_0/wr_en",
+          "system_ila_0/probe7"
+        ]
+      },
+      "uart_0_rx_state": {
+        "ports": [
+          "uart_0/rx_state",
+          "system_ila_0/probe8"
+        ]
+      },
+      "uart_0_tx": {
+        "ports": [
+          "uart_0/tx",
+          "TX",
+          "system_ila_0/probe0"
+        ]
+      },
+      "uart_0_tx_bits_left": {
+        "ports": [
+          "uart_0/tx_bits_left",
+          "system_ila_0/probe13"
+        ]
+      },
+      "uart_0_tx_delay_left": {
+        "ports": [
+          "uart_0/tx_delay_left",
+          "system_ila_0/probe11"
+        ]
+      },
+      "uart_0_tx_fifo_rd": {
+        "ports": [
+          "uart_0/tx_fifo_rd",
+          "fifo_generator_0/rd_en",
+          "system_ila_0/probe6"
+        ]
+      },
+      "uart_0_tx_state": {
+        "ports": [
+          "uart_0/tx_state",
+          "system_ila_0/probe9"
+        ]
+      }
+    }
+  }
+}

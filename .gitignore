@@ -137,3 +137,6 @@ ipshared
 *.app
 
 *.lck
+z80_rtl/z80_rtl.gen/
+
+z80_rtl/z80_rtl.runs/

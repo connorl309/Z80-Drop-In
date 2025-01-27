@@ -19,6 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+`define PC_MUX_INC 0
+`define PC_MUX_MINUS_TWO 1
+`define PC_MUX_RST 2
+`define PC_MUX_ALU 3
+`define PC_MUX_REG 4
+
 
 module datapath(
     input CLK,
@@ -146,13 +152,14 @@ module datapath(
         .ACC_OUT(ACC_OUT));
         
         
+        
     // PC
     (* KEEP = "TRUE" *)
-    wire [15:0] PC_in = PC_MUX == 0 ? PC - 1 :
-                        PC_MUX == 1 ? PC + 1 :
-                        PC_MUX == 2 ? IR << 3 :
-                        PC_MUX == 3 ? ALU_OUT_wire :
-                        PC_MUX == 4 ? {MDR, SR1_OUT[7:0]} : 0;
+    wire [15:0] PC_in = PC_MUX == `PC_MUX_INC ? PC + 1 :
+                        PC_MUX == `PC_MUX_MINUS_TWO ? PC - 2 :
+                        PC_MUX == `PC_MUX_RST ? IR << 3 :
+                        PC_MUX == `PC_MUX_ALU ? ALU_OUT_wire :
+                        PC_MUX == `PC_MUX_REG ? {MDR, SR1_OUT[7:0]} : 0;
                         
     always @(posedge CLK) begin
         PC <= LD_PC ? PC_in : PC;

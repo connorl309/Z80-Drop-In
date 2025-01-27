@@ -63,7 +63,7 @@
     #0; MREQ = 1; \
     #0; MEM_RD = 1; \
     #0; LD_IR = 1; \
-    #0; PC_MUX = 1; \
+    #0; PC_MUX = 0; \
     #0; LD_PC = 1; \
     #5; CLK = 1; \
     #1; LD_IR = 0; \
@@ -98,6 +98,8 @@ module tb_datapath();
     reg FLAG_MUX = 0;
     reg LD_PC = 0;
     reg LD_IR = 0;
+    
+    reg M1 = 0;
     
     wire [15:0] MAR;
     wire [7:0] MDR;
@@ -143,7 +145,10 @@ module tb_datapath();
     
     initial begin
         while (!HALTED) begin
+            #1; M1 = 1;
             `FETCH;
+            #1; M1 = 0;
+            
             
             if (IR[7:6] == 2'b0 && IR[2:0] == 3'b110) begin
                 // LD r,n instruction
@@ -162,7 +167,7 @@ module tb_datapath();
                 #3; CLK = 0; 
                 #0; MREQ = 1; 
                 #0; MEM_RD = 1; 
-                #0; PC_MUX = 1;
+                #0; PC_MUX = 0;
                 #0; LD_PC = 1;
                 
                 if (IR[5:3] == 3'b111) begin
@@ -201,7 +206,6 @@ module tb_datapath();
                 #0; ALU_OPA_MUX = 0;
                 #0; ALU_A_MUX = 0;
                 #0; ALU_B_MUX = 0;
-                #1; #1;
             end else if (IR[7:6] == 2'b11 && IR[2:0] == 3'b010) begin
                 // check cc
                 if ((IR[5:3] == 3'b000 && !FLAG_OUT[`FLAG_Z]) ||
