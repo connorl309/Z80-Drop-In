@@ -268,7 +268,7 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MDR_MUX_0 46 //chooses between ALU result, HL, and r[z]
 `define MDR_MUX_1 47 
 `define MDR_MUX `MDR_MUX_1:`MDR_MUX_0
-`define MDR_SEXT 48 //output of MDR into B_MUX is sext(MDR[7:0])
+`define SEXT_MDR 48 //output of MDR into B_MUX is sext(MDR[7:0])
 
 `define CS_BITS 48
 
@@ -289,3 +289,93 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define SWL 6'd14
 `define IO 6'd15
 `define IO2 6'd16
+
+/*
+
+T-STATE MACHINE SIGNALS
+
+MREQ
+WRITE
+RFSH (Signals mem to refresh, and gates the refresh address onto bus)
+Gate_PC (PC to addrbus)
+Gate_AddrReg (AddrReg to addrbus)
+Gate_SP (SP to addrbus)
+LD_IR (D[7:0] to IR on rising edge)
+LD_MDR (D[7:0] to MDR on falling edge)
+MREQ_R (Reset MREQ on falling T clock edge)
+MREQ_S_RE (Set MREQ on rising T clock edge, but only if WAIT is low)
+MREQ_S_FE (Reset MREQ on falling T clock edge)
+IORQ_R (Reset IORQ on rising T clock edge)
+IORQ_S_RE (Set IORQ on rising T clock edge)
+IORQ_S_FE (Set IORQ on falling T clock edge)
+RD_R (Reset RD on falling T clock edge)
+RD_S_RE (Set RD on rising T clock edge, but only if WAIT is low)
+RD_S_FE (Set RD on falling T clock edge)
+WR_R (Reset WR on falling T clock edge)
+WR_R_RE (Reset WR on rising T clock edge)
+WR_S (Set WR on falling T clock edge)
+Last_T (signal to the uSequencer to get the correct next m-cycle)
+CS_Set (reads the correct control store and sets control signals for all of the M cycles, among other things)
+EXEC (outputs the variable signals for the current M-cycle (see spec below))
+LD_PC
+PCMUX
+LD_SP
+SP_MUX
+JANK (Set for any M-cycle that needs to take extra cycles for no reason)
+Gate_d(Output operand to data line on falling edge, stop outputting on rising edge somehow)
+M1
+
+*/
+
+`define J0 0
+`define J1 1
+`define J2 2
+`define J3 3
+`define J4 4
+`define J5 5
+`define J6 6
+`define JBITS `J6:`J0
+
+`define COND0 7 //wait
+`define COND1 8 //stall
+
+`define CS_SET 9
+
+`define M1 10
+`define RFSH 11
+`define BUSACK 12
+
+// These external signals can be controlled on rising or falling edge
+// _R    - set to 0 on falling edge of current cycle
+// _S_RE - set to 1 on rising edge of next cycle
+// _S_FE - set to 1 on falling edgo of current cycle
+`define MREQ_R 13 //(Reset MREQ on falling T clock edge)
+`define MREQ_S_RE 14 //(Set MREQ on rising T clock edge, but only if WAIT is low)
+`define MREQ_S_FE 15 //(Reset MREQ on falling T clock edge)
+`define IORQ_R 16 //(Reset IORQ on rising T clock edge)
+`define IORQ_S_RE 17 //(Set IORQ on rising T clock edge)
+`define IORQ_S_FE 18 //(Set IORQ on falling T clock edge)
+`define RD_R 19 //(Reset RD on falling T clock edge)
+`define RD_S_RE 20 //(Set RD on rising T clock edge, but only if WAIT is low)
+`define RD_S_FE 21 //(Set RD on falling T clock edge)
+`define WR_R 22 //(Reset WR on falling T clock edge)
+`define WR_S_RE 23 //(Reset WR on rising T clock edge)
+`define WR_S_FE 24 //(Set WR on falling T clock edge)
+
+// HALT is special because it is set by an exec signal, not a t-state signal
+`define HALT_R 25
+
+`define EXEC 26
+`define LAST_T 27
+`define Gate_PC 28 //(PC to addrbus)
+`define Gate_MARL 29 //(MAR to addrbus)
+`define Gate_MARH 30 //(MAR + 1 to addrbus)
+`define Gate_SP 31 //(SP to addrbus)
+`define LD_IR 32 //(D[7:0] to IR on rising edge)
+`define LD_MDRL 33 //(D[7:0] to MDR[7:0] on falling edge)
+`define LD_MDRH 34 //(D[15:8] to MDR[15:8] on falling edge)
+`define LD_PC 35 //overrides LD_PC from exec, and loads PC with PC + 1
+`define LD_SP 36 //overrides LD_SP from exec, and loads SP with SP_MUX
+`define SP_MUX 37 //chooses between SP + 1 and SP - 1
+`define Gate_MDRL 38 //(Output MDR[7:0] to data line on falling edge, stop outputting on rising edge somehow)
+`define Gate_MDRH 39 //(Output MDR[15:8] to data line on falling edge, stop outputting on rising edge somehow)
