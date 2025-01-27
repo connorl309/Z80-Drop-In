@@ -20,175 +20,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-//A_MUX chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE, A, I, R, IX, IY, PC, MDR as SR1
-`define A_MUX_Y 4'd0 //uses P if RP is set
-`define A_MUX_Z 4'd1 //uses Z instead of Y
-`define A_MUX_HL 4'd2
-`define A_MUX_BC 4'd3
-`define A_MUX_DE 4'd4
-`define A_MUX_A 4'd5
-`define A_MUX_I 4'd6
-`define A_MUX_R 4'd7
-//`define A_MUX_IX 4'd8
-//`define A_MUX_IY 4'd9
-`define A_MUX_PC 4'd10
-`define A_MUX_MDR 4'd11 //new from nadia's original drawing
-`define A_MUX_ZERO 4'd12 //new from nadia's original drawing
-`define A_MUX_B 4'd13 //new from nadia's original drawing
-
-//MARMUX chooses between SR1, MDR, MDR[7:0]`A, HL, BC, and ALU
-`define MAR_MUX_SR1 0 //SR1 is HL if it's R6, even if not RP
-`define MAR_MUX_MDR 1
-`define MAR_MUX_MDR_A 2
-`define MAR_MUX_HL 3
-`define MAR_MUX_BC 4
-`define MAR_MUX_DE 5
-`define MAR_MUX_ALU 5
-
-//DR_MUX chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE as DR
-`define DR_MUX_DR 3'd0 //uses P if RP is set
-`define DR_MUX_Z 3'd1
-`define DR_MUX_HL 3'd2
-`define DR_MUX_BC 3'd3
-`define DR_MUX_DE 3'd4
-`define DR_MUX_SP 3'd5
-`define DR_MUX_B 3'd6
-
-//MUX_EXEC_COND chooses between condition y, y-4, 0 (NZ), and 1 (Z)
-`define MUX_EXEC_COND_Y 2'd0
-`define MUX_EXEC_COND_Y_SUB_4 2'd1
-`define MUX_EXEC_COND_NZ 2'd2
-`define MUX_EXEC_COND_Z 2'd3
-
-//PCMUX chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3
-`define PCMUX_ALU 3'd0
-`define PCMUX_IR 3'd1
-`define PCMUX_INC_PC 3'd2
-`define PCMUX_Y_SHIFT 3'd3
-`define PCMUX_MDR 3'd4
-
-//muxes
-`define MUX_EXEC_COND_0 0//chooses between condition y, y-4, 0 (NZ), and 1 (Z)
-`define MUX_EXEC_COND_1 1
-`define MUX_EXEC_COND `MUX_EXEC_COND_1:`MUX_EXEC_COND_0
-
-`define PCMUX_0 2 //chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3
-`define PCMUX_1 3
-`define PCMUX_2 4
-`define PCMUX `PCMUX_2:`PCMUX_0
-`define PC_CONDLD 5 //if 1, only loads pc if condition met
-`define CONDSTALL 6 //if 1, useq only uses stal1 if condition met
-
-`define A_MUX_0 7 //chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE, A, I, R, IX, IY, PC as SR1
-`define A_MUX_1 8
-`define A_MUX_2 9
-`define A_MUX_3 10
-`define A_MUX `A_MUX_3:`A_MUX_0
-`define B_MUX_0 11  //chooses between MDR and SR2 (which is r[z] I think)
-`define B_MUX_1 12
-`define B_MUX `B_MUX_1:`B_MUX_0
-
-//B_MUX chooses between MDR, SR2, HL, and 16-bit negative 2
-`define B_MUX_MDR 0
-`define B_MUX_SR2 1 //SR2 is RP if SR_RP set, R otherwise
-`define B_MUX_HL 2
-`define B_MUX_NEGTWO 3
-
-//MDR_MUX chooses between ALU, HL, and r[z]
-`define MDR_MUX_ALU 0
-`define MDR_MUX_HL 1
-`define MDR_MUX_Z 2
-
-
-`define DR_MUX_0 13  //chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE as DR
-`define DR_MUX_1 14
-`define DR_MUX_2 15
-`define DR_MUX `DR_MUX_2:`DR_MUX_0
-`define MAR_MUX_0 16
-`define MAR_MUX_1 17
-`define MAR_MUX_2 18
-`define MAR_MUX `MAR_MUX_2:`MAR_MUX_0 //chooses between OP1, MDR, and MDR[7:0]`A
-
-
-//register file signals
-`define RP_TABLE 19// chooses which register pair to load from
-`define ld_IX 20
-`define ld_IY 21
-`define EXX 22
-//bits 4-5 of opcode along with RP_TABLE select register pairs, but this doesn't get handled in RF if ALU has AF still
-//sr1 will be R or RP uness overriden by specific register signals.
-//sr2 output based on bits 5:3 of the opcode always
-//Needs to be a separate port for HL
-
-//ld signals other than reg file
-`define LD_PC 23
-`define LD_I 24 //loads I with output of ALU
-`define LD_R 25
-`define LD_REG 26
-`define LD_MDR 27 //loads MDR with data from MDR_MUX
-`define LD_MAR 28
-`define LD_CMET 29 //loads false if condition not met (set true by default in usequencer)
-
-//usequencer signals
-`define DEC_MCTR_CC 30
-`define DEC2_MCTR_CC 31
-`define FETCH_AGAIN 32
-`define NEXT_PLA 33//latched if there is a prefix, reset on last m cycle
-`define STALL_1 34//we can stall either 1 or 2 cycles in certain places 
-`define STALL_2 35
-
-//system signals
-`define HALT_SIG 36   //does something in datapath somewhere
-`define INT_FF_RESET 37//sets 
-`define INT_FF_SET 38
-`define IFF2_TO_IFF1 39//IFF2 --> IFF1
-`define LD_INT_MODE 40//loads interrupt mode with Y (I think 0 1 and 2 are only valid ones)
-
-//alu signals
-`define ZEXT6(VALUE) ({6{1'b0}} | (VALUE))
-`define ALU_OP_0 41
-`define ALU_OP_1 42
-`define ALU_OP_2 43
-`define ALU_OP_3 44
-`define ALU_OP_4 45
-`define ALU_OP_5 46
-`define ALU_OP_6 47
-`define ALU_OP `ALU_OP_6:`ALU_OP_0
-`define LD_ACCUM 48 //Loads A to be equal to result of ALU (hopefully)
-`define LD_FLAG 49 //loads flags based on result data, depending on ALUOP - April needs to add the non aluop instructions as aluops too
-
-`define SEXT_MDR 50 //reorganize later
-`define SR_RP 51 //output RP insted of R
-`define DR_RP 52 //store into RP instead of R
-`define EXEC_COND_MUX 53//chooses which condition to use if ld_CMET
-`define MDR_MUX_0 54 //chooses between ALU result, HL, and r[z]
-`define MDR_MUX_1 55 
-`define MDR_MUX `MDR_MUX_1:`MDR_MUX_0
-`define EX 56 //ex instruction for reg file
-
-
-`define CS_BITS 57
-
-`define OCF 6'd0
-`define MR 6'd1
-`define MRH 6'd2
-`define MRL 6'd3
-`define MW 6'd4
-`define MWH 6'd5
-`define MWL 6'd6
-`define ODH 6'd7
-`define ODL 6'd8
-`define PR 6'd9
-`define PW 6'd10
-`define SRH 6'd11
-`define SRL 6'd12
-`define SWH 6'd13
-`define SWL 6'd14
-`define IO 6'd15
-`define IO2 6'd16
-
-
-
 module decode(
     input [7:0] IR,
     input wire [1:0] PLA_idx,
@@ -263,7 +94,6 @@ module decode(
                                         SIGNALS[M1][`ALU_OP] = `ALU_DEC_8BIT;
                                         SIGNALS[M1][`LD_ACCUM] = 1;
                                         SIGNALS[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_NZ;
-                                        SIGNALS[M1][`LD_CMET] = 1;
                                         SIGNALS[M1][`DEC_MCTR_CC] = 1;
 
                                         SIGNALS[M3][`SEXT_MDR] = 1;
@@ -294,7 +124,6 @@ module decode(
                                     end
                                     3'b100, 3'b101, 3'b110, 3'b111:begin //JR cc, e
                                         SIGNALS[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Y_SUB_4;
-                                        SIGNALS[M1][`LD_CMET] = 1;
                                         SIGNALS[M1][`DEC_MCTR_CC] = 1;
 
                                         SIGNALS[M3][`SEXT_MDR] = 1;
@@ -317,7 +146,7 @@ module decode(
                                         SIGNALS[M3][`RP_TABLE] = 0; //default is 0
                                         SIGNALS[M3][`B_MUX] = `B_MUX_MDR;
                                         SIGNALS[M3][`ALU_OP] = `ALU_PASSB;
-                                        SIGNALS[M3][`DR_RP] = 1;
+                                        SIGNALS[M3][`RP] = 1;
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_DR; //it's actually P, not Y, if RP is set
                                         SIGNALS[M3][`LD_REG] = 1;
 
@@ -330,7 +159,7 @@ module decode(
                                         SIGNALS[M3][`A_MUX] = `A_MUX_HL;
                                         SIGNALS[M3][`B_MUX] = `B_MUX_SR2;
                                         SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
-                                        SIGNALS[M3][`SR_RP] = 1;
+                                        SIGNALS[M3][`RP] = 1;
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_HL;
                                         SIGNALS[M3][`LD_REG] = 1;
 
@@ -349,7 +178,7 @@ module decode(
                                                 SIGNALS[M1][`ALU_OP] = `ALU_PASSA;
                                                 SIGNALS[M1][`A_MUX] = `A_MUX_A;
                                                 SIGNALS[M1][`LD_MDR] = 1;
-                                                SIGNALS[M1][`SR_RP] = 1;
+                                                SIGNALS[M1][`RP] = 1;
                                                 SIGNALS[M1][`LD_MAR] = 1;
                                                 SIGNALS[M1][`MAR_MUX] = 0;
 
@@ -389,7 +218,7 @@ module decode(
                                     1'b1: begin 
                                         case(p)
                                             2'b0, 2'b1: begin //load MAR with RP in M1, MRD to A in M2
-                                                SIGNALS[M1][`SR_RP] = 1;
+                                                SIGNALS[M1][`RP] = 1;
                                                 SIGNALS[M1][`LD_MAR] = 1;
                                                 SIGNALS[M2][`B_MUX] = `B_MUX_MDR;
                                                 SIGNALS[M2][`ALU_OP] = `ALU_PASSB;
@@ -437,6 +266,7 @@ module decode(
                                     1'b0: begin //increment rp[p]
                                         SIGNALS[M1][`RP_TABLE] = 1;
                                         SIGNALS[M1][`A_MUX] = `A_MUX_Y;
+                                        SIGNALS[M1][`RP] = 1;
                                         SIGNALS[M1][`ALU_OP] = `ALU_INC_16BIT;
                                         SIGNALS[M1][`DR_MUX] = `DR_MUX_DR;
                                         SIGNALS[M1][`LD_REG] = 1;
@@ -447,6 +277,7 @@ module decode(
                                     1'b1: begin //decrement rp[p]
                                         SIGNALS[M1][`RP_TABLE] = 1;
                                         SIGNALS[M1][`A_MUX] = `A_MUX_Y;
+                                        SIGNALS[M1][`RP] = 1;
                                         SIGNALS[M1][`ALU_OP] = `ALU_DEC_16BIT;
                                         SIGNALS[M1][`DR_MUX] = `DR_MUX_DR;
                                         SIGNALS[M1][`LD_REG] = 1;
@@ -1000,7 +831,6 @@ module decode(
                         case(z)
                             3'b000:begin //RET cc
                                 SIGNALS[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Y;
-                                SIGNALS[M1][`LD_CMET] = 1;
                                 SIGNALS[M1][`DEC2_MCTR_CC] = 1;
                                 F_stall = 2'd1;
                                 SIGNALS[M3][`LD_PC] = 1;
@@ -1019,7 +849,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_DR;
                                         SIGNALS[M3][`ALU_OP] = `ALU_PASSA;
                                         SIGNALS[M3][`LD_REG] = 1;
-                                        SIGNALS[M3][`SR_RP] = 1;
+                                        SIGNALS[M3][`RP] = 1;
 
                                         //SRL, SRH
                                         MSTATES[M2] = `SRL;
@@ -1058,7 +888,6 @@ module decode(
                             end
                             3'b010:begin //JP cc, nn
                                 SIGNALS[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Y;
-                                SIGNALS[M1][`LD_CMET] = 1;
                                 SIGNALS[M1][`DEC2_MCTR_CC] = 1;
                                 F_stall = 2'd1;
                                 SIGNALS[M3][`PC_CONDLD] = 1;
@@ -1142,7 +971,10 @@ module decode(
                                         MAX_CNT = 4;
                                     end
                                     3'b101:begin //EX DE, HL
-                                        SIGNALS[M1][`EX] = 1;
+                                        SIGNALS[M1][`A_MUX] = `A_MUX_HL;
+                                        SIGNALS[M1][`ALU_OP] = `ALU_PASSA;
+                                        SIGNALS[M1][`LD_REG] = 1;
+                                        SIGNALS[M1][`DR_MUX] = `DR_MUX_DE;
                                     end
                                     3'b110:begin //DI
                                         SIGNALS[M1][`INT_FF_RESET] = 1;
@@ -1154,7 +986,6 @@ module decode(
                             end
                             3'b100:begin //call CC, nn
                                 SIGNALS[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Y;
-                                SIGNALS[M1][`LD_CMET] = 1;
                                 SIGNALS[M1][`DEC2_MCTR_CC] = 1;
                                 SIGNALS[M3][`LD_PC] = 1;
                                 SIGNALS[M3][`PCMUX] = `PCMUX_MDR;
@@ -1177,7 +1008,7 @@ module decode(
                                         SIGNALS[M1][`A_MUX] = `A_MUX_Y;
                                         SIGNALS[M1][`ALU_OP] = `ALU_PASSA;
                                         SIGNALS[M1][`LD_MDR] = 1;
-                                        SIGNALS[M1][`SR_RP] = 1;
+                                        SIGNALS[M1][`RP] = 1;
 
                                         //SWH, SWL
                                         MSTATES[M2] = `SWH;
@@ -1567,7 +1398,7 @@ module decode(
                                     1'b0:begin //SBC HL, rp[p]
                                         SIGNALS[M3][`A_MUX] = `A_MUX_Y;
                                         SIGNALS[M3][`B_MUX] = `B_MUX_HL;
-                                        SIGNALS[M3][`SR_RP] = 1;
+                                        SIGNALS[M3][`RP] = 1;
                                         SIGNALS[M3][`ALU_OP] = `ALU_DEC_16BIT; //is this fine?
                                         SIGNALS[M2][`STALL_1] = 1;
                                         SIGNALS[M3][`LD_REG] = 1;
@@ -1580,7 +1411,7 @@ module decode(
                                     1'b1:begin //ADC HL, rp[p]
                                         SIGNALS[M3][`A_MUX] = `A_MUX_Y;
                                         SIGNALS[M3][`B_MUX] = `B_MUX_HL;
-                                        SIGNALS[M3][`SR_RP] = 1;
+                                        SIGNALS[M3][`RP] = 1;
                                         SIGNALS[M3][`ALU_OP] = `ALU_INC_16BIT; //is this fine?
                                         SIGNALS[M2][`STALL_1] = 1;
                                         SIGNALS[M3][`LD_REG] = 1;
@@ -1601,7 +1432,7 @@ module decode(
                                         SIGNALS[M3][`MDR_MUX] = 0;
                                         SIGNALS[M3][`A_MUX] = `A_MUX_Y;
                                         SIGNALS[M3][`ALU_OP] = `ALU_PASSA;
-                                        SIGNALS[M3][`SR_RP] = 1;
+                                        SIGNALS[M3][`RP] = 1;
                                         //ODL, ODH, MWL, MWH
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `ODH;
@@ -1616,7 +1447,7 @@ module decode(
                                         SIGNALS[M5][`DR_MUX] = `DR_MUX_DR;
                                         SIGNALS[M5][`A_MUX] = `A_MUX_MDR;
                                         SIGNALS[M5][`ALU_OP] = `ALU_PASSA;
-                                        SIGNALS[M5][`DR_RP] = 1;
+                                        SIGNALS[M5][`RP] = 1;
                                         //ODL, ODH, MRL, MRH
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `ODH;

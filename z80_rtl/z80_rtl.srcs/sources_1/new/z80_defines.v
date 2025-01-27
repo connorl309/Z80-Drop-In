@@ -127,3 +127,165 @@
 `define ALU_TEST_HL_BASE (`ALU_TEST_IX_BASE + 8)
 `define ALU_SET_BASE (`ALU_TEST_HL_BASE + 8)
 `define ALU_RESET_BASE (`ALU_SET_BASE + 8)
+
+/*
+
+BELOW ARE CONTROL SIGNAL DEFINES
+
+*/
+
+
+//A_MUX chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE, A, I, R, PC, MDR, Zero, and B as SR1
+`define A_MUX_Y 4'd0 //uses P if RP is set
+`define A_MUX_Z 4'd1 //uses Z instead of Y
+`define A_MUX_HL 4'd2
+`define A_MUX_BC 4'd3
+`define A_MUX_DE 4'd4
+`define A_MUX_A 4'd5
+`define A_MUX_I 4'd6
+`define A_MUX_R 4'd7
+`define A_MUX_PC 4'd8
+`define A_MUX_MDR 4'd9 //new from nadia's original drawing
+`define A_MUX_ZERO 4'd11 //new from nadia's original drawing
+`define A_MUX_B 4'd12 //new from nadia's original drawing
+
+//DR_MUX chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE, SP, and B as DR
+`define DR_MUX_DR 3'd0 //uses P if RP is set
+`define DR_MUX_Z 3'd1
+`define DR_MUX_HL 3'd2
+`define DR_MUX_BC 3'd3
+`define DR_MUX_DE 3'd4
+`define DR_MUX_SP 3'd5
+`define DR_MUX_B 3'd6
+
+//MUX_EXEC_COND chooses between condition y, y-4, 0 (NZ), and 1 (Z)
+`define MUX_EXEC_COND_Y 2'd0
+`define MUX_EXEC_COND_Y_SUB_4 2'd1
+`define MUX_EXEC_COND_NZ 2'd2
+`define MUX_EXEC_COND_Z 2'd3
+
+//PCMUX chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3
+`define PCMUX_ALU 3'd0
+`define PCMUX_IR 3'd1
+`define PCMUX_INC_PC 3'd2
+`define PCMUX_Y_SHIFT 3'd3
+`define PCMUX_MDR 3'd4
+
+//MARMUX chooses between SR1, MDR, MDR[7:0]`A, HL, BC, and ALU
+`define MAR_MUX_SR1 0 //SR1 is HL if it's R6, even if not RP
+`define MAR_MUX_MDR 1
+`define MAR_MUX_MDR_A 2
+`define MAR_MUX_HL 3
+`define MAR_MUX_BC 4
+`define MAR_MUX_DE 5
+`define MAR_MUX_ALU 6
+
+//MDR_MUX chooses between ALU, HL, and r[z]
+`define MDR_MUX_ALU 0
+`define MDR_MUX_HL 1
+`define MDR_MUX_Z 2
+
+//B_MUX chooses between MDR, SR2, HL, and 16-bit negative 2
+`define B_MUX_MDR 0
+`define B_MUX_SR2 1 //SR2 is RP if SR_RP set, R otherwise
+`define B_MUX_HL 2
+`define B_MUX_NEGTWO 3
+
+//muxes
+`define MUX_EXEC_COND_0 0//chooses between condition y, y-4, 0 (NZ), and 1 (Z). Same cycle, receives next flags from ALU, compares them to this signal, and uses it for condstall(I think?) and dec mctr
+`define MUX_EXEC_COND_1 1
+`define MUX_EXEC_COND `MUX_EXEC_COND_1:`MUX_EXEC_COND_0
+
+`define PCMUX_0 2 //chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3, and MDR
+`define PCMUX_1 3
+`define PCMUX_2 4
+`define PCMUX `PCMUX_2:`PCMUX_0
+`define PC_CONDLD 5 //if 1, only loads pc if condition met
+`define CONDSTALL 6 //if 1, useq only uses stal1 if condition met
+
+`define A_MUX_0 7 //chooses between y of opcode, z of opcode, HL, BC, DE, A, I, R, PC, MDR, Zero, and B as SR1
+`define A_MUX_1 8
+`define A_MUX_2 9
+`define A_MUX_3 10
+`define A_MUX `A_MUX_3:`A_MUX_0
+`define B_MUX_0 11  //chooses between MDR, Z, HL, and 16-bit negative 2
+`define B_MUX_1 12
+`define B_MUX `B_MUX_1:`B_MUX_0
+
+`define DR_MUX_0 13  //chooses between 5:3 of opcode, 2:0 of opcode, HL, BC, DE, SP, and B as DR
+`define DR_MUX_1 14
+`define DR_MUX_2 15
+`define DR_MUX `DR_MUX_2:`DR_MUX_0
+`define MAR_MUX_0 16 //chooses between SR1, MDR, MDR[7:0]`A, HL, BC, and ALU
+`define MAR_MUX_1 17
+`define MAR_MUX_2 18
+`define MAR_MUX `MAR_MUX_2:`MAR_MUX_0 
+
+//register file signals
+`define RP_TABLE 19// chooses which register pair table to load from
+`define EXX 20
+
+//bits 4-5 of opcode along with RP_TABLE select register pairs, but this doesn't get handled in RF if ALU has AF still
+//sr1 will be R or RP uness overriden by specific register signals.
+//sr2 output based on bits 5:3 of the opcode always
+//Needs to be a separate port for HL
+
+//ld signals other than reg file
+`define LD_PC 21
+`define LD_I 22 //loads I with output of ALU
+`define LD_R 23
+`define LD_REG 24
+`define LD_MDR 25 //loads MDR with data from MDR_MUX
+`define LD_MAR 26
+
+//usequencer signals
+`define DEC_MCTR_CC 27
+`define DEC2_MCTR_CC 28
+`define STALL_1 29//we can stall either 1 or 2 cycles in certain places 
+`define STALL_2 30
+
+//system signals
+`define HALT_SIG 31   //does something in datapath somewhere
+`define INT_FF_RESET 32//sets 
+`define INT_FF_SET 33
+`define IFF2_TO_IFF1 34//IFF2 --> IFF1
+`define LD_INT_MODE 35//loads interrupt mode with Y (I think 0 1 and 2 are only valid ones)
+
+//alu signals
+`define ZEXT6(VALUE) ({6{1'b0}} | (VALUE))
+`define ALU_OP_0 36
+`define ALU_OP_1 37
+`define ALU_OP_2 38
+`define ALU_OP_3 39
+`define ALU_OP_4 40
+`define ALU_OP_5 41
+`define ALU_OP_6 42
+`define ALU_OP `ALU_OP_6:`ALU_OP_0
+`define LD_ACCUM 43 //Loads A to be equal to result of ALU (hopefully)
+
+`define RP 44 //r[y] is now RP[p] for both a_mux and dr_mux
+`define EXEC_COND_MUX 45//chooses which condition to use
+`define MDR_MUX_0 46 //chooses between ALU result, HL, and r[z]
+`define MDR_MUX_1 47 
+`define MDR_MUX `MDR_MUX_1:`MDR_MUX_0
+`define MDR_SEXT 48 //output of MDR into B_MUX is sext(MDR[7:0])
+
+`define CS_BITS 48
+
+`define OCF 6'd0
+`define MR 6'd1
+`define MRH 6'd2
+`define MRL 6'd3
+`define MW 6'd4
+`define MWH 6'd5
+`define MWL 6'd6
+`define ODH 6'd7
+`define ODL 6'd8
+`define PR 6'd9
+`define PW 6'd10
+`define SRH 6'd11
+`define SRL 6'd12
+`define SWH 6'd13
+`define SWL 6'd14
+`define IO 6'd15
+`define IO2 6'd16
