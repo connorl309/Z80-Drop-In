@@ -21,9 +21,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module decode(
-    input [7:0] IR,
+    input wire [7:0] IR,
     input wire [1:0] PLA_idx,
-    input IX_pref, IY_pref, //need to add this to microsequencer later, DD, FD prefixes
+    input wire IX_pref, IY_pref, //need to add this to microsequencer later, DD, FD prefixes
     output reg [284:0] SIGNALS_PORT, //what are the next M-states? Could be up to 5 
     //(Changed from 7 to 5: prefixes now restart the M-cycles because redundant prefix (DD for example) is legal and 2nd one needs to be treated as M1, therefore always go back to M1
     output reg [1:0] next_PLA, //CB --> 01, ED --> 10, DDCB/FDCB opcode --> 11 (This gets latched in useq) (IMPORTANT: if nextPLA == b11, don't clear MSTATES at the end of the instruction, and latch b10 into MAX_CNT at the end of the mcycle)
