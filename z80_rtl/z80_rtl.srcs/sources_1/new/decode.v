@@ -275,6 +275,7 @@ module decode(
                                         //OD, IO
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `IO;
+                                        MAX_CNT = 2;
                                     end
                                     3'b011:begin //JR e
                                         SIGNALS[M3][`SEXT_MDR] = 1;
@@ -287,6 +288,7 @@ module decode(
                                         //OD, IO
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `IO;
+                                        MAX_CNT = 2;
                                     end
                                     3'b100, 3'b101, 3'b110, 3'b111:begin //JR cc, e
                                         SIGNALS[M1][`MUX_EXEC_COND] = `MUX_EXEC_COND_Y_SUB_4;
@@ -303,6 +305,7 @@ module decode(
                                         //OD, IO
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `IO;
+                                        MAX_CNT = 2;
                                     end
                                 endcase
                             end
@@ -319,6 +322,7 @@ module decode(
                                         //ODL, ODH
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `ODH;
+                                        MAX_CNT = 2;
                                     end
                                     1'b1: begin //add HL, rp[p]
                                         SIGNALS[M3][`A_MUX] = `A_MUX_HL;
@@ -331,6 +335,7 @@ module decode(
                                         //IO, IO
                                         MSTATES[M2] = `IO;
                                         MSTATES[M3] = `IO;
+                                        MAX_CNT = 2;
                                     end
                                 endcase
                             end
@@ -348,6 +353,7 @@ module decode(
 
                                                 //MW
                                                 MSTATES[M2] = `MW;
+                                                MAX_CNT = 1;
                                             end
                                             2'b10: begin //LD (nn), HL
                                                 SIGNALS[M3][`ALU_OP] = `ALU_PASSA;
@@ -361,6 +367,7 @@ module decode(
                                                 MSTATES[M3] = `ODH;
                                                 MSTATES[M4] = `MRL;
                                                 MSTATES[M5] = `MRH;
+                                                MAX_CNT = 4;
                                             end
                                             2'b11: begin //LD (nn), A
                                                 SIGNALS[M3][`ALU_OP] = `ALU_PASSA;
@@ -373,6 +380,7 @@ module decode(
                                                 MSTATES[M2] = `ODL;
                                                 MSTATES[M3] = `ODH;
                                                 MSTATES[M4] = `MR;
+                                                MAX_CNT = 3;
                                             end
                                         endcase
                                     end
@@ -387,6 +395,7 @@ module decode(
                                                 
                                                 //MR
                                                 MSTATES[M2] = `MR;
+                                                MAX_CNT = 1;
 
                                             end
                                             2'b10: begin //MDR to MAR in M3, MDR to HL in M4
@@ -401,6 +410,7 @@ module decode(
                                                 MSTATES[M3] = `ODH;
                                                 MSTATES[M4] = `MRL;
                                                 MSTATES[M5] = `MRH;
+                                                MAX_CNT = 4;
                                             end
                                             2'b11: begin //MDR to MAR in M3, MDR to A in M4
                                                 SIGNALS[M3][`MAR_MUX] = 1;
@@ -413,6 +423,7 @@ module decode(
                                                 MSTATES[M2] = `ODL;
                                                 MSTATES[M3] = `ODH;
                                                 MSTATES[M4] = `MR;
+                                                MAX_CNT = 3;
                                             end
                                         endcase
                                     end
@@ -460,6 +471,7 @@ module decode(
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
                                             MSTATES[M5] = `MW;
+                                            MAX_CNT = 4;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -477,6 +489,7 @@ module decode(
                                             //MR, MW
                                             MSTATES[M2] = `MR;
                                             MSTATES[M3] = `MW;
+                                            MAX_CNT = 2;
                                         end                      
                                         
                                         
@@ -501,6 +514,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                 endcase
                             end
@@ -513,6 +527,7 @@ module decode(
                                         //OD, MW
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                         
                                     end
                                     default:begin //in M2, mdr to r[y]
@@ -523,6 +538,7 @@ module decode(
 
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                 endcase
                             end
@@ -590,6 +606,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR; 
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -606,7 +623,8 @@ module decode(
                                             SIGNALS[M2][`ALU_OP] = `ALU_PASSA;
                                             SIGNALS[M2][`LD_REG] = 1;  
                                             //MR
-                                            MSTATES[M2] = `MR;   
+                                            MSTATES[M2] = `MR;  
+                                            MAX_CNT = 2; 
                                         end                       
                                     end
                                 endcase
@@ -621,6 +639,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MW; 
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -641,6 +660,7 @@ module decode(
 
                                             //MW
                                             MSTATES[M2] = `MW; 
+                                            MAX_CNT = 2;
                                         end                      
                                         
                                         
@@ -671,6 +691,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -688,6 +709,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end              
 
                                         
@@ -703,6 +725,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -720,6 +743,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end
                                     end
                                     3'b010:begin //AND A, (HL)
@@ -733,6 +757,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -750,6 +775,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end
                                     end
                                     3'b011:begin //OR A, (HL)
@@ -763,6 +789,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -780,6 +807,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end
                                     end
                                     3'b100:begin //ADC A, (HL)
@@ -793,6 +821,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -810,6 +839,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end
                                     end
                                     3'b101:begin //SBC A, (HL)
@@ -823,6 +853,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -840,6 +871,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end
                                     end
                                     3'b110:begin //XOR A, (HL)
@@ -853,6 +885,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -870,6 +903,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end
                                     end
                                     3'b111:begin //CP A, (HL)
@@ -883,6 +917,7 @@ module decode(
                                             MSTATES[M2] = `ODL;
                                             MSTATES[M3] = `IO;
                                             MSTATES[M4] = `MR;
+                                            MAX_CNT = 3;
 
                                             SIGNALS[M3][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M3][`STALL_2] = 1;
@@ -900,6 +935,7 @@ module decode(
                                             SIGNALS[M2][`LD_ACCUM] = 1;
                                             //MR
                                             MSTATES[M2] = `MR;
+                                            MAX_CNT = 1;
                                         end
                                     end
                                 endcase                                
@@ -971,6 +1007,7 @@ module decode(
                                 //SRL, SRH
                                 MSTATES[M2] = `SRL;
                                 MSTATES[M3] = `SRH;
+                                MAX_CNT = 2;
 
                             end
                             3'b001:begin 
@@ -985,6 +1022,7 @@ module decode(
                                         //SRL, SRH
                                         MSTATES[M2] = `SRL;
                                         MSTATES[M3] = `SRH;
+                                        MAX_CNT = 2;
                                     end
                                     1'b1:begin
                                         case(p)
@@ -994,6 +1032,7 @@ module decode(
                                                 //SRL, SRH
                                                 MSTATES[M2] = `SRL;
                                                 MSTATES[M3] = `SRH;
+                                                MAX_CNT = 2;
                                             end
                                             2'b1:begin//EXX
                                                 SIGNALS[M1][`EXX] = 1;
@@ -1026,6 +1065,7 @@ module decode(
                                 //ODL, ODH
                                 MSTATES[M2] = `ODL;
                                 MSTATES[M3] = `ODH;
+                                MAX_CNT = 2;
                             end
                             3'b011:begin
                                 case(y)
@@ -1035,6 +1075,7 @@ module decode(
                                         //ODL, ODH
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `ODH;
+                                        MAX_CNT = 2;
                                     end
                                     3'b001:begin //CB prefix
                                         if(IX_pref || IY_pref) begin
@@ -1044,6 +1085,7 @@ module decode(
                                             MSTATES[M1] = `ODL;
                                             MSTATES[M2] = `IO;
                                             MSTATES[M3] = `IO2;
+                                            MAX_CNT = 0; //the useq has to set this
                                             SIGNALS[M2][`ALU_OP] = `ALU_ADD_16BIT;
                                             SIGNALS[M2][`STALL_2] = 1;
                                             SIGNALS[M2][`A_MUX] = `A_MUX_HL;
@@ -1065,6 +1107,7 @@ module decode(
                                         //OD, PW
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `PW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b011:begin //IN A, (n)
                                         SIGNALS[M2][`MAR_MUX] = `MAR_MUX_MDR_A;
@@ -1079,6 +1122,7 @@ module decode(
                                         //OD, PR
                                         MSTATES[M2] = `ODL;
                                         MSTATES[M3] = `PR;
+                                        MAX_CNT = 2;
                                     end
                                     3'b100:begin //EX (SP), HL
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -1093,6 +1137,7 @@ module decode(
                                         MSTATES[M3] = `SRH;
                                         MSTATES[M4] = `SWH;
                                         MSTATES[M5] = `SWL;
+                                        MAX_CNT = 4;
                                     end
                                     3'b101:begin //EX DE, HL
                                         SIGNALS[M1][`EX] = 1;
@@ -1122,6 +1167,7 @@ module decode(
                                 MSTATES[M3] = `ODH;
                                 MSTATES[M4] = `SWH;
                                 MSTATES[M5] = `SWL;
+                                MAX_CNT = 4;
                             end
                             3'b101:begin
                                 case(q)
@@ -1134,6 +1180,7 @@ module decode(
                                         //SWH, SWL
                                         MSTATES[M2] = `SWH;
                                         MSTATES[M3] = `SWL;
+                                        MAX_CNT = 2;
                                     end
                                     1'b1:begin
                                         case(p)
@@ -1151,6 +1198,7 @@ module decode(
                                                 MSTATES[M3] = `ODH;
                                                 MSTATES[M4] = `SWH;
                                                 MSTATES[M5] = `SWL;
+                                                MAX_CNT = 4;
                                             end
                                             2'b1:begin //DD prefix
                                                 next_IX_pref = 1;
@@ -1176,6 +1224,7 @@ module decode(
 
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                     3'b001:begin //SUB n
                                         SIGNALS[M2][`A_MUX] = `A_MUX_A;
@@ -1184,6 +1233,7 @@ module decode(
                                         SIGNALS[M2][`LD_ACCUM] = 1;
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                     3'b010:begin //AND n
                                         SIGNALS[M2][`A_MUX] = `A_MUX_A;
@@ -1192,6 +1242,7 @@ module decode(
                                         SIGNALS[M2][`LD_ACCUM] = 1;
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                     3'b011:begin //OR n
                                         SIGNALS[M2][`A_MUX] = `A_MUX_A;
@@ -1200,6 +1251,7 @@ module decode(
                                         SIGNALS[M2][`LD_ACCUM] = 1;
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                     3'b100:begin //ADC n
                                         SIGNALS[M2][`A_MUX] = `A_MUX_A;
@@ -1208,6 +1260,7 @@ module decode(
                                         SIGNALS[M2][`LD_ACCUM] = 1;
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                     3'b101:begin //SBC n
                                         SIGNALS[M2][`A_MUX] = `A_MUX_A;
@@ -1216,6 +1269,7 @@ module decode(
                                         SIGNALS[M2][`LD_ACCUM] = 1;
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                     3'b110:begin //XOR n
                                         SIGNALS[M2][`A_MUX] = `A_MUX_A;
@@ -1224,6 +1278,7 @@ module decode(
                                         SIGNALS[M2][`LD_ACCUM] = 1;
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                     3'b111:begin //CP n
                                         SIGNALS[M2][`A_MUX] = `A_MUX_A;
@@ -1232,6 +1287,7 @@ module decode(
                                         SIGNALS[M2][`LD_ACCUM] = 1;
                                         //OD
                                         MSTATES[M2] = `ODL;
+                                        MAX_CNT = 1;
                                     end
                                 endcase
                             end
@@ -1263,6 +1319,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b001:begin //RRC (HL)
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1273,6 +1330,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b010:begin //RL (HL)
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1283,6 +1341,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b011:begin //RR (HL)
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1293,6 +1352,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b100:begin //SLA (HL)
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1303,6 +1363,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b101:begin //SRA (HL)
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1313,6 +1374,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b110:begin //SLL (HL)
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1323,6 +1385,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b111:begin //SRL (HL)
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1333,6 +1396,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                 endcase
                             end
@@ -1399,6 +1463,7 @@ module decode(
                                 SIGNALS[M2][`ALU_OP] = `ALU_TEST_BASE + y; //this might not work
                                 //MR
                                 MSTATES[M2] = `MR;
+                                MAX_CNT = 1;
                             end
                             default:begin //BIT y, r[z]
                                 SIGNALS[M1][`A_MUX] = `A_MUX_Z;
@@ -1417,6 +1482,7 @@ module decode(
                                 //MR, MW
                                 MSTATES[M2] = `MR;
                                 MSTATES[M3] = `MW;
+                                MAX_CNT = 2;
                             end
                             default:begin //RES y, r[z]
                                 SIGNALS[M1][`A_MUX] = `A_MUX_Z;
@@ -1437,6 +1503,7 @@ module decode(
                                 //MR, MW
                                 MSTATES[M2] = `MR;
                                 MSTATES[M3] = `MW;
+                                MAX_CNT = 2;
                             end
                             default:begin //SET y, r[z]
                                 SIGNALS[M1][`A_MUX] = `A_MUX_Z;
@@ -1465,6 +1532,7 @@ module decode(
 
                                         //PR
                                         MSTATES[M2] = `PR;
+                                        MAX_CNT = 1;
                                     end
                                 endcase
                             end
@@ -1478,6 +1546,7 @@ module decode(
                                         SIGNALS[M1][`LD_MDR] = 1;
                                         //PW
                                         MSTATES[M2] = `PW;
+                                        MAX_CNT = 1;
                                     end
                                     default:begin //OUT (C), r[y]
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1487,6 +1556,7 @@ module decode(
                                         SIGNALS[M1][`LD_MDR] = 1;
                                         //PW
                                         MSTATES[M2] = `PW;
+                                        MAX_CNT = 1;
                                     end
                                 endcase
                             end
@@ -1503,6 +1573,7 @@ module decode(
                                         //IO, IO
                                         MSTATES[M2] = `IO;
                                         MSTATES[M3] = `IO;
+                                        MAX_CNT = 2;
                                     end
                                     1'b1:begin //ADC HL, rp[p]
                                         SIGNALS[M3][`A_MUX] = `A_MUX_Y;
@@ -1515,6 +1586,7 @@ module decode(
                                         //IO, IO
                                         MSTATES[M2] = `IO;
                                         MSTATES[M3] = `IO;
+                                        MAX_CNT = 2;
                                     end
                                 endcase
                             end
@@ -1533,6 +1605,7 @@ module decode(
                                         MSTATES[M3] = `ODH;
                                         MSTATES[M4] = `MWL;
                                         MSTATES[M5] = `MWH;
+                                        MAX_CNT = 4;
                                     end
                                     1'b1:begin //LD rp[p], (nn)
                                         SIGNALS[M3][`LD_MAR] = 1;
@@ -1547,6 +1620,7 @@ module decode(
                                         MSTATES[M3] = `ODH;
                                         MSTATES[M4] = `MRL;
                                         MSTATES[M5] = `MRH;
+                                        MAX_CNT = 4;
                                     end   
                                 endcase
                             end
@@ -1563,6 +1637,7 @@ module decode(
                                         //SRL, SRH
                                         MSTATES[M2] = `SRL;
                                         MSTATES[M3] = `SRH;
+                                        MAX_CNT = 2;
                                     end
                                     default:begin //RETN
                                         SIGNALS[M3][`LD_PC] = 1;
@@ -1571,6 +1646,7 @@ module decode(
                                         //SRL, SRH
                                         MSTATES[M2] = `SRL;
                                         MSTATES[M3] = `SRH;
+                                        MAX_CNT = 2;
                                     end
                                 endcase
                             end
@@ -1614,6 +1690,7 @@ module decode(
                                         //IO, MW
                                         MSTATES[M2] = `IO;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b101:begin //RLD
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1624,6 +1701,7 @@ module decode(
                                         //IO, MW
                                         MSTATES[M2] = `IO;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b110:begin //NOP
                                         //NOP
@@ -1661,6 +1739,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b001:begin //LDD
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1684,6 +1763,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b010:begin //LDIR
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1715,6 +1795,7 @@ module decode(
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                     3'b011:begin //LDDR
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1746,6 +1827,7 @@ module decode(
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                 endcase
                             end
@@ -1770,6 +1852,7 @@ module decode(
                                         //MR, MW, 
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
 
                                     3'b001:begin //CPD
@@ -1791,6 +1874,7 @@ module decode(
                                         //MR, MW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
 
                                     end
                                     3'b010:begin //CPIR
@@ -1820,6 +1904,7 @@ module decode(
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                     3'b011:begin //CPDR
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1848,6 +1933,7 @@ module decode(
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `MW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                 endcase
                             end
@@ -1870,6 +1956,7 @@ module decode(
                                         //PR, MW
                                         MSTATES[M2] = `PR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b001:begin //IND
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1887,6 +1974,7 @@ module decode(
                                         //PR, MW
                                         MSTATES[M2] = `PR;
                                         MSTATES[M3] = `MW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b010:begin //INIR
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1912,6 +2000,7 @@ module decode(
                                         MSTATES[M2] = `PR;
                                         MSTATES[M3] = `MW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                     3'b011:begin //INDR
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1937,6 +2026,7 @@ module decode(
                                         MSTATES[M2] = `PR;
                                         MSTATES[M3] = `MW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                 endcase
                             end
@@ -1958,6 +2048,7 @@ module decode(
                                         //MR, PW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `PW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b001:begin //OUTD
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1975,6 +2066,7 @@ module decode(
                                         //MR, PW
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `PW;
+                                        MAX_CNT = 2;
                                     end
                                     3'b010:begin //OTIR
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -1998,6 +2090,7 @@ module decode(
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `PW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                     3'b011:begin //OTDR
                                         SIGNALS[M1][`LD_MAR] = 1;
@@ -2021,6 +2114,7 @@ module decode(
                                         MSTATES[M2] = `MR;
                                         MSTATES[M3] = `PW;
                                         MSTATES[M4] = `IO;
+                                        MAX_CNT = 3;
                                     end
                                 endcase
                             end
@@ -2040,6 +2134,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b001:begin //RRC (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2047,6 +2142,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b010:begin //RL (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2054,6 +2150,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b011:begin //RR (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2061,6 +2158,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b100:begin //SLA (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2068,6 +2166,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b101:begin //SRA (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2075,6 +2174,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b110:begin //SLL (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2082,6 +2182,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b111:begin //SRL (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2089,6 +2190,7 @@ module decode(
                                         SIGNALS[M3][`LD_MDR] = 1;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                 endcase
                             end
@@ -2102,6 +2204,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b001:begin //RRC r, (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2111,6 +2214,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b010:begin //RL r, (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2120,6 +2224,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b011:begin //RR r, (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2129,6 +2234,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b100:begin //SLA r, (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2138,6 +2244,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b101:begin //SRA r, (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2147,6 +2254,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b110:begin //SLL r, (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2156,6 +2264,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                     3'b111:begin //SRL r, (IX + D)
                                         SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2165,6 +2274,7 @@ module decode(
                                         SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                         //MW
                                         MSTATES[M4] = `MW;
+                                        MAX_CNT = 3;
                                     end
                                 endcase
                             end
@@ -2182,6 +2292,7 @@ module decode(
                                 SIGNALS[M3][`LD_MDR] = 1;
                                 //MW
                                 MSTATES[M4] = `MW;
+                                MAX_CNT = 3;
                             end
                             default:begin //RES y, r[z], (IX + D)
                                 SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2192,6 +2303,7 @@ module decode(
                                 
                                 //MW
                                 MSTATES[M4] = `MW;
+                                MAX_CNT = 3;
                             end
                         endcase
                     end
@@ -2203,6 +2315,7 @@ module decode(
                                 SIGNALS[M3][`LD_MDR] = 1;
                                 //MW
                                 MSTATES[M4] = `MW;
+                                MAX_CNT = 3;
                             end
                             default:begin //SET y, r[z], (IX + D)
                                 SIGNALS[M3][`A_MUX] = `A_MUX_MDR;
@@ -2212,6 +2325,7 @@ module decode(
                                 SIGNALS[M3][`DR_MUX] = `DR_MUX_Z;
                                 //MW
                                 MSTATES[M4] = `MW;
+                                MAX_CNT = 3;
                             end
                         endcase
                     end
