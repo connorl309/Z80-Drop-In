@@ -351,11 +351,12 @@ M1
 // _S_FE - set to 1 on falling edgo of current cycle
 `define MREQ_R 13 //(Reset MREQ on falling T clock edge)
 `define MREQ_S_RE 14 //(Set MREQ on rising T clock edge, but only if WAIT is low)
-`define MREQ_S_FE 15 //(Reset MREQ on falling T clock edge)
+`define MREQ_S_FE 15 //(SET MREQ on falling T clock edge)
 `define IORQ_R 16 //(Reset IORQ on rising T clock edge)
-`define IORQ_S_RE 17 //(Set IORQ on rising T clock edge)
+`define IORQ_S_RE 17 //(Set IORQ on rising T clock edge, but only if WAIT is low)
 `define IORQ_S_FE 18 //(Set IORQ on falling T clock edge)
 `define RD_R 19 //(Reset RD on falling T clock edge)
+
 `define RD_S_RE 20 //(Set RD on rising T clock edge, but only if WAIT is low)
 `define RD_S_FE 21 //(Set RD on falling T clock edge)
 `define WR_R 22 //(Reset WR on falling T clock edge)
@@ -370,12 +371,20 @@ M1
 `define Gate_PC 28 //(PC to addrbus)
 `define Gate_MARL 29 //(MAR to addrbus)
 `define Gate_MARH 30 //(MAR + 1 to addrbus)
-`define Gate_SP 31 //(SP to addrbus)
-`define LD_IR 32 //(D[7:0] to IR on rising edge)
-`define LD_MDRL 33 //(D[7:0] to MDR[7:0] on falling edge)
-`define LD_MDRH 34 //(D[15:8] to MDR[15:8] on falling edge)
-`define LD_PC 35 //overrides LD_PC from exec, and loads PC with PC + 1
-`define LD_SP 36 //overrides LD_SP from exec, and loads SP with SP_MUX
-`define SP_MUX 37 //chooses between SP + 1 and SP - 1
-`define Gate_MDRL 38 //(Output MDR[7:0] to data line on falling edge, stop outputting on rising edge somehow)
-`define Gate_MDRH 39 //(Output MDR[15:8] to data line on falling edge, stop outputting on rising edge somehow)
+`define Gate_SP_INC 31 //(SP to addrbus)
+`define Gate_SP_DEC 32 //(SP - 1 to addrbus)
+`define LD_IR 33 //(D[7:0] to IR on rising edge)
+`define LD_MDRL 34 //(D[7:0] to MDR[7:0] on falling edge)
+`define LD_MDRH 35 //(D[15:8] to MDR[15:8] on falling edge)
+`define LD_PC 36 //overrides LD_PC from exec, and loads PC with PC + 1
+`define LD_SP 37 //overrides LD_SP from exec, and loads SP with SP_MUX
+`define SP_MUX 38 //chooses between SP + 1 and SP - 1
+`define Gate_MDRL 39 //(Output MDR[7:0] to data line on falling edge, stop outputting after lastT on rising edge)
+`define Gate_MDRH 40 //(Output MDR[15:8] to data line on falling edge, stop outputting on lastT on rising edge)
+`define MDR_TEMP 41 //swaps MDR and TEMP regs
+`define IFF1_R_TO_IFF2 42 //IFF1 --> IFF2, clear IFF1
+`define RD_R_RE 43 //(Reset RD on rising T clock edge)
+`define WR_R_RE 44 //(Reset WR on rising T clock edge)
+`define NMI_JANK 45 //signal for mstate machine to decode for NMI instead of using IR
+
+`define TSIGNALS 45
