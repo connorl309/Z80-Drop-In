@@ -150,6 +150,7 @@ module usequencer(
     wire [6:0] inst_next_m;
     wire next_IX_pref, next_IY_pref;
     wire no_int;
+    wire cc_met;
 
     reg [2:0] m_cycle_ctr = 3'b0;
     reg [2:0] max_m_cycles = 3'b0;
@@ -172,7 +173,7 @@ module usequencer(
 
     assign next_j_bits[2] = t_signals[`J2] | (t_signals[`COND1] & f_stall[1]);
     assign next_j_bits[1] = t_signals[`J1] | (t_signals[`COND1] &
-                                              (f_stall[0] | (cc_met & m_signals[`CONDSTALL]));
+                                              (f_stall[0] | (cc_met & m_signals[`CONDSTALL])));
     assign next_j_bits[0] = t_signals[`J0] | (t_signals[`COND0] & wait_latch);
 
     wire [6:0] next_m;
@@ -184,7 +185,7 @@ module usequencer(
 
 
     wire [2:0] condition;
-    wire cc_met;
+    
 
     // Chooses from y, y-4, NZ, and Z based on EXEC signals
     assign condition = m_signals[`MUX_EXEC_COND_1] ?
