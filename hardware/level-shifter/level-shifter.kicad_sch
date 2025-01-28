@@ -7399,6 +7399,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 85.09 287.02 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "0e86253e-2263-474f-8cbb-c349e7feb50d")
+		(property "Reference" "R5"
+			(at 85.09 292.1 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 85.09 289.56 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 85.09 287.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 85.09 287.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 85.09 287.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 85.09 287.02 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "088c4a96-405d-4ebc-bd73-5a26b8511f49")
+		)
+		(pin "1"
+			(uuid "f2d551ec-4657-4b98-9b33-82e69548f29c")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 162.56 120.65 0)
 		(unit 1)
@@ -7597,6 +7673,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 194.31 179.07 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "202681a8-9c04-4e85-b1c1-36408f43244d")
+		(property "Reference" "R9"
+			(at 194.31 184.15 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 194.31 181.61 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 194.31 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 194.31 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 194.31 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 194.31 179.07 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "95ccde50-bef1-46d9-ae0b-8bfd56133c63")
+		)
+		(pin "1"
+			(uuid "59d1b209-af7e-4cc3-a26b-80ec4eb8bdae")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "R9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Connector:Conn_01x10_Pin")
 		(at 426.72 147.32 0)
 		(unit 1)
@@ -7697,82 +7849,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 85.09 215.9 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2b2ebb53-2b82-4c12-a430-cd49e821c542")
-		(property "Reference" "R3"
-			(at 85.09 220.98 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 85.09 218.44 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 85.09 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 85.09 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 85.09 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C17414"
-			(at 85.09 215.9 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "005f98ac-d5a3-44bf-9890-dcbca1bae359")
-		)
-		(pin "1"
-			(uuid "6ac94846-663c-405e-877a-d61a6ce54722")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:+3V3")
 		(at 90.17 215.9 270)
 		(unit 1)
@@ -7834,82 +7910,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 85.09 287.02 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2e91509e-f70f-4c99-b686-54afd9797d35")
-		(property "Reference" "R5"
-			(at 85.09 292.1 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 85.09 289.56 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 85.09 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 85.09 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 85.09 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C17414"
-			(at 85.09 287.02 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "022679ae-a98e-4419-8779-8a7a71194775")
-		)
-		(pin "1"
-			(uuid "e8c7c496-83b5-45fa-9cfa-c0ad2a6fbcf0")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -8115,6 +8115,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 194.31 251.46 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "3b44e517-5696-462a-90b4-efbecdd12005")
+		(property "Reference" "R7"
+			(at 194.31 256.54 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 194.31 254 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 194.31 251.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 194.31 251.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 194.31 251.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 194.31 251.46 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c3ef6341-4e01-41ee-b299-93a4e862d9db")
+		)
+		(pin "1"
+			(uuid "3fe1deef-67cf-440a-b97c-c70471f32f28")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "R7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 90.17 138.43 270)
 		(unit 1)
@@ -8292,6 +8368,82 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "U5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 194.31 215.9 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "416b79ab-5b3c-42ca-9b38-ef774937a650")
+		(property "Reference" "R8"
+			(at 194.31 220.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 194.31 218.44 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 194.31 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 194.31 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 194.31 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 194.31 215.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "86237fe7-8ee7-4c87-a5d8-4d3d7a9a9fd3")
+		)
+		(pin "1"
+			(uuid "f7b33277-a168-4db9-af82-764a39ab24a8")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -9464,6 +9616,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 85.09 251.46 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "70032d58-2110-4b2c-b456-45e7c952ea1f")
+		(property "Reference" "R4"
+			(at 85.09 256.54 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 85.09 254 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 85.09 251.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 85.09 251.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 85.09 251.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 85.09 251.46 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "06130ae6-c5b0-429c-9d27-38f311eb0c18")
+		)
+		(pin "1"
+			(uuid "d97327a4-3401-4384-9a85-0d0de2e51289")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 52.07 254 0)
 		(unit 1)
@@ -9596,158 +9824,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R_Small")
-		(at 194.31 179.07 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "72e2a6ca-fe45-4e6f-b61e-90e46634fa34")
-		(property "Reference" "R7"
-			(at 194.31 184.15 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 194.31 181.61 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 194.31 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 194.31 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 194.31 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C17414"
-			(at 194.31 179.07 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "a8497065-1e63-4e18-be20-9f8eaa73b1de")
-		)
-		(pin "1"
-			(uuid "b2e82817-9a98-4ffa-ba82-c4cadcd27713")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 194.31 138.43 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "762063de-aa80-4e96-8167-c7604c53751d")
-		(property "Reference" "R6"
-			(at 194.31 143.51 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 194.31 140.97 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 194.31 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 194.31 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 194.31 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C17414"
-			(at 194.31 138.43 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "ee239b82-ba5b-4812-b525-c97e1771dd5e")
-		)
-		(pin "1"
-			(uuid "bfe9b481-deac-4459-8ce8-f29cd5d8f820")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Regulator_Linear:TLV75533PDBV")
 		(at 317.5 261.62 0)
 		(unit 1)
@@ -9851,7 +9927,7 @@
 				)
 			)
 		)
-		(property "Value" "10k"
+		(property "Value" "100k"
 			(at 85.09 140.97 90)
 			(effects
 				(font
@@ -9886,7 +9962,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C17414"
+		(property "MPN" "ERJ-UP6D6202V "
 			(at 85.09 138.43 90)
 			(effects
 				(font
@@ -9905,82 +9981,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 194.31 287.02 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "856cb6fb-6343-4c2b-9d2e-6fb3e4de441e")
-		(property "Reference" "R10"
-			(at 194.31 292.1 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 194.31 289.56 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 194.31 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 194.31 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 194.31 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C17414"
-			(at 194.31 287.02 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b7a90d0a-743a-41b5-873e-da2c832d6db6")
-		)
-		(pin "1"
-			(uuid "9ec9821a-3711-4773-b4ab-9446c92a7007")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -10187,23 +10187,23 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 85.09 179.07 270)
+		(at 194.31 138.43 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "8d25a31c-ab0d-426d-84c8-16e9882bf460")
-		(property "Reference" "R2"
-			(at 85.09 184.15 90)
+		(uuid "91449b8a-8392-47ba-b6c1-81554dfa336e")
+		(property "Reference" "R10"
+			(at 194.31 143.51 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "10k"
-			(at 85.09 181.61 90)
+		(property "Value" "100k"
+			(at 194.31 140.97 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10211,7 +10211,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 85.09 179.07 0)
+			(at 194.31 138.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10220,7 +10220,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 85.09 179.07 0)
+			(at 194.31 138.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10229,7 +10229,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 85.09 179.07 0)
+			(at 194.31 138.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10237,8 +10237,8 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C17414"
-			(at 85.09 179.07 90)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 194.31 138.43 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10247,15 +10247,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "cd5ad2a6-e802-40f7-9dd2-cff05bd4b114")
+			(uuid "d717c8ae-e300-4a2a-b51c-3905a4add9a4")
 		)
 		(pin "1"
-			(uuid "40447087-ea6c-4411-a4a1-1553fddcd383")
+			(uuid "ad542b3b-61e9-492d-b256-8cae24efca48")
 		)
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R2")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -10713,23 +10713,23 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 194.31 215.9 270)
+		(at 194.31 287.02 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a86c11b2-b198-4649-bf8a-3d6f7cb7fa82")
-		(property "Reference" "R8"
-			(at 194.31 220.98 90)
+		(uuid "a8aa5f11-01da-4616-89f9-bf8e3b2abd23")
+		(property "Reference" "R6"
+			(at 194.31 292.1 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "10k"
-			(at 194.31 218.44 90)
+		(property "Value" "100k"
+			(at 194.31 289.56 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10737,7 +10737,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 194.31 215.9 0)
+			(at 194.31 287.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10746,7 +10746,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 194.31 215.9 0)
+			(at 194.31 287.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10755,7 +10755,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 194.31 215.9 0)
+			(at 194.31 287.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10763,8 +10763,8 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C17414"
-			(at 194.31 215.9 90)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 194.31 287.02 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10773,15 +10773,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "1ef8ea54-eec5-4e3b-bb43-581fcfbc74d4")
+			(uuid "b804a478-02c3-443f-967f-334afdd95ab7")
 		)
 		(pin "1"
-			(uuid "0c2fa82d-4945-412d-82ef-8868c0e287fd")
+			(uuid "3d125f63-dddc-4cfa-8e55-65cf8213328b")
 		)
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R8")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -11023,82 +11023,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "U1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 85.09 251.46 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "b7cf1d11-6cf7-41f9-949c-e93b166d9d7a")
-		(property "Reference" "R4"
-			(at 85.09 256.54 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 85.09 254 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 85.09 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 85.09 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 85.09 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C17414"
-			(at 85.09 251.46 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "9fd16bc6-0e7d-44d9-9b14-b5a8aea72deb")
-		)
-		(pin "1"
-			(uuid "dddd50cd-b846-43f2-be1b-9168424e85ce")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -11847,6 +11771,82 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R_Small")
+		(at 85.09 215.9 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d3651446-e2f8-47aa-862c-3b3e0ff8453b")
+		(property "Reference" "R3"
+			(at 85.09 220.98 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 85.09 218.44 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 85.09 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 85.09 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 85.09 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 85.09 215.9 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "bee7ac94-1d5e-44fb-914c-101a31e60b03")
+		)
+		(pin "1"
+			(uuid "d7052913-fcb6-4c4b-ac4d-4430abea8170")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3V3")
 		(at 90.17 287.02 270)
 		(unit 1)
@@ -12213,82 +12213,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR011")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 194.31 251.46 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "d8ee8ccf-fcc4-4f05-8a19-3d51f2ef9617")
-		(property "Reference" "R9"
-			(at 194.31 256.54 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10k"
-			(at 194.31 254 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 194.31 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 194.31 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 194.31 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C17414"
-			(at 194.31 251.46 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "20b68b2a-6806-4311-9d8f-815b922f79ff")
-		)
-		(pin "1"
-			(uuid "17bbbd4e-78d9-42fb-8001-5d40a8fb0335")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -12710,6 +12634,82 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR045")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 85.09 179.07 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "e6372e20-1ca6-4d47-af25-1a0af487ef83")
+		(property "Reference" "R2"
+			(at 85.09 184.15 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 85.09 181.61 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 85.09 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 85.09 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 85.09 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "ERJ-UP6D6202V "
+			(at 85.09 179.07 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "6b3cc7a3-65d2-4547-bc56-6bca8aab9691")
+		)
+		(pin "1"
+			(uuid "10862da8-34b7-4e1b-8186-7511f00edfce")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "R2")
 					(unit 1)
 				)
 			)

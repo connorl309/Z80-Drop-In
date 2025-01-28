@@ -1,9 +1,0 @@
-Designator,Comment,,Footprint,Qty,DNP,LCSC Part Number
-"C1,C2",10u,,Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder,2,,C1713
-"J1,J2,J3,J4",Conn_01x10_Socket,,Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical,4,,C57369
-"J5,J6,J7,J8",Conn_01x10_Pin,,Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical,4,,C57369
-J9,USB_C_Receptacle_PowerOnly_6P,,Connector_USB:USB_C_Receptacle_GCT_USB4125-xx-x_6P_TopMnt_Horizontal,1,,C2987385
-"R1,R2,R3,R4,R5,R6,R7,R8,R9,R10",10k,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,10,,C17414
-"R11,R12",5k1,,Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder,2,,C26023
-"U1,U2,U3,U4,U5,U6,U7,U8,U9,U10",~,,hardware:NXB0104_XQFN12,10,,C551618
-U11,TLV75533PDBV,,Package_TO_SOT_SMD:SOT-23-5,1,,C404027
