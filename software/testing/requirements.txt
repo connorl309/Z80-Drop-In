@@ -1,3 +1,2 @@
 pyserial
 numpy
-matplotlib # use Animations for realtime plotting
