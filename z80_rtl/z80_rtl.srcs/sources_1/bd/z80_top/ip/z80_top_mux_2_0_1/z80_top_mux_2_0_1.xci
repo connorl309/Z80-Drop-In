@@ -2,7 +2,6 @@
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
     "xci_name": "z80_top_mux_2_0_1",
-    "cell_name": "ALUA_MUX",
     "component_reference": "xilinx.com:module_ref:mux_2:1.0",
     "ip_revision": "1",
     "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_2_0_1",

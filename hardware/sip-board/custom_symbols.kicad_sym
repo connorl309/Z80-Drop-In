@@ -49,6 +49,14 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "NXB0104GU12X"
+			(at 0 0 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(symbol "NXB0104_XQFN12_0_1"
 			(rectangle
 				(start -5.08 7.62)

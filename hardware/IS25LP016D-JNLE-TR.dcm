@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP IS25LP016D-JNLE-TR
+D Flash Memory 16M QSPI, 8-pin SOP 150mil ET
+K
+F http://www.issi.com/WW/pdf/25LP-WP016D.pdf
+$ENDCMP
+#
+#End Doc Library
