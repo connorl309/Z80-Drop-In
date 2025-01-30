@@ -270,7 +270,7 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MDR_MUX `MDR_MUX_1:`MDR_MUX_0
 `define SEXT_MDR 48 //output of MDR into B_MUX is sext(MDR[7:0])
 
-`define CS_BITS 48
+`define CS_BITS 49
 
 `define OCF 6'd0
 `define MR 6'd1
@@ -341,7 +341,7 @@ M1
 
 `define CS_SET 9
 
-`define M1 10
+`define M1_HIGH 10
 `define RFSH 11
 `define BUSACK 12
 
@@ -376,7 +376,7 @@ M1
 `define LD_IR 33 //(D[7:0] to IR on rising edge)
 `define LD_MDRL 34 //(D[7:0] to MDR[7:0] on falling edge)
 `define LD_MDRH 35 //(D[15:8] to MDR[15:8] on falling edge)
-`define LD_PC 36 //overrides LD_PC from exec, and loads PC with PC + 1
+`define INC_PC 36 //overrides LD_PC from exec, and loads PC with PC + 1
 `define LD_SP 37 //overrides LD_SP from exec, and loads SP with SP_MUX
 `define SP_MUX 38 //chooses between SP + 1 and SP - 1
 `define Gate_MDRL 39 //(Output MDR[7:0] to data line on falling edge, stop outputting after lastT on rising edge)

@@ -11,11 +11,11 @@ module fsm(
         case(STATE)
             7'd0: begin
                 // state 0
-                //gatepc, mreqr, rdr, m1
+                //gatepc, mreqr, rdr, M1_HIGH
                 SIGNALS[`Gate_PC] = 1;
                 SIGNALS[`MREQ_R] = 1;
                 SIGNALS[`RD_R] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 //j = 30
                 SIGNALS[`JBITS] = 7'd30;
             end
@@ -211,9 +211,9 @@ module fsm(
                 SIGNALS[`JBITS] = 7'd24;
             end
             7'd25: begin
-                // state 25 - gatepc, ld_pc, ld mdrh, exec, mreqsfe, rdsfe, lastt
+                // state 25 - gatepc, INC_PC, ld mdrh, exec, mreqsfe, rdsfe, lastt
                 SIGNALS[`Gate_PC] = 1;
-                SIGNALS[`LD_PC] = 1;
+                SIGNALS[`INC_PC] = 1;
                 SIGNALS[`LD_MDRH] = 1;
                 SIGNALS[`EXEC] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
@@ -242,19 +242,19 @@ module fsm(
             7'd29: begin
                 // state 29 - gate pc, ldpc, ldmdrl, exec, mreqsfe, rdsfe, lastt
                 SIGNALS[`Gate_PC] = 1;
-                SIGNALS[`LD_PC] = 1;
+                SIGNALS[`INC_PC] = 1;
                 SIGNALS[`LD_MDRL] = 1;
                 SIGNALS[`EXEC] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`RD_S_FE] = 1;
             end
             7'd30: begin
-                // state 30 - mreqsre, rdsre, ldir, gatepc, m1, wait
+                // state 30 - mreqsre, rdsre, ldir, gatepc, M1_HIGH, wait
                 SIGNALS[`MREQ_S_RE] = 1;
                 SIGNALS[`RD_S_RE] = 1;
                 SIGNALS[`LD_IR] = 1;
                 SIGNALS[`Gate_PC] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 SIGNALS[`COND0] = 1; //check for wait 
                 //j = 30
                 SIGNALS[`JBITS] = 7'd30;
@@ -273,7 +273,7 @@ module fsm(
                 SIGNALS[`RFSH] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`EXEC] = 1;
-                SIGNALS[`LD_PC] = 1;
+                SIGNALS[`INC_PC] = 1;
                 SIGNALS[`LAST_T] = 1;
             end
             7'd33: begin
@@ -281,7 +281,7 @@ module fsm(
                 SIGNALS[`RFSH] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`EXEC] = 1;
-                SIGNALS[`LD_PC] = 1;
+                SIGNALS[`INC_PC] = 1;
                 SIGNALS[`LAST_T] = 1;
             end
             7'd34: begin
@@ -291,9 +291,9 @@ module fsm(
                 SIGNALS[`JBITS] = 7'd32;
             end
             7'd35: begin
-                // state 35 - gatepc, m1, mreqsre, rdsre
+                // state 35 - gatepc, M1_HIGH, mreqsre, rdsre
                 SIGNALS[`Gate_PC] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 SIGNALS[`MREQ_S_RE] = 1;
                 SIGNALS[`RD_S_RE] = 1;
                 //j = 45
@@ -420,25 +420,25 @@ module fsm(
                 SIGNALS[`LAST_T] = 1;
             end
             7'd52: begin
-                // state 52 - gatepc, m1
+                // state 52 - gatepc, M1_HIGH
                 SIGNALS[`Gate_PC] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 //j = 53
                 SIGNALS[`JBITS] = 7'd53;
             end
             7'd53: begin
-                // state 53 - gatepc, iorqsfe, m1
+                // state 53 - gatepc, iorqsfe, M1_HIGH
                 SIGNALS[`Gate_PC] = 1;
                 SIGNALS[`IORQ_S_FE] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 //j = 54
                 SIGNALS[`JBITS] = 7'd54;
             end
             7'd54: begin
-                // state 54 - gatepc, iorqrre, M1, ldir, wait
+                // state 54 - gatepc, iorqrre, M1_HIGH, ldir, wait
                 SIGNALS[`Gate_PC] = 1;
                 SIGNALS[`IORQ_R] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 SIGNALS[`LD_IR] = 1;
                 SIGNALS[`COND0] = 1; //check for wait
                 //j = 54
@@ -547,9 +547,9 @@ module fsm(
                 SIGNALS[`JBITS] = 7'd66;
             end
             7'd69: begin
-                // state 69 - gatepc, m1, halt_r
+                // state 69 - gatepc, M1_HIGH, halt_r
                 SIGNALS[`Gate_PC] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 SIGNALS[`HALT_R] = 1;
                 //j = 52
                 SIGNALS[`JBITS] = 7'd52;
@@ -560,9 +560,9 @@ module fsm(
                 SIGNALS[`LAST_T] = 1;
             end
             7'd71: begin
-                // state 71 - gatepc, m1, rdr, mreqr, iff12iff2, haltr
+                // state 71 - gatepc, M1_HIGH, rdr, mreqr, iff12iff2, haltr
                 SIGNALS[`Gate_PC] = 1;
-                SIGNALS[`M1] = 1;
+                SIGNALS[`M1_HIGH] = 1;
                 SIGNALS[`RD_R] = 1;
                 SIGNALS[`MREQ_R] = 1;
                 SIGNALS[`IFF1_R_TO_IFF2] = 1;
