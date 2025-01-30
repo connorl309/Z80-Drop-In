@@ -3651,7 +3651,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "LTC3569EUDC#TRPBF"
+		(property "MPN" "LTC3569EUDC#TRPBF"
 			(at 43.18 -726.34 0)
 			(effects
 				(font

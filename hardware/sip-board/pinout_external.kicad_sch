@@ -5110,6 +5110,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "NXB0104GU12X"
+			(at 31.75 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "5"
 			(uuid "30867f00-1c0d-48ff-a853-cbee69e5591e")
 		)
@@ -5609,6 +5618,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "NXB0104GU12X"
+			(at 118.11 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "5"
 			(uuid "7e831c42-8f80-4058-8ee7-1732578910a0")
 		)
@@ -5899,6 +5917,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 30.48 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "NXB0104GU12X"
 			(at 30.48 110.49 0)
 			(effects
 				(font
@@ -6229,6 +6256,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "NXB0104GU12X"
+			(at 119.38 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "5"
 			(uuid "5d5eef31-6c7f-48dc-ae4f-4cdddf68c264")
 		)
@@ -6319,6 +6355,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 121.92 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "NXB0104GU12X"
 			(at 121.92 41.91 0)
 			(effects
 				(font
@@ -7088,6 +7133,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "NXB0104GU12X"
+			(at 120.65 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "5"
 			(uuid "5eba573d-cdd7-4e15-929b-633c1605dd48")
 		)
@@ -7451,6 +7505,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "NXB0104GU12X"
+			(at 31.75 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "5"
 			(uuid "3b1c018f-9f7f-4b90-a6ab-958a53299b64")
 		)
@@ -7607,6 +7670,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 33.02 41.91 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "NXB0104GU12X"
 			(at 33.02 41.91 0)
 			(effects
 				(font
@@ -9181,6 +9253,15 @@
 				(hide yes)
 			)
 		)
+		(property "MPN" "NXB0104GU12X"
+			(at 30.48 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "5"
 			(uuid "1a9e49c1-6bb4-4539-88a9-2a12c195c455")
 		)
@@ -9336,6 +9417,15 @@
 			)
 		)
 		(property "Description" ""
+			(at 116.84 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "NXB0104GU12X"
 			(at 116.84 179.07 0)
 			(effects
 				(font

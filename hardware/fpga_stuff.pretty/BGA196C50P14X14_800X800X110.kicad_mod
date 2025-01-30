@@ -129,26 +129,6 @@
 		(uuid "1d150fdc-1f60-4f0a-bb52-6919e53eff93")
 	)
 	(fp_line
-		(start -5.05 -5.05)
-		(end 5.05 -5.05)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "Dwgs.User")
-		(uuid "8e6621f4-2cac-49a7-82e7-c986c0ae8a45")
-	)
-	(fp_line
-		(start -5.05 5.05)
-		(end -5.05 -5.05)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "Dwgs.User")
-		(uuid "4f68759f-7d72-4f31-a34e-7acc9298f216")
-	)
-	(fp_line
 		(start -4 -4)
 		(end 4 -4)
 		(stroke
@@ -197,26 +177,6 @@
 		)
 		(layer "Dwgs.User")
 		(uuid "c90aad2d-bfc4-4ddd-8108-d36f09b23292")
-	)
-	(fp_line
-		(start 5.05 -5.05)
-		(end 5.05 5.05)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "Dwgs.User")
-		(uuid "e153674e-727b-44d8-ac11-65243cbf6c5a")
-	)
-	(fp_line
-		(start 5.05 5.05)
-		(end -5.05 5.05)
-		(stroke
-			(width 0.05)
-			(type solid)
-		)
-		(layer "Dwgs.User")
-		(uuid "df17601a-eff1-451f-bdc7-b134b012c7b8")
 	)
 	(pad "A1" smd circle
 		(at -3.25 -3.25 90)
