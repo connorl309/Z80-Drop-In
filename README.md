@@ -23,6 +23,8 @@ The two major components of this project is the processor design and the hardwar
 
 The hardware design is also split into two primary components: the devhat translation boards, used to level-shift our development boards 3.3V signals to the Z80 5V level and vice versa, and the System-in-Package board, which is the final goal of the project. The SiP board features the Spartan-7 FPGA, control hardware, QSPI flash memory, and other supporting circuitry in the size of the original Z80 package. Our hope is that this final board will be a true drop-in replacement for Z80 processors.
 
+The SiP board can be found in [hardware/sip-board](hardware/sip-board/), and the level shifter board can be found in [hardware/level-shifter/](hardware/level-shifter/). Component files are kind of messy, but both Kicad Projects should all be using RELATIVE paths for custom symbols and footprints.
+
 ## Tools
 Given the nature of an FPGA-based processor emulator, we opted to use as many industry-standard tools as possible. Our RTL is written in Verilog under the Vivado Design Suite, targeting a Spartan-7 **XC7S15** FPGA for final project completion. We are hoping to acquire physical testing equipment to validate circuit boards. Our hardware is designed using KiCad, as the University does not provide licenses for software such as Altium or Allegro.
 
