@@ -1,4 +1,4 @@
-23128459268030495
+23137160419167523
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -94745,9 +94745,44 @@ Integrated Circuit
 196
 196
 hardware
-NXB0104_XQFN12
+EVQP2R02W
+EVQ-P2R02W-3
+Switch
+0
+5
+5
+hardware
+MT25QL512ABB1EW9-0SIT
+W-PDFN-8 (MLP8) 8MM X 6MM
+Integrated Circuit
+0
+9
+9
+hardware
+NXB0104GU12X
+NXB0104GU12X
+Integrated Circuit
+0
+12
+12
+hardware
+QFN50P300X400X80-21N-D
+UDC Package 20-Lead Plastic QFN (3mm × 4mm)
+Integrated Circuit
+0
+21
+21
+hardware
+TAG_TC2030-IDC-NL
 
 
 0
-13
-12
+6
+6
+hardware
+WE-3-SPST-DIP
+416131160803-3
+Switch
+0
+6
+6

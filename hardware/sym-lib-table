@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "XC7S25-2CSGA225I")(type "KiCad")(uri "${KIPRJMOD}/XC7S25-2CSGA225I.kicad_sym")(options "")(descr ""))
+)
