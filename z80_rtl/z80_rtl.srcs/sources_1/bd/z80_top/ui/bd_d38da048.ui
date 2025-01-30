@@ -1,62 +1,115 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"0.780298",
-   "Default View_TopLeft":"754,-386",
+   "Default View_ScaleFactor":"0.466233",
+   "Default View_TopLeft":"-607,-332",
    "ExpandedHierarchyInLayout":"",
    "comment_0":"IR",
    "comment_1":"Y << 3
 ",
-   "commentid":"comment_0|comment_1|",
+   "comment_2":"r[y]
+r[z]
+HL
+BC
+DE
+A
+I
+R
+PC
+MDR
+ZERO
+SR1",
+   "comment_3":"MDR
+r[z]
+HL
+sext(-2)",
+   "comment_4":"r[y]
+MDR
+MDR[7:0]`A
+HL
+BC
+ALU
+",
+   "comment_5":"LSB is in0",
+   "comment_6":"ALU
+HL
+r[z]",
+   "commentid":"comment_0|comment_1|comment_2|comment_3|comment_4|comment_5|comment_6|",
    "font_comment_0":"13",
    "font_comment_1":"10",
+   "font_comment_2":"9",
+   "font_comment_3":"12",
+   "font_comment_4":"12",
+   "font_comment_5":"9",
+   "font_comment_6":"9",
    "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port port-id_CLK -pg 1 -lvl 0 -x -30 -y 180 -defaultsOSRD
-preplace portBus A -pg 1 -lvl 12 -x 3100 -y 390 -defaultsOSRD
-preplace portBus D_OUT -pg 1 -lvl 12 -x 3100 -y 550 -defaultsOSRD
-preplace portBus D_IN -pg 1 -lvl 12 -x 3100 -y 230 -defaultsOSRD -right
-preplace inst PC -pg 1 -lvl 3 -x 560 -y 520 -defaultsOSRD
-preplace inst MARMUX -pg 1 -lvl 8 -x 2210 -y 500 -defaultsOSRD
-preplace inst ALUA_MUX -pg 1 -lvl 5 -x 1180 -y 340 -defaultsOSRD
-preplace inst ADDRMUX -pg 1 -lvl 10 -x 2730 -y 390 -defaultsOSRD
-preplace inst MDRMUX -pg 1 -lvl 9 -x 2470 -y 310 -defaultsOSRD
-preplace inst ALU_0 -pg 1 -lvl 6 -x 1550 -y 410 -defaultsOSRD
-preplace inst reg_file_0 -pg 1 -lvl 7 -x 1910 -y 130 -defaultsOSRD
-preplace inst ALUB_MUX -pg 1 -lvl 5 -x 1180 -y 500 -defaultsOSRD
-preplace inst MAR -pg 1 -lvl 9 -x 2470 -y 490 -defaultsOSRD
-preplace inst MDR -pg 1 -lvl 10 -x 2730 -y 550 -defaultsOSRD
-preplace inst add_1 -pg 1 -lvl 1 -x 90 -y 290 -defaultsOSRD
-preplace inst sub_2 -pg 1 -lvl 1 -x 90 -y 170 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 2 -x 340 -y 550 -defaultsOSRD
-preplace inst PCMUX -pg 1 -lvl 2 -x 340 -y -80 -defaultsOSRD
-preplace inst decode_0 -pg 1 -lvl 4 -x 830 -y -380 -defaultsOSRD
-preplace inst control_signal_slicer_0 -pg 1 -lvl 5 -x 1180 -y -1220 -defaultsOSRD
-preplace netloc ADDRMUX_out 1 10 2 NJ 390 N
-preplace netloc ALUA_MUX_out 1 5 1 1350 340n
-preplace netloc ALUB_MUX_out 1 5 1 1370 410n
-preplace netloc ALU_0_ALU_OUT 1 1 9 230 110 NJ 110 NJ 110 N 110 NJ 110 1730 390 2100 390 2350 390 NJ
-preplace netloc CLK_1 1 0 10 -10 100 NJ 100 460 420 NJ 420 N 420 1360 510 1750 590 NJ 590 2360 590 2610
-preplace netloc D_IN_1 1 8 4 2360 230 NJ 230 NJ 230 N
-preplace netloc MARMUX_out 1 8 1 N 500
-preplace netloc MAR_Q 1 9 1 2590 370n
-preplace netloc MDRMUX1_out 1 9 1 2600 310n
-preplace netloc MDR_Q 1 1 11 210 120 N 120 N 120 1000 250 NJ 250 1740J 270 2090 400 NJ 400 2580J 640 2840 550 N
-preplace netloc PC_Q 1 0 5 0 360 NJ 360 NJ 360 660 500 N
-preplace netloc add_1_S 1 1 1 180 -100n
-preplace netloc control_signal_slicer_0_PCMUX 1 1 5 220 -510 NJ -510 NJ -510 NJ -510 1350
-preplace netloc decode_0_SIGNALS_PORT 1 4 1 1000 -1220n
-preplace netloc reg_file_0_SR1_OUT 1 4 4 1010 580 NJ 580 NJ 580 2080
-preplace netloc reg_file_0_SR2_OUT 1 4 4 1010 260 NJ 260 NJ 260 2070
-preplace netloc sub_2_S 1 1 1 190 -80n
-preplace netloc xlconstant_0_dout 1 2 8 460 610 NJ 610 N 610 NJ 610 NJ 610 NJ 610 2350 580 NJ
-preplace cgraphic comment_1 place left 438 -66 textcolor 4 linecolor 3 linewidth 2
-preplace cgraphic comment_0 place left 441 -129 textcolor 4 linecolor 3 linewidth 2
-levelinfo -pg 1 -30 90 340 560 830 1180 1550 1910 2210 2470 2730 2950 3100
-pagesize -pg 1 -db -bbox -sgen -110 -1630 3240 660
+preplace port port-id_CLK -pg 1 -lvl 0 -x -530 -y 180 -defaultsOSRD
+preplace portBus A -pg 1 -lvl 13 -x 3180 -y 390 -defaultsOSRD
+preplace portBus D_OUT -pg 1 -lvl 13 -x 3180 -y 550 -defaultsOSRD
+preplace portBus D_IN -pg 1 -lvl 13 -x 3180 -y 230 -defaultsOSRD -right
+preplace inst PC -pg 1 -lvl 4 -x 590 -y 520 -defaultsOSRD
+preplace inst ADDRMUX -pg 1 -lvl 11 -x 2810 -y 390 -defaultsOSRD
+preplace inst ALU_0 -pg 1 -lvl 8 -x 1860 -y 410 -defaultsOSRD
+preplace inst reg_file_0 -pg 1 -lvl 9 -x 2240 -y 130 -defaultsOSRD
+preplace inst MAR -pg 1 -lvl 10 -x 2560 -y 490 -defaultsOSRD
+preplace inst MDR -pg 1 -lvl 11 -x 2810 -y 550 -defaultsOSRD
+preplace inst add_1 -pg 1 -lvl 2 -x 80 -y 330 -defaultsOSRD
+preplace inst sub_2 -pg 1 -lvl 2 -x 80 -y 210 -defaultsOSRD
+preplace inst PCMUX -pg 1 -lvl 3 -x 350 -y -80 -defaultsOSRD
+preplace inst decode_0 -pg 1 -lvl 5 -x 870 -y -80 -defaultsOSRD
+preplace inst control_signal_slicer_0 -pg 1 -lvl 1 -x -290 -y 990 -defaultsOSRD
+preplace inst IR -pg 1 -lvl 5 -x 870 -y 250 -defaultsOSRD
+preplace inst A_MUX -pg 1 -lvl 6 -x 1210 -y 770 -defaultsOSRD
+preplace inst ZERO -pg 1 -lvl 5 -x 870 -y 790 -defaultsOSRD
+preplace inst B_MUX -pg 1 -lvl 8 -x 1860 -y 680 -defaultsOSRD
+preplace inst NEG_2_16BIT -pg 1 -lvl 7 -x 1530 -y 680 -defaultsOSRD
+preplace inst MARMUX -pg 1 -lvl 10 -x 2560 -y 920 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 9 -x 2240 -y 910 -defaultsOSRD
+preplace inst MDRMUX -pg 1 -lvl 12 -x 3050 -y 910 -defaultsOSRD
+preplace netloc ADDRMUX_out 1 11 2 NJ 390 N
+preplace netloc ALU_0_ALU_OUT 1 2 10 230 50 NJ 50 NJ 50 N 50 NJ 50 N 50 2040 410 2440 390 2690J 310 2930
+preplace netloc CLK_1 1 0 11 N 180 -70 410 NJ 410 480 340 700J 340 N 340 N 340 1660 310 2080 400 2420J 400 2670
+preplace netloc MAR_Q 1 10 1 2700 370n
+preplace netloc MDR_Q 1 2 11 240 850 N 850 N 850 1090 990 NJ 990 1660 840 2080J 840 2430 300 NJ 300 2920 550 N
+preplace netloc PC_Q 1 1 5 -10 400 NJ 400 NJ 400 690 610 1090
+preplace netloc add_1_S 1 2 1 170 -100n
+preplace netloc control_signal_slicer_0_PCMUX 1 1 2 -140 -20 N
+preplace netloc decode_0_SIGNALS_PORT 1 0 6 -440 620 N 620 N 620 N 620 N 620 1040
+preplace netloc sub_2_S 1 2 1 180 -80n
+preplace netloc control_signal_slicer_0_LD_IR 1 1 4 -70 540 180 280 N 280 N
+preplace netloc control_signal_slicer_0_LD_PC 1 1 3 -100 550 N 550 N
+preplace netloc control_signal_slicer_0_LD_MAR 1 1 9 -120 430 N 430 N 430 N 430 N 430 NJ 430 1610 520 NJ 520 NJ
+preplace netloc control_signal_slicer_0_LD_MDR 1 1 10 -110 530 N 530 490 410 N 410 N 410 NJ 410 1620 580 NJ 580 NJ 580 N
+preplace netloc ZERO_dout 1 5 1 1070 790n
+preplace netloc mux_16_0_out 1 6 2 1330 390 N
+preplace netloc control_signal_slicer_0_A_MUX 1 1 5 N 700 N 700 N 700 N 700 1080
+preplace netloc NEG_2_16BIT_dout 1 7 1 1610 680n
+preplace netloc control_signal_slicer_0_B_MUX 1 1 7 -140 710 N 710 N 710 N 710 1050 1020 1340 770 1680
+preplace netloc B_MUX_out 1 7 2 1680 510 2040
+preplace netloc control_signal_slicer_0_ALU_OP 1 1 7 -130 420 N 420 N 420 N 420 N 420 N 420 1630
+preplace netloc xlconcat_0_dout 1 9 1 2450 880n
+preplace netloc MARMUX_out 1 9 2 2450 590 2670
+preplace netloc MDRMUX_out 1 10 3 2700 640 NJ 640 3160
+preplace netloc control_signal_slicer_0_MDR_MUX 1 1 11 -80 730 N 730 N 730 N 730 1040 1010 1350J 780 NJ 780 NJ 780 NJ 780 NJ 780 2920
+preplace netloc control_signal_slicer_0_MAR_MUX 1 1 9 -90 720 N 720 N 720 N 720 1060 1000 NJ 1000 NJ 1000 NJ 1000 N
+preplace cgraphic comment_3 place bot 1850 -712 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_2 place bot 1208 -692 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_1 place left 944 -67 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_0 place left 939 -129 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_6 place right 21 38 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_5 place bot 2208 -453 textcolor 4 linecolor 3 linewidth 2
+preplace cgraphic comment_4 place bot 2548 -495 textcolor 4 linecolor 3 linewidth 2
+levelinfo -pg 1 -530 -290 80 350 590 870 1210 1530 1860 2240 2560 2810 3050 3180
+pagesize -pg 1 -db -bbox -sgen -610 -1690 3320 1360
 "
 }
 0
 {
    "/comment_0":"comment_0",
-   "/comment_1":"comment_1"
+   "/comment_1":"comment_1",
+   "/comment_2":"comment_2",
+   "/comment_3":"comment_3",
+   "/comment_4":"comment_4",
+   "/comment_5":"comment_5",
+   "/comment_6":"comment_6"
 }

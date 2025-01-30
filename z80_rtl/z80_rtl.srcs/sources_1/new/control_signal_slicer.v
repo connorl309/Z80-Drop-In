@@ -24,14 +24,12 @@
 module control_signal_slicer(
     input [284:0] signals,
     
-    output [`MUX_EXEC_COND] MUX_EXEC_COND,
     output [`PCMUX] PCMUX,
-    output PC_CONDLD,
-    output CONDSTALL,
     output [`A_MUX] A_MUX,
     output [`B_MUX] B_MUX,
     output [`DR_MUX] DR_MUX,
     output [`MAR_MUX] MAR_MUX,
+    output [`MDR_MUX] MDR_MUX,
     output RP_TABLE,
     output EXX,
     output LD_PC,
@@ -50,16 +48,13 @@ module control_signal_slicer(
     output [`ALU_OP] ALU_OP,
     output LD_ACCUM,
     output RP,
-    output EXEC_COND_MUX,
-    output [`MDR_MUX] MDR_MUX,
     output SEXT_MDR,
+    output LD_IR,
     output GATE_MDRL,
     output GATE_MDRH,
     output MDR_TEMP,
     output IFF1_R_TO_IFF2,
     output RD_R_RE,
-    output WR_R_RE,
-    output NMI_JANK
-    
+    output WR_R_RE
     );
 endmodule

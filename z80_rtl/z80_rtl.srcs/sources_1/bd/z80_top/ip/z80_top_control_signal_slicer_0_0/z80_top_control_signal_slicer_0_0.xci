@@ -38,14 +38,12 @@
     "boundary": {
       "ports": {
         "signals": [ { "direction": "in", "size_left": "284", "size_right": "0" } ],
-        "MUX_EXEC_COND": [ { "direction": "out", "size_left": "1", "size_right": "0" } ],
         "PCMUX": [ { "direction": "out", "size_left": "4", "size_right": "2" } ],
-        "PC_CONDLD": [ { "direction": "out" } ],
-        "CONDSTALL": [ { "direction": "out" } ],
         "A_MUX": [ { "direction": "out", "size_left": "10", "size_right": "7" } ],
         "B_MUX": [ { "direction": "out", "size_left": "12", "size_right": "11" } ],
         "DR_MUX": [ { "direction": "out", "size_left": "15", "size_right": "13" } ],
         "MAR_MUX": [ { "direction": "out", "size_left": "18", "size_right": "16" } ],
+        "MDR_MUX": [ { "direction": "out", "size_left": "47", "size_right": "46" } ],
         "RP_TABLE": [ { "direction": "out" } ],
         "EXX": [ { "direction": "out" } ],
         "LD_PC": [ { "direction": "out" } ],
@@ -64,16 +62,14 @@
         "ALU_OP": [ { "direction": "out", "size_left": "42", "size_right": "36" } ],
         "LD_ACCUM": [ { "direction": "out" } ],
         "RP": [ { "direction": "out" } ],
-        "EXEC_COND_MUX": [ { "direction": "out" } ],
-        "MDR_MUX": [ { "direction": "out", "size_left": "47", "size_right": "46" } ],
         "SEXT_MDR": [ { "direction": "out" } ],
+        "LD_IR": [ { "direction": "out" } ],
         "GATE_MDRL": [ { "direction": "out" } ],
         "GATE_MDRH": [ { "direction": "out" } ],
         "MDR_TEMP": [ { "direction": "out" } ],
         "IFF1_R_TO_IFF2": [ { "direction": "out" } ],
         "RD_R_RE": [ { "direction": "out" } ],
-        "WR_R_RE": [ { "direction": "out" } ],
-        "NMI_JANK": [ { "direction": "out" } ]
+        "WR_R_RE": [ { "direction": "out" } ]
       }
     }
   }

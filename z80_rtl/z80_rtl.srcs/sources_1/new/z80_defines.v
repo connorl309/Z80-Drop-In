@@ -297,9 +297,9 @@ T-STATE MACHINE SIGNALS
 MREQ
 WRITE
 RFSH (Signals mem to refresh, and gates the refresh address onto bus)
-Gate_PC (PC to addrbus)
-Gate_AddrReg (AddrReg to addrbus)
-Gate_SP (SP to addrbus)
+GATE_PC (PC to addrbus)
+GATE_AddrReg (AddrReg to addrbus)
+GATE_SP (SP to addrbus)
 LD_IR (D[7:0] to IR on rising edge)
 LD_MDR (D[7:0] to MDR on falling edge)
 MREQ_R (Reset MREQ on falling T clock edge)
@@ -322,7 +322,7 @@ PCMUX
 LD_SP
 SP_MUX
 JANK (Set for any M-cycle that needs to take extra cycles for no reason)
-Gate_d(Output operand to data line on falling edge, stop outputting on rising edge somehow)
+GATE_d(Output operand to data line on falling edge, stop outputting on rising edge somehow)
 M1
 
 */
@@ -368,19 +368,19 @@ M1
 
 `define EXEC 26
 `define LAST_T 27
-`define Gate_PC 28 //(PC to addrbus)
-`define Gate_MARL 29 //(MAR to addrbus)
-`define Gate_MARH 30 //(MAR + 1 to addrbus)
-`define Gate_SP_INC 31 //(SP to addrbus)
-`define Gate_SP_DEC 32 //(SP - 1 to addrbus)
+`define GATE_PC 28 //(PC to addrbus)
+`define GATE_MARL 29 //(MAR to addrbus)
+`define GATE_MARH 30 //(MAR + 1 to addrbus)
+`define GATE_SP_INC 31 //(SP to addrbus)
+`define GATE_SP_DEC 32 //(SP - 1 to addrbus)
 `define LD_IR 33 //(D[7:0] to IR on rising edge)
 `define LD_MDRL 34 //(D[7:0] to MDR[7:0] on falling edge)
 `define LD_MDRH 35 //(D[15:8] to MDR[15:8] on falling edge)
 `define INC_PC 36 //overrides LD_PC from exec, and loads PC with PC + 1
 `define LD_SP 37 //overrides LD_SP from exec, and loads SP with SP_MUX
 `define SP_MUX 38 //chooses between SP + 1 and SP - 1
-`define Gate_MDRL 39 //(Output MDR[7:0] to data line on falling edge, stop outputting after lastT on rising edge)
-`define Gate_MDRH 40 //(Output MDR[15:8] to data line on falling edge, stop outputting on lastT on rising edge)
+`define GATE_MDRL 39 //(Output MDR[7:0] to data line on falling edge, stop outputting after lastT on rising edge)
+`define GATE_MDRH 40 //(Output MDR[15:8] to data line on falling edge, stop outputting on lastT on rising edge)
 `define MDR_TEMP 41 //swaps MDR and TEMP regs
 `define IFF1_R_TO_IFF2 42 //IFF1 --> IFF2, clear IFF1
 `define RD_R_RE 43 //(Reset RD on rising T clock edge)

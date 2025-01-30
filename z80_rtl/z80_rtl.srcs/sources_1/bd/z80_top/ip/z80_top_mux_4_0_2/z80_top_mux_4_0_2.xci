@@ -1,14 +1,14 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "z80_top_mux_2_0_3",
-    "cell_name": "ALUB_MUX",
-    "component_reference": "xilinx.com:module_ref:mux_2:1.0",
+    "xci_name": "z80_top_mux_4_0_2",
+    "cell_name": "MDRMUX",
+    "component_reference": "xilinx.com:module_ref:mux_4:1.0",
     "ip_revision": "1",
-    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_2_0_3",
+    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_4_0_2",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "z80_top_mux_2_0_3", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "z80_top_mux_4_0_2", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "spartan7" } ],
@@ -28,7 +28,7 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_2_0_3" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_4_0_2" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2024.1" } ],
@@ -39,7 +39,9 @@
       "ports": {
         "in0": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "in1": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
-        "sel": [ { "direction": "in" } ],
+        "in2": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
+        "in3": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
+        "sel": [ { "direction": "in", "size_left": "1", "size_right": "0" } ],
         "out": [ { "direction": "out", "size_left": "15", "size_right": "0" } ]
       }
     }

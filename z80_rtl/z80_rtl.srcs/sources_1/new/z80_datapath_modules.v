@@ -19,8 +19,36 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module mux_6(
-    input [15:0] in0, in1, in2, in3, in4, in5,
+module mux_16(
+    input [15:0] in0, in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, in13, in14, in15,
+    input [3:0] sel,
+    output reg [15:0] out
+    );
+    
+    always @(*) begin
+        case (sel)
+            0: out <= in0;
+            1: out <= in1;
+            2: out <= in2;
+            3: out <= in3;
+            4: out <= in4;
+            5: out <= in5;
+            6: out <= in6;
+            7: out <= in7;
+            8: out <= in8;
+            9: out <= in9;
+            10: out <= in10;
+            11: out <= in11;
+            12: out <= in12;
+            13: out <= in13;
+            14: out <= in14;
+            15: out <= in15;
+        endcase
+    end
+endmodule
+
+module mux_8(
+    input [15:0] in0, in1, in2, in3, in4, in5, in6, in7,
     input [2:0] sel,
     output reg [15:0] out
     );
@@ -33,28 +61,12 @@ module mux_6(
             3: out <= in3;
             4: out <= in4;
             5: out <= in5;
-            default: out <= 0;
+            6: out <= in6;
+            7: out <= in7;
         endcase
     end
 endmodule
 
-module mux_5(
-    input [15:0] in0, in1, in2, in3, in4,
-    input [2:0] sel,
-    output reg [15:0] out
-    );
-    
-    always @(*) begin
-        case (sel)
-            0: out <= in0;
-            1: out <= in1;
-            2: out <= in2;
-            3: out <= in3;
-            4: out <= in4;
-            default: out <= 0;
-        endcase
-    end
-endmodule
 
 module mux_4(
     input [15:0] in0, in1, in2, in3,
@@ -68,23 +80,6 @@ module mux_4(
             1: out <= in1;
             2: out <= in2;
             3: out <= in3;
-            default: out <= 0;
-        endcase
-    end
-endmodule
-
-module mux_3(
-    input [15:0] in0, in1, in2,
-    input [1:0] sel,
-    output reg [15:0] out
-    );
-    
-    always @(*) begin
-        case (sel)
-            0: out <= in0;
-            1: out <= in1;
-            2: out <= in2;
-            default: out <= 0;
         endcase
     end
 endmodule
@@ -99,7 +94,6 @@ module mux_2(
         case (sel)
             0: out <= in0;
             1: out <= in1;
-            default: out <= 0;
         endcase
     end
 endmodule

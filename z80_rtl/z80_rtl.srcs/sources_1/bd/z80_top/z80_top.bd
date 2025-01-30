@@ -11,21 +11,24 @@
     },
     "design_tree": {
       "PC": "",
-      "MARMUX": "",
-      "ALUA_MUX": "",
       "ADDRMUX": "",
-      "MDRMUX": "",
       "ALU_0": "",
       "reg_file_0": "",
-      "ALUB_MUX": "",
       "MAR": "",
       "MDR": "",
       "add_1": "",
       "sub_2": "",
-      "xlconstant_0": "",
       "PCMUX": "",
       "decode_0": "",
-      "control_signal_slicer_0": ""
+      "control_signal_slicer_0": "",
+      "IR": "",
+      "A_MUX": "",
+      "ZERO": "",
+      "B_MUX": "",
+      "NEG_2_16BIT": "",
+      "MARMUX": "",
+      "xlconcat_0": "",
+      "MDRMUX": ""
     },
     "ports": {
       "CLK": {
@@ -72,115 +75,12 @@
           }
         }
       },
-      "MARMUX": {
-        "vlnv": "xilinx.com:module_ref:mux_3:1.0",
-        "ip_revision": "1",
-        "xci_name": "z80_top_mux_3_0_0",
-        "xci_path": "ip\\z80_top_mux_3_0_0\\z80_top_mux_3_0_0.xci",
-        "inst_hier_path": "MARMUX",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "mux_3",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "in0": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "in1": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "in2": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "sel": {
-            "direction": "I",
-            "left": "1",
-            "right": "0"
-          },
-          "out": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          }
-        }
-      },
-      "ALUA_MUX": {
-        "vlnv": "xilinx.com:module_ref:mux_2:1.0",
-        "ip_revision": "1",
-        "xci_name": "z80_top_mux_2_0_1",
-        "xci_path": "ip\\z80_top_mux_2_0_1\\z80_top_mux_2_0_1.xci",
-        "inst_hier_path": "ALUA_MUX",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "mux_2",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "in0": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "in1": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "sel": {
-            "direction": "I"
-          },
-          "out": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          }
-        }
-      },
       "ADDRMUX": {
         "vlnv": "xilinx.com:module_ref:mux_2:1.0",
         "ip_revision": "1",
         "xci_name": "z80_top_mux_2_0_2",
         "xci_path": "ip\\z80_top_mux_2_0_2\\z80_top_mux_2_0_2.xci",
         "inst_hier_path": "ADDRMUX",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "mux_2",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "in0": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "in1": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "sel": {
-            "direction": "I"
-          },
-          "out": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          }
-        }
-      },
-      "MDRMUX": {
-        "vlnv": "xilinx.com:module_ref:mux_2:1.0",
-        "ip_revision": "1",
-        "xci_name": "z80_top_MDRMUX_0",
-        "xci_path": "ip\\z80_top_MDRMUX_0\\z80_top_MDRMUX_0.xci",
-        "inst_hier_path": "MDRMUX",
         "reference_info": {
           "ref_type": "hdl",
           "ref_name": "mux_2",
@@ -322,38 +222,6 @@
           }
         }
       },
-      "ALUB_MUX": {
-        "vlnv": "xilinx.com:module_ref:mux_2:1.0",
-        "ip_revision": "1",
-        "xci_name": "z80_top_mux_2_0_3",
-        "xci_path": "ip\\z80_top_mux_2_0_3\\z80_top_mux_2_0_3.xci",
-        "inst_hier_path": "ALUB_MUX",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "mux_2",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "in0": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "in1": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "sel": {
-            "direction": "I"
-          },
-          "out": {
-            "direction": "O",
-            "left": "15",
-            "right": "0"
-          }
-        }
-      },
       "MAR": {
         "vlnv": "xilinx.com:ip:util_ff:1.0",
         "ip_revision": "3",
@@ -453,13 +321,6 @@
           }
         }
       },
-      "xlconstant_0": {
-        "vlnv": "xilinx.com:ip:xlconstant:1.1",
-        "ip_revision": "9",
-        "xci_name": "z80_top_xlconstant_0_0",
-        "xci_path": "ip\\z80_top_xlconstant_0_0\\z80_top_xlconstant_0_0.xci",
-        "inst_hier_path": "xlconstant_0"
-      },
       "PCMUX": {
         "vlnv": "xilinx.com:module_ref:mux_6:1.0",
         "ip_revision": "1",
@@ -467,7 +328,7 @@
         "xci_path": "ip\\z80_top_mux_6_0_0\\z80_top_mux_6_0_0.xci",
         "inst_hier_path": "PCMUX",
         "reference_info": {
-          "ref_type": "hdl",
+          "ref_type": "unknown",
           "ref_name": "mux_6",
           "boundary_crc": "0x0"
         },
@@ -595,21 +456,10 @@
             "left": "284",
             "right": "0"
           },
-          "MUX_EXEC_COND": {
-            "direction": "O",
-            "left": "1",
-            "right": "0"
-          },
           "PCMUX": {
             "direction": "O",
             "left": "4",
             "right": "2"
-          },
-          "PC_CONDLD": {
-            "direction": "O"
-          },
-          "CONDSTALL": {
-            "direction": "O"
           },
           "A_MUX": {
             "direction": "O",
@@ -630,6 +480,11 @@
             "direction": "O",
             "left": "18",
             "right": "16"
+          },
+          "MDR_MUX": {
+            "direction": "O",
+            "left": "47",
+            "right": "46"
           },
           "RP_TABLE": {
             "direction": "O"
@@ -687,15 +542,10 @@
           "RP": {
             "direction": "O"
           },
-          "EXEC_COND_MUX": {
+          "SEXT_MDR": {
             "direction": "O"
           },
-          "MDR_MUX": {
-            "direction": "O",
-            "left": "47",
-            "right": "46"
-          },
-          "SEXT_MDR": {
+          "LD_IR": {
             "direction": "O"
           },
           "GATE_MDRL": {
@@ -715,9 +565,319 @@
           },
           "WR_R_RE": {
             "direction": "O"
+          }
+        }
+      },
+      "IR": {
+        "vlnv": "xilinx.com:ip:util_ff:1.0",
+        "ip_revision": "3",
+        "xci_name": "z80_top_PC_0",
+        "xci_path": "ip\\z80_top_PC_0\\z80_top_PC_0.xci",
+        "inst_hier_path": "IR",
+        "parameters": {
+          "C_FF_TYPE": {
+            "value": "1"
           },
-          "NMI_JANK": {
-            "direction": "O"
+          "C_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "A_MUX": {
+        "vlnv": "xilinx.com:module_ref:mux_16:1.0",
+        "ip_revision": "1",
+        "xci_name": "z80_top_mux_16_0_0",
+        "xci_path": "ip\\z80_top_mux_16_0_0\\z80_top_mux_16_0_0.xci",
+        "inst_hier_path": "A_MUX",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "mux_16",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "in0": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in1": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in2": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in3": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in4": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in5": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in6": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in7": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in8": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in9": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in10": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in11": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in12": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in13": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in14": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in15": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "sel": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "ZERO": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "z80_top_xlconstant_0_1",
+        "xci_path": "ip\\z80_top_xlconstant_0_1\\z80_top_xlconstant_0_1.xci",
+        "inst_hier_path": "ZERO",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "0"
+          }
+        }
+      },
+      "B_MUX": {
+        "vlnv": "xilinx.com:module_ref:mux_4:1.0",
+        "ip_revision": "1",
+        "xci_name": "z80_top_mux_4_0_1",
+        "xci_path": "ip\\z80_top_mux_4_0_1\\z80_top_mux_4_0_1.xci",
+        "inst_hier_path": "B_MUX",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "mux_4",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "in0": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in1": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in2": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in3": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "sel": {
+            "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "NEG_2_16BIT": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "ip_revision": "9",
+        "xci_name": "z80_top_xlconstant_0_2",
+        "xci_path": "ip\\z80_top_xlconstant_0_2\\z80_top_xlconstant_0_2.xci",
+        "inst_hier_path": "NEG_2_16BIT",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "-2"
+          },
+          "CONST_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "MARMUX": {
+        "vlnv": "xilinx.com:module_ref:mux_8:1.0",
+        "ip_revision": "1",
+        "xci_name": "z80_top_mux_8_0_0",
+        "xci_path": "ip\\z80_top_mux_8_0_0\\z80_top_mux_8_0_0.xci",
+        "inst_hier_path": "MARMUX",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "mux_8",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "in0": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in1": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in2": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in3": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in4": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in5": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in6": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in7": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "sel": {
+            "direction": "I",
+            "left": "2",
+            "right": "0"
+          },
+          "out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      },
+      "xlconcat_0": {
+        "vlnv": "xilinx.com:ip:xlconcat:2.1",
+        "ip_revision": "6",
+        "xci_name": "z80_top_xlconcat_0_0",
+        "xci_path": "ip\\z80_top_xlconcat_0_0\\z80_top_xlconcat_0_0.xci",
+        "inst_hier_path": "xlconcat_0",
+        "parameters": {
+          "IN0_WIDTH": {
+            "value": "8"
+          },
+          "IN1_WIDTH": {
+            "value": "8"
+          }
+        }
+      },
+      "MDRMUX": {
+        "vlnv": "xilinx.com:module_ref:mux_4:1.0",
+        "ip_revision": "1",
+        "xci_name": "z80_top_mux_4_0_2",
+        "xci_path": "ip\\z80_top_mux_4_0_2\\z80_top_mux_4_0_2.xci",
+        "inst_hier_path": "MDRMUX",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "mux_4",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "in0": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in1": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in2": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "in3": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "sel": {
+            "direction": "I",
+            "left": "1",
+            "right": "0"
+          },
+          "out": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
           }
         }
       }
@@ -729,26 +889,20 @@
           "A"
         ]
       },
-      "ALUA_MUX_out": {
-        "ports": [
-          "ALUA_MUX/out",
-          "ALU_0/INT_DATA_BUS_A"
-        ]
-      },
-      "ALUB_MUX_out": {
-        "ports": [
-          "ALUB_MUX/out",
-          "ALU_0/INT_DATA_BUS_B"
-        ]
-      },
       "ALU_0_ALU_OUT": {
         "ports": [
           "ALU_0/ALU_OUT",
           "reg_file_0/REG_IN",
-          "MDRMUX/in0",
+          "PCMUX/in0",
           "ADDRMUX/in1",
-          "MARMUX/in2",
-          "PCMUX/in0"
+          "MDRMUX/in0",
+          "MARMUX/in5"
+        ]
+      },
+      "B_MUX_out": {
+        "ports": [
+          "B_MUX/out",
+          "ALU_0/INT_DATA_BUS_B"
         ]
       },
       "CLK_1": {
@@ -760,19 +914,14 @@
           "PC/clk",
           "MDR/clk",
           "MAR/clk",
-          "ALU_0/CLK"
-        ]
-      },
-      "D_IN_1": {
-        "ports": [
-          "D_IN",
-          "MDRMUX/in1"
+          "ALU_0/CLK",
+          "IR/clk"
         ]
       },
       "MARMUX_out": {
         "ports": [
           "MARMUX/out",
-          "MAR/reset"
+          "MAR/D"
         ]
       },
       "MAR_Q": {
@@ -781,7 +930,7 @@
           "ADDRMUX/in0"
         ]
       },
-      "MDRMUX1_out": {
+      "MDRMUX_out": {
         "ports": [
           "MDRMUX/out",
           "MDR/D"
@@ -791,9 +940,17 @@
         "ports": [
           "MDR/Q",
           "D_OUT",
-          "ALUA_MUX/sel",
-          "MARMUX/in1",
-          "PCMUX/in5"
+          "PCMUX/in5",
+          "xlconcat_0/In1",
+          "A_MUX/in9",
+          "B_MUX/in0",
+          "MARMUX/in1"
+        ]
+      },
+      "NEG_2_16BIT_dout": {
+        "ports": [
+          "NEG_2_16BIT/dout",
+          "B_MUX/in3"
         ]
       },
       "PC_Q": {
@@ -801,13 +958,73 @@
           "PC/Q",
           "sub_2/A",
           "add_1/A",
-          "ALUB_MUX/in1"
+          "A_MUX/in8"
+        ]
+      },
+      "ZERO_dout": {
+        "ports": [
+          "ZERO/dout",
+          "A_MUX/in10"
         ]
       },
       "add_1_S": {
         "ports": [
           "add_1/S",
           "PCMUX/in2"
+        ]
+      },
+      "control_signal_slicer_0_ALU_OP": {
+        "ports": [
+          "control_signal_slicer_0/ALU_OP",
+          "ALU_0/ALU_OP"
+        ]
+      },
+      "control_signal_slicer_0_A_MUX": {
+        "ports": [
+          "control_signal_slicer_0/A_MUX",
+          "A_MUX/sel"
+        ]
+      },
+      "control_signal_slicer_0_B_MUX": {
+        "ports": [
+          "control_signal_slicer_0/B_MUX",
+          "B_MUX/sel"
+        ]
+      },
+      "control_signal_slicer_0_LD_IR": {
+        "ports": [
+          "control_signal_slicer_0/LD_IR",
+          "IR/clk_enable"
+        ]
+      },
+      "control_signal_slicer_0_LD_MAR": {
+        "ports": [
+          "control_signal_slicer_0/LD_MAR",
+          "MAR/clk_enable"
+        ]
+      },
+      "control_signal_slicer_0_LD_MDR": {
+        "ports": [
+          "control_signal_slicer_0/LD_MDR",
+          "MDR/clk_enable"
+        ]
+      },
+      "control_signal_slicer_0_LD_PC": {
+        "ports": [
+          "control_signal_slicer_0/LD_PC",
+          "PC/clk_enable"
+        ]
+      },
+      "control_signal_slicer_0_MAR_MUX": {
+        "ports": [
+          "control_signal_slicer_0/MAR_MUX",
+          "MARMUX/sel"
+        ]
+      },
+      "control_signal_slicer_0_MDR_MUX": {
+        "ports": [
+          "control_signal_slicer_0/MDR_MUX",
+          "MDRMUX/sel"
         ]
       },
       "control_signal_slicer_0_PCMUX": {
@@ -822,17 +1039,10 @@
           "control_signal_slicer_0/signals"
         ]
       },
-      "reg_file_0_SR1_OUT": {
+      "mux_16_0_out": {
         "ports": [
-          "reg_file_0/SR1_OUT",
-          "ALUB_MUX/in0",
-          "MARMUX/in0"
-        ]
-      },
-      "reg_file_0_SR2_OUT": {
-        "ports": [
-          "reg_file_0/SR2_OUT",
-          "ALUA_MUX/in0"
+          "A_MUX/out",
+          "ALU_0/INT_DATA_BUS_A"
         ]
       },
       "sub_2_S": {
@@ -841,19 +1051,22 @@
           "PCMUX/in3"
         ]
       },
-      "xlconstant_0_dout": {
+      "xlconcat_0_dout": {
         "ports": [
-          "xlconstant_0/dout",
-          "PC/clk_enable",
-          "MDR/clk_enable",
-          "MAR/clk_enable"
+          "xlconcat_0/dout",
+          "MARMUX/in2"
         ]
       }
     },
     "comments": {
       "/": {
         "comment_0": "IR",
-        "comment_1": "Y << 3\n"
+        "comment_1": "Y << 3\n",
+        "comment_2": "r[y]\nr[z]\nHL\nBC\nDE\nA\nI\nR\nPC\nMDR\nZERO\nSR1",
+        "comment_3": "MDR\nr[z]\nHL\nsext(-2)",
+        "comment_4": "r[y]\nMDR\nMDR[7:0]`A\nHL\nBC\nALU\n",
+        "comment_5": "LSB is in0",
+        "comment_6": "ALU\nHL\nr[z]"
       }
     }
   }
