@@ -19,6 +19,42 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+module mux_6(
+    input [15:0] in0, in1, in2, in3, in4, in5,
+    input [2:0] sel,
+    output reg [15:0] out
+    );
+    
+    always @(*) begin
+        case (sel)
+            0: out <= in0;
+            1: out <= in1;
+            2: out <= in2;
+            3: out <= in3;
+            4: out <= in4;
+            5: out <= in5;
+            default: out <= 0;
+        endcase
+    end
+endmodule
+
+module mux_5(
+    input [15:0] in0, in1, in2, in3, in4,
+    input [2:0] sel,
+    output reg [15:0] out
+    );
+    
+    always @(*) begin
+        case (sel)
+            0: out <= in0;
+            1: out <= in1;
+            2: out <= in2;
+            3: out <= in3;
+            4: out <= in4;
+            default: out <= 0;
+        endcase
+    end
+endmodule
 
 module mux_4(
     input [15:0] in0, in1, in2, in3,

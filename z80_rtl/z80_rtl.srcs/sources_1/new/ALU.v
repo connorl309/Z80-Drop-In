@@ -842,63 +842,13 @@ module ALU(
     input [15:0] INT_DATA_BUS_A,
     input [15:0] INT_DATA_BUS_B,
     input [6:0] ALU_OP,
-    input ALU_OPA_MUX,
-    input [1:0] ACC_IN_MUX,
-    input LD_ACC,
-    input LD_FLAG,
     input [7:0] FLAG_IN,
-    input FLAG_MUX,
     output [15:0] ALU_OUT,
-    output [7:0] FLAG_OUT,
-    output [7:0] ACC_OUT
+    output [7:0] FLAG_OUT
     );
     
-    function [15:0] extendTo16;
-        input [7:0] num;
-        begin
-            extendTo16 = {num[7] ? 8'hFF : 8'b0, num};
-        end
-    endfunction
-
-    wire [7:0] alu_flag_out;
-    wire [15:0] ALU_OUT_int;
-    assign ALU_OUT = ALU_OUT_int;
-
-    // F Register
-    reg [7:0] flag = 0;
-    reg [7:0] flag_prime = 0;
-    assign FLAG_OUT = flag;
-    wire [7:0] flag_mux = FLAG_MUX ? FLAG_IN : alu_flag_out;
-    always @(posedge CLK) begin
-        if (LD_FLAG) begin
-            if (ALU_OP == `ALU_SWAP_REGS) begin
-                flag <= flag_prime;
-                flag_prime <= flag;
-            end else
-                flag <= flag_mux;
-        end
-    end
-    
-    // A Register
-    reg [7:0] acc = 0;
-    reg [7:0] acc_prime = 0;
-    assign ACC_OUT = acc;
-    wire [7:0] acc_in_mux_out = ACC_IN_MUX == 0 ? ALU_OUT_int[7:0] : (ACC_IN_MUX == 1 ? ALU_OUT_int[15:8] : (ACC_IN_MUX == 2 ? INT_DATA_BUS_A[7:0] : INT_DATA_BUS_B[7:0]));
-    always @(posedge CLK) begin
-        if (LD_ACC) begin
-            if (ALU_OP == `ALU_SWAP_REGS) begin
-                acc <= acc_prime;
-                acc_prime <= acc; 
-            end else 
-                acc <= acc_in_mux_out;
-        end
-    end
-    
-    // ALU operand muxes
-    wire [15:0] operandA = ALU_OPA_MUX == 0 ? extendTo16(acc) : INT_DATA_BUS_A[15:0];
-    wire [15:0] operandB = INT_DATA_BUS_B[15:0];
     
     // ALU Core
-    ALU_Core core(.ALU_OP(ALU_OP), .operandA(operandA), .operandB(operandB), .flag(flag), .ALU_OUT(ALU_OUT_int), .FLAG_OUT(alu_flag_out));
+    ALU_Core core(.ALU_OP(ALU_OP), .operandA(INT_DATA_BUS_A[15:0]), .operandB(INT_DATA_BUS_B[15:0]), .flag(flag), .ALU_OUT(ALU_OUT), .FLAG_OUT(alu_flag_out));
     
 endmodule

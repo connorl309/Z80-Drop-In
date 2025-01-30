@@ -1,0 +1,80 @@
+{
+  "schema": "xilinx.com:schema:json_instance:1.0",
+  "ip_inst": {
+    "xci_name": "z80_top_control_signal_slicer_0_0",
+    "cell_name": "control_signal_slicer_0",
+    "component_reference": "xilinx.com:module_ref:control_signal_slicer:1.0",
+    "ip_revision": "1",
+    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_control_signal_slicer_0_0",
+    "parameters": {
+      "component_parameters": {
+        "Component_Name": [ { "value": "z80_top_control_signal_slicer_0_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "project_parameters": {
+        "ARCHITECTURE": [ { "value": "spartan7" } ],
+        "BASE_BOARD_PART": [ { "value": "" } ],
+        "BOARD_CONNECTIONS": [ { "value": "" } ],
+        "DEVICE": [ { "value": "xc7s50" } ],
+        "NEXTGEN_VERSAL": [ { "value": "0" } ],
+        "PACKAGE": [ { "value": "csga324" } ],
+        "PREFHDL": [ { "value": "VERILOG" } ],
+        "SILICON_REVISION": [ { "value": "" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "MIXED" } ],
+        "SPEEDGRADE": [ { "value": "-1" } ],
+        "STATIC_POWER": [ { "value": "" } ],
+        "TEMPERATURE_GRADE": [ { "value": "" } ]
+      },
+      "runtime_parameters": {
+        "IPCONTEXT": [ { "value": "IP_Integrator" } ],
+        "IPREVISION": [ { "value": "1" } ],
+        "MANAGED": [ { "value": "TRUE" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_control_signal_slicer_0_0" } ],
+        "SELECTEDSIMMODEL": [ { "value": "" } ],
+        "SHAREDDIR": [ { "value": "../../ipshared" } ],
+        "SWVERSION": [ { "value": "2024.1" } ],
+        "SYNTHESISFLOW": [ { "value": "OOC_HIERARCHICAL" } ]
+      }
+    },
+    "boundary": {
+      "ports": {
+        "signals": [ { "direction": "in", "size_left": "284", "size_right": "0" } ],
+        "MUX_EXEC_COND": [ { "direction": "out", "size_left": "1", "size_right": "0" } ],
+        "PCMUX": [ { "direction": "out", "size_left": "4", "size_right": "2" } ],
+        "PC_CONDLD": [ { "direction": "out" } ],
+        "CONDSTALL": [ { "direction": "out" } ],
+        "A_MUX": [ { "direction": "out", "size_left": "10", "size_right": "7" } ],
+        "B_MUX": [ { "direction": "out", "size_left": "12", "size_right": "11" } ],
+        "DR_MUX": [ { "direction": "out", "size_left": "15", "size_right": "13" } ],
+        "MAR_MUX": [ { "direction": "out", "size_left": "18", "size_right": "16" } ],
+        "RP_TABLE": [ { "direction": "out" } ],
+        "EXX": [ { "direction": "out" } ],
+        "LD_PC": [ { "direction": "out" } ],
+        "LD_I": [ { "direction": "out" } ],
+        "LD_R": [ { "direction": "out" } ],
+        "LD_REG": [ { "direction": "out" } ],
+        "LD_MDR": [ { "direction": "out" } ],
+        "LD_MAR": [ { "direction": "out" } ],
+        "GATE_PC": [ { "direction": "out" } ],
+        "GATE_MARL": [ { "direction": "out" } ],
+        "GATE_MARH": [ { "direction": "out" } ],
+        "GATE_SP_INC": [ { "direction": "out" } ],
+        "GATE_SP_DEC": [ { "direction": "out" } ],
+        "LD_SP": [ { "direction": "out" } ],
+        "SP_MUX": [ { "direction": "out" } ],
+        "ALU_OP": [ { "direction": "out", "size_left": "42", "size_right": "36" } ],
+        "LD_ACCUM": [ { "direction": "out" } ],
+        "RP": [ { "direction": "out" } ],
+        "EXEC_COND_MUX": [ { "direction": "out" } ],
+        "MDR_MUX": [ { "direction": "out", "size_left": "47", "size_right": "46" } ],
+        "SEXT_MDR": [ { "direction": "out" } ],
+        "GATE_MDRL": [ { "direction": "out" } ],
+        "GATE_MDRH": [ { "direction": "out" } ],
+        "MDR_TEMP": [ { "direction": "out" } ],
+        "IFF1_R_TO_IFF2": [ { "direction": "out" } ],
+        "RD_R_RE": [ { "direction": "out" } ],
+        "WR_R_RE": [ { "direction": "out" } ],
+        "NMI_JANK": [ { "direction": "out" } ]
+      }
+    }
+  }
+}
