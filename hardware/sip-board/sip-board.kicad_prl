@@ -1,6 +1,6 @@
 {
   "board": {
-    "active_layer": 31,
+    "active_layer": 5,
     "active_layer_preset": "",
     "auto_track_width": true,
     "hidden_netclasses": [
@@ -8,13 +8,8 @@
     ],
     "hidden_nets": [
       "",
-      "+5V",
-      "GND",
-      "+1V0",
       "/Voltage Regulators - 3V3, 1V8, 1V0/FB1",
-      "+1V8",
       "/Voltage Regulators - 3V3, 1V8, 1V0/FB2",
-      "+3V3",
       "/Voltage Regulators - 3V3, 1V8, 1V0/FB3",
       "Net-(S1-COM_2)",
       "M0_CONFIG",
@@ -271,6 +266,7 @@
       9,
       10,
       11,
+      12,
       13,
       15,
       16,
