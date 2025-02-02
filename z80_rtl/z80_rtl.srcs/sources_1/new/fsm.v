@@ -247,6 +247,7 @@ module fsm(
                 SIGNALS[`EXEC] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`RD_S_FE] = 1;
+                SIGNALS[`LAST_T] = 1;
             end
             7'd30: begin
                 // state 30 - mreqsre, rdsre, ldir, gatepc, M1_HIGH, wait
@@ -388,6 +389,7 @@ module fsm(
                 SIGNALS[`LAST_T] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`RD_S_FE] = 1;
+                SIGNALS[`LAST_T] = 1;
             end
             7'd48: begin
                 // state 48 - spdec, wait
@@ -405,6 +407,7 @@ module fsm(
                 SIGNALS[`LAST_T] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`RD_S_FE] = 1;
+                SIGNALS[`LAST_T] = 1;
             end
             7'd50: begin
                 // state 50 - spdec
@@ -469,6 +472,7 @@ module fsm(
                 SIGNALS[`LAST_T] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`WR_S_FE] = 1;
+                SIGNALS[`LAST_T] = 1;
             end
             7'd58: begin
                 // state 58 - gatespinc, wrr, wait
@@ -487,6 +491,7 @@ module fsm(
                 SIGNALS[`LAST_T] = 1;
                 SIGNALS[`MREQ_S_FE] = 1;
                 SIGNALS[`WR_S_FE] = 1;
+                SIGNALS[`LAST_T] = 1;
             end
             7'd60: begin
                 // state 60 - gatespinc
