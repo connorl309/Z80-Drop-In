@@ -207,6 +207,7 @@ module fsm(
             7'd24: begin
                 // state 24 - gatepc, wait
                 SIGNALS[`GATE_PC] = 1;
+                SIGNALS[`COND0] = 1; //check for wait
                 //j = 24
                 SIGNALS[`JBITS] = 7'd24;
             end
@@ -377,6 +378,7 @@ module fsm(
             7'd46: begin
                 // state 46 - spdec, wait
                 SIGNALS[`GATE_SP_DEC] = 1;
+                SIGNALS[`COND0] = 1; //check for wait
                 //j = 46
                 SIGNALS[`JBITS] = 7'd46;
             end
