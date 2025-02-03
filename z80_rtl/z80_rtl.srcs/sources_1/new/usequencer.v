@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
-//`include "decode.v"
+`include "decode.v"
+`include "fsm.v"
 
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
@@ -20,71 +21,6 @@
 // Additional Comments:
 //
 //////////////////////////////////////////////////////////////////////////////////
-
-//usequencer decode signals
-
-`define MUX_EXEC_COND_0 0//chooses between condition y, y-4, 0 (NZ), and 1 (Z)
-`define MUX_EXEC_COND_1 1
-`define MUX_EXEC_COND `MUX_EXEC_COND_1:`MUX_EXEC_COND_0
-
-`define PC_CONDLD 4 //if 1, only loads pc if condition met
-`define CONDSTALL 5 //if 1, useq only uses stal1 if condition met
-
-`define LD_PC 22
-
-`define DEC_MCTR_CC 29
-`define DEC2_MCTR_CC 30
-`define FETCH_AGAIN 31
-`define NEXT_PLA 32//latched if there is a prefix, reset on last m cycle
-`define STALL_1 33//we can stall either 1 or 2 cycles in certain places
-`define STALL_2 34
-
-
-// T-state control signal defines
-// Luke should yoink these for his T-state control store module
-
-`define J0 0
-`define J1 1
-`define J2 2
-`define J3 3
-`define J4 4
-`define J5 5
-`define J6 6
-
-`define JBITS `J6:`J0
-
-`define COND0 7
-`define COND1 8
-`define CS_SET 9
-
-`define M1 10
-`define RFSH 11
-`define BUSACK 12
-
-// These external signals can be controlled on rising or falling edge
-// _R    - set to 0 on falling edge of current cycle
-// _S_RE - set to 1 on rising edge of next cycle
-// _S_FE - set to 1 on falling edgo of current cycle
-`define MREQ_R 13
-`define MREQ_S_RE 14
-`define MREQ_S_FE 15
-`define IORQ_R 16
-`define IORQ_S_RE 17
-`define IORQ_S_FE 18
-`define RD_R 19
-`define RD_S_RE 20
-`define RD_S_FE 21
-`define WR_R 22
-`define WR_S_RE 23
-`define WR_S_FE 24
-
-// HALT is special because it is set by an exec signal, not a t-state signal
-`define HALT_R 25
-
-`define EXEC 26
-`define LAST_T 27
-
-`define T_CS_BITS 60 // Placeholder value
 
 
 
@@ -110,8 +46,8 @@ module usequencer(
     output ext_wr,
     output reg ext_halt,
 
-    output [55:0] m_signals, // Not certain about the number
-    output [`T_CS_BITS:0] t_signals
+    output [48:0] m_signals, // Not certain about the number
+    output [`TSIGNALS:0] t_signals
     );
 
     // External control signal latches
@@ -131,7 +67,7 @@ module usequencer(
     wire [6:0] next_j_bits;
     wire [6:0] next_t_state;
 
-    dummy_t_cs t_cs(t_state, t_signals);
+    fsm t_cs(t_state, t_signals);
 
     // Set signals to high impedence during bus grant
     assign ext_mreq = t_signals[`BUSACK] ? 1'bz : mreq;
@@ -142,12 +78,12 @@ module usequencer(
 
     // Decode logic
 
-    wire [279:0] exec_sigs;
+    wire [244:0] exec_sigs;
     wire [1:0] PLA_idx_w;
-    wire [34:0] m_states;
+    wire [24:0] m_states;
     wire [2:0] max_m_cycles_w;
     wire [1:0] f_stall;
-    wire [6:0] inst_next_m;
+    wire [4:0] inst_next_m;
     wire next_IX_pref, next_IY_pref;
     wire no_int;
     wire cc_met;
@@ -158,14 +94,14 @@ module usequencer(
     reg [1:0] IX_pref = 2'b0;
     reg [1:0] IY_pref = 2'b0;
 
-    dummy_decode dec(IR, PLA_idx, IX_pref[1], IY_pref[1], exec_sigs, PLA_idx_w, m_states,
+    decode dec(IR, PLA_idx, IX_pref[1], IY_pref[1], exec_sigs, PLA_idx_w, m_states,
                      max_m_cycles_w, f_stall, next_IX_pref, next_IY_pref, no_int);
 
     upcoming_m_cycles umc(t_signals[`CS_SET], m_states, exec_sigs, m_cycle_ctr,
                       inst_next_m, m_signals);
 
 
-    assign ext_m1 = !t_signals[`M1];
+    assign ext_m1 = !t_signals[`M1_HIGH];
     assign ext_rfsh = t_signals[`BUSACK] ? 1'bz : !t_signals[`RFSH];
     assign ext_busack = !t_signals[`BUSACK];
 
@@ -185,7 +121,7 @@ module usequencer(
 
 
     wire [2:0] condition;
-    
+
 
     // Chooses from y, y-4, NZ, and Z based on EXEC signals
     assign condition = m_signals[`MUX_EXEC_COND_1] ?
@@ -205,7 +141,7 @@ module usequencer(
         t_state <= next_t_state;
 
         // Update output latches only if not waiting
-        if(!(t_signals[`COND0] && !wait_latch)) begin
+        if(!(t_signals[`COND0] && wait_latch)) begin
             if(t_signals[`MREQ_S_RE])
                 mreq <= 1;
 
@@ -215,8 +151,14 @@ module usequencer(
             if(t_signals[`RD_S_RE])
                 rd <= 1;
 
+            if(t_signals[`RD_R_RE])
+                rd <= 0;
+
             if(t_signals[`WR_S_RE])
                 wr <= 1;
+
+            if(t_signals[`WR_R_RE])
+                wr <= 0;
         end
 
         if(t_signals[`CS_SET]) begin
@@ -283,7 +225,7 @@ module next_m_cycle_logic(
     input int,
     input nmi,
     input busrq,
-    input [6:0] inst_next_m,
+    input [4:0] inst_next_m,
     input [2:0] m_cycle_ctr,
     input [2:0] max_m_cycles,
     input iff1,
@@ -310,34 +252,32 @@ endmodule
 
 module upcoming_m_cycles(
     input cs_set,
-    input [34:0] m_states,
-    input [279:0] exec_signals,
+    input [24:0] m_states,
+    input [244:0] exec_signals,
     input [2:0] index,
-    output reg [6:0] next_m_state,
-    output reg [55:0] next_exec_signals
+    output reg [4:0] next_m_state,
+    output reg [48:0] curr_exec_signals
     );
 
-    reg [6:0] m_state_array [4:0];
-    reg [55:0] exec_array [4:0];
+    reg [4:0] m_state_array [4:0];
+    reg [49:0] exec_array [4:0];
 
-    always @* begin
-        if (cs_set) begin
-            // There is probably a better way to do this but I am a bit simple
-            m_state_array[0] <= m_states[6:0];
-            m_state_array[1] <= m_states[13:7];
-            m_state_array[2] <= m_states[20:14];
-            m_state_array[3] <= m_states[27:21];
-            m_state_array[4] <= m_states[34:28];
+    always @(cs_set or index) begin
+        // There is probably a better way to do this but I am a bit simple
+        m_state_array[0] <= m_states[4:0];
+        m_state_array[1] <= m_states[9:5];
+        m_state_array[2] <= m_states[14:10];
+        m_state_array[3] <= m_states[19:15];
+        m_state_array[4] <= m_states[24:20];
 
-            exec_array[0] <= exec_signals[55:0];
-            exec_array[1] <= exec_signals[111:56];
-            exec_array[2] <= exec_signals[167:112];
-            exec_array[3] <= exec_signals[223:168];
-            exec_array[4] <= exec_signals[279:224];
-        end
+        exec_array[0] <= exec_signals[48:0];
+        exec_array[1] <= exec_signals[97:49];
+        exec_array[2] <= exec_signals[146:98];
+        exec_array[3] <= exec_signals[196:147];
+        exec_array[4] <= exec_signals[244:197];
 
-        next_m_state <= m_state_array[index];
-        next_exec_signals <= exec_array[index];
+        next_m_state <= m_state_array[index+1];
+        curr_exec_signals <= exec_array[index];
     end
 
 
@@ -362,6 +302,8 @@ module flag_logic(
         endcase
     end
 endmodule
+
+/* Used for testing, no longer needed
 
 module dummy_decode(
     input [7:0] IR,
@@ -393,11 +335,11 @@ endmodule
 
 module dummy_t_cs(
     input [6:0] state_num,
-    output reg [`T_CS_BITS:0] t_signals
+    output reg [`TSIGNALS:0] t_signals
     );
 
     always @* begin
-        t_signals = `T_CS_BITS'b0;
+        t_signals = `TSIGNALS'b0;
 
         // OCF
         if(state_num == 0) begin
@@ -435,3 +377,4 @@ module dummy_t_cs(
 
 endmodule
 
+*/
