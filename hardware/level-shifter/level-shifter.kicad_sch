@@ -38008,6 +38008,18 @@
 		)
 		(uuid "5f5dae4c-3a66-4b6e-8d6f-979c74b94325")
 	)
+	(text "3.3V is broken up by quadrant\nto avoid current loops"
+		(exclude_from_sim no)
+		(at 440.69 189.23 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+		)
+		(uuid "6a518edd-4c06-4b78-952a-95db4d32cb29")
+	)
 	(text "P4"
 		(exclude_from_sim no)
 		(at 574.675 93.98 0)
@@ -38080,7 +38092,7 @@
 		)
 		(uuid "888e1db6-c63a-4c90-ac66-9b2f582cafdd")
 	)
-	(text "https://www.mouser.com/datasheet/2/916/NXB0104_Q100-1664477.pdf\n\nLevel shifters 5V<->3V3\nWe are using the XQFN12 package\n\nOE pullup is referenced to VCC_A, >= 50k\n\nMacroFab MPNs specified"
+	(text "https://www.mouser.com/datasheet/2/916/NXB0104_Q100-1664477.pdf\n\nLevel shifters 5V<->3V3\nWe are using the TSSOP-14 package\n\nOE pullup is referenced to VCC_A, >= 50k\n\nMacroFab MPNs specified"
 		(exclude_from_sim no)
 		(at 110.49 35.56 0)
 		(effects
@@ -38124,9 +38136,9 @@
 		)
 		(uuid "b2e6af25-9b51-480a-9ef1-21a09db3b724")
 	)
-	(text "This A1 -->\nis GND on\noriginal Z80"
+	(text "<--- This \nis GND on\noriginal Z80"
 		(exclude_from_sim no)
-		(at 138.43 214.63 0)
+		(at 206.375 214.63 0)
 		(effects
 			(font
 				(size 2 2)
@@ -41851,8 +41863,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 522.605 121.2849 90)
+		(property "Value" "+3V3UR"
+			(at 521.97 121.2849 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -41975,7 +41987,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0b6b55eb-3d50-456b-8d56-eb0326398328")
-		(property "Reference" "C7"
+		(property "Reference" "C4"
 			(at 91.44 155.448 90)
 			(effects
 				(font
@@ -41991,7 +42003,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 93.98 160.3248 0)
 			(effects
 				(font
@@ -42027,7 +42039,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C7")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -42965,7 +42977,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1acea3ab-df1a-401e-8f7c-06e6feb60432")
-		(property "Reference" "C15"
+		(property "Reference" "C12"
 			(at 196.85 114.808 90)
 			(effects
 				(font
@@ -42981,7 +42993,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 199.39 119.6848 0)
 			(effects
 				(font
@@ -43017,7 +43029,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C15")
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -43498,73 +43510,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 93.98 215.9 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2c9fbeef-f594-4225-9d44-9c1bd1ccda10")
-		(property "Reference" "#PWR012"
-			(at 90.17 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 97.79 215.8999 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 93.98 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "4e5da842-7730-484c-a8a6-e6d057267815")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 149.86 160.02 90)
 		(unit 1)
@@ -43573,7 +43518,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "2e838679-6371-4d5e-a201-6c7d6d9407ff")
-		(property "Reference" "C17"
+		(property "Reference" "C13"
 			(at 148.59 154.686 90)
 			(effects
 				(font
@@ -43589,7 +43534,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 153.67 159.0548 0)
 			(effects
 				(font
@@ -43625,7 +43570,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C17")
+					(reference "C13")
 					(unit 1)
 				)
 			)
@@ -43851,8 +43796,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 431.165 179.7049 90)
+		(property "Value" "+3V3BL"
+			(at 431.8 179.7049 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -43986,8 +43931,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 522.605 179.7049 90)
+		(property "Value" "+3V3BR"
+			(at 521.97 179.7049 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -44029,208 +43974,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR045")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 146.05 289.56 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3533b8d1-c58b-4a0a-81fe-a803acaf26df")
-		(property "Reference" "#PWR035"
-			(at 149.86 289.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 142.24 289.5599 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 146.05 289.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 146.05 289.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 146.05 289.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1fdb0c60-f1fb-4d57-9883-f28aa75668dc")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR035")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 538.48 179.705 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3cbfc348-4bf5-4e6d-a906-1a14b4e537bc")
-		(property "Reference" "#PWR059"
-			(at 534.67 179.705 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 541.655 179.7049 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 538.48 179.705 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 538.48 179.705 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 538.48 179.705 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1cb5d8bb-2953-432c-b66a-7ba6722a710b")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR059")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 93.98 138.43 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3d888779-47ec-4630-a44a-481f1032af2f")
-		(property "Reference" "#PWR04"
-			(at 90.17 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 97.79 138.4299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 93.98 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "0045f826-5879-49be-a92c-f9e7e995c227")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -44389,7 +44132,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "4806cd47-b471-4618-bf0f-20af2d7a8ec4")
-		(property "Reference" "C18"
+		(property "Reference" "C15"
 			(at 148.59 192.786 90)
 			(effects
 				(font
@@ -44405,7 +44148,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 153.67 197.1548 0)
 			(effects
 				(font
@@ -44441,7 +44184,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C18")
+					(reference "C15")
 					(unit 1)
 				)
 			)
@@ -44533,7 +44276,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3BL"
 			(at 48.26 228.6 0)
 			(effects
 				(font
@@ -44600,7 +44343,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3UR"
 			(at 191.77 115.57 0)
 			(effects
 				(font
@@ -44978,74 +44721,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR068")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 146.05 215.9 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5ad3ce98-85f4-4b55-8171-b964b073da4f")
-		(property "Reference" "#PWR028"
-			(at 149.86 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 142.24 215.8999 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 146.05 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 146.05 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 146.05 215.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "21f273a2-9ab8-4766-bf8f-368d84a282d7")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -45480,6 +45155,74 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 146.05 254 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "62087878-78d4-4f1f-8e58-366bc47d5fa2")
+		(property "Reference" "#PWR035"
+			(at 149.86 254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3BR"
+			(at 142.24 253.9999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 146.05 254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 146.05 254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 146.05 254 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7da5a3bf-2c1e-48e9-9365-40c239ff16f1")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR035")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 90.17 198.12 90)
 		(unit 1)
@@ -45488,7 +45231,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "65841ed9-c498-43e3-9f04-19741a3c7539")
-		(property "Reference" "C8"
+		(property "Reference" "C6"
 			(at 91.44 192.278 90)
 			(effects
 				(font
@@ -45504,7 +45247,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 93.98 197.1548 0)
 			(effects
 				(font
@@ -45540,7 +45283,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C8")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -45863,7 +45606,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 93.98 268.2748 0)
 			(effects
 				(font
@@ -45925,7 +45668,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3BR"
 			(at 191.77 231.14 0)
 			(effects
 				(font
@@ -46033,74 +45776,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 146.05 138.43 90)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6ddac04c-5bb6-4344-a709-932086d73475")
-		(property "Reference" "#PWR040"
-			(at 149.86 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 142.24 138.4299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 146.05 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 146.05 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 146.05 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "571640b6-fe13-4e1b-baae-10bf701e144d")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR040")
 					(unit 1)
 				)
 			)
@@ -46481,7 +46156,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "75a2589b-0e57-4029-87d4-e62b98579fca")
-		(property "Reference" "C19"
+		(property "Reference" "C17"
 			(at 148.59 230.886 90)
 			(effects
 				(font
@@ -46497,7 +46172,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 153.67 235.2548 0)
 			(effects
 				(font
@@ -46533,7 +46208,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C19")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -46782,7 +46457,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3UR"
 			(at 191.77 154.94 0)
 			(effects
 				(font
@@ -46831,17 +46506,16 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 146.05 254 90)
-		(mirror x)
+		(at 93.98 251.46 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "7aa4efb1-f362-4844-aae9-e6679689bf20")
-		(property "Reference" "#PWR037"
-			(at 149.86 254 0)
+		(uuid "7ab71f16-f6cb-4b24-b096-3b8db140956b")
+		(property "Reference" "#PWR016"
+			(at 90.17 251.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46849,8 +46523,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
-			(at 142.24 253.9999 90)
+		(property "Value" "+3V3BL"
+			(at 97.79 251.4599 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46859,7 +46533,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 146.05 254 0)
+			(at 93.98 251.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46868,7 +46542,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 146.05 254 0)
+			(at 93.98 251.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46877,7 +46551,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 146.05 254 0)
+			(at 93.98 251.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -46886,12 +46560,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "b99f9f24-74f8-40fe-bb46-060f8cbec73b")
+			(uuid "c7d0893d-5c8f-4535-90ab-e099a2c4b076")
 		)
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR037")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -47063,7 +46737,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "7de99748-4263-4a32-a58f-6091b0e8c8c8")
-		(property "Reference" "C20"
+		(property "Reference" "C19"
 			(at 148.59 266.446 90)
 			(effects
 				(font
@@ -47079,7 +46753,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 153.67 270.8148 0)
 			(effects
 				(font
@@ -47115,7 +46789,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C20")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -47367,7 +47041,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 93.98 119.6848 0)
 			(effects
 				(font
@@ -47562,7 +47236,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3UL"
 			(at 48.26 115.57 0)
 			(effects
 				(font
@@ -47618,7 +47292,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "893eac00-ac2b-4c49-8426-0010ee5df50f")
-		(property "Reference" "C12"
+		(property "Reference" "C18"
 			(at 196.85 230.378 90)
 			(effects
 				(font
@@ -47634,7 +47308,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 199.39 235.2548 0)
 			(effects
 				(font
@@ -47670,7 +47344,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C12")
+					(reference "C18")
 					(unit 1)
 				)
 			)
@@ -47685,7 +47359,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "8c32a5a0-eda5-484d-ad53-712daabbdf2b")
-		(property "Reference" "C13"
+		(property "Reference" "C16"
 			(at 196.85 192.278 90)
 			(effects
 				(font
@@ -47701,7 +47375,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 199.39 197.1548 0)
 			(effects
 				(font
@@ -47737,7 +47411,74 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C13")
+					(reference "C16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 93.98 287.02 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8d4b6b1d-6f18-4627-bcd1-11a9bf4ce505")
+		(property "Reference" "#PWR020"
+			(at 90.17 287.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3BL"
+			(at 97.79 287.0199 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 287.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 287.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 93.98 287.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "655dea1f-e21d-418b-bf29-c8418b9ecfa4")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -47805,6 +47546,74 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR078")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 146.05 289.56 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8fc8aaeb-7152-48f7-8692-dd77b011513b")
+		(property "Reference" "#PWR028"
+			(at 149.86 289.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3BR"
+			(at 142.24 289.5599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 146.05 289.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 146.05 289.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 146.05 289.56 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "dc4ce356-b824-4a96-8fe4-3088da96c71c")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -48030,7 +47839,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3UL"
 			(at 48.26 193.04 0)
 			(effects
 				(font
@@ -48231,7 +48040,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3UL"
 			(at 450.85 123.8249 90)
 			(effects
 				(font
@@ -48288,7 +48097,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9afdcc56-f853-4286-b816-35e40a6c0c4c")
-		(property "Reference" "C16"
+		(property "Reference" "C11"
 			(at 148.59 115.316 90)
 			(effects
 				(font
@@ -48304,7 +48113,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 153.67 119.6848 0)
 			(effects
 				(font
@@ -48340,7 +48149,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C16")
+					(reference "C11")
 					(unit 1)
 				)
 			)
@@ -48422,7 +48231,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "9c5ae7e5-0349-41d1-ac45-e6c67d9d8676")
-		(property "Reference" "C9"
+		(property "Reference" "C8"
 			(at 91.44 227.838 90)
 			(effects
 				(font
@@ -48438,7 +48247,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 93.98 232.7148 0)
 			(effects
 				(font
@@ -48474,7 +48283,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C9")
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -48615,73 +48424,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 93.98 179.07 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a3bc8cb6-8665-4100-b7ad-48893a5c8097")
-		(property "Reference" "#PWR08"
-			(at 90.17 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 97.79 179.0699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 93.98 179.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "d65868bc-8f0c-4fe6-b5c1-10d254c0bc63")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 433.07 151.765 270)
 		(mirror x)
@@ -48758,7 +48500,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ac117a84-7dd7-44ff-96c8-953cb4184967")
-		(property "Reference" "C6"
+		(property "Reference" "C9"
 			(at 43.18 263.906 90)
 			(effects
 				(font
@@ -48774,7 +48516,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 48.26 268.2748 0)
 			(effects
 				(font
@@ -48810,74 +48552,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 44.45 233.68 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "ae0e4f8d-ef31-4ac7-8704-ddaa1955c063")
-		(property "Reference" "C5"
-			(at 43.18 228.346 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "100nF"
-			(at 42.926 230.378 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 48.26 232.7148 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 44.45 233.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 44.45 233.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d7790ea2-3f06-4e10-a1fb-0d2a8114b20c")
-		)
-		(pin "1"
-			(uuid "4e0fbc08-2951-4d52-b8a4-1646aca68862")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C5")
+					(reference "C9")
 					(unit 1)
 				)
 			)
@@ -48893,7 +48568,7 @@
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "b2c1f28e-1573-42e2-a942-c4007928b5a8")
+		(uuid "ac290213-731f-41f1-becc-99179757a357")
 		(property "Reference" "#PWR039"
 			(at 149.86 177.8 0)
 			(effects
@@ -48903,7 +48578,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3UR"
 			(at 142.24 177.7999 90)
 			(effects
 				(font
@@ -48940,12 +48615,146 @@
 			)
 		)
 		(pin "1"
-			(uuid "1a5afd28-1fa0-4529-906a-c5c2f17a4523")
+			(uuid "8a4a48d0-8c3a-4ccd-86c9-5a0c4e7111c6")
 		)
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR039")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 44.45 233.68 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ae0e4f8d-ef31-4ac7-8704-ddaa1955c063")
+		(property "Reference" "C7"
+			(at 43.18 228.346 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100nF"
+			(at 42.926 230.378 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 48.26 232.7148 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 44.45 233.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 44.45 233.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "d7790ea2-3f06-4e10-a1fb-0d2a8114b20c")
+		)
+		(pin "1"
+			(uuid "4e0fbc08-2951-4d52-b8a4-1646aca68862")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 93.98 179.07 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "afe0390a-f17e-44d9-a247-dbc7891ad29a")
+		(property "Reference" "#PWR08"
+			(at 90.17 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3UL"
+			(at 97.79 179.0699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 93.98 179.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "25f29619-52d3-4e38-9df9-807367a47586")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -49128,7 +48937,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3BR"
 			(at 191.77 266.7 0)
 			(effects
 				(font
@@ -49442,6 +49251,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 93.98 215.9 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c06c781e-003d-4427-bd69-ac5739235e68")
+		(property "Reference" "#PWR012"
+			(at 90.17 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3UL"
+			(at 97.155 215.8999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 93.98 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f1dce80b-7091-4353-80ef-4cdb0fd7754a")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR012")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 199.39 198.12 90)
 		(unit 1)
@@ -49503,73 +49379,6 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR072")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3V3")
-		(at 93.98 251.46 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c35082f5-000c-4cfc-9161-54af9349e936")
-		(property "Reference" "#PWR016"
-			(at 90.17 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 97.79 251.4599 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 93.98 251.46 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6e0f696c-f5c7-40aa-9e94-5caba11549cd")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -49666,7 +49475,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 48.26 119.6848 0)
 			(effects
 				(font
@@ -49997,73 +49806,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V3")
-		(at 93.98 287.02 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d40902c3-b3f3-4d16-bd3b-18c1fa79713a")
-		(property "Reference" "#PWR020"
-			(at 90.17 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3V3"
-			(at 97.79 287.0199 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 93.98 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 93.98 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 93.98 287.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b0346584-9b63-4594-86c4-9000d07792e0")
-		)
-		(instances
-			(project "level-shifter"
-				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "#PWR020")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 44.45 198.12 90)
 		(unit 1)
@@ -50072,7 +49814,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "d48b0812-f489-401f-95b7-826ddb9ad8a3")
-		(property "Reference" "C4"
+		(property "Reference" "C5"
 			(at 43.18 192.786 90)
 			(effects
 				(font
@@ -50088,7 +49830,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 48.26 197.1548 0)
 			(effects
 				(font
@@ -50124,7 +49866,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C4")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -50191,6 +49933,74 @@
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
 					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
+		(at 146.05 215.9 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d99e8d93-f991-4bd7-8be2-98ebb06dd801")
+		(property "Reference" "#PWR037"
+			(at 149.86 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3BR"
+			(at 142.24 215.8999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 146.05 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 146.05 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 146.05 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "f7e1db44-6620-44c8-875d-c5fdc15d5cff")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR037")
 					(unit 1)
 				)
 			)
@@ -50264,6 +50074,74 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 146.05 138.43 90)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ddcee524-3e64-4182-9f2a-96224edd2118")
+		(property "Reference" "#PWR040"
+			(at 149.86 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3UR"
+			(at 142.24 138.4299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 146.05 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 146.05 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 146.05 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "ef6a36fa-1283-404a-ae62-5d1ffe2f7fb5")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR040")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 195.58 160.02 90)
 		(unit 1)
@@ -50288,7 +50166,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 199.39 159.0548 0)
 			(effects
 				(font
@@ -50405,7 +50283,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e424d6ad-69e1-434a-b253-3a7a716f2f2c")
-		(property "Reference" "C11"
+		(property "Reference" "C20"
 			(at 196.85 265.938 90)
 			(effects
 				(font
@@ -50421,7 +50299,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 199.39 270.8148 0)
 			(effects
 				(font
@@ -50457,7 +50335,7 @@
 		(instances
 			(project "level-shifter"
 				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
-					(reference "C11")
+					(reference "C20")
 					(unit 1)
 				)
 			)
@@ -50606,6 +50484,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 538.48 179.705 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "eb9af344-00bb-482b-840f-869ea63fd32c")
+		(property "Reference" "#PWR059"
+			(at 534.67 179.705 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3BR"
+			(at 542.29 179.7049 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 538.48 179.705 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 538.48 179.705 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 538.48 179.705 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8adb7f54-1620-4564-b1f3-248611b175ef")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR059")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 433.07 154.305 270)
 		(mirror x)
@@ -50692,7 +50637,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3UL"
 			(at 48.26 156.21 0)
 			(effects
 				(font
@@ -50902,7 +50847,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3BL"
 			(at 48.26 264.16 0)
 			(effects
 				(font
@@ -50974,7 +50919,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 48.26 160.3248 0)
 			(effects
 				(font
@@ -51018,6 +50963,73 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
+		(at 93.98 138.43 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f6042540-cb1e-4b53-b26b-58f4a851c65c")
+		(property "Reference" "#PWR04"
+			(at 90.17 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3UL"
+			(at 97.155 138.4299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 93.98 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 93.98 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 93.98 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "35bb0af3-9b21-47b9-b7e4-8d3297a20150")
+		)
+		(instances
+			(project "level-shifter"
+				(path "/dfe466fb-b491-4b6f-b4a4-b4c92305e7f3"
+					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3V3")
 		(at 191.77 198.12 0)
 		(mirror y)
 		(unit 1)
@@ -51036,7 +51048,7 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3V3"
+		(property "Value" "+3V3BR"
 			(at 191.77 193.04 0)
 			(effects
 				(font
