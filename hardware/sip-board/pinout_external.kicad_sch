@@ -1249,11 +1249,11 @@
 		(uuid "8ce52bf5-e076-467d-827f-9a62e2dee313")
 	)
 	(no_connect
-		(at 114.3 106.68)
+		(at 138.43 106.68)
 		(uuid "a13223f6-b4dd-43e1-acd0-fb979de3e68f")
 	)
 	(no_connect
-		(at 138.43 106.68)
+		(at 114.3 106.68)
 		(uuid "ae8343bf-6dca-46e8-aae7-e658a6fd28e6")
 	)
 	(no_connect
@@ -2102,17 +2102,6 @@
 		)
 		(uuid "195e3cc6-d029-4264-af77-ff1470f50652")
 	)
-	(text "This A4 pin -->\nis GND on\noriginal Z80"
-		(exclude_from_sim no)
-		(at 91.44 118.11 0)
-		(effects
-			(font
-				(size 2 2)
-				(bold yes)
-			)
-		)
-		(uuid "3218c4cc-957f-41c3-8e0b-164ea6fc4d46")
-	)
 	(text "This A3 -->\nis VCC (5V) on\noriginal Z80"
 		(exclude_from_sim no)
 		(at -3.302 115.062 0)
@@ -2171,30 +2160,7 @@
 	)
 	(global_label "A6_5V"
 		(shape input)
-		(at 113.03 140.97 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify right)
-		)
-		(uuid "00974d8b-b49b-4d93-85d2-94c670e9a4e6")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 104.005 140.97 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A5_FPGA"
-		(shape input)
-		(at 137.16 143.51 0)
+		(at 137.16 148.59 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2203,14 +2169,37 @@
 			)
 			(justify left)
 		)
-		(uuid "07d06508-56f6-4cda-a1e5-b1a40ef132df")
+		(uuid "00974d8b-b49b-4d93-85d2-94c670e9a4e6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 148.6041 143.51 0)
+			(at 146.185 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A5_FPGA"
+		(shape input)
+		(at 113.03 146.05 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "07d06508-56f6-4cda-a1e5-b1a40ef132df")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 101.5859 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -2240,53 +2229,7 @@
 	)
 	(global_label "A4_5V"
 		(shape input)
-		(at 113.03 146.05 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify right)
-		)
-		(uuid "09c6ac53-656b-4fa8-a25b-e941a36a23db")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 104.005 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "BUSRQ_5V"
-		(shape input)
-		(at 115.57 80.01 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify right)
-		)
-		(uuid "0a0f3a9d-1b5d-4796-be3c-c2f0fc11ff29")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 102.4326 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A3_FPGA"
-		(shape input)
-		(at 137.16 148.59 0)
+		(at 137.16 143.51 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2295,14 +2238,60 @@
 			)
 			(justify left)
 		)
-		(uuid "0cbe0db3-dcbb-4bf9-a454-95b4b9aee045")
+		(uuid "09c6ac53-656b-4fa8-a25b-e941a36a23db")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 148.6041 148.59 0)
+			(at 146.185 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BUSRQ_5V"
+		(shape input)
+		(at 139.7 72.39 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "0a0f3a9d-1b5d-4796-be3c-c2f0fc11ff29")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 152.8374 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A3_FPGA"
+		(shape input)
+		(at 113.03 140.97 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "0cbe0db3-dcbb-4bf9-a454-95b4b9aee045")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 101.5859 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -2447,29 +2436,6 @@
 	)
 	(global_label "A0_5V"
 		(shape input)
-		(at 114.3 114.3 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify right)
-		)
-		(uuid "1c7661c8-bf59-435e-b679-b621c3d33f1a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 105.275 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A2_FPGA"
-		(shape input)
 		(at 138.43 109.22 0)
 		(fields_autoplaced yes)
 		(effects
@@ -2479,9 +2445,9 @@
 			)
 			(justify left)
 		)
-		(uuid "1f8604e1-6560-4350-8b54-4c16afabb170")
+		(uuid "1c7661c8-bf59-435e-b679-b621c3d33f1a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 149.8741 109.22 0)
+			(at 147.455 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2491,25 +2457,48 @@
 			)
 		)
 	)
-	(global_label "RESET_FPGA"
+	(global_label "A2_FPGA"
 		(shape input)
-		(at 139.7 77.47 0)
+		(at 114.3 114.3 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
-		(uuid "1fc0c8e6-b66d-4c67-9458-c5f41707bc15")
+		(uuid "1f8604e1-6560-4350-8b54-4c16afabb170")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 154.5911 77.47 0)
+			(at 102.8559 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RESET_FPGA"
+		(shape input)
+		(at 115.57 74.93 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "1fc0c8e6-b66d-4c67-9458-c5f41707bc15")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 100.6789 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -2723,23 +2712,23 @@
 	)
 	(global_label "A7_5V"
 		(shape input)
-		(at 111.76 182.88 180)
+		(at 135.89 175.26 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "379e31b1-8501-45d0-b716-c5db1835217b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 102.735 182.88 0)
+			(at 144.915 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -2769,30 +2758,7 @@
 	)
 	(global_label "WAIT_5V"
 		(shape input)
-		(at 116.84 38.1 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify right)
-		)
-		(uuid "42d2c879-9042-424c-a272-e12f11e13500")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 106.0007 38.1 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "BUSRQ_FPGA"
-		(shape input)
-		(at 139.7 80.01 0)
+		(at 140.97 45.72 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2801,14 +2767,37 @@
 			)
 			(justify left)
 		)
-		(uuid "4424adde-d769-492a-80a0-2a8b0367d1d8")
+		(uuid "42d2c879-9042-424c-a272-e12f11e13500")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 155.2565 80.01 0)
+			(at 151.8093 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BUSRQ_FPGA"
+		(shape input)
+		(at 115.57 72.39 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "4424adde-d769-492a-80a0-2a8b0367d1d8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 100.0135 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -3068,76 +3057,7 @@
 	)
 	(global_label "A0_FPGA"
 		(shape input)
-		(at 138.43 114.3 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify left)
-		)
-		(uuid "5c69012f-397d-4d7c-b291-5b6ffe8f72c7")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 149.8741 114.3 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A8_FPGA"
-		(shape input)
-		(at 135.89 180.34 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify left)
-		)
-		(uuid "5e9889d0-ef38-480e-8acd-3886f1b2ec63")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 147.3341 180.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A10_FPGA"
-		(shape input)
-		(at 135.89 175.26 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify left)
-		)
-		(uuid "613275e8-2129-48ae-85a2-f139e80438fd")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 148.5436 175.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A10_5V"
-		(shape input)
-		(at 111.76 175.26 180)
+		(at 114.3 109.22 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3146,14 +3066,83 @@
 			)
 			(justify right)
 		)
-		(uuid "627edc82-6735-494c-b36b-9176f756fb19")
+		(uuid "5c69012f-397d-4d7c-b291-5b6ffe8f72c7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 101.5255 175.26 0)
+			(at 102.8559 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A8_FPGA"
+		(shape input)
+		(at 111.76 177.8 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "5e9889d0-ef38-480e-8acd-3886f1b2ec63")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 100.3159 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A10_FPGA"
+		(shape input)
+		(at 111.76 182.88 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "613275e8-2129-48ae-85a2-f139e80438fd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 99.1064 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A10_5V"
+		(shape input)
+		(at 135.89 182.88 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "627edc82-6735-494c-b36b-9176f756fb19")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 146.1245 182.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3206,23 +3195,23 @@
 	)
 	(global_label "BUSAK_FPGA"
 		(shape input)
-		(at 140.97 40.64 0)
+		(at 116.84 43.18 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "653c30d2-1dae-4cf3-8cc9-8a664cacc88b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 156.2846 40.64 0)
+			(at 101.5254 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -3275,30 +3264,7 @@
 	)
 	(global_label "RFSH_5V"
 		(shape input)
-		(at 115.57 72.39 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify right)
-		)
-		(uuid "6e0f815f-bd90-45ce-bc78-de9dd41ad2a1")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 103.9445 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "RFSH_FPGA"
-		(shape input)
-		(at 139.7 72.39 0)
+		(at 139.7 80.01 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3307,14 +3273,37 @@
 			)
 			(justify left)
 		)
-		(uuid "7247360b-6ef7-4a80-a210-a48d292db37e")
+		(uuid "6e0f815f-bd90-45ce-bc78-de9dd41ad2a1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 153.7446 72.39 0)
+			(at 151.3255 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RFSH_FPGA"
+		(shape input)
+		(at 115.57 80.01 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify right)
+		)
+		(uuid "7247360b-6ef7-4a80-a210-a48d292db37e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 101.5254 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -3367,23 +3356,23 @@
 	)
 	(global_label "WR_5V"
 		(shape input)
-		(at 116.84 43.18 180)
+		(at 140.97 40.64 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "78424559-83e7-4f61-aac0-2146f53f91f6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 107.3917 43.18 0)
+			(at 150.4183 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3413,23 +3402,23 @@
 	)
 	(global_label "A2_5V"
 		(shape input)
-		(at 114.3 109.22 180)
+		(at 138.43 114.3 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "794e2c1b-36f2-4ec1-bcd5-799137bbec31")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 105.275 109.22 0)
+			(at 147.455 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3482,76 +3471,53 @@
 	)
 	(global_label "A9_FPGA"
 		(shape input)
-		(at 135.89 177.8 0)
+		(at 111.76 180.34 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "7f833110-96ad-442b-a57e-ad546780a3c7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 147.3341 177.8 0)
+			(at 100.3159 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "M1_FPGA"
 		(shape input)
-		(at 139.7 74.93 0)
+		(at 115.57 77.47 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "8006d64d-e8e4-4cc6-bfbc-f1f5f76db6fd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 151.5069 74.93 0)
+			(at 103.7631 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "A1_5V"
 		(shape input)
-		(at 114.3 111.76 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify right)
-		)
-		(uuid "839adbff-1efb-4dfb-a57e-c89ba131a6d2")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 105.275 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A6_FPGA"
-		(shape input)
-		(at 137.16 140.97 0)
+		(at 138.43 111.76 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3560,9 +3526,9 @@
 			)
 			(justify left)
 		)
-		(uuid "8579cad3-3c7a-419c-915e-a0ec27fc6b24")
+		(uuid "839adbff-1efb-4dfb-a57e-c89ba131a6d2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 148.6041 140.97 0)
+			(at 147.455 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3572,9 +3538,9 @@
 			)
 		)
 	)
-	(global_label "BUSAK_5V"
+	(global_label "A6_FPGA"
 		(shape input)
-		(at 116.84 40.64 180)
+		(at 113.03 148.59 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3583,14 +3549,37 @@
 			)
 			(justify right)
 		)
-		(uuid "86d6faf5-da74-4877-9f7d-600462907f80")
+		(uuid "8579cad3-3c7a-419c-915e-a0ec27fc6b24")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 103.9445 40.64 0)
+			(at 101.5859 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "BUSAK_5V"
+		(shape input)
+		(at 140.97 43.18 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "86d6faf5-da74-4877-9f7d-600462907f80")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 153.8655 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3643,23 +3632,23 @@
 	)
 	(global_label "A3_5V"
 		(shape input)
-		(at 113.03 148.59 180)
+		(at 137.16 140.97 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "8f3b5bfe-6d83-498c-8079-bd5a2f4ec1e3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 104.005 148.59 0)
+			(at 146.185 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3689,23 +3678,23 @@
 	)
 	(global_label "RD_5V"
 		(shape input)
-		(at 116.84 45.72 180)
+		(at 140.97 38.1 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "92e70e89-ab66-42f3-8335-ccef6d3fcc69")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 107.5731 45.72 0)
+			(at 150.2369 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3781,23 +3770,23 @@
 	)
 	(global_label "RESET_5V"
 		(shape input)
-		(at 115.57 77.47 180)
+		(at 139.7 74.93 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "9c2a3381-828b-4c41-96bf-4d4706e6aa73")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 103.098 77.47 0)
+			(at 152.172 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4034,23 +4023,23 @@
 	)
 	(global_label "RD_FPGA"
 		(shape input)
-		(at 140.97 45.72 0)
+		(at 116.84 38.1 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "b0e3d637-201e-4880-a1c6-ceadfe3522e8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 152.656 45.72 0)
+			(at 105.154 38.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -4126,23 +4115,23 @@
 	)
 	(global_label "WR_FPGA"
 		(shape input)
-		(at 140.97 43.18 0)
+		(at 116.84 40.64 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "b572f7cf-917d-4bb8-8b3f-b9e45fa31b15")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 152.8374 43.18 0)
+			(at 104.9726 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -4172,46 +4161,46 @@
 	)
 	(global_label "A4_FPGA"
 		(shape input)
-		(at 137.16 146.05 0)
+		(at 113.03 143.51 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "b8d171f7-cf3b-4470-9e96-fb7e67696f12")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 148.6041 146.05 0)
+			(at 101.5859 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
 	)
 	(global_label "A7_FPGA"
 		(shape input)
-		(at 135.89 182.88 0)
+		(at 111.76 175.26 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "bc2da6fc-c03e-4a08-b2ea-bccdc5cea793")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 147.3341 182.88 0)
+			(at 100.3159 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -4310,23 +4299,23 @@
 	)
 	(global_label "WAIT_FPGA"
 		(shape input)
-		(at 140.97 38.1 0)
+		(at 116.84 45.72 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "ca634455-4000-4840-9333-e9c12cf02110")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 154.2284 38.1 0)
+			(at 103.5816 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -4379,30 +4368,7 @@
 	)
 	(global_label "A1_FPGA"
 		(shape input)
-		(at 138.43 111.76 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-				(bold yes)
-			)
-			(justify left)
-		)
-		(uuid "d2a9bb72-550c-48b9-9e51-7e3f2156858c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 149.8741 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A9_5V"
-		(shape input)
-		(at 111.76 177.8 180)
+		(at 114.3 111.76 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4411,14 +4377,37 @@
 			)
 			(justify right)
 		)
-		(uuid "d327bdf1-e9fd-462c-b550-096f0692f636")
+		(uuid "d2a9bb72-550c-48b9-9e51-7e3f2156858c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 102.735 177.8 0)
+			(at 102.8559 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A9_5V"
+		(shape input)
+		(at 135.89 180.34 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "d327bdf1-e9fd-462c-b550-096f0692f636")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 144.915 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4563,23 +4552,23 @@
 	)
 	(global_label "M1_5V"
 		(shape input)
-		(at 115.57 74.93 180)
+		(at 139.7 77.47 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "ecf46b8b-055f-4f77-a905-f0c9bd5f310a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 106.1822 74.93 0)
+			(at 149.0878 77.47 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4678,23 +4667,23 @@
 	)
 	(global_label "A8_5V"
 		(shape input)
-		(at 111.76 180.34 180)
+		(at 135.89 177.8 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "fab0c6b4-638a-4fe6-a3f2-0ec988e20784")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 102.735 180.34 0)
+			(at 144.915 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4724,23 +4713,23 @@
 	)
 	(global_label "A5_5V"
 		(shape input)
-		(at 113.03 143.51 180)
+		(at 137.16 146.05 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 				(bold yes)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "fec4a85b-317d-44da-b8d7-485eaa52608e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 104.005 143.51 0)
+			(at 146.185 146.05 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -4860,8 +4849,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 109.22 170.18 0)
-		(mirror y)
+		(at 138.43 170.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4870,7 +4858,7 @@
 		(fields_autoplaced yes)
 		(uuid "0dc378d1-e1f7-42ea-a1a6-f595fb2e0e0e")
 		(property "Reference" "#PWR063"
-			(at 109.22 173.99 0)
+			(at 138.43 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4879,7 +4867,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 109.22 165.1 0)
+			(at 138.43 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4887,7 +4875,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 109.22 170.18 0)
+			(at 138.43 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4896,7 +4884,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 109.22 170.18 0)
+			(at 138.43 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4905,7 +4893,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 109.22 170.18 0)
+			(at 138.43 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4926,18 +4914,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 148.59 119.38 270)
-		(mirror x)
+		(lib_id "power:+3V3")
+		(at 146.05 187.96 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "10403c2b-939e-4770-99d8-45c05f034318")
-		(property "Reference" "#PWR069"
-			(at 144.78 119.38 0)
+		(uuid "12d83082-80e4-4f1d-8015-5dc24fc01282")
+		(property "Reference" "#PWR071"
+			(at 142.24 187.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4945,8 +4932,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+5V"
-			(at 152.4 119.3799 90)
+		(property "Value" "+3V3"
+			(at 149.86 187.9599 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4955,7 +4942,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 148.59 119.38 0)
+			(at 146.05 187.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4964,7 +4951,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 148.59 119.38 0)
+			(at 146.05 187.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4972,8 +4959,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 148.59 119.38 0)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 146.05 187.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4982,12 +4969,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "1880c43d-0b20-4ca8-b4f2-6e84b4422b53")
+			(uuid "607a18f2-eae8-482f-86d5-32046b62a476")
 		)
 		(instances
 			(project "sip-board"
 				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
-					(reference "#PWR069")
+					(reference "#PWR071")
 					(unit 1)
 				)
 			)
@@ -5062,8 +5049,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 138.43 170.18 0)
-		(mirror y)
+		(at 109.22 170.18 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5072,7 +5058,7 @@
 		(fields_autoplaced yes)
 		(uuid "161d17de-a62d-4249-abb0-f52a70c162a4")
 		(property "Reference" "#PWR055"
-			(at 138.43 173.99 0)
+			(at 109.22 173.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5081,7 +5067,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 138.43 165.1 0)
+			(at 109.22 165.1 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5089,7 +5075,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 138.43 170.18 0)
+			(at 109.22 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5098,7 +5084,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 138.43 170.18 0)
+			(at 109.22 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5107,7 +5093,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 138.43 170.18 0)
+			(at 109.22 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5128,86 +5114,17 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 149.86 85.09 270)
-		(mirror x)
+		(lib_id "power:+3V3")
+		(at 151.13 50.8 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "226dc5a9-6565-4786-831c-5ec8a07bf267")
-		(property "Reference" "#PWR070"
-			(at 146.05 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 153.67 85.0899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 149.86 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 149.86 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 149.86 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "23c37e95-d7cc-452c-b1be-b841a71cc641")
-		)
-		(instances
-			(project "sip-board"
-				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
-					(reference "#PWR070")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 146.05 187.96 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "25a2fcc8-d144-4b68-9623-d0d8740f3dd1")
+		(uuid "20ff77cd-e694-4a8d-848b-23a2f379f625")
 		(property "Reference" "#PWR02"
-			(at 142.24 187.96 0)
+			(at 147.32 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5215,8 +5132,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+5V"
-			(at 149.86 187.9599 90)
+		(property "Value" "+3V3"
+			(at 154.94 50.7999 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5225,7 +5142,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 146.05 187.96 0)
+			(at 151.13 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5234,7 +5151,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 146.05 187.96 0)
+			(at 151.13 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5242,8 +5159,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 146.05 187.96 0)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 151.13 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5252,7 +5169,7 @@
 			)
 		)
 		(pin "1"
-			(uuid "06f3d457-ac5c-4b27-88a9-1f4ee5808ac7")
+			(uuid "5dce6c55-f975-4a01-9f15-5b42428fcf4f")
 		)
 		(instances
 			(project "sip-board"
@@ -5325,74 +5242,6 @@
 			(project "sip-board"
 				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
 					(reference "R1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 151.13 50.8 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "287e07b6-9fea-466e-9d72-7bfc310d1d89")
-		(property "Reference" "#PWR071"
-			(at 147.32 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 154.94 50.7999 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 151.13 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 151.13 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 151.13 50.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "62db8483-86d2-462c-9538-353378544192")
-		)
-		(instances
-			(project "sip-board"
-				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
-					(reference "#PWR071")
 					(unit 1)
 				)
 			)
@@ -5946,6 +5795,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 149.86 85.09 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "412bb98b-fc90-4892-8344-9219d3a24173")
+		(property "Reference" "#PWR068"
+			(at 146.05 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 153.67 85.0899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 149.86 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 149.86 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 149.86 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "78b7a36f-c82e-4ef8-a70a-53fcf7081974")
+		)
+		(instances
+			(project "sip-board"
+				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
+					(reference "#PWR068")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 57.15 50.8 270)
 		(unit 1)
@@ -6344,6 +6260,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 148.59 119.38 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "49ad03ca-c5b2-48ae-9af3-d0cd0f27367c")
+		(property "Reference" "#PWR069"
+			(at 144.78 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 152.4 119.3799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 148.59 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 148.59 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 148.59 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "12f46c0e-9182-4b5a-93db-84d7df737d8a")
+		)
+		(instances
+			(project "sip-board"
+				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
+					(reference "#PWR069")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 146.05 50.8 270)
 		(unit 1)
@@ -6626,8 +6609,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 140.97 101.6 0)
-		(mirror y)
+		(at 111.76 101.6 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6636,7 +6618,7 @@
 		(fields_autoplaced yes)
 		(uuid "61b811c6-c235-4042-aaba-49ab41592deb")
 		(property "Reference" "#PWR059"
-			(at 140.97 105.41 0)
+			(at 111.76 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6645,7 +6627,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 140.97 96.52 0)
+			(at 111.76 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6653,7 +6635,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 140.97 101.6 0)
+			(at 111.76 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6662,7 +6644,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 140.97 101.6 0)
+			(at 111.76 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6671,7 +6653,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 140.97 101.6 0)
+			(at 111.76 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6693,8 +6675,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 139.7 135.89 0)
-		(mirror y)
+		(at 110.49 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6703,7 +6684,7 @@
 		(fields_autoplaced yes)
 		(uuid "61fa3c68-a5cf-4f4f-8804-bd041d9ef30a")
 		(property "Reference" "#PWR057"
-			(at 139.7 139.7 0)
+			(at 110.49 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6712,7 +6693,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 139.7 130.81 0)
+			(at 110.49 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6720,7 +6701,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 139.7 135.89 0)
+			(at 110.49 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6729,7 +6710,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 139.7 135.89 0)
+			(at 110.49 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6738,7 +6719,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 139.7 135.89 0)
+			(at 110.49 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7091,8 +7072,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 143.51 33.02 0)
-		(mirror y)
+		(at 114.3 33.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7101,7 +7081,7 @@
 		(fields_autoplaced yes)
 		(uuid "77282f17-1f22-47be-bd0b-64d5b67c2939")
 		(property "Reference" "#PWR062"
-			(at 143.51 36.83 0)
+			(at 114.3 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7110,7 +7090,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 143.51 27.94 0)
+			(at 114.3 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7118,7 +7098,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 143.51 33.02 0)
+			(at 114.3 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7127,7 +7107,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 143.51 33.02 0)
+			(at 114.3 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7136,7 +7116,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 143.51 33.02 0)
+			(at 114.3 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7968,6 +7948,73 @@
 		)
 	)
 	(symbol
+		(lib_id "power:+3V3")
+		(at 147.32 153.67 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9cc987f9-0800-4d9d-8064-b601d9f01548")
+		(property "Reference" "#PWR070"
+			(at 143.51 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3V3"
+			(at 151.13 153.6699 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 147.32 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 147.32 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3V3\""
+			(at 147.32 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "51fdf182-4133-4003-b0dc-a60004d89654")
+		)
+		(instances
+			(project "sip-board"
+				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
+					(reference "#PWR070")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 107.95 190.5 0)
 		(unit 1)
@@ -8168,8 +8215,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 111.76 101.6 0)
-		(mirror y)
+		(at 140.97 101.6 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8178,7 +8224,7 @@
 		(fields_autoplaced yes)
 		(uuid "a2afb8f3-8fcb-4a50-841d-7f629d0779b5")
 		(property "Reference" "#PWR065"
-			(at 111.76 105.41 0)
+			(at 140.97 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8187,7 +8233,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 111.76 96.52 0)
+			(at 140.97 96.52 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8195,7 +8241,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 111.76 101.6 0)
+			(at 140.97 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8204,7 +8250,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 111.76 101.6 0)
+			(at 140.97 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8213,7 +8259,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 111.76 101.6 0)
+			(at 140.97 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8367,76 +8413,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 147.32 153.67 270)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a61b69cf-6bc2-45bd-9fad-a4be4b5e3e21")
-		(property "Reference" "#PWR068"
-			(at 143.51 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 151.13 153.6699 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 147.32 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 147.32 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 147.32 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "59bf0dec-4118-4ed1-b463-3ec8ad02b906")
-		)
-		(instances
-			(project "sip-board"
-				(path "/4eae758a-da4d-4448-84d4-770db7217b0d/299b606c-7022-41b6-8ac4-9a5a071f99f1"
-					(reference "#PWR068")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 114.3 33.02 0)
-		(mirror y)
+		(at 143.51 33.02 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8445,7 +8422,7 @@
 		(fields_autoplaced yes)
 		(uuid "a6bf7136-2ca3-47ff-8df0-0c33e43cea66")
 		(property "Reference" "#PWR067"
-			(at 114.3 36.83 0)
+			(at 143.51 36.83 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8454,7 +8431,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 114.3 27.94 0)
+			(at 143.51 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8462,7 +8439,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 114.3 33.02 0)
+			(at 143.51 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8471,7 +8448,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 114.3 33.02 0)
+			(at 143.51 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8480,7 +8457,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 114.3 33.02 0)
+			(at 143.51 33.02 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8725,8 +8702,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 142.24 67.31 0)
-		(mirror y)
+		(at 113.03 67.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8735,7 +8711,7 @@
 		(fields_autoplaced yes)
 		(uuid "b913bc11-ff3f-47bd-b161-4729c5d50d65")
 		(property "Reference" "#PWR061"
-			(at 142.24 71.12 0)
+			(at 113.03 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8744,7 +8720,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 142.24 62.23 0)
+			(at 113.03 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8752,7 +8728,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 142.24 67.31 0)
+			(at 113.03 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8761,7 +8737,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 142.24 67.31 0)
+			(at 113.03 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8770,7 +8746,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 142.24 67.31 0)
+			(at 113.03 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9084,8 +9060,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 113.03 67.31 0)
-		(mirror y)
+		(at 142.24 67.31 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9094,7 +9069,7 @@
 		(fields_autoplaced yes)
 		(uuid "cf88c024-05ac-439f-87c5-50089ecdf95c")
 		(property "Reference" "#PWR066"
-			(at 113.03 71.12 0)
+			(at 142.24 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9103,7 +9078,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 113.03 62.23 0)
+			(at 142.24 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9111,7 +9086,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 113.03 67.31 0)
+			(at 142.24 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9120,7 +9095,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 113.03 67.31 0)
+			(at 142.24 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9129,7 +9104,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 113.03 67.31 0)
+			(at 142.24 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9351,8 +9326,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 110.49 135.89 0)
-		(mirror y)
+		(at 139.7 135.89 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9361,7 +9335,7 @@
 		(fields_autoplaced yes)
 		(uuid "e1231910-256d-4a52-bf74-625fada05bd8")
 		(property "Reference" "#PWR064"
-			(at 110.49 139.7 0)
+			(at 139.7 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9370,7 +9344,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 110.49 130.81 0)
+			(at 139.7 130.81 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9378,7 +9352,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 110.49 135.89 0)
+			(at 139.7 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9387,7 +9361,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 110.49 135.89 0)
+			(at 139.7 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9396,7 +9370,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 110.49 135.89 0)
+			(at 139.7 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
