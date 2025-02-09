@@ -142,3 +142,5 @@ ipshared
 z80_rtl/z80_rtl.gen/
 
 z80_rtl/z80_rtl.runs/
+
+hardware/level-shifter/production/
