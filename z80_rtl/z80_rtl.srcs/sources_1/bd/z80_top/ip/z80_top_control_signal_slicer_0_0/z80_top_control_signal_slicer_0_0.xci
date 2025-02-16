@@ -37,7 +37,7 @@
     },
     "boundary": {
       "ports": {
-        "signals": [ { "direction": "in", "size_left": "284", "size_right": "0" } ],
+        "m_signals": [ { "direction": "in", "size_left": "48", "size_right": "0" } ],
         "PCMUX": [ { "direction": "out", "size_left": "4", "size_right": "2" } ],
         "A_MUX": [ { "direction": "out", "size_left": "10", "size_right": "7" } ],
         "B_MUX": [ { "direction": "out", "size_left": "12", "size_right": "11" } ],

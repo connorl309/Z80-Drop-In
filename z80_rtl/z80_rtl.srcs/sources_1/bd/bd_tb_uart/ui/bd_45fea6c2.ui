@@ -3,35 +3,35 @@
    "Default View_ScaleFactor":"1.0",
    "Default View_TopLeft":"-554,-518",
    "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0 threadsafe
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
-preplace port port-id_sys_clock -pg 1 -lvl 0 -x -120 -y -330 -defaultsOSRD
-preplace port port-id_TX -pg 1 -lvl 4 -x 920 -y -270 -defaultsOSRD
-preplace port port-id_RX -pg 1 -lvl 0 -x -120 -y -130 -defaultsOSRD
-preplace port port-id_reset -pg 1 -lvl 0 -x -120 -y -180 -defaultsOSRD
-preplace inst fifo_generator_0 -pg 1 -lvl 3 -x 750 -y -230 -defaultsOSRD
-preplace inst uart_0 -pg 1 -lvl 2 -x 300 -y -220 -defaultsOSRD
-preplace inst system_ila_0 -pg 1 -lvl 3 -x 750 -y 100 -defaultsOSRD
+preplace port port-id_sys_clock -pg 1 -lvl 0 -x -130 -y -330 -defaultsOSRD
+preplace port port-id_TX -pg 1 -lvl 4 -x 940 -y -270 -defaultsOSRD
+preplace port port-id_RX -pg 1 -lvl 0 -x -130 -y -130 -defaultsOSRD
+preplace port port-id_reset -pg 1 -lvl 0 -x -130 -y -180 -defaultsOSRD
+preplace inst fifo_generator_0 -pg 1 -lvl 3 -x 770 -y -230 -defaultsOSRD
+preplace inst uart_0 -pg 1 -lvl 2 -x 320 -y -220 -defaultsOSRD
+preplace inst system_ila_0 -pg 1 -lvl 3 -x 770 -y 100 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 10 -y -100 -defaultsOSRD
-preplace netloc RX_1 1 0 3 -90J -170 110 -390 570
-preplace netloc uart_0_tx 1 2 2 600J -380 900
-preplace netloc uart_0_rx_fifo_wr 1 2 1 520 -270n
-preplace netloc fifo_generator_0_empty 1 1 2 140 -410 550
-preplace netloc uart_0_tx_fifo_rd 1 2 1 510 -250n
-preplace netloc fifo_generator_0_dout 1 1 2 150 -370 540
-preplace netloc uart_0_rx_fifo 1 2 1 530 -290n
-preplace netloc fifo_generator_0_full 1 1 2 130 -420 560
-preplace netloc uart_0_rx_state 1 2 1 500 -230n
-preplace netloc uart_0_tx_state 1 2 1 490 -210n
-preplace netloc uart_0_rx_delay_left 1 2 1 480 -190n
-preplace netloc uart_0_tx_delay_left 1 2 1 470 -170n
-preplace netloc uart_0_rx_bits_left 1 2 1 460 -150n
-preplace netloc uart_0_tx_bits_left 1 2 1 450 -130n
-preplace netloc sys_clock_1 1 0 1 -100 -330n
-preplace netloc clk_wiz_0_clk_out1 1 1 2 120 -380 580
-preplace netloc reset_1 1 0 3 -80 -180 100 -400 590
-levelinfo -pg 1 -120 10 300 750 920
-pagesize -pg 1 -db -bbox -sgen -240 -490 990 300
+preplace netloc RX_1 1 0 3 -100J -170 130 -390 590
+preplace netloc clk_wiz_0_clk_out1 1 1 2 140 -380 600
+preplace netloc fifo_generator_0_dout 1 1 2 170 -370 560
+preplace netloc fifo_generator_0_empty 1 1 2 160 -410 570
+preplace netloc fifo_generator_0_full 1 1 2 150 -420 580
+preplace netloc reset_1 1 0 3 -80 -180 120 -400 610
+preplace netloc sys_clock_1 1 0 1 -110 -330n
+preplace netloc uart_0_rx_bits_left 1 2 1 480 -150n
+preplace netloc uart_0_rx_delay_left 1 2 1 500 -190n
+preplace netloc uart_0_rx_fifo 1 2 1 550 -290n
+preplace netloc uart_0_rx_fifo_wr 1 2 1 540 -270n
+preplace netloc uart_0_rx_state 1 2 1 520 -230n
+preplace netloc uart_0_tx 1 2 2 620J -380 920
+preplace netloc uart_0_tx_bits_left 1 2 1 470 -130n
+preplace netloc uart_0_tx_delay_left 1 2 1 490 -170n
+preplace netloc uart_0_tx_fifo_rd 1 2 1 530 -250n
+preplace netloc uart_0_tx_state 1 2 1 510 -210n
+levelinfo -pg 1 -130 10 320 770 940
+pagesize -pg 1 -db -bbox -sgen -250 -490 1010 300
 "
 }
-
+0

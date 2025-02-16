@@ -23,15 +23,12 @@
 module z80RegisterFile(
 
     input CLK,
-    input RD, 
     input RFSH, //increment R register when RFSH is high
     
     input [2:0] SR1_MUX, //chooses which regsiter/reg pair to use from r/rp tables
     input [2:0] SR2_MUX, //chooses which register/reg pair to use from r/rp tables
     input RP_SR1,
     input RP_SR2,
-    input Gate_SR1, //sends a value out to ALUB_MUX
-    input Gate_SR2, //sends a value out to ALUA_MUX
     input [2:0] DR_MUX, //chooses between r[y], r[z] of opcode, HL, BC, DE, SP, and B as DR
     input RP_TABLE, //chooses between RP1 and RP2 for loads, RP1 if 0 and RP2 if 1
     input RP, //when set, r[y] is now RP[p] for dr_mux (essentially just makes it a 16 bit write)        
@@ -65,7 +62,6 @@ module z80RegisterFile(
 
     output reg [15:0] TO_ALUA_MUX, //SR2 out, port to ALUA MUX
     output reg [15:0] TO_ALUB_MUX, //SR1 out, port to ALUB MUX / MARMUX (I'm following the drawio datapath diagram)
-    output reg [15:0] TO_DATABUS, //port directly to databus
     output reg [15:0] TO_LATCH, //idk
     output reg [15:0] ADDR_BUS, //port directly to address bus (for (HL) stuff)
 
@@ -80,7 +76,9 @@ module z80RegisterFile(
     output [7:0] R_out,
     output [7:0] I_out,
     output [7:0] W_out,
-    output [7:0] Z_out
+    output [7:0] Z_out,
+    output [7:0] F_out,
+    output [7:0] A_out
     
     );
       
@@ -344,7 +342,6 @@ module z80RegisterFile(
         if(Gate_SP_DEC) begin SP = SP - 1; ADDR_BUS <= SP; end
         
 
-        if(Gate_SR1) begin
             if(RP_SR1) begin
                 case(SR1_MUX)
                     0: begin TO_ALUB_MUX <= !EXX_TOGGLE ? {B,C} : {Bp,Cp}; end
@@ -377,9 +374,7 @@ module z80RegisterFile(
                     default: TO_ALUB_MUX <= 16'b0;
                 endcase 
             end
-        end    
- 
-        if(Gate_SR2) begin
+
             if(RP_SR2) begin
                 case(SR2_MUX)
                     0: begin TO_ALUA_MUX <= !EXX_TOGGLE ? {B,C} : {Bp,Cp}; end
@@ -412,7 +407,6 @@ module z80RegisterFile(
                     default: TO_ALUA_MUX <= 16'b0;
                 endcase 
             end
-        end  
         
         
 //        //read r(y)
@@ -432,6 +426,8 @@ module z80RegisterFile(
     assign B_out = (EXX_TOGGLE)? Bp : B;
     assign R_out = R;
     assign I_out = I;    
+    
+    // these should really take into account EXX
     assign BC_out = {B, C};
     assign DE_out = {D, E};
     assign HL_out = {H, L};
