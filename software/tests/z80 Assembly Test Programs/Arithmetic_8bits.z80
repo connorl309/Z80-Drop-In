@@ -1,0 +1,55 @@
+ORG $0000
+  LD HL, $8000
+  LD A, 0
+  LD B, 2
+  LD C, $FF
+  LD D, 3
+  ADD A, B ;2
+  ADD A, C ;1
+  ADD A, D ;4
+  OR C
+  SUB D
+  SUB A
+  OR C
+  LD D, $C5
+  XOR D
+
+  LD A, 128
+  ADD A, A ;CARRY BIT SHOULD BE SET
+  ADC A, 1 ;
+
+  LD A, $FF
+  AND A ;NO CHANGE except maybe flags
+  AND B 
+  BIT 2, A ; should set Z flag since bit 2 of B is 0
+  DEC A
+  BIT 2, A
+  CPL ;A SOHULD CONTAIN 0xFE
+  DAA
+  NEG
+  RLA
+  NOP
+  LD A, $C
+  RLCA
+  NOP
+
+  LD B, 5
+  RL B
+  RLC B ; carry and B[0] should be set
+
+  LD C, 10
+  RR C ; C<-1101, carry<-0
+  LD A, 11
+  RRA
+  RRC B
+  RRCA
+
+  SBC A,B
+
+  LD C, 0
+  SET 4,C ;C<- 0001_0000
+  SCF ;SET CARRY FLAG
+  SRA C
+
+  HALT
+END
