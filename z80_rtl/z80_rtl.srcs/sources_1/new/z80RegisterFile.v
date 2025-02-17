@@ -21,17 +21,8 @@
 
 
 module z80RegisterFile(
-
     input CLK,
-    input RD, 
     input RFSH, //increment R register when RFSH is high
-    
-    input [2:0] SR1_MUX, //chooses which regsiter/reg pair to use from r/rp tables
-    input [2:0] SR2_MUX, //chooses which register/reg pair to use from r/rp tables
-    input RP_SR1,
-    input RP_SR2,
-    input Gate_SR1, //sends a value out to ALUB_MUX
-    input Gate_SR2, //sends a value out to ALUA_MUX
     input [2:0] DR_MUX, //chooses between r[y], r[z] of opcode, HL, BC, DE, SP, and B as DR
     input RP_TABLE, //chooses between RP1 and RP2 for loads, RP1 if 0 and RP2 if 1
     input RP, //when set, r[y] is now RP[p] for dr_mux (essentially just makes it a 16 bit write)        
@@ -47,12 +38,11 @@ module z80RegisterFile(
     input Gate_SP_DEC, //puts SP - 1 into SP then puts it onto ADDR_BUS
     input [2:0] OPCODE_Y, //this is just bits [5:3] of the current opcode
     input [2:0] OPCODE_Z, //this is [2:0] of the current opcode
-    
-    input [15:0] LATCH_BUS,
+
+    input [15:0] TEMP_IN, //information to be stored in W (15 thru 8) or Z (7 thru 0), this is just optional temporary storage for parts of an instruction    
     input [7:0] DATA_BUS_HIGH, //bits [15:8] of data bus
     input [7:0] DATA_BUS_LOW, //bits [7:0] of data bus
 
-    input [15:0] ALU_OUT, //output from ALU to reg file and other blocks
     input [7:0] ACC_OUT, //output from ALU containing data to be put in Accumulator register
     input [7:0] FLAG_OUT, //FLAG output from ALU
     input DD_PREFIX, //when high, IX is used in place of HL
@@ -62,12 +52,8 @@ module z80RegisterFile(
     input DEHL_SWAP, //should be high during an EX instruction that switches DE with HL
     input DEPHLP_SWAP, //should be high during an EX instruction that switches DE' with HL'
     input EXX, //should be high during EXX instruction execution
-
-    output reg [15:0] TO_ALUA_MUX, //SR2 out, port to ALUA MUX
-    output reg [15:0] TO_ALUB_MUX, //SR1 out, port to ALUB MUX / MARMUX (I'm following the drawio datapath diagram)
-    output reg [15:0] TO_DATABUS, //port directly to databus
-    output reg [15:0] TO_LATCH, //idk
-    output reg [15:0] ADDR_BUS, //port directly to address bus (for (HL) stuff)
+    
+    output reg [15:0] ADDR_BUS, //port directly to address bus (for (HL) and SP stuff)
 
     //Separate register read ports    
     output [15:0] BC_out,
@@ -80,7 +66,9 @@ module z80RegisterFile(
     output [7:0] R_out,
     output [7:0] I_out,
     output [7:0] W_out,
-    output [7:0] Z_out
+    output [7:0] Z_out,
+    output [7:0] F_out,
+    output [7:0] A_out
     
     );
       
@@ -110,13 +98,13 @@ module z80RegisterFile(
     reg [15:0] IX = 0;
     reg [15:0] IY = 0;
     reg [15:0] SP = 0;
-        
+    
+    reg [7:0] RY = 0; 
+    reg [7:0] RZ = 0;        
    
     reg [15:0] RP_TABLE_SELECTION; //holds a 16 bit entry from either RP1 or RP2
-    wire [15:0] REG_BUS_INTERNAL_IN;
-    reg [15:0] REG_BUS_INTERNAL_OUT;
-    reg [15:0] REG_MUX_OUT;// ALU_MUX_OUT;
-    reg [15:0] SPECIAL_REG_OUT_T;
+    reg sig_rfsh = 0;
+    
     
     /*  flipflops that toggle during register exchange operations (EX, EXX)
          - AF_TOGGLE: if high, A and F are swapped to A' and F'
@@ -125,10 +113,11 @@ module z80RegisterFile(
          - BIG_TOGGLE: if high, BC/DE/HL goes instead to BC'/DE'/HL' and vise versa
     */
     reg DEHL_TOGGLE = 0, DEPHLP_TOGGLE = 0, EXX_TOGGLE = 0, AF_TOGGLE = 0; 
-    
-    
-    assign REG_BUS_INTERNAL_IN = LATCH_BUS;    
-   
+               
+            
+    always @(negedge RFSH) begin 
+        sig_rfsh = 1'b1;
+    end
             
     //register writes 
     always @(posedge CLK) begin
@@ -140,16 +129,17 @@ module z80RegisterFile(
         DEPHLP_TOGGLE <= DEPHLP_SWAP ? ~DEPHLP_TOGGLE : DEPHLP_TOGGLE;
                 
                            
-        if(LD_W) begin W <= REG_BUS_INTERNAL_IN[15:8]; end// make sure you know where (IR) is coming from
-        if(LD_Z) begin Z <= REG_BUS_INTERNAL_IN[7:0]; end
+        if(LD_W) begin W <= TEMP_IN[15:8]; end
+        if(LD_Z) begin Z <= TEMP_IN[7:0]; end
     
         //Load I w/ ALU output
         if(LD_I) begin I <= DATA_BUS_LOW; end      
     
         //R register
         if(LD_R) R <= DATA_BUS_LOW;
-        if(RFSH) begin //increment
+        if(sig_rfsh) begin //increment
             R <= (R + 1) & 7'h7F;
+            sig_rfsh = 1'b0;
         end
         
         //put data from ALU in register A
@@ -195,8 +185,20 @@ module z80RegisterFile(
                                         end    
                                    end
                                    
-                                3: begin SP <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end 
-                                
+                                3: begin 
+                                    if(RP_TABLE == 1) 
+                                    begin 
+                                        if(~AF_TOGGLE) begin A <= DATA_BUS_HIGH; F <= DATA_BUS_LOW; end
+                                        else begin Ap <= DATA_BUS_HIGH; Fp <= DATA_BUS_LOW; end
+                                    end
+                                    
+                                    else 
+                                    begin 
+                                        if(Gate_SP_INC) SP = SP + 1;
+                                        else if(Gate_SP_DEC) SP = SP - 1;
+                                        else SP <= {DATA_BUS_HIGH, DATA_BUS_LOW};                                     
+                                    end 
+                                end
                             endcase                    
                         end 
                         
@@ -225,9 +227,8 @@ module z80RegisterFile(
                                          else begin if(!DEPHLP_TOGGLE) begin Lp <= DATA_BUS_LOW; end else begin Ep <= DATA_BUS_LOW; end end
                                    end
                                    
-                                6: begin  
-                                        ADDR_BUS <= (!EXX_TOGGLE) ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep});
-                                   end 
+                                6: begin
+                                   end  //do nothing
                                 
                                 7: begin if(!AF_TOGGLE) begin A <= DATA_BUS_LOW; end else begin Ap <= DATA_BUS_LOW; end end
                                 
@@ -261,8 +262,7 @@ module z80RegisterFile(
                                end
                                
                             6: begin 
-                                    ADDR_BUS <= (!EXX_TOGGLE) ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep});
-                               end 
+                               end //do nothing
                             
                             7: begin if(!AF_TOGGLE) begin A <= DATA_BUS_LOW; end else begin Ap <= DATA_BUS_LOW; end end
                             
@@ -334,97 +334,42 @@ module z80RegisterFile(
         end
     end 
     
-//register reads
     
+//register reads
     always @(negedge CLK) begin
 
-        //SP
-        if(Gate_SP) begin ADDR_BUS <= SP; end
-        if(Gate_SP_INC) begin SP = SP + 1; ADDR_BUS <= SP; end
-        if(Gate_SP_DEC) begin SP = SP - 1; ADDR_BUS <= SP; end
-        
-
-        if(Gate_SR1) begin
-            if(RP_SR1) begin
-                case(SR1_MUX)
-                    0: begin TO_ALUB_MUX <= !EXX_TOGGLE ? {B,C} : {Bp,Cp}; end
-                    1: begin TO_ALUB_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {D,E} : {H,L}) : (!DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}); end
-                    2: begin
-                        if(DD_PREFIX) begin TO_ALUB_MUX <= IX; end
-                        else if(FD_PREFIX) begin TO_ALUB_MUX <= IY; end
-                        else begin TO_ALUB_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep}); end end
-                    3: begin TO_ALUB_MUX <= !RP_TABLE ? SP : (!AF_TOGGLE ? {A,F} : {Ap,Fp}); end
-                    default: TO_ALUB_MUX <= 16'b0;
-                endcase
-            end
-            else begin
-                case(SR1_MUX)
-                    0: begin TO_ALUB_MUX <= !EXX_TOGGLE ? {8'b0,B} : {8'b0,Bp}; end
-                    1: begin TO_ALUB_MUX <= !EXX_TOGGLE ? {8'b0,C} : {8'b0,Cp}; end
-                    2: begin TO_ALUB_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,D} : {8'b0,H}) : (!DEPHLP_TOGGLE ? {8'b0,Dp} : {8'b0,Hp}); end
-                    3: begin TO_ALUB_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,E} : {8'b0,L}) : (!DEPHLP_TOGGLE ? {8'b0,Ep} : {8'b0,Lp}); end
-                    4: begin 
-                            if(DD_PREFIX) begin TO_ALUB_MUX <= {8'b0, IX[15:8]}; end
-                            else if (FD_PREFIX) begin TO_ALUB_MUX <= {8'b0, IY[15:8]}; end
-                            else begin TO_ALUB_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,H} : {8'b0,D}) : (!DEPHLP_TOGGLE ? {8'b0,Hp} : {8'b0,Dp}); end
-                       end
-                    5: begin if(DD_PREFIX) begin TO_ALUB_MUX <= {8'b0, IX[7:0]}; end 
-                            else if(FD_PREFIX) begin TO_ALUB_MUX <= {8'b0,IY[7:0]}; end
-                            else begin TO_ALUB_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,L} : {8'b0,E}) : (!DEPHLP_TOGGLE ? {8'b0,Lp} : {8'b0,Ep}); end
-                       end
-                    //I don't think (HL) is usable in this context
-                    7: begin TO_ALUB_MUX <= !EXX_TOGGLE ? ({8'b0, A}) : ({8'b0, Ap}); end
-                    default: TO_ALUB_MUX <= 16'b0;
-                endcase 
-            end
-        end    
- 
-        if(Gate_SR2) begin
-            if(RP_SR2) begin
-                case(SR2_MUX)
-                    0: begin TO_ALUA_MUX <= !EXX_TOGGLE ? {B,C} : {Bp,Cp}; end
-                    1: begin TO_ALUA_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {D,E} : {H,L}) : (!DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp}); end
-                    2: begin
-                        if(DD_PREFIX) begin TO_ALUA_MUX <= IX; end
-                        else if(FD_PREFIX) begin TO_ALUA_MUX <= IY; end
-                        else begin TO_ALUA_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep}); end end
-                    3: begin TO_ALUA_MUX <= !RP_TABLE ? SP : (!AF_TOGGLE ? {A,F} : {Ap,Fp}); end
-                    default: TO_ALUA_MUX <= 16'b0;
-                endcase
-            end
-            else begin
-                case(SR2_MUX)
-                    0: begin TO_ALUA_MUX <= !EXX_TOGGLE ? {8'b0,B} : {8'b0,Bp}; end
-                    1: begin TO_ALUA_MUX <= !EXX_TOGGLE ? {8'b0,C} : {8'b0,Cp}; end
-                    2: begin TO_ALUA_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,D} : {8'b0,H}) : (!DEPHLP_TOGGLE ? {8'b0,Dp} : {8'b0,Hp}); end
-                    3: begin TO_ALUA_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,E} : {8'b0,L}) : (!DEPHLP_TOGGLE ? {8'b0,Ep} : {8'b0,Lp}); end
-                    4: begin 
-                            if(DD_PREFIX) begin TO_ALUA_MUX <= {8'b0, IX[15:8]}; end
-                            else if (FD_PREFIX) begin TO_ALUA_MUX <= {8'b0, IY[15:8]}; end
-                            else begin TO_ALUA_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,H} : {8'b0,D}) : (!DEPHLP_TOGGLE ? {8'b0,Hp} : {8'b0,Dp}); end
-                       end
-                    5: begin if(DD_PREFIX) begin TO_ALUA_MUX <= {8'b0, IX[7:0]}; end 
-                            else if(FD_PREFIX) begin TO_ALUA_MUX <= {8'b0,IY[7:0]}; end
-                            else begin TO_ALUA_MUX <= !EXX_TOGGLE ? (!DEHL_TOGGLE ? {8'b0,L} : {8'b0,E}) : (!DEPHLP_TOGGLE ? {8'b0,Lp} : {8'b0,Ep}); end
-                       end
-                    //I don't think (HL) is usable in this context
-                    7: begin TO_ALUA_MUX <= !EXX_TOGGLE ? ({8'b0, A}) : ({8'b0, Ap}); end
-                    default: TO_ALUA_MUX <= 16'b0;
-                endcase 
-            end
-        end  
-        
-        
-//        //read r(y)
-//        case(OPCODE_Y)
-//            0: 
-//        endcase
-        
-//        case(OPCODE_Z)
-        
-//        endcase   
-    end
+        //reads to ADDR_BUS
+        if(Gate_SP || Gate_SP_INC || Gate_SP_DEC) begin ADDR_BUS <= SP; end
        
+        else if((OPCODE_Y == 3'b110) || (OPCODE_Z) == 3'b110)
+        begin
+            ADDR_BUS <= (!EXX_TOGGLE) ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep});
+        end
+        
+        //read r[y] and r[z]
+        case(OPCODE_Y)
+            0: RY <= (~EXX_TOGGLE) ? B : Bp;
+            1: RY <= (~EXX_TOGGLE) ? C : Cp;
+            2: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? D : H) : (~DEPHLP_TOGGLE ? Dp : Hp);
+            3: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? E : L) : (~DEPHLP_TOGGLE ? Ep : Lp);
+            4: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? H : D) : (~DEPHLP_TOGGLE ? Hp : Dp);
+            5: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? L : E) : (~DEPHLP_TOGGLE ? Lp : Ep);
+            6: RY <=0; 
+            7: RY <= (~EXX_TOGGLE) ? A : Ap;
+        endcase
+        
+        case(OPCODE_Z)
+            0: RZ <= (~EXX_TOGGLE) ? B : Bp;
+            1: RZ <= (~EXX_TOGGLE) ? C : Cp;
+            2: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? D : H) : (~DEPHLP_TOGGLE ? Dp : Hp);
+            3: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? E : L) : (~DEPHLP_TOGGLE ? Ep : Lp);
+            4: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? H : D) : (~DEPHLP_TOGGLE ? Hp : Dp);
+            5: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? L : E) : (~DEPHLP_TOGGLE ? Lp : Ep);
+            6: RZ <= 0;
+            7: RZ <= (~EXX_TOGGLE) ? A : Ap;
+        endcase
+        
+    end 
 
     //Register outputs to ports
     assign A_out = (AF_TOGGLE)? Ap : A;
@@ -432,11 +377,15 @@ module z80RegisterFile(
     assign B_out = (EXX_TOGGLE)? Bp : B;
     assign R_out = R;
     assign I_out = I;    
-    assign BC_out = {B, C};
-    assign DE_out = {D, E};
-    assign HL_out = {H, L};
+    assign W_out = W;
+    assign Z_out = Z;
+    
+    assign BC_out = (~EXX_TOGGLE)? {B, C} : {Bp, Cp};
+    assign DE_out = (~EXX_TOGGLE)? (~DEHL_TOGGLE ? {D,E} : {H,L}) : (~DEPHLP_TOGGLE ? {Dp,Ep} : {Hp,Lp});
+    assign HL_out = (DD_PREFIX)? IX : ((FD_PREFIX)? IY : (~EXX_TOGGLE)? (~DEHL_TOGGLE ? {H,L} : {D,E}) : (~DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep}));
     assign SP_out = SP;
-    //assign ry_out = ;
-    //assign rz_out = ;
+
+    assign ry_out = RY;
+    assign rz_out = RZ;
 
 endmodule
