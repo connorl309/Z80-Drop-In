@@ -1,14 +1,14 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "z80_top_mux_2_0_2",
-    "cell_name": "ADDRMUX",
+    "xci_name": "z80_top_mux_2_1_0",
+    "cell_name": "MSR_SEXT_MUX",
     "component_reference": "xilinx.com:module_ref:mux_2:1.0",
     "ip_revision": "1",
-    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_2_0_2",
+    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_2_1_0",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "z80_top_mux_2_0_2", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "z80_top_mux_2_1_0", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "spartan7" } ],
@@ -28,7 +28,7 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_2_0_2" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_2_1_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2024.1" } ],

@@ -164,12 +164,13 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MUX_EXEC_COND_NZ 2'd2
 `define MUX_EXEC_COND_Z 2'd3
 
-//PCMUX chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3
+//PCMUX chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3, MDR, and 0x0066
 `define PCMUX_ALU 3'd0
 `define PCMUX_IR 3'd1
 `define PCMUX_INC_PC 3'd2
 `define PCMUX_Y_SHIFT 3'd3
 `define PCMUX_MDR 3'd4
+`define PCMUX_NMI 3'd5
 
 //MARMUX chooses between SR1, MDR, MDR[7:0]`A, HL, BC, and ALU
 `define MAR_MUX_SR1 0 //SR1 is HL if it's R6, even if not RP
@@ -196,7 +197,7 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MUX_EXEC_COND_1 1
 `define MUX_EXEC_COND `MUX_EXEC_COND_1:`MUX_EXEC_COND_0
 
-`define PCMUX_0 2 //chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3, and MDR
+`define PCMUX_0 2 //chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3, MDR, and 0x0066
 `define PCMUX_1 3
 `define PCMUX_2 4
 `define PCMUX `PCMUX_2:`PCMUX_0
@@ -388,6 +389,6 @@ M1
 `define IFF1_R_TO_IFF2 42 //IFF1 --> IFF2, clear IFF1
 `define RD_R_RE 43 //(Reset RD on rising T clock edge)
 `define WR_R_RE 44 //(Reset WR on rising T clock edge)
-`define NMI_JANK 45 //signal for mstate machine to decode for NMI instead of using IR
+`define NMI_JANK 45 //set high when decoding during NMI
 
 `define TSIGNALS 45
