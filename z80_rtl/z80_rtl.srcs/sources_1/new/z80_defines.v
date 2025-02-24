@@ -17,7 +17,7 @@
 `define A0 29
 `define A1 30
 `define A2 31
-`define A3 32 
+`define A3 32
 `define A4 33
 `define A5 34
 `define A6 35
@@ -27,7 +27,7 @@
 `define A10 39
 `define A11 0
 `define A12 1
-`define A13 2 
+`define A13 2
 `define A14 3
 `define A15 4
 
@@ -39,7 +39,7 @@
 `define D3 7
 `define D4 6
 `define D5 8
-`define D6 9 
+`define D6 9
 `define D7 12
 
 // BUS pins
@@ -69,9 +69,9 @@
 `define ALU_ADC_8BIT 1 // 8-bit add with carry
 `define ALU_SUB_8BIT 2 // 8-bit sub
 `define ALU_SBC_8BIT 3 // 8-bit sub with carry
-`define ALU_AND_8BIT 4 // 8-bit AND 
-`define ALU_OR_8BIT 5 // 8-bit OR 
-`define ALU_XOR_8BIT 6 // 8-bit XOR 
+`define ALU_AND_8BIT 4 // 8-bit AND
+`define ALU_OR_8BIT 5 // 8-bit OR
+`define ALU_XOR_8BIT 6 // 8-bit XOR
 `define ALU_CP 7 // 8-bit compare
 `define ALU_DAA 8 // DAA instruction
 `define ALU_INC_8BIT 9 // 8-bit increment
@@ -81,14 +81,14 @@
 `define ALU_CCF 13 // Invert carry flag
 `define ALU_SCF 14 // Set carry flag
 
-`define ALU_ADD_16BIT 15 // 16-bit add 
+`define ALU_ADD_16BIT 15 // 16-bit add
 `define ALU_ADC_16BIT 16 // 16-bit add with carry
 `define ALU_SBC_16BIT 17 // 16-bit sub with carry
 `define ALU_INC_16BIT 18 // 16-bit increment
 `define ALU_DEC_16BIT 19 // 16-bit decrement
 
 `define ALU_RLCA 20 //  8-bit rotate left
-`define ALU_RLA 21 // 8-bit rotate left through carry 
+`define ALU_RLA 21 // 8-bit rotate left through carry
 `define ALU_RLC 22 // 8-bit rotate left, different flag updates
 `define ALU_RL 23 // 8-bit rotate left through carry, different flag updates
 `define ALU_RRCA 24 // 8-bit rotate right
@@ -99,8 +99,8 @@
 `define ALU_SLL 29 // undocumented instruction with CB[XX] opcode, this sets [0] instead of resetting it like SLA, see z80 undocumented 3.1
 `define ALU_SRA 30 // 8-bit arithmetic shift right
 `define ALU_SRL 31 // 8-bit logical shift right
-`define ALU_RLD 32 // weird ahhh left rotate through memory location and A 
-`define ALU_RRD 33 // weird ahhh right rotate through memory location and A 
+`define ALU_RLD 32 // weird ahhh left rotate through memory location and A
+`define ALU_RRD 33 // weird ahhh right rotate through memory location and A
 
 `define ALU_LD_TEMP 34
 `define ALU_PASSA 35
@@ -110,7 +110,7 @@
 `define ALU_LDI_INC 38
 `define ALU_LDD_DEC 39
 `define ALU_CPID 40
-`define ALU_LD_DEC 41 
+`define ALU_LD_DEC 41
 `define ALU_CP_DEC 42
 
 `define ALU_LDAIR 43
@@ -164,12 +164,13 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MUX_EXEC_COND_NZ 2'd2
 `define MUX_EXEC_COND_Z 2'd3
 
-//PCMUX chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3
+//PCMUX chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3, MDR, and 0x0066
 `define PCMUX_ALU 3'd0
 `define PCMUX_IR 3'd1
 `define PCMUX_INC_PC 3'd2
 `define PCMUX_Y_SHIFT 3'd3
 `define PCMUX_MDR 3'd4
+`define PCMUX_NMI 3'd5
 
 //MARMUX chooses between SR1, MDR, MDR[7:0]`A, HL, BC, and ALU
 `define MAR_MUX_SR1 0 //SR1 is HL if it's R6, even if not RP
@@ -196,7 +197,7 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MUX_EXEC_COND_1 1
 `define MUX_EXEC_COND `MUX_EXEC_COND_1:`MUX_EXEC_COND_0
 
-`define PCMUX_0 2 //chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3, and MDR
+`define PCMUX_0 2 //chooses between ALU (BUSC), IR (Absolute), PC + 1, y << 3, MDR, and 0x0066
 `define PCMUX_1 3
 `define PCMUX_2 4
 `define PCMUX `PCMUX_2:`PCMUX_0
@@ -219,7 +220,7 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MAR_MUX_0 16 //chooses between SR1, MDR, MDR[7:0]`A, HL, BC, and ALU
 `define MAR_MUX_1 17
 `define MAR_MUX_2 18
-`define MAR_MUX `MAR_MUX_2:`MAR_MUX_0 
+`define MAR_MUX `MAR_MUX_2:`MAR_MUX_0
 
 //register file signals
 `define RP_TABLE 19// chooses which register pair table to load from
@@ -241,12 +242,12 @@ BELOW ARE CONTROL SIGNAL DEFINES
 //usequencer signals
 `define DEC_MCTR_CC 27
 `define DEC2_MCTR_CC 28
-`define STALL_1 29//we can stall either 1 or 2 cycles in certain places 
+`define STALL_1 29//we can stall either 1 or 2 cycles in certain places
 `define STALL_2 30
 
 //system signals
 `define HALT_SIG 31   //does something in datapath somewhere
-`define INT_FF_RESET 32//sets 
+`define INT_FF_RESET 32//sets
 `define INT_FF_SET 33
 `define IFF2_TO_IFF1 34//IFF2 --> IFF1
 `define LD_INT_MODE 35//loads interrupt mode with Y (I think 0 1 and 2 are only valid ones)
@@ -266,7 +267,7 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define RP 44 //r[y] is now RP[p] for both a_mux and dr_mux
 `define EXEC_COND_MUX 45//chooses which condition to use
 `define MDR_MUX_0 46 //chooses between ALU result, HL, and r[z]
-`define MDR_MUX_1 47 
+`define MDR_MUX_1 47
 `define MDR_MUX `MDR_MUX_1:`MDR_MUX_0
 `define SEXT_MDR 48 //output of MDR into B_MUX is sext(MDR[7:0])
 `define F_SWAP //swaps flags with alternate flags
@@ -275,22 +276,25 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define TOTAL_CS_BITS_MINUS_1 249
 
 `define OCF 6'd0
-`define MR 6'd1
-`define MRH 6'd2
-`define MRL 6'd3
-`define MW 6'd4
-`define MWH 6'd5
-`define MWL 6'd6
-`define ODH 6'd7
-`define ODL 6'd8
-`define PR 6'd9
-`define PW 6'd10
-`define SRH 6'd11
-`define SRL 6'd12
-`define SWH 6'd13
-`define SWL 6'd14
-`define IO 6'd15
-`define IO2 6'd16
+`define MRH 6'd1
+`define MRL 6'd2
+`define MR  6'd2
+`define MWH 6'd3
+`define MWL 6'd4
+`define MW  6'd4
+`define ODH 6'd5
+`define ODL 6'd6
+`define OD  6'd6
+`define PR  6'd7
+`define PW  6'd8
+`define SRH 6'd9
+`define SRL 6'd10
+`define SR  6'd10
+`define SWH 6'd11
+`define SWL 6'd12
+`define SW  6'd12
+`define IO  6'd13
+`define IO2 6'd14
 
 /*
 
@@ -387,6 +391,6 @@ M1
 `define IFF1_R_TO_IFF2 42 //IFF1 --> IFF2, clear IFF1
 `define RD_R_RE 43 //(Reset RD on rising T clock edge)
 `define WR_R_RE 44 //(Reset WR on rising T clock edge)
-`define NMI_JANK 45 //signal for mstate machine to decode for NMI instead of using IR
+`define NMI_JANK 45 //set high when decoding during NMI
 
 `define TSIGNALS 45

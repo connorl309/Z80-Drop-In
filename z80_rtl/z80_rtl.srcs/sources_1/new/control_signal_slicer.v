@@ -22,7 +22,7 @@
 
 
 module control_signal_slicer(
-    input [284:0] signals,
+    input [48:0] m_signals,
     
     output [`PCMUX] PCMUX,
     output [`A_MUX] A_MUX,

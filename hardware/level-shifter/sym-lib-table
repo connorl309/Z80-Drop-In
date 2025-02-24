@@ -3,4 +3,5 @@
   (lib (name "custom_symbols")(type "KiCad")(uri "${KIPRJMOD}/custom_symbols.kicad_sym")(options "")(descr ""))
   (lib (name "XC7S15-1FTGB196C")(type "KiCad")(uri "${KIPRJMOD}/fpga_stuff/XC7S15-1FTGB196C.kicad_sym")(options "")(descr ""))
   (lib (name "XC7S15-1CPGA196C")(type "KiCad")(uri "${KIPRJMOD}/fpga_stuff/XC7S15-1CPGA196C.kicad_sym")(options "")(descr ""))
+  (lib (name "NXB0104PW-Q100J")(type "KiCad")(uri "G:/Repositories/Z80-Drop-In/hardware/NXB0104PW-Q100J.kicad_sym")(options "")(descr ""))
 )

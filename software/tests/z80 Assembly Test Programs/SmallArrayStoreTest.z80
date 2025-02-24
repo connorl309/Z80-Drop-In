@@ -1,0 +1,14 @@
+ORG 0x0000
+  LD HL, 0x8000
+  LD A, 1             
+
+StoreLoop:
+  LD (HL), A          
+  INC HL              
+  INC A               
+  CP 15          
+  JP NZ, StoreLoop    
+
+HALT                
+
+END               
