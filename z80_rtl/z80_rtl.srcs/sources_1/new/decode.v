@@ -85,7 +85,7 @@ module decode(
                                         //NOP
                                     end
                                     3'b001:begin
-                                        SIGNALS[M1][`ALU_OP] = `ALU_SWAP_REGS;
+                                        SIGNALS[M1][`F_SWAP] = 1;
                                         
                                     end
                                     3'b010:begin //DJNZ
