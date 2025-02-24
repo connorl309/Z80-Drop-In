@@ -269,8 +269,10 @@ BELOW ARE CONTROL SIGNAL DEFINES
 `define MDR_MUX_1 47 
 `define MDR_MUX `MDR_MUX_1:`MDR_MUX_0
 `define SEXT_MDR 48 //output of MDR into B_MUX is sext(MDR[7:0])
+`define F_SWAP //swaps flags with alternate flags
 
-`define CS_BITS 49
+`define CS_BITS 50
+`define TOTAL_CS_BITS_MINUS_1 249
 
 `define OCF 6'd0
 `define MR 6'd1
