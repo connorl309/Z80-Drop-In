@@ -28,7 +28,6 @@ module usequencer(
     input clk,
     input [7:0] flags,
     input [7:0] IR,
-    input iff1,
 
     // External control signals
     input ext_wait, // This is latched on opposite clock edge than the others I believe
@@ -130,6 +129,9 @@ module usequencer(
 
     flag_logic fl(flags, condition, cc_met);
 
+    reg iff1 = 0;
+    reg iff2 = 0;
+
 
     always @(posedge clk) begin
         // Update input latches
@@ -184,6 +186,26 @@ module usequencer(
 
         if(m_signals[`DEC2_MCTR_CC] & !cc_met)
             max_m_cycles = max_m_cycles - 2;
+
+        if(m_signals[`INT_FF_RESET) begin
+            iff1 <= 0;
+            iff2 <= 0;
+        end
+
+        if(m_signals[`INT_FF_SET) begin
+            iff1 <= 1;
+            iff2 <= 1;
+        end
+
+        if(m_signals[`PCMUX] == `PCMUX_NMI) begin
+            iff1 <= 0;
+            iff2 <= iff1;
+        end
+
+        if(m_signals[`IFF2_TO_IFF1]) begin
+            iff1 <= iff2;
+        end
+
     end
 
     always @(negedge clk) begin
