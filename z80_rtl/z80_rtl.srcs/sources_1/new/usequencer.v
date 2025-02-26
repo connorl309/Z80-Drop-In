@@ -187,12 +187,12 @@ module usequencer(
         if(m_signals[`DEC2_MCTR_CC] & !cc_met)
             max_m_cycles = max_m_cycles - 2;
 
-        if(m_signals[`INT_FF_RESET) begin
+        if(m_signals[`INT_FF_RESET]) begin
             iff1 <= 0;
             iff2 <= 0;
         end
 
-        if(m_signals[`INT_FF_SET) begin
+        if(m_signals[`INT_FF_SET]) begin
             iff1 <= 1;
             iff2 <= 1;
         end
