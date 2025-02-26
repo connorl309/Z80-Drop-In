@@ -75,7 +75,7 @@ module decode(
         M4 = 3;
         M5 = 4;
 
-        if(NMI) begin
+        if(!NMI) begin
             SIGNALS[M1][`LD_PC] = 1;
             SIGNALS[M1][`PCMUX] = `PCMUX_NMI;
             SIGNALS[M1][`LD_MDR] = 1;
