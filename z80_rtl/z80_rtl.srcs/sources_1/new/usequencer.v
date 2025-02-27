@@ -46,7 +46,9 @@ module usequencer(
     output reg ext_halt,
 
     output [49:0] m_signals,
-    output [`TSIGNALS:0] t_signals
+    output [`TSIGNALS:0] t_signals,
+
+    output IX, IY
     );
 
     // External control signal latches
@@ -104,11 +106,17 @@ module usequencer(
     assign ext_rfsh = t_signals[`BUSACK] ? 1'bz : !t_signals[`RFSH];
     assign ext_busack = !t_signals[`BUSACK];
 
+    assign IX = IX_pref[1];
+    assign IY = IY_pref[1];
+
+    wire [1:0] stall;
+    assign stall = f_stall | {m_signals[`STALL_2], m_signals[`STALL_1]};
+
     assign next_j_bits[6:3] = t_signals[`J6:`J3];
 
-    assign next_j_bits[2] = t_signals[`J2] | (t_signals[`COND1] & f_stall[1]);
+    assign next_j_bits[2] = t_signals[`J2] | (t_signals[`COND1] & stall[1]);
     assign next_j_bits[1] = t_signals[`J1] | (t_signals[`COND1] &
-                                              (f_stall[0] | (cc_met & m_signals[`CONDSTALL])));
+                                              (stall[0] | (cc_met & m_signals[`CONDSTALL])));
     assign next_j_bits[0] = t_signals[`J0] | (t_signals[`COND0] & wait_latch);
 
     wire [6:0] next_m;
@@ -165,7 +173,6 @@ module usequencer(
 
         if(t_signals[`CS_SET]) begin
             m_cycle_ctr <= 0;
-            PLA_idx <= PLA_idx_w;
             max_m_cycles <= max_m_cycles_w;
             IX_pref[0] <= next_IX_pref;
             IY_pref[0] <= next_IY_pref;
@@ -179,6 +186,10 @@ module usequencer(
             PLA_idx <= 0;
             IX_pref <= IX_pref << 1;
             IY_pref <= IY_pref << 1;
+        end
+
+        if(t_signals[`LAST_T]) begin
+            PLA_idx <= PLA_idx_w;
         end
 
         if(m_signals[`DEC_MCTR_CC] & !cc_met)
@@ -287,7 +298,8 @@ module upcoming_m_cycles(
     assign next_m_state = m_state_array[index+1];
     assign curr_exec_signals = exec_array[index];
 
-    always @(cs_set) begin
+    // Negative edge so we don't change outputs until decode is stable
+    always @(negedge cs_set) begin
         // There is probably a better way to do this but I am a bit simple
         m_state_array[0] <= m_states[4:0];
         m_state_array[1] <= m_states[9:5];

@@ -52,7 +52,7 @@ module decode(
     assign z = IR[2:0];
     integer M1, M2, M3, M4, M5;
 
-    reg [48:0] SIGNALS [4:0];
+    reg [49:0] SIGNALS [4:0];
     reg [4:0] MSTATES [4:0];
 
     always @(*) begin : named_block
@@ -1308,6 +1308,7 @@ module decode(
                                     SIGNALS[M1][`MAR_MUX] = `MAR_MUX_HL;
                                     SIGNALS[M2][`A_MUX] = `A_MUX_MDR;
                                     SIGNALS[M2][`ALU_OP] = `ALU_TEST_BASE + y; //this might not work
+                                    SIGNALS[M2][`STALL_1] = 1;
                                     //MR
                                     MSTATES[M2] = `MR;
                                     MAX_CNT = 1;
