@@ -1,0 +1,118 @@
+ORG $0000
+  LD HL, $1234
+  LD A, $10     
+  LD BC, $20FF
+  LD HL, $124       
+  LD ($8000), HL  
+
+;POPS AND PUSHES
+  PUSH AF
+  PUSH BC
+  PUSH HL
+
+  POP BC
+  POP HL
+  POP AF 
+
+;RANDOMS
+  CP 1 ; subtract 1 from A
+  CCF ;SHOULD INVERT CARRY FLAG
+  CPD 
+  LD HL, $1F
+  CPDR ;REPEATS UNTIL HL == A OR BC == 0
+  CPI
+
+  LD HL, $0
+  LD BC, $0
+  LD A,124 
+  CPIR;FINDS FIRST INSTANCE OF 0X0124 IN MEMORY, STORED AT 0X8000 EARLIER
+  SCF
+  RLD
+  RRD
+  SLA A
+  SLL ;UNDOCUMENTED
+
+; LOOP
+  LD B, $05
+Loop1
+  LD A, B
+  DJNZ Loop1
+
+;LOADS
+  LD DE, $8000
+  LD HL, $7FFD
+  LD BC, $0005
+  LDD 
+  LDDR ;REPEAT UNTIL BC == 0
+
+  LD DE, $8000
+  LD HL, $7FFD
+  LD BC, $0005
+  LDI
+  LDIR
+
+;RES
+  LD IX, 0x8000   
+  LD (IX+2), 0xFF     
+  RES 2, (IX+2)
+
+
+; SUBROUTINES AND JUMPS
+  CALL bruh
+  SUB DE, $0101
+  LD A, $01
+  CP A, $01
+  JP Z, Branch1
+
+  LD A, $02 ;THIS SHOULD NOT EXECUTE  
+
+Branch1:
+
+  LD B, $5
+  INC B
+  JR NZ, Branch2
+
+  LD B, $FF ;THIS SHOULD NOT EXECUTE
+
+Branch2:
+
+  LD B, $00 
+
+;register exchanges
+  EXX
+  LD A, $4
+  EX AF, AF'
+  EX DE, HL
+  LD HL, $8000
+  EX SP, (HL)
+
+;USEFUL I/O INSTRUCTIONS
+  LD HL, $8000
+  LD BC, $01FF
+  IND 
+  LD B, $0003
+  INDR
+
+  LD BC, $01FF
+  INI
+  LD B, $0003
+  INIR
+
+  LD C, $FF
+  IN A, (C)
+
+  LD A, $82
+  OUT (C), A
+  LD B, 3
+  LD HL, $8000
+  OUTD
+  OUTI
+  OTIR
+  OTDR
+  HALT
+
+  bruh:
+    LD DE, $FFFF
+    RET  
+
+END

@@ -1,0 +1,27 @@
+ORG $0000
+  DI
+  LD A, $01
+  IM 1
+  LD B, $0
+  EI
+  HALT ;WAIT FOR INTERRUPT
+
+  LD A, $FF
+  IM 2
+  HALT ;WAIT FOR NMI
+
+  LD A, $00
+  RST $38 ;back to isr
+  HALT
+
+ORG $0038
+isr:
+  LD B, $FF
+  RETI
+
+ORG $0066
+isr_nonmask:
+  LD D, $55
+  RETN
+
+END

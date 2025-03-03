@@ -1,5 +1,5 @@
-ORG 0x0000
-  LD HL, 0x8000
+ORG $0000
+  LD HL, $8000
   LD A, 1             
 
 StoreLoop:
