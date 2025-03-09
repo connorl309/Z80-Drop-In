@@ -48,7 +48,7 @@ module z80RegisterFile(
     input DD_PREFIX, //when high, IX is used in place of HL
     input FD_PREFIX, //when high, IY is used in place of HL
 
-    input AF_SWAP, //should be high during an EX instruction that switches A for A' or F for F'. ***A AND F ARE ALWAYS SWAPPED TOGETHER***
+    input AF_SWAP, //should be high during an EX instruction that switches A for A' or F for F'.
     input DEHL_SWAP, //should be high during an EX instruction that switches DE with HL
     input DEPHLP_SWAP, //should be high during an EX instruction that switches DE' with HL'
     input EXX, //should be high during EXX instruction execution
@@ -104,6 +104,7 @@ module z80RegisterFile(
    
     reg [15:0] RP_TABLE_SELECTION; //holds a 16 bit entry from either RP1 or RP2
     reg sig_rfsh = 0;
+    reg sig_rfsh_old = 0;
     
     
     /*  flipflops that toggle during register exchange operations (EX, EXX)
@@ -116,7 +117,7 @@ module z80RegisterFile(
                
             
     always @(negedge RFSH) begin 
-        sig_rfsh = 1'b1;
+        sig_rfsh = ~sig_rfsh;
     end
             
     //register writes 
@@ -137,10 +138,10 @@ module z80RegisterFile(
     
         //R register
         if(LD_R) R <= DATA_BUS_LOW;
-        if(sig_rfsh) begin //increment
+        if(sig_rfsh == ~sig_rfsh_old) begin //increment
             R <= (R + 1) & 7'h7F;
-            sig_rfsh = 1'b0;
         end
+        sig_rfsh_old <= sig_rfsh;
         
         //put data from ALU in register A
         if(LD_ACCUM) begin
