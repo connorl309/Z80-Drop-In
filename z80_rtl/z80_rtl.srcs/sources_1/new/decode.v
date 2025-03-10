@@ -439,8 +439,8 @@ module decode(
                             case(z)
                                 3'b110:begin
                                     case(y)
-                                        3'b011:begin //HALT
-                                            SIGNALS[M1][`HALT] = 1;
+                                        3'b110:begin //HALT
+                                            SIGNALS[M1][`HALT_SIG] = 1;
                                         end
                                         default:begin //LD r[y], (HL)
                                             if(IX_pref || IY_pref) begin
@@ -906,6 +906,7 @@ module decode(
                                     F_stall = 2'd1;
                                     SIGNALS[M3][`PC_CONDLD] = 1;
                                     SIGNALS[M3][`PCMUX] = `PCMUX_MDR;
+                                    //SIGNALS[M3][`LD_PC] = 1; // needed to override state 25's PC + 1 with the jump address
 
                                     //ODL, ODH
                                     MSTATES[M2] = `ODL;

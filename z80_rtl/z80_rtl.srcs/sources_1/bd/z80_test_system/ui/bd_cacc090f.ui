@@ -1,0 +1,125 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-584,-314",
+   "ExpandedHierarchyInLayout":"",
+   "comment_0":"IR",
+   "comment_1":"Y << 3
+",
+   "comment_2":"r[y]
+r[z]
+HL
+BC
+DE
+A
+I
+R
+PC
+MDR
+ZERO
+B",
+   "comment_3":"MDR
+SR2
+HL
+sext(-2)",
+   "comment_4":"r[y]
+MDR
+MDR[7:0]`A
+HL
+BC
+ALU
+",
+   "comment_5":"LSB is in0",
+   "comment_6":"ALU
+HL
+r[z]",
+   "comment_7":"SEXT MDR logic
+",
+   "commentid":"comment_0|comment_1|comment_2|comment_3|comment_4|comment_5|comment_6|comment_7|",
+   "fillcolor_comment_0":"",
+   "fillcolor_comment_1":"",
+   "fillcolor_comment_2":"",
+   "fillcolor_comment_3":"",
+   "fillcolor_comment_4":"",
+   "fillcolor_comment_5":"",
+   "fillcolor_comment_6":"",
+   "fillcolor_comment_7":"",
+   "font_comment_0":"14",
+   "font_comment_1":"14",
+   "font_comment_2":"14",
+   "font_comment_3":"14",
+   "font_comment_4":"14",
+   "font_comment_5":"14",
+   "font_comment_6":"14",
+   "font_comment_7":"14",
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0 threadsafe
+#  -string -flagsOSRD
+preplace port port-id_CLK -pg 1 -lvl 0 -x -90 -y 50 -defaultsOSRD
+preplace port port-id_RESET -pg 1 -lvl 0 -x -90 -y 110 -defaultsOSRD
+preplace inst z80_top_0 -pg 1 -lvl 2 -x 440 -y 20 -defaultsOSRD
+preplace inst memory_0 -pg 1 -lvl 2 -x 440 -y 300 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 1 -x 20 -y 20 -defaultsOSRD
+preplace netloc CLK_1 1 0 2 -70 80 220
+preplace netloc RESET_1 1 0 2 NJ 110 230
+preplace netloc memory_0_DATA_OUT 1 1 2 280 170 610
+preplace netloc xlconstant_0_dout 1 1 1 240 -30n
+preplace netloc z80_top_0_ADDR_OUT 1 1 2 260 -140 620
+preplace netloc z80_top_0_D_OUT 1 1 2 240 180 600
+preplace netloc z80_top_0_ext_mreq 1 1 2 280 190 620
+preplace netloc z80_top_0_ext_rd 1 1 2 270 -130 600
+preplace netloc z80_top_0_ext_wr 1 1 2 250 -150 630
+preplace cgraphic comment_3 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_2 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_1 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_0 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_7 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_6 place right 231 38 textcolor 4 linecolor 3
+preplace cgraphic comment_5 place top 0 0 textcolor 4 linecolor 3
+preplace cgraphic comment_4 place right 181 -111 textcolor 4 linecolor 3
+levelinfo -pg 1 -90 20 440 650
+pagesize -pg 1 -db -bbox -sgen -190 -200 5670 3150
+",
+   "linecolor_comment_0":"",
+   "linecolor_comment_1":"",
+   "linecolor_comment_2":"",
+   "linecolor_comment_3":"",
+   "linecolor_comment_4":"",
+   "linecolor_comment_5":"",
+   "linecolor_comment_6":"",
+   "linecolor_comment_7":"",
+   "linktoobj_comment_0":"/z80_top_0",
+   "linktoobj_comment_1":"/z80_top_0",
+   "linktoobj_comment_2":"/z80_top_0",
+   "linktoobj_comment_3":"/z80_top_0",
+   "linktoobj_comment_4":"/z80_top_0",
+   "linktoobj_comment_5":"/z80_top_0",
+   "linktoobj_comment_6":"/z80_top_0",
+   "linktoobj_comment_7":"/z80_top_0",
+   "linktotype_comment_0":"bd_cell",
+   "linktotype_comment_1":"bd_cell",
+   "linktotype_comment_2":"bd_cell",
+   "linktotype_comment_3":"bd_cell",
+   "linktotype_comment_4":"bd_cell",
+   "linktotype_comment_5":"bd_cell",
+   "linktotype_comment_6":"bd_cell",
+   "linktotype_comment_7":"bd_cell",
+   "textcolor_comment_0":"",
+   "textcolor_comment_1":"",
+   "textcolor_comment_2":"",
+   "textcolor_comment_3":"",
+   "textcolor_comment_4":"",
+   "textcolor_comment_5":"",
+   "textcolor_comment_6":"",
+   "textcolor_comment_7":""
+}
+0
+{
+   "/z80_top_0/comment_0":"comment_0",
+   "/z80_top_0/comment_1":"comment_1",
+   "/z80_top_0/comment_2":"comment_2",
+   "/z80_top_0/comment_3":"comment_3",
+   "/z80_top_0/comment_4":"comment_4",
+   "/z80_top_0/comment_5":"comment_5",
+   "/z80_top_0/comment_6":"comment_6",
+   "/z80_top_0/comment_7":"comment_7"
+}

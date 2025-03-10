@@ -42,7 +42,7 @@
         "in2": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "in3": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "sel": [ { "direction": "in", "size_left": "1", "size_right": "0" } ],
-        "out": [ { "direction": "out", "size_left": "15", "size_right": "0" } ]
+        "mux_out": [ { "direction": "out", "size_left": "15", "size_right": "0" } ]
       }
     }
   }

@@ -1,14 +1,14 @@
 {
   "schema": "xilinx.com:schema:json_instance:1.0",
   "ip_inst": {
-    "xci_name": "z80_top_mux_6_0_0",
-    "cell_name": "PCMUX",
-    "component_reference": "xilinx.com:module_ref:mux_6:1.0",
+    "xci_name": "z80_top_pc_bypass_0_0",
+    "cell_name": "pc_bypass_0",
+    "component_reference": "xilinx.com:module_ref:pc_bypass:1.0",
     "ip_revision": "1",
-    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_6_0_0",
+    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_pc_bypass_0_0",
     "parameters": {
       "component_parameters": {
-        "Component_Name": [ { "value": "z80_top_mux_6_0_0", "resolve_type": "user", "usage": "all" } ]
+        "Component_Name": [ { "value": "z80_top_pc_bypass_0_0", "resolve_type": "user", "usage": "all" } ]
       },
       "project_parameters": {
         "ARCHITECTURE": [ { "value": "spartan7" } ],
@@ -28,7 +28,7 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "1" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_mux_6_0_0" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/z80_top/ip/z80_top_pc_bypass_0_0" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2024.1" } ],
@@ -37,14 +37,12 @@
     },
     "boundary": {
       "ports": {
-        "in0": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
-        "in1": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
-        "in2": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
-        "in3": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
-        "in4": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
-        "in5": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "sel": [ { "direction": "in", "size_left": "2", "size_right": "0" } ],
-        "out": [ { "direction": "out", "size_left": "15", "size_right": "0" } ]
+        "INC_PC": [ { "direction": "in" } ],
+        "LD_PC": [ { "direction": "in" } ],
+        "jump_pc": [ { "direction": "in" } ],
+        "sel_out": [ { "direction": "out", "size_left": "2", "size_right": "0" } ],
+        "LD_PC_NEW": [ { "direction": "out" } ]
       }
     }
   }

@@ -37,16 +37,18 @@
     },
     "boundary": {
       "ports": {
-        "m_signals": [ { "direction": "in", "size_left": "48", "size_right": "0" } ],
-        "PCMUX": [ { "direction": "out", "size_left": "4", "size_right": "2" } ],
-        "A_MUX": [ { "direction": "out", "size_left": "10", "size_right": "7" } ],
-        "B_MUX": [ { "direction": "out", "size_left": "12", "size_right": "11" } ],
-        "DR_MUX": [ { "direction": "out", "size_left": "15", "size_right": "13" } ],
-        "MAR_MUX": [ { "direction": "out", "size_left": "18", "size_right": "16" } ],
-        "MDR_MUX": [ { "direction": "out", "size_left": "47", "size_right": "46" } ],
+        "m_signals": [ { "direction": "in", "size_left": "49", "size_right": "0" } ],
+        "t_signals": [ { "direction": "in", "size_left": "44", "size_right": "0" } ],
+        "PCMUX": [ { "direction": "out", "size_left": "2", "size_right": "0" } ],
+        "A_MUX": [ { "direction": "out", "size_left": "3", "size_right": "0" } ],
+        "B_MUX": [ { "direction": "out", "size_left": "1", "size_right": "0" } ],
+        "DR_MUX": [ { "direction": "out", "size_left": "2", "size_right": "0" } ],
+        "MAR_MUX": [ { "direction": "out", "size_left": "2", "size_right": "0" } ],
+        "MDR_MUX": [ { "direction": "out", "size_left": "1", "size_right": "0" } ],
         "RP_TABLE": [ { "direction": "out" } ],
         "EXX": [ { "direction": "out" } ],
         "LD_PC": [ { "direction": "out" } ],
+        "INC_PC": [ { "direction": "out" } ],
         "LD_I": [ { "direction": "out" } ],
         "LD_R": [ { "direction": "out" } ],
         "LD_REG": [ { "direction": "out" } ],
@@ -69,7 +71,10 @@
         "MDR_TEMP": [ { "direction": "out" } ],
         "IFF1_R_TO_IFF2": [ { "direction": "out" } ],
         "RD_R_RE": [ { "direction": "out" } ],
-        "WR_R_RE": [ { "direction": "out" } ]
+        "WR_R_RE": [ { "direction": "out" } ],
+        "F_SWAP": [ { "direction": "out" } ],
+        "LD_MDRL": [ { "direction": "out" } ],
+        "LD_MDRH": [ { "direction": "out" } ]
       }
     }
   }

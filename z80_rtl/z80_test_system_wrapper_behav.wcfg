@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_z80_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_z80" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="135.100001 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="262"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject fp_name="/tb_z80/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/RESET" type="logic">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="group9" type="group">
+      <obj_property name="label">Memory</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/memory_0/CLK" type="logic">
+         <obj_property name="ElementShortName">CLK</obj_property>
+         <obj_property name="ObjectShortName">CLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/memory_0/MREQ" type="logic">
+         <obj_property name="ElementShortName">MREQ</obj_property>
+         <obj_property name="ObjectShortName">MREQ</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/memory_0/RD" type="logic">
+         <obj_property name="ElementShortName">RD</obj_property>
+         <obj_property name="ObjectShortName">RD</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/memory_0/WR" type="logic">
+         <obj_property name="ElementShortName">WR</obj_property>
+         <obj_property name="ObjectShortName">WR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/memory_0/ADDR" type="array">
+         <obj_property name="ElementShortName">ADDR[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ADDR[15:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/memory_0/DATA_IN" type="array">
+         <obj_property name="ElementShortName">DATA_IN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_IN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/memory_0/DATA_OUT" type="array">
+         <obj_property name="ElementShortName">DATA_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_OUT[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group10" type="group">
+      <obj_property name="label">Datapath</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ADDR_IN" type="array">
+         <obj_property name="ElementShortName">ADDR_IN[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ADDR_IN[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ADDR_OUT" type="array">
+         <obj_property name="ElementShortName">ADDR_OUT[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ADDR_OUT[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/CLK" type="logic">
+         <obj_property name="ElementShortName">CLK</obj_property>
+         <obj_property name="ObjectShortName">CLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/D_IN" type="array">
+         <obj_property name="ElementShortName">D_IN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">D_IN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/D_OUT" type="array">
+         <obj_property name="ElementShortName">D_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">D_OUT[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_busack" type="logic">
+         <obj_property name="ElementShortName">ext_busack</obj_property>
+         <obj_property name="ObjectShortName">ext_busack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_busrq" type="logic">
+         <obj_property name="ElementShortName">ext_busrq</obj_property>
+         <obj_property name="ObjectShortName">ext_busrq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_halt" type="logic">
+         <obj_property name="ElementShortName">ext_halt</obj_property>
+         <obj_property name="ObjectShortName">ext_halt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_int" type="logic">
+         <obj_property name="ElementShortName">ext_int</obj_property>
+         <obj_property name="ObjectShortName">ext_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_iorq" type="logic">
+         <obj_property name="ElementShortName">ext_iorq</obj_property>
+         <obj_property name="ObjectShortName">ext_iorq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_m1" type="logic">
+         <obj_property name="ElementShortName">ext_m1</obj_property>
+         <obj_property name="ObjectShortName">ext_m1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_mreq" type="logic">
+         <obj_property name="ElementShortName">ext_mreq</obj_property>
+         <obj_property name="ObjectShortName">ext_mreq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_nmi" type="logic">
+         <obj_property name="ElementShortName">ext_nmi</obj_property>
+         <obj_property name="ObjectShortName">ext_nmi</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_rd" type="logic">
+         <obj_property name="ElementShortName">ext_rd</obj_property>
+         <obj_property name="ObjectShortName">ext_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_reset" type="logic">
+         <obj_property name="ElementShortName">ext_reset</obj_property>
+         <obj_property name="ObjectShortName">ext_reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_rfsh" type="logic">
+         <obj_property name="ElementShortName">ext_rfsh</obj_property>
+         <obj_property name="ObjectShortName">ext_rfsh</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_wait" type="logic">
+         <obj_property name="ElementShortName">ext_wait</obj_property>
+         <obj_property name="ObjectShortName">ext_wait</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_wr" type="logic">
+         <obj_property name="ElementShortName">ext_wr</obj_property>
+         <obj_property name="ObjectShortName">ext_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0_ALU_OUT" type="array">
+         <obj_property name="ElementShortName">ALU_0_ALU_OUT[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_0_ALU_OUT[15:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0_FLAG_OUT" type="array">
+         <obj_property name="ElementShortName">ALU_0_FLAG_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_0_FLAG_OUT[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_HIGH_Dout" type="array">
+         <obj_property name="ElementShortName">ALU_HIGH_Dout[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_HIGH_Dout[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_LOW_Dout" type="array">
+         <obj_property name="ElementShortName">ALU_LOW_Dout[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_LOW_Dout[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/B_MUX_out" type="array">
+         <obj_property name="ElementShortName">B_MUX_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">B_MUX_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/CLK_1" type="logic">
+         <obj_property name="ElementShortName">CLK_1</obj_property>
+         <obj_property name="ObjectShortName">CLK_1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/D_IN_1" type="array">
+         <obj_property name="ElementShortName">D_IN_1[7:0]</obj_property>
+         <obj_property name="ObjectShortName">D_IN_1[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/FF_dout" type="array">
+         <obj_property name="ElementShortName">FF_dout[7:0]</obj_property>
+         <obj_property name="ObjectShortName">FF_dout[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/IR_Q" type="array">
+         <obj_property name="ElementShortName">IR_Q[7:0]</obj_property>
+         <obj_property name="ObjectShortName">IR_Q[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MARMUX_out" type="array">
+         <obj_property name="ElementShortName">MARMUX_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">MARMUX_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MAR_Q" type="array">
+         <obj_property name="ElementShortName">MAR_Q[15:0]</obj_property>
+         <obj_property name="ObjectShortName">MAR_Q[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MDRH_Dout" type="array">
+         <obj_property name="ElementShortName">MDRH_Dout[7:0]</obj_property>
+         <obj_property name="ObjectShortName">MDRH_Dout[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MDRL_Dout" type="array">
+         <obj_property name="ElementShortName">MDRL_Dout[7:0]</obj_property>
+         <obj_property name="ObjectShortName">MDRL_Dout[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MDRMUX_out" type="array">
+         <obj_property name="ElementShortName">MDRMUX_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">MDRMUX_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MDR_BIT_7_Dout" type="array">
+         <obj_property name="ElementShortName">MDR_BIT_7_Dout[0:0]</obj_property>
+         <obj_property name="ObjectShortName">MDR_BIT_7_Dout[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MDR_Q" type="array">
+         <obj_property name="ElementShortName">MDR_Q[15:0]</obj_property>
+         <obj_property name="ObjectShortName">MDR_Q[15:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MDR_SEXT_dout" type="array">
+         <obj_property name="ElementShortName">MDR_SEXT_dout[15:0]</obj_property>
+         <obj_property name="ObjectShortName">MDR_SEXT_dout[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/MSR_SEXT_MUX_out" type="array">
+         <obj_property name="ElementShortName">MSR_SEXT_MUX_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">MSR_SEXT_MUX_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/NEG_2_16BIT_dout" type="array">
+         <obj_property name="ElementShortName">NEG_2_16BIT_dout[15:0]</obj_property>
+         <obj_property name="ObjectShortName">NEG_2_16BIT_dout[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/OPCODE_Y_Dout" type="array">
+         <obj_property name="ElementShortName">OPCODE_Y_Dout[2:0]</obj_property>
+         <obj_property name="ObjectShortName">OPCODE_Y_Dout[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/OPCODE_Z_Dout" type="array">
+         <obj_property name="ElementShortName">OPCODE_Z_Dout[2:0]</obj_property>
+         <obj_property name="ObjectShortName">OPCODE_Z_Dout[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/PC_MUX_out" type="array">
+         <obj_property name="ElementShortName">PC_MUX_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">PC_MUX_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/PC_Q" type="array">
+         <obj_property name="ElementShortName">PC_Q[15:0]</obj_property>
+         <obj_property name="ObjectShortName">PC_Q[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ZERO_dout" type="array">
+         <obj_property name="ElementShortName">ZERO_dout[0:0]</obj_property>
+         <obj_property name="ObjectShortName">ZERO_dout[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/add_1_S" type="array">
+         <obj_property name="ElementShortName">add_1_S[15:0]</obj_property>
+         <obj_property name="ObjectShortName">add_1_S[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/addr_bus_gater_0_ADDR_OUT" type="array">
+         <obj_property name="ElementShortName">addr_bus_gater_0_ADDR_OUT[15:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_bus_gater_0_ADDR_OUT[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_ALU_OP" type="array">
+         <obj_property name="ElementShortName">control_signal_slicer_0_ALU_OP[42:36]</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_ALU_OP[42:36]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_A_MUX" type="array">
+         <obj_property name="ElementShortName">control_signal_slicer_0_A_MUX[3:0]</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_A_MUX[3:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_B_MUX" type="array">
+         <obj_property name="ElementShortName">control_signal_slicer_0_B_MUX[1:0]</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_B_MUX[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_DR_MUX" type="array">
+         <obj_property name="ElementShortName">control_signal_slicer_0_DR_MUX[2:0]</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_DR_MUX[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_EXX" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_EXX</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_EXX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_GATE_MARH" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_GATE_MARH</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_GATE_MARH</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_GATE_MARL" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_GATE_MARL</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_GATE_MARL</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_GATE_MDRH" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_GATE_MDRH</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_GATE_MDRH</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_GATE_MDRL" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_GATE_MDRL</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_GATE_MDRL</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_GATE_PC" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_GATE_PC</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_GATE_PC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_GATE_SP_DEC" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_GATE_SP_DEC</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_GATE_SP_DEC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_GATE_SP_INC" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_GATE_SP_INC</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_GATE_SP_INC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_ACCUM" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_ACCUM</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_ACCUM</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_I" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_I</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_I</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_IR" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_IR</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_IR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_MAR" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_MAR</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_MAR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_MDR" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_MDR</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_MDR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_MDRH" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_MDRH</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_MDRH</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_MDRL" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_MDRL</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_MDRL</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_PC" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_PC</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_PC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_INC_PC" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_INC_PC</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_INC_PC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_R" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_R</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_R</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_REG" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_REG</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_REG</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_MAR_MUX" type="array">
+         <obj_property name="ElementShortName">control_signal_slicer_0_MAR_MUX[2:0]</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_MAR_MUX[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_MDR_MUX" type="array">
+         <obj_property name="ElementShortName">control_signal_slicer_0_MDR_MUX[1:0]</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_MDR_MUX[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_PCMUX" type="array">
+         <obj_property name="ElementShortName">control_signal_slicer_0_PCMUX[2:0]</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_PCMUX[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_RP" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_RP</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_RP</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_RP_TABLE" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_RP_TABLE</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_RP_TABLE</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_SEXT_MDR" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_SEXT_MDR</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_SEXT_MDR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/data_bus_gater_0_D_OUT" type="array">
+         <obj_property name="ElementShortName">data_bus_gater_0_D_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">data_bus_gater_0_D_OUT[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_busrq_1" type="logic">
+         <obj_property name="ElementShortName">ext_busrq_1</obj_property>
+         <obj_property name="ObjectShortName">ext_busrq_1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_int_1" type="logic">
+         <obj_property name="ElementShortName">ext_int_1</obj_property>
+         <obj_property name="ObjectShortName">ext_int_1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_nmi_1" type="logic">
+         <obj_property name="ElementShortName">ext_nmi_1</obj_property>
+         <obj_property name="ObjectShortName">ext_nmi_1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_reset_1" type="logic">
+         <obj_property name="ElementShortName">ext_reset_1</obj_property>
+         <obj_property name="ObjectShortName">ext_reset_1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_wait_1" type="logic">
+         <obj_property name="ElementShortName">ext_wait_1</obj_property>
+         <obj_property name="ObjectShortName">ext_wait_1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/mux_16_0_out" type="array">
+         <obj_property name="ElementShortName">mux_16_0_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">mux_16_0_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_busack" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_busack</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_busack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_halt" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_halt</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_halt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_iorq" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_iorq</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_iorq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_m1" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_m1</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_m1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_mreq" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_mreq</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_mreq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_rd" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_rd</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_rfsh" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_rfsh</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_rfsh</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_ext_wr" type="logic">
+         <obj_property name="ElementShortName">usequencer_0_ext_wr</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_ext_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_m_signals" type="array">
+         <obj_property name="ElementShortName">usequencer_0_m_signals[49:0]</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_m_signals[49:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0_t_signals" type="array">
+         <obj_property name="ElementShortName">usequencer_0_t_signals[45:0]</obj_property>
+         <obj_property name="ObjectShortName">usequencer_0_t_signals[45:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/xlconcat_0_dout" type="array">
+         <obj_property name="ElementShortName">xlconcat_0_dout[15:0]</obj_property>
+         <obj_property name="ObjectShortName">xlconcat_0_dout[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/xlconstant_0_dout" type="array">
+         <obj_property name="ElementShortName">xlconstant_0_dout[15:0]</obj_property>
+         <obj_property name="ObjectShortName">xlconstant_0_dout[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/xlslice_0_Dout" type="array">
+         <obj_property name="ElementShortName">xlslice_0_Dout[7:0]</obj_property>
+         <obj_property name="ObjectShortName">xlslice_0_Dout[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_A_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_A_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_A_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_BC_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_BC_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_BC_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_B_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_B_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_B_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_DE_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_DE_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_DE_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_F_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_F_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_F_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_HL_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_HL_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_HL_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_I_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_I_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_I_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_R_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_R_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_R_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_SP_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_SP_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_SP_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_ry_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_ry_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_ry_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0_rz_out" type="array">
+         <obj_property name="ElementShortName">z80RegisterFile_0_rz_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">z80RegisterFile_0_rz_out[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group125" type="group">
+      <obj_property name="label">Reg File</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/CLK" type="logic">
+         <obj_property name="ElementShortName">CLK</obj_property>
+         <obj_property name="ObjectShortName">CLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/RFSH" type="logic">
+         <obj_property name="ElementShortName">RFSH</obj_property>
+         <obj_property name="ObjectShortName">RFSH</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/DR_MUX" type="array">
+         <obj_property name="ElementShortName">DR_MUX[2:0]</obj_property>
+         <obj_property name="ObjectShortName">DR_MUX[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/RP_TABLE" type="logic">
+         <obj_property name="ElementShortName">RP_TABLE</obj_property>
+         <obj_property name="ObjectShortName">RP_TABLE</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/RP" type="logic">
+         <obj_property name="ElementShortName">RP</obj_property>
+         <obj_property name="ObjectShortName">RP</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/LD_REG" type="logic">
+         <obj_property name="ElementShortName">LD_REG</obj_property>
+         <obj_property name="ObjectShortName">LD_REG</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/LD_ACCUM" type="logic">
+         <obj_property name="ElementShortName">LD_ACCUM</obj_property>
+         <obj_property name="ObjectShortName">LD_ACCUM</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/LD_FLAG" type="logic">
+         <obj_property name="ElementShortName">LD_FLAG</obj_property>
+         <obj_property name="ObjectShortName">LD_FLAG</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/LD_I" type="logic">
+         <obj_property name="ElementShortName">LD_I</obj_property>
+         <obj_property name="ObjectShortName">LD_I</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/LD_R" type="logic">
+         <obj_property name="ElementShortName">LD_R</obj_property>
+         <obj_property name="ObjectShortName">LD_R</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/LD_W" type="logic">
+         <obj_property name="ElementShortName">LD_W</obj_property>
+         <obj_property name="ObjectShortName">LD_W</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/LD_Z" type="logic">
+         <obj_property name="ElementShortName">LD_Z</obj_property>
+         <obj_property name="ObjectShortName">LD_Z</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/Gate_SP_INC" type="logic">
+         <obj_property name="ElementShortName">Gate_SP_INC</obj_property>
+         <obj_property name="ObjectShortName">Gate_SP_INC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/Gate_SP_DEC" type="logic">
+         <obj_property name="ElementShortName">Gate_SP_DEC</obj_property>
+         <obj_property name="ObjectShortName">Gate_SP_DEC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/OPCODE_Y" type="array">
+         <obj_property name="ElementShortName">OPCODE_Y[2:0]</obj_property>
+         <obj_property name="ObjectShortName">OPCODE_Y[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/OPCODE_Z" type="array">
+         <obj_property name="ElementShortName">OPCODE_Z[2:0]</obj_property>
+         <obj_property name="ObjectShortName">OPCODE_Z[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/TEMP_IN" type="array">
+         <obj_property name="ElementShortName">TEMP_IN[15:0]</obj_property>
+         <obj_property name="ObjectShortName">TEMP_IN[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/DATA_BUS_HIGH" type="array">
+         <obj_property name="ElementShortName">DATA_BUS_HIGH[7:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_BUS_HIGH[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/DATA_BUS_LOW" type="array">
+         <obj_property name="ElementShortName">DATA_BUS_LOW[7:0]</obj_property>
+         <obj_property name="ObjectShortName">DATA_BUS_LOW[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/ACC_OUT" type="array">
+         <obj_property name="ElementShortName">ACC_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ACC_OUT[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/FLAG_OUT" type="array">
+         <obj_property name="ElementShortName">FLAG_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">FLAG_OUT[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/DD_PREFIX" type="logic">
+         <obj_property name="ElementShortName">DD_PREFIX</obj_property>
+         <obj_property name="ObjectShortName">DD_PREFIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/FD_PREFIX" type="logic">
+         <obj_property name="ElementShortName">FD_PREFIX</obj_property>
+         <obj_property name="ObjectShortName">FD_PREFIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/AF_SWAP" type="logic">
+         <obj_property name="ElementShortName">AF_SWAP</obj_property>
+         <obj_property name="ObjectShortName">AF_SWAP</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/DEHL_SWAP" type="logic">
+         <obj_property name="ElementShortName">DEHL_SWAP</obj_property>
+         <obj_property name="ObjectShortName">DEHL_SWAP</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/DEPHLP_SWAP" type="logic">
+         <obj_property name="ElementShortName">DEPHLP_SWAP</obj_property>
+         <obj_property name="ObjectShortName">DEPHLP_SWAP</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/EXX" type="logic">
+         <obj_property name="ElementShortName">EXX</obj_property>
+         <obj_property name="ObjectShortName">EXX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/ADDR_BUS" type="array">
+         <obj_property name="ElementShortName">ADDR_BUS[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ADDR_BUS[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/BC_out" type="array">
+         <obj_property name="ElementShortName">BC_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">BC_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/DE_out" type="array">
+         <obj_property name="ElementShortName">DE_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">DE_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/HL_out" type="array">
+         <obj_property name="ElementShortName">HL_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">HL_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/SP_out" type="array">
+         <obj_property name="ElementShortName">SP_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">SP_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/ry_out" type="array">
+         <obj_property name="ElementShortName">ry_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">ry_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/rz_out" type="array">
+         <obj_property name="ElementShortName">rz_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rz_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/B_out" type="array">
+         <obj_property name="ElementShortName">B_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">B_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/R_out" type="array">
+         <obj_property name="ElementShortName">R_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">R_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/I_out" type="array">
+         <obj_property name="ElementShortName">I_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">I_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/W_out" type="array">
+         <obj_property name="ElementShortName">W_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">W_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/Z_out" type="array">
+         <obj_property name="ElementShortName">Z_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">Z_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/F_out" type="array">
+         <obj_property name="ElementShortName">F_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">F_out[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/A_out" type="array">
+         <obj_property name="ElementShortName">A_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">A_out[7:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group117" type="group">
+      <obj_property name="label">ALU</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/CLK" type="logic">
+         <obj_property name="ElementShortName">CLK</obj_property>
+         <obj_property name="ObjectShortName">CLK</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/INT_DATA_BUS_A" type="array">
+         <obj_property name="ElementShortName">INT_DATA_BUS_A[15:0]</obj_property>
+         <obj_property name="ObjectShortName">INT_DATA_BUS_A[15:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/INT_DATA_BUS_B" type="array">
+         <obj_property name="ElementShortName">INT_DATA_BUS_B[15:0]</obj_property>
+         <obj_property name="ObjectShortName">INT_DATA_BUS_B[15:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/ALU_OP" type="array">
+         <obj_property name="ElementShortName">ALU_OP[6:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_OP[6:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/FLAG_IN" type="array">
+         <obj_property name="ElementShortName">FLAG_IN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">FLAG_IN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/ALU_OUT" type="array">
+         <obj_property name="ElementShortName">ALU_OUT[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_OUT[15:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/FLAG_OUT" type="array">
+         <obj_property name="ElementShortName">FLAG_OUT[7:0]</obj_property>
+         <obj_property name="ObjectShortName">FLAG_OUT[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group167" type="group">
+      <obj_property name="label">Microsequencer</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/flags" type="array">
+         <obj_property name="ElementShortName">flags[7:0]</obj_property>
+         <obj_property name="ObjectShortName">flags[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/IR" type="array">
+         <obj_property name="ElementShortName">IR[7:0]</obj_property>
+         <obj_property name="ObjectShortName">IR[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_wait" type="logic">
+         <obj_property name="ElementShortName">ext_wait</obj_property>
+         <obj_property name="ObjectShortName">ext_wait</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_int" type="logic">
+         <obj_property name="ElementShortName">ext_int</obj_property>
+         <obj_property name="ObjectShortName">ext_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_nmi" type="logic">
+         <obj_property name="ElementShortName">ext_nmi</obj_property>
+         <obj_property name="ObjectShortName">ext_nmi</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_reset" type="logic">
+         <obj_property name="ElementShortName">ext_reset</obj_property>
+         <obj_property name="ObjectShortName">ext_reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_busrq" type="logic">
+         <obj_property name="ElementShortName">ext_busrq</obj_property>
+         <obj_property name="ObjectShortName">ext_busrq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_m1" type="logic">
+         <obj_property name="ElementShortName">ext_m1</obj_property>
+         <obj_property name="ObjectShortName">ext_m1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_rfsh" type="logic">
+         <obj_property name="ElementShortName">ext_rfsh</obj_property>
+         <obj_property name="ObjectShortName">ext_rfsh</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_busack" type="logic">
+         <obj_property name="ElementShortName">ext_busack</obj_property>
+         <obj_property name="ObjectShortName">ext_busack</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_mreq" type="logic">
+         <obj_property name="ElementShortName">ext_mreq</obj_property>
+         <obj_property name="ObjectShortName">ext_mreq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_iorq" type="logic">
+         <obj_property name="ElementShortName">ext_iorq</obj_property>
+         <obj_property name="ObjectShortName">ext_iorq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_rd" type="logic">
+         <obj_property name="ElementShortName">ext_rd</obj_property>
+         <obj_property name="ObjectShortName">ext_rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_wr" type="logic">
+         <obj_property name="ElementShortName">ext_wr</obj_property>
+         <obj_property name="ObjectShortName">ext_wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/ext_halt" type="logic">
+         <obj_property name="ElementShortName">ext_halt</obj_property>
+         <obj_property name="ObjectShortName">ext_halt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/m_signals" type="array">
+         <obj_property name="ElementShortName">m_signals[49:0]</obj_property>
+         <obj_property name="ObjectShortName">m_signals[49:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/t_signals" type="array">
+         <obj_property name="ElementShortName">t_signals[45:0]</obj_property>
+         <obj_property name="ObjectShortName">t_signals[45:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/IX" type="logic">
+         <obj_property name="ElementShortName">IX</obj_property>
+         <obj_property name="ObjectShortName">IX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/IY" type="logic">
+         <obj_property name="ElementShortName">IY</obj_property>
+         <obj_property name="ObjectShortName">IY</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/wait_latch" type="logic">
+         <obj_property name="ElementShortName">wait_latch</obj_property>
+         <obj_property name="ObjectShortName">wait_latch</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/int" type="logic">
+         <obj_property name="ElementShortName">int</obj_property>
+         <obj_property name="ObjectShortName">int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/nmi" type="logic">
+         <obj_property name="ElementShortName">nmi</obj_property>
+         <obj_property name="ObjectShortName">nmi</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/reset" type="logic">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/busrq" type="logic">
+         <obj_property name="ElementShortName">busrq</obj_property>
+         <obj_property name="ObjectShortName">busrq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/mreq" type="logic">
+         <obj_property name="ElementShortName">mreq</obj_property>
+         <obj_property name="ObjectShortName">mreq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/iorq" type="logic">
+         <obj_property name="ElementShortName">iorq</obj_property>
+         <obj_property name="ObjectShortName">iorq</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/rd" type="logic">
+         <obj_property name="ElementShortName">rd</obj_property>
+         <obj_property name="ObjectShortName">rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/wr" type="logic">
+         <obj_property name="ElementShortName">wr</obj_property>
+         <obj_property name="ObjectShortName">wr</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/t_state" type="array">
+         <obj_property name="ElementShortName">t_state[6:0]</obj_property>
+         <obj_property name="ObjectShortName">t_state[6:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/next_j_bits" type="array">
+         <obj_property name="ElementShortName">next_j_bits[6:0]</obj_property>
+         <obj_property name="ObjectShortName">next_j_bits[6:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/next_t_state" type="array">
+         <obj_property name="ElementShortName">next_t_state[6:0]</obj_property>
+         <obj_property name="ObjectShortName">next_t_state[6:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/exec_sigs" type="array">
+         <obj_property name="ElementShortName">exec_sigs[249:0]</obj_property>
+         <obj_property name="ObjectShortName">exec_sigs[249:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/PLA_idx_w" type="array">
+         <obj_property name="ElementShortName">PLA_idx_w[1:0]</obj_property>
+         <obj_property name="ObjectShortName">PLA_idx_w[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/m_states" type="array">
+         <obj_property name="ElementShortName">m_states[24:0]</obj_property>
+         <obj_property name="ObjectShortName">m_states[24:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/max_m_cycles_w" type="array">
+         <obj_property name="ElementShortName">max_m_cycles_w[2:0]</obj_property>
+         <obj_property name="ObjectShortName">max_m_cycles_w[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/f_stall" type="array">
+         <obj_property name="ElementShortName">f_stall[1:0]</obj_property>
+         <obj_property name="ObjectShortName">f_stall[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/inst_next_m" type="array">
+         <obj_property name="ElementShortName">inst_next_m[4:0]</obj_property>
+         <obj_property name="ObjectShortName">inst_next_m[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/next_IX_pref" type="logic">
+         <obj_property name="ElementShortName">next_IX_pref</obj_property>
+         <obj_property name="ObjectShortName">next_IX_pref</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/next_IY_pref" type="logic">
+         <obj_property name="ElementShortName">next_IY_pref</obj_property>
+         <obj_property name="ObjectShortName">next_IY_pref</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/no_int" type="logic">
+         <obj_property name="ElementShortName">no_int</obj_property>
+         <obj_property name="ObjectShortName">no_int</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/cc_met" type="logic">
+         <obj_property name="ElementShortName">cc_met</obj_property>
+         <obj_property name="ObjectShortName">cc_met</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/m_cycle_ctr" type="array">
+         <obj_property name="ElementShortName">m_cycle_ctr[2:0]</obj_property>
+         <obj_property name="ObjectShortName">m_cycle_ctr[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/max_m_cycles" type="array">
+         <obj_property name="ElementShortName">max_m_cycles[2:0]</obj_property>
+         <obj_property name="ObjectShortName">max_m_cycles[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/PLA_idx" type="array">
+         <obj_property name="ElementShortName">PLA_idx[1:0]</obj_property>
+         <obj_property name="ObjectShortName">PLA_idx[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/IX_pref" type="array">
+         <obj_property name="ElementShortName">IX_pref[1:0]</obj_property>
+         <obj_property name="ObjectShortName">IX_pref[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/IY_pref" type="array">
+         <obj_property name="ElementShortName">IY_pref[1:0]</obj_property>
+         <obj_property name="ObjectShortName">IY_pref[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/iff1" type="logic">
+         <obj_property name="ElementShortName">iff1</obj_property>
+         <obj_property name="ObjectShortName">iff1</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/iff2" type="logic">
+         <obj_property name="ElementShortName">iff2</obj_property>
+         <obj_property name="ObjectShortName">iff2</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/stall" type="array">
+         <obj_property name="ElementShortName">stall[1:0]</obj_property>
+         <obj_property name="ObjectShortName">stall[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/next_m" type="array">
+         <obj_property name="ElementShortName">next_m[6:0]</obj_property>
+         <obj_property name="ObjectShortName">next_m[6:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/condition" type="array">
+         <obj_property name="ElementShortName">condition[2:0]</obj_property>
+         <obj_property name="ObjectShortName">condition[2:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group1548" type="group">
+      <obj_property name="label">Testing</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/D_IN" type="array">
+         <obj_property name="ElementShortName">D_IN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">D_IN[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/IR/D" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">D[7:0]</obj_property>
+         <obj_property name="ObjectShortName">D[7:0]</obj_property>
+         <obj_property name="label">IR_IN</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/IR/Q" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">Q[7:0]</obj_property>
+         <obj_property name="ObjectShortName">Q[7:0]</obj_property>
+         <obj_property name="label">IR_OUT</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_LD_IR" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_LD_IR</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_LD_IR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/t_cs/STATE" type="array">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">STATE[6:0]</obj_property>
+         <obj_property name="ObjectShortName">STATE[6:0]</obj_property>
+         <obj_property name="label">T_STATE[6:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ALU_0/inst/ALU_OUT" type="array">
+         <obj_property name="ElementShortName">ALU_OUT[15:0]</obj_property>
+         <obj_property name="ObjectShortName">ALU_OUT[15:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/z80RegisterFile_0/A_out" type="array">
+         <obj_property name="ElementShortName">A_out[7:0]</obj_property>
+         <obj_property name="ObjectShortName">A_out[7:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0/PCMUX" type="array">
+         <obj_property name="ElementShortName">PCMUX[2:0]</obj_property>
+         <obj_property name="ObjectShortName">PCMUX[2:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/PC_MUX/mux_out" type="array">
+         <obj_property name="ElementShortName">mux_out[15:0]</obj_property>
+         <obj_property name="ObjectShortName">mux_out[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/PC/inst/Q" type="array">
+         <obj_property name="ElementShortName">Q[15:0]</obj_property>
+         <obj_property name="ObjectShortName">Q[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/cc_met" type="logic">
+         <obj_property name="ElementShortName">cc_met</obj_property>
+         <obj_property name="ObjectShortName">cc_met</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/control_signal_slicer_0_INC_PC" type="logic">
+         <obj_property name="ElementShortName">control_signal_slicer_0_INC_PC</obj_property>
+         <obj_property name="ObjectShortName">control_signal_slicer_0_INC_PC</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/usequencer_0/inst/jump_pc" type="logic">
+         <obj_property name="ElementShortName">jump_pc</obj_property>
+         <obj_property name="ObjectShortName">jump_pc</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/ext_halt" type="logic">
+         <obj_property name="ElementShortName">ext_halt</obj_property>
+         <obj_property name="ObjectShortName">ext_halt</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/IR/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/IR/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/CLK" type="logic">
+      <obj_property name="ElementShortName">CLK</obj_property>
+      <obj_property name="ObjectShortName">CLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/RESET" type="logic">
+      <obj_property name="ElementShortName">RESET</obj_property>
+      <obj_property name="ObjectShortName">RESET</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/MDR_MUX" type="array">
+      <obj_property name="ElementShortName">MDR_MUX[15:0]</obj_property>
+      <obj_property name="ObjectShortName">MDR_MUX[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/D" type="array">
+      <obj_property name="ElementShortName">D[7:0]</obj_property>
+      <obj_property name="ObjectShortName">D[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/LD_MDR_RE" type="logic">
+      <obj_property name="ElementShortName">LD_MDR_RE</obj_property>
+      <obj_property name="ObjectShortName">LD_MDR_RE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/LD_MDRL_FE" type="logic">
+      <obj_property name="ElementShortName">LD_MDRL_FE</obj_property>
+      <obj_property name="ObjectShortName">LD_MDRL_FE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/LD_MDRH_FE" type="logic">
+      <obj_property name="ElementShortName">LD_MDRH_FE</obj_property>
+      <obj_property name="ObjectShortName">LD_MDRH_FE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_z80/test_system/z80_test_system_i/z80_top_0/double_edger_mdr_0/inst/OUT" type="array">
+      <obj_property name="ElementShortName">OUT[15:0]</obj_property>
+      <obj_property name="ObjectShortName">OUT[15:0]</obj_property>
+   </wvobject>
+</wave_config>

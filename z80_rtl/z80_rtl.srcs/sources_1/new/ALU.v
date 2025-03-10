@@ -849,6 +849,6 @@ module ALU(
     
     
     // ALU Core
-    ALU_Core core(.ALU_OP(ALU_OP), .operandA(INT_DATA_BUS_A[15:0]), .operandB(INT_DATA_BUS_B[15:0]), .flag(flag), .ALU_OUT(ALU_OUT), .FLAG_OUT(alu_flag_out));
+    ALU_Core core(.ALU_OP(ALU_OP), .operandA(INT_DATA_BUS_A[15:0]), .operandB(INT_DATA_BUS_B[15:0]), .flag(FLAG_IN), .ALU_OUT(ALU_OUT), .FLAG_OUT(FLAG_OUT));
     
 endmodule

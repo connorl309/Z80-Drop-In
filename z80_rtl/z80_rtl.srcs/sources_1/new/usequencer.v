@@ -47,16 +47,17 @@ module usequencer(
 
     output [49:0] m_signals,
     output [`TSIGNALS:0] t_signals,
+    output jump_pc,
 
     output IX, IY
     );
 
     // External control signal latches
-    reg wait_latch; // wait is a keyword so I can't call it wait lol
-    reg int;
-    reg nmi;
-    reg reset;
-    reg busrq;
+    reg wait_latch = 1; // wait is a keyword so I can't call it wait lol
+    reg int = 1;
+    reg nmi = 1;
+    reg reset = 1;
+    reg busrq = 1;
 
     reg mreq = 1;
     reg iorq = 1;
@@ -94,6 +95,9 @@ module usequencer(
     reg [1:0] PLA_idx = 2'b0;
     reg [1:0] IX_pref = 2'b0;
     reg [1:0] IY_pref = 2'b0;
+    
+    reg iff1 = 0;
+    reg iff2 = 0;
 
     decode dec(IR, PLA_idx, IX_pref[1], IY_pref[1], exec_sigs, nmi, PLA_idx_w, m_states,
                      max_m_cycles_w, f_stall, next_IX_pref, next_IY_pref, no_int);
@@ -137,8 +141,8 @@ module usequencer(
 
     flag_logic fl(flags, condition, cc_met);
 
-    reg iff1 = 0;
-    reg iff2 = 0;
+    
+    assign jump_pc = m_signals[`PC_CONDLD] && cc_met && t_signals[`INC_PC];
 
 
     always @(posedge clk) begin
@@ -148,7 +152,7 @@ module usequencer(
         reset <= ext_reset;
         busrq <= ext_busrq;
 
-        t_state <= next_t_state;
+        #20 t_state <= next_t_state;
 
         // Update output latches only if not waiting
         if(!(t_signals[`COND0] && !wait_latch)) begin
@@ -216,6 +220,7 @@ module usequencer(
         if(m_signals[`IFF2_TO_IFF1]) begin
             iff1 <= iff2;
         end
+       
 
     end
 
@@ -244,7 +249,7 @@ module usequencer(
         else if(t_signals[`WR_S_FE])
             wr <= 1;
 
-        if(t_signals[`HALT_R])
+        if(t_signals[`HALT_R] || m_signals[`HALT_SIG])
             ext_halt <= 0;
     end
 

@@ -33,7 +33,6 @@ module z80RegisterFile(
     input LD_R, //should load R
     input LD_W, //load W with part of instruction (temporary storage)
     input LD_Z, //load Z with part of isntruction (temporary storage)
-    input Gate_SP, //puts SP on ADDR_BUS
     input Gate_SP_INC, //puts SP + 1 into SP then puts it onto ADDR_BUS 
     input Gate_SP_DEC, //puts SP - 1 into SP then puts it onto ADDR_BUS
     input [2:0] OPCODE_Y, //this is just bits [5:3] of the current opcode
@@ -338,11 +337,8 @@ module z80RegisterFile(
     
 //register reads
     always @(negedge CLK) begin
-
-        //reads to ADDR_BUS
-        if(Gate_SP || Gate_SP_INC || Gate_SP_DEC) begin ADDR_BUS <= SP; end
        
-        else if((OPCODE_Y == 3'b110) || (OPCODE_Z) == 3'b110)
+        if((OPCODE_Y == 3'b110) || (OPCODE_Z) == 3'b110)
         begin
             ADDR_BUS <= (!EXX_TOGGLE) ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep});
         end

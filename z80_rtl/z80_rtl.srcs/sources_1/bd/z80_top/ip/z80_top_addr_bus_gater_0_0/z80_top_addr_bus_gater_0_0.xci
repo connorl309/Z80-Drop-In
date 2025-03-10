@@ -45,8 +45,7 @@
         "GATE_MARH": [ { "direction": "in" } ],
         "SP": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
         "GATE_SP_INC": [ { "direction": "in" } ],
-        "GATE_SP_DEC": [ { "direction": "in" } ],
-        "REG_ADDR_BUS": [ { "direction": "in", "size_left": "15", "size_right": "0" } ]
+        "GATE_SP_DEC": [ { "direction": "in" } ]
       }
     }
   }

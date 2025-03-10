@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 02/15/2025 08:56:08 PM
+// Create Date: 03/10/2025 12:47:13 AM
 // Design Name: 
-// Module Name: data_bus_gater
+// Module Name: tb_z80
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,17 +20,19 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module data_bus_gater(
-    output [7:0] D_OUT,
-    input [7:0] MDRL,
-    input GATE_MDRL,
-    input [7:0] MDRH,
-    input GATE_MDRH
+module tb_z80(
+
     );
     
-    wire [7:0] out_wire;
-    assign D_OUT = out_wire;
-    bufif1 bufif1_MDRL [7:0] (out_wire, MDRL, GATE_MDRL);
-    bufif1 bufif1_MDRH [7:0] (out_wire, MDRH, GATE_MDRH);
-
+    reg CLK = 0;
+    reg RESET = 0;
+    
+    always #100 CLK = !CLK;
+    
+    initial begin
+        #100 RESET = 1;
+    end
+    
+    z80_test_system_wrapper test_system (CLK, RESET);
+    
 endmodule
