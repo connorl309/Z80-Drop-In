@@ -1,0 +1,263 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x2E4F0D610EF0E916",
+      "device": "xc7s50csga324-1",
+      "gen_directory": "../../../../level_shifter_test.gen/sources_1/bd/top",
+      "name": "top",
+      "rev_ctrl_bd_flag": "RevCtrlBdOff",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2024.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "clk_wiz_0": "",
+      "flipper_0": ""
+    },
+    "ports": {
+      "reset": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
+      },
+      "sys_clock": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "top_sys_clock",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000"
+          },
+          "FREQ_TOLERANCE_HZ": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.0"
+          }
+        }
+      },
+      "A": {
+        "type": "data",
+        "direction": "O",
+        "left": "15",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default"
+          }
+        }
+      },
+      "RESET2": {
+        "direction": "O"
+      },
+      "M1": {
+        "direction": "O"
+      },
+      "RD": {
+        "direction": "O"
+      },
+      "WR": {
+        "direction": "O"
+      },
+      "WAIT2": {
+        "direction": "O"
+      },
+      "RFSH": {
+        "direction": "O"
+      },
+      "BUSRQ": {
+        "direction": "O"
+      },
+      "IORQ": {
+        "direction": "O"
+      },
+      "HALT": {
+        "direction": "O"
+      },
+      "INT2": {
+        "direction": "O"
+      },
+      "CLK": {
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "/clk_wiz_0_clk_out1",
+            "value_src": "ip_prop"
+          },
+          "FREQ_HZ": {
+            "value": "8000000",
+            "value_src": "ip_prop"
+          },
+          "PHASE": {
+            "value": "0.0",
+            "value_src": "ip_prop"
+          }
+        }
+      },
+      "NMI": {
+        "direction": "O"
+      },
+      "MREQ": {
+        "direction": "O"
+      },
+      "BUSAK": {
+        "direction": "O"
+      },
+      "D": {
+        "direction": "O",
+        "left": "15",
+        "right": "0"
+      }
+    },
+    "components": {
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "14",
+        "xci_name": "top_clk_wiz_0_0",
+        "xci_path": "ip\\top_clk_wiz_0_0\\top_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "CLKOUT1_JITTER": {
+            "value": "218.754"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "8"
+          },
+          "CLK_IN1_BOARD_INTERFACE": {
+            "value": "sys_clock"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "125.000"
+          },
+          "RESET_BOARD_INTERFACE": {
+            "value": "reset"
+          },
+          "USE_BOARD_FLOW": {
+            "value": "true"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          }
+        }
+      },
+      "flipper_0": {
+        "vlnv": "xilinx.com:module_ref:flipper:1.0",
+        "ip_revision": "1",
+        "xci_name": "top_flipper_0_0",
+        "xci_path": "ip\\top_flipper_0_0\\top_flipper_0_0.xci",
+        "inst_hier_path": "flipper_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "flipper",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "FREQ_HZ": {
+                "value": "8000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
+              },
+              "CLK_DOMAIN": {
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I",
+            "parameters": {
+              "POLARITY": {
+                "value": "ACTIVE_HIGH",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "flip_out": {
+            "direction": "O"
+          },
+          "out16": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "CLK",
+          "flipper_0/clk"
+        ]
+      },
+      "flipper_0_out": {
+        "ports": [
+          "flipper_0/flip_out",
+          "RESET2",
+          "M1",
+          "WR",
+          "RD",
+          "WAIT2",
+          "RFSH",
+          "BUSRQ",
+          "IORQ",
+          "HALT",
+          "INT2",
+          "NMI",
+          "MREQ",
+          "BUSAK"
+        ]
+      },
+      "flipper_0_out16": {
+        "ports": [
+          "flipper_0/out16",
+          "A",
+          "D"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "reset",
+          "clk_wiz_0/reset",
+          "flipper_0/reset"
+        ]
+      },
+      "sys_clock_1": {
+        "ports": [
+          "sys_clock",
+          "clk_wiz_0/clk_in1"
+        ]
+      }
+    }
+  }
+}

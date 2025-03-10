@@ -144,3 +144,7 @@ z80_rtl/z80_rtl.gen/
 z80_rtl/z80_rtl.runs/
 
 hardware/level-shifter/production/
+
+level_shifter_test/level_shifter_test.gen/
+
+level_shifter_test/level_shifter_test.runs/
