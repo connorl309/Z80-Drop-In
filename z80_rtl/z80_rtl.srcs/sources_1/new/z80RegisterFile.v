@@ -23,9 +23,12 @@
 module z80RegisterFile(
     input CLK,
     input RFSH, //increment R register when RFSH is high
+    input RESET,
     input [2:0] DR_MUX, //chooses between r[y], r[z] of opcode, HL, BC, DE, SP, and B as DR
     input RP_TABLE, //chooses between RP1 and RP2 for loads, RP1 if 0 and RP2 if 1
-    input RP, //when set, r[y] is now RP[p] for dr_mux (essentially just makes it a 16 bit write)        
+    input RP, //when set, r[y] is now RP[p] for dr_mux (essentially just makes it a 16 bit write)   
+    input LD_SP, // t-state signal that overrides normal DR mux writes to SP     
+    input SP_MUX,
     input LD_REG, //signals a destination register to be written to  
     input LD_ACCUM, //Should load A or A' w/ result of ALU arith/logic operations
     input LD_FLAG, //Should load register F or F'
@@ -33,6 +36,7 @@ module z80RegisterFile(
     input LD_R, //should load R
     input LD_W, //load W with part of instruction (temporary storage)
     input LD_Z, //load Z with part of isntruction (temporary storage)
+    input Gate_SP, //puts SP on ADDR_BUS
     input Gate_SP_INC, //puts SP + 1 into SP then puts it onto ADDR_BUS 
     input Gate_SP_DEC, //puts SP - 1 into SP then puts it onto ADDR_BUS
     input [2:0] OPCODE_Y, //this is just bits [5:3] of the current opcode
@@ -101,7 +105,7 @@ module z80RegisterFile(
     reg [7:0] RY = 0; 
     reg [7:0] RZ = 0;        
    
-    reg [15:0] RP_TABLE_SELECTION; //holds a 16 bit entry from either RP1 or RP2
+   // reg [15:0] RP_TABLE_SELECTION; //holds a 16 bit entry from either RP1 or RP2
     reg sig_rfsh = 0;
     reg sig_rfsh_old = 0;
     
@@ -120,90 +124,136 @@ module z80RegisterFile(
     end
             
     //register writes 
-    always @(posedge CLK) begin
+    always @(posedge CLK or negedge RESET) begin
     
-        //flip flops for register exchanges
-        AF_TOGGLE <= AF_SWAP ? ~AF_TOGGLE : AF_TOGGLE;
-        EXX_TOGGLE <= EXX ? ~EXX_TOGGLE : EXX_TOGGLE;
-        DEHL_TOGGLE <= DEHL_SWAP ? ~DEHL_TOGGLE : DEHL_TOGGLE;
-        DEPHLP_TOGGLE <= DEPHLP_SWAP ? ~DEPHLP_TOGGLE : DEPHLP_TOGGLE;
-                
-                           
-        if(LD_W) begin W <= TEMP_IN[15:8]; end
-        if(LD_Z) begin Z <= TEMP_IN[7:0]; end
+        if(RESET == 1'b0)
+        begin
+            {A, F, B, C, D, E, H, L} <= 64'b0;
+            {Ap, Fp, Bp, Cp, Dp, Ep, Hp, Lp} <= 64'b0;
+            {IX, IY, SP} <= 80'b0;
+            {sig_rfsh_old, DEHL_TOGGLE, DEPHLP_TOGGLE, EXX_TOGGLE, AF_TOGGLE} <= 5'b0;
+        end 
+        
     
-        //Load I w/ ALU output
-        if(LD_I) begin I <= DATA_BUS_LOW; end      
-    
-        //R register
-        if(LD_R) R <= DATA_BUS_LOW;
-        if(sig_rfsh == ~sig_rfsh_old) begin //increment
-            R <= (R + 1) & 7'h7F;
-        end
-        sig_rfsh_old <= sig_rfsh;
+        else
+        begin 
+            //flip flops for register exchanges
+            AF_TOGGLE <= AF_SWAP ? ~AF_TOGGLE : AF_TOGGLE;
+            EXX_TOGGLE <= EXX ? ~EXX_TOGGLE : EXX_TOGGLE;
+            DEHL_TOGGLE <= DEHL_SWAP ? ~DEHL_TOGGLE : DEHL_TOGGLE;
+            DEPHLP_TOGGLE <= DEPHLP_SWAP ? ~DEPHLP_TOGGLE : DEPHLP_TOGGLE;
+                    
+                               
+            if(LD_W) begin W <= TEMP_IN[15:8]; end
+            if(LD_Z) begin Z <= TEMP_IN[7:0]; end
         
-        //put data from ALU in register A
-        if(LD_ACCUM) begin
-            if(AF_SWAP) begin Ap <= ACC_OUT; end
-            else begin A <= ACC_OUT; end
-        end
+            //Load I w/ ALU output
+            if(LD_I) begin I <= DATA_BUS_LOW; end      
         
-        //F register
-        if(LD_FLAG) begin
-            if(AF_SWAP) begin Fp <= FLAG_OUT; end
-            else begin F <= FLAG_OUT; end
-        end
-        
-        if(LD_REG) begin      
-           //DESTINATION REGISTER WRITES
-            case (DR_MUX)
-                0: begin //DR_MUX_DR
-                        if(RP) begin //use RP instead of r[y] 
-                            case(OPCODE_Y >> 1)
-                                0: begin 
-                                        if(EXX_TOGGLE) begin Bp <= DATA_BUS_HIGH; Cp <= DATA_BUS_LOW; end
-                                        else begin B <= DATA_BUS_HIGH; C <= DATA_BUS_LOW; end
-                                   end
-                                   
-                                1: begin //DE
-                                        if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin D <= DATA_BUS_HIGH; E <= DATA_BUS_LOW; end 
-                                                                          else begin H <= DATA_BUS_HIGH; L <= DATA_BUS_LOW; end
+            //R register
+            if(LD_R) R <= DATA_BUS_LOW;
+            if(sig_rfsh == ~sig_rfsh_old) begin //increment
+                R <= (R + 1) & 7'h7F;
+            end
+            sig_rfsh_old <= sig_rfsh;
+            
+            //put data from ALU in register A
+            if(LD_ACCUM) begin
+                if(AF_SWAP) begin Ap <= ACC_OUT; end
+                else begin A <= ACC_OUT; end
+            end
+            
+            //F register
+            if(LD_FLAG) begin
+                if(AF_SWAP) begin Fp <= FLAG_OUT; end
+                else begin F <= FLAG_OUT; end
+            end
+            
+            if(LD_REG) begin      
+               //DESTINATION REGISTER WRITES
+                case (DR_MUX)
+                    0: begin //DR_MUX_DR
+                            if(RP) begin //use RP instead of r[y] 
+                                case(OPCODE_Y >> 1)
+                                    0: begin 
+                                            if(EXX_TOGGLE) begin Bp <= DATA_BUS_HIGH; Cp <= DATA_BUS_LOW; end
+                                            else begin B <= DATA_BUS_HIGH; C <= DATA_BUS_LOW; end
+                                       end
+                                       
+                                    1: begin //DE
+                                            if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin D <= DATA_BUS_HIGH; E <= DATA_BUS_LOW; end 
+                                                                              else begin H <= DATA_BUS_HIGH; L <= DATA_BUS_LOW; end
+                                            end
+                                            else begin if(!DEPHLP_TOGGLE) begin Dp <= DATA_BUS_HIGH; Ep <= DATA_BUS_LOW; end
+                                                                     else begin Hp <= DATA_BUS_HIGH; Lp <= DATA_BUS_LOW; end
+                                            end                                        
+                                       end
+                                       
+                                    2: begin //HL
+                                            if(DD_PREFIX) begin IX <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end
+                                            else if(FD_PREFIX) begin IY <= {DATA_BUS_HIGH,DATA_BUS_LOW}; end 
+                                            else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin H <= DATA_BUS_HIGH; L <= DATA_BUS_LOW; end 
+                                                                              else begin D <= DATA_BUS_HIGH; E <= DATA_BUS_LOW; end
+                                            end
+                                            else begin if(!DEPHLP_TOGGLE) begin Hp <= DATA_BUS_HIGH; Lp <= DATA_BUS_LOW; end
+                                                                     else begin Dp <= DATA_BUS_HIGH; Ep <= DATA_BUS_LOW; end
+                                            end    
+                                       end
+                                       
+                                    3: begin 
+                                        if(RP_TABLE == 1) 
+                                        begin 
+                                            if(~AF_TOGGLE) begin A <= DATA_BUS_HIGH; F <= DATA_BUS_LOW; end
+                                            else begin Ap <= DATA_BUS_HIGH; Fp <= DATA_BUS_LOW; end
                                         end
-                                        else begin if(!DEPHLP_TOGGLE) begin Dp <= DATA_BUS_HIGH; Ep <= DATA_BUS_LOW; end
-                                                                 else begin Hp <= DATA_BUS_HIGH; Lp <= DATA_BUS_LOW; end
-                                        end                                        
-                                   end
-                                   
-                                2: begin //HL
-                                        if(DD_PREFIX) begin IX <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end
-                                        else if(FD_PREFIX) begin IY <= {DATA_BUS_HIGH,DATA_BUS_LOW}; end 
-                                        else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin H <= DATA_BUS_HIGH; L <= DATA_BUS_LOW; end 
-                                                                          else begin D <= DATA_BUS_HIGH; E <= DATA_BUS_LOW; end
-                                        end
-                                        else begin if(!DEPHLP_TOGGLE) begin Hp <= DATA_BUS_HIGH; Lp <= DATA_BUS_LOW; end
-                                                                 else begin Dp <= DATA_BUS_HIGH; Ep <= DATA_BUS_LOW; end
-                                        end    
-                                   end
-                                   
-                                3: begin 
-                                    if(RP_TABLE == 1) 
-                                    begin 
-                                        if(~AF_TOGGLE) begin A <= DATA_BUS_HIGH; F <= DATA_BUS_LOW; end
-                                        else begin Ap <= DATA_BUS_HIGH; Fp <= DATA_BUS_LOW; end
+                                        
+                                        else 
+                                        begin 
+                                            if(LD_SP == 1'b1) SP = (~SP_MUX) ? SP+1 : SP-1; //0 is inc, 1 is dec?                            
+    //                                        if(Gate_SP_INC) SP = SP + 1;
+    //                                        else if(Gate_SP_DEC) SP = SP - 1;
+                                            else SP <= {DATA_BUS_HIGH, DATA_BUS_LOW};                                     
+                                        end 
                                     end
+                                endcase                    
+                            end 
+                            
+                            else begin
+                                case(OPCODE_Y) //8 bit
+                                    0: begin if(!EXX_TOGGLE) begin B <= DATA_BUS_LOW; end else begin Bp <= DATA_BUS_LOW; end end
+                                    1: begin if(!EXX_TOGGLE) begin C <= DATA_BUS_LOW; end else begin Cp <= DATA_BUS_LOW; end end
                                     
-                                    else 
-                                    begin 
-                                        if(Gate_SP_INC) SP = SP + 1;
-                                        else if(Gate_SP_DEC) SP = SP - 1;
-                                        else SP <= {DATA_BUS_HIGH, DATA_BUS_LOW};                                     
-                                    end 
-                                end
-                            endcase                    
-                        end 
-                        
-                        else begin
-                            case(OPCODE_Y) //8 bit
+                                    2: begin if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin D <= DATA_BUS_LOW; end else begin H <= DATA_BUS_LOW; end end
+                                             else begin if(!DEPHLP_TOGGLE) begin Dp <= DATA_BUS_LOW; end else begin Hp <= DATA_BUS_LOW; end end
+                                       end
+                                    
+                                    3: begin if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin E <= DATA_BUS_LOW; end else begin L <= DATA_BUS_LOW; end end
+                                             else begin if(!DEPHLP_TOGGLE) begin Ep <= DATA_BUS_LOW; end else begin Lp <= DATA_BUS_LOW; end end
+                                       end
+                                       
+                                    4: begin if(DD_PREFIX) begin IX[15:8] <= DATA_BUS_LOW; end
+                                             else if(FD_PREFIX) begin IY[15:8] <= DATA_BUS_LOW; end
+                                             else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin H <= DATA_BUS_LOW; end else begin D <= DATA_BUS_LOW; end end
+                                             else begin if(!DEPHLP_TOGGLE) begin Hp <= DATA_BUS_LOW; end else begin Dp <= DATA_BUS_LOW; end end
+                                       end
+                                       
+                                    5: begin if(DD_PREFIX) begin IX[7:0] <= DATA_BUS_LOW; end
+                                             else if(FD_PREFIX) begin IY[7:0] <= DATA_BUS_LOW; end 
+                                             else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin L <= DATA_BUS_LOW; end else begin E <= DATA_BUS_LOW; end end
+                                             else begin if(!DEPHLP_TOGGLE) begin Lp <= DATA_BUS_LOW; end else begin Ep <= DATA_BUS_LOW; end end
+                                       end
+                                       
+                                    6: begin
+                                       end  //do nothing
+                                    
+                                    7: begin if(!AF_TOGGLE) begin A <= DATA_BUS_LOW; end else begin Ap <= DATA_BUS_LOW; end end
+                                    
+                                endcase
+                            end
+                       end
+                    
+                    1: begin //r[z]
+                            case(OPCODE_Z) 
                                 0: begin if(!EXX_TOGGLE) begin B <= DATA_BUS_LOW; end else begin Bp <= DATA_BUS_LOW; end end
                                 1: begin if(!EXX_TOGGLE) begin C <= DATA_BUS_LOW; end else begin Cp <= DATA_BUS_LOW; end end
                                 
@@ -220,152 +270,131 @@ module z80RegisterFile(
                                          else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin H <= DATA_BUS_LOW; end else begin D <= DATA_BUS_LOW; end end
                                          else begin if(!DEPHLP_TOGGLE) begin Hp <= DATA_BUS_LOW; end else begin Dp <= DATA_BUS_LOW; end end
                                    end
-                                   
+                                       
                                 5: begin if(DD_PREFIX) begin IX[7:0] <= DATA_BUS_LOW; end
                                          else if(FD_PREFIX) begin IY[7:0] <= DATA_BUS_LOW; end 
                                          else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin L <= DATA_BUS_LOW; end else begin E <= DATA_BUS_LOW; end end
                                          else begin if(!DEPHLP_TOGGLE) begin Lp <= DATA_BUS_LOW; end else begin Ep <= DATA_BUS_LOW; end end
                                    end
                                    
-                                6: begin
-                                   end  //do nothing
+                                6: begin 
+                                   end //do nothing
                                 
                                 7: begin if(!AF_TOGGLE) begin A <= DATA_BUS_LOW; end else begin Ap <= DATA_BUS_LOW; end end
                                 
-                            endcase
-                        end
-                   end
+                            endcase          
+                       end
+                    
+                    2: begin //DR_MUX_HL
+                        if(DD_PREFIX) begin IX <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end
+                        else if(FD_PREFIX) begin IY <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end 
+                        else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) 
+                                begin
+                                    H <= DATA_BUS_HIGH;
+                                    L <= DATA_BUS_LOW;
+                                end
+                                else begin 
+                                    D <= DATA_BUS_HIGH;
+                                    E <= DATA_BUS_LOW;
+                                end
+                            end
+                            else begin if(!DEPHLP_TOGGLE) 
+                                begin 
+                                    Hp <= DATA_BUS_HIGH;
+                                    Lp <= DATA_BUS_LOW;
+                                end
+                                else begin
+                                    Dp <= DATA_BUS_HIGH;
+                                    Ep <= DATA_BUS_LOW;
+                                end
+                            end    
+                       end 
+                       
+                    3: begin //DR_MUX_BC
+                         if(!EXX_TOGGLE) begin B <= DATA_BUS_HIGH; C <= DATA_BUS_LOW; end 
+                         else begin Bp <= DATA_BUS_HIGH; Cp <= DATA_BUS_LOW; end
+                       end
+                    
+                    4: begin //DR_MUX_DE
+                            if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) 
+                                begin
+                                    D <= DATA_BUS_HIGH;
+                                    E <= DATA_BUS_LOW;
+                                end
+                                else begin 
+                                    H <= DATA_BUS_HIGH;
+                                    L <= DATA_BUS_LOW;
+                                end
+                            end
+                            else begin if(!DEPHLP_TOGGLE) 
+                                begin 
+                                    Dp <= DATA_BUS_HIGH;
+                                    Ep <= DATA_BUS_LOW;
+                                end
+                                else begin
+                                    Hp <= DATA_BUS_HIGH;
+                                    Lp <= DATA_BUS_LOW;
+                                end
+                            end    
+                       end 
+                    
+                    5: begin //DR_MUX_SP
+                        SP <= {DATA_BUS_HIGH, DATA_BUS_LOW};
+                       end
+        
+                    6: begin //DR_MUX_B
+                        if(!EXX_TOGGLE) begin B <= DATA_BUS_LOW; end else begin Bp <= DATA_BUS_LOW; end 
+                       end
                 
-                1: begin //r[z]
-                        case(OPCODE_Z) 
-                            0: begin if(!EXX_TOGGLE) begin B <= DATA_BUS_LOW; end else begin Bp <= DATA_BUS_LOW; end end
-                            1: begin if(!EXX_TOGGLE) begin C <= DATA_BUS_LOW; end else begin Cp <= DATA_BUS_LOW; end end
-                            
-                            2: begin if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin D <= DATA_BUS_LOW; end else begin H <= DATA_BUS_LOW; end end
-                                     else begin if(!DEPHLP_TOGGLE) begin Dp <= DATA_BUS_LOW; end else begin Hp <= DATA_BUS_LOW; end end
-                               end
-                            
-                            3: begin if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin E <= DATA_BUS_LOW; end else begin L <= DATA_BUS_LOW; end end
-                                     else begin if(!DEPHLP_TOGGLE) begin Ep <= DATA_BUS_LOW; end else begin Lp <= DATA_BUS_LOW; end end
-                               end
-                               
-                            4: begin if(DD_PREFIX) begin IX[15:8] <= DATA_BUS_LOW; end
-                                     else if(FD_PREFIX) begin IY[15:8] <= DATA_BUS_LOW; end
-                                     else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin H <= DATA_BUS_LOW; end else begin D <= DATA_BUS_LOW; end end
-                                     else begin if(!DEPHLP_TOGGLE) begin Hp <= DATA_BUS_LOW; end else begin Dp <= DATA_BUS_LOW; end end
-                               end
-                                   
-                            5: begin if(DD_PREFIX) begin IX[7:0] <= DATA_BUS_LOW; end
-                                     else if(FD_PREFIX) begin IY[7:0] <= DATA_BUS_LOW; end 
-                                     else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) begin L <= DATA_BUS_LOW; end else begin E <= DATA_BUS_LOW; end end
-                                     else begin if(!DEPHLP_TOGGLE) begin Lp <= DATA_BUS_LOW; end else begin Ep <= DATA_BUS_LOW; end end
-                               end
-                               
-                            6: begin 
-                               end //do nothing
-                            
-                            7: begin if(!AF_TOGGLE) begin A <= DATA_BUS_LOW; end else begin Ap <= DATA_BUS_LOW; end end
-                            
-                        endcase          
-                   end
-                
-                2: begin //DR_MUX_HL
-                    if(DD_PREFIX) begin IX <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end
-                    else if(FD_PREFIX) begin IY <= {DATA_BUS_HIGH, DATA_BUS_LOW}; end 
-                    else if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) 
-                            begin
-                                H <= DATA_BUS_HIGH;
-                                L <= DATA_BUS_LOW;
-                            end
-                            else begin 
-                                D <= DATA_BUS_HIGH;
-                                E <= DATA_BUS_LOW;
-                            end
-                        end
-                        else begin if(!DEPHLP_TOGGLE) 
-                            begin 
-                                Hp <= DATA_BUS_HIGH;
-                                Lp <= DATA_BUS_LOW;
-                            end
-                            else begin
-                                Dp <= DATA_BUS_HIGH;
-                                Ep <= DATA_BUS_LOW;
-                            end
-                        end    
-                   end 
-                   
-                3: begin //DR_MUX_BC
-                     if(!EXX_TOGGLE) begin B <= DATA_BUS_HIGH; C <= DATA_BUS_LOW; end 
-                     else begin Bp <= DATA_BUS_HIGH; Cp <= DATA_BUS_LOW; end
-                   end
-                
-                4: begin //DR_MUX_DE
-                        if(!EXX_TOGGLE) begin if(!DEHL_TOGGLE) 
-                            begin
-                                D <= DATA_BUS_HIGH;
-                                E <= DATA_BUS_LOW;
-                            end
-                            else begin 
-                                H <= DATA_BUS_HIGH;
-                                L <= DATA_BUS_LOW;
-                            end
-                        end
-                        else begin if(!DEPHLP_TOGGLE) 
-                            begin 
-                                Dp <= DATA_BUS_HIGH;
-                                Ep <= DATA_BUS_LOW;
-                            end
-                            else begin
-                                Hp <= DATA_BUS_HIGH;
-                                Lp <= DATA_BUS_LOW;
-                            end
-                        end    
-                   end 
-                
-                5: begin //DR_MUX_SP
-                    SP <= {DATA_BUS_HIGH, DATA_BUS_LOW};
-                   end
-    
-                6: begin //DR_MUX_B
-                    if(!EXX_TOGGLE) begin B <= DATA_BUS_LOW; end else begin Bp <= DATA_BUS_LOW; end 
-                   end
-            
-            endcase
+                endcase
+            end
         end
     end 
     
     
 //register reads
-    always @(negedge CLK) begin
-       
-        if((OPCODE_Y == 3'b110) || (OPCODE_Z) == 3'b110)
+    always @(negedge CLK or negedge RESET) begin
+  
+        if(RESET == 1'b0)
         begin
-            ADDR_BUS <= (!EXX_TOGGLE) ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep});
+            {RY, RZ} = 32'b0;
         end
-        
-        //read r[y] and r[z]
-        case(OPCODE_Y)
-            0: RY <= (~EXX_TOGGLE) ? B : Bp;
-            1: RY <= (~EXX_TOGGLE) ? C : Cp;
-            2: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? D : H) : (~DEPHLP_TOGGLE ? Dp : Hp);
-            3: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? E : L) : (~DEPHLP_TOGGLE ? Ep : Lp);
-            4: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? H : D) : (~DEPHLP_TOGGLE ? Hp : Dp);
-            5: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? L : E) : (~DEPHLP_TOGGLE ? Lp : Ep);
-            6: RY <=0; 
-            7: RY <= (~EXX_TOGGLE) ? A : Ap;
-        endcase
-        
-        case(OPCODE_Z)
-            0: RZ <= (~EXX_TOGGLE) ? B : Bp;
-            1: RZ <= (~EXX_TOGGLE) ? C : Cp;
-            2: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? D : H) : (~DEPHLP_TOGGLE ? Dp : Hp);
-            3: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? E : L) : (~DEPHLP_TOGGLE ? Ep : Lp);
-            4: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? H : D) : (~DEPHLP_TOGGLE ? Hp : Dp);
-            5: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? L : E) : (~DEPHLP_TOGGLE ? Lp : Ep);
-            6: RZ <= 0;
-            7: RZ <= (~EXX_TOGGLE) ? A : Ap;
-        endcase
-        
+
+        else
+        begin
+            //reads to ADDR_BUS
+            if(Gate_SP) ADDR_BUS <= SP; 
+            else if(Gate_SP_INC) ADDR_BUS <= SP + 1;
+            else if(Gate_SP_DEC) ADDR_BUS <= SP - 1;
+    
+            else if((OPCODE_Y == 3'b110) || (OPCODE_Z) == 3'b110)
+            begin
+                ADDR_BUS <= (!EXX_TOGGLE) ? (!DEHL_TOGGLE ? {H,L} : {D,E}) : (!DEPHLP_TOGGLE ? {Hp,Lp} : {Dp,Ep});
+            end
+            
+            //read r[y] and r[z]
+            case(OPCODE_Y)
+                0: RY <= (~EXX_TOGGLE) ? B : Bp;
+                1: RY <= (~EXX_TOGGLE) ? C : Cp;
+                2: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? D : H) : (~DEPHLP_TOGGLE ? Dp : Hp);
+                3: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? E : L) : (~DEPHLP_TOGGLE ? Ep : Lp);
+                4: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? H : D) : (~DEPHLP_TOGGLE ? Hp : Dp);
+                5: RY <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? L : E) : (~DEPHLP_TOGGLE ? Lp : Ep);
+                6: RY <=0; 
+                7: RY <= (~EXX_TOGGLE) ? A : Ap;
+            endcase
+            
+            case(OPCODE_Z)
+                0: RZ <= (~EXX_TOGGLE) ? B : Bp;
+                1: RZ <= (~EXX_TOGGLE) ? C : Cp;
+                2: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? D : H) : (~DEPHLP_TOGGLE ? Dp : Hp);
+                3: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? E : L) : (~DEPHLP_TOGGLE ? Ep : Lp);
+                4: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? H : D) : (~DEPHLP_TOGGLE ? Hp : Dp);
+                5: RZ <= (~EXX_TOGGLE) ? (~DEHL_TOGGLE ? L : E) : (~DEPHLP_TOGGLE ? Lp : Ep);
+                6: RZ <= 0;
+                7: RZ <= (~EXX_TOGGLE) ? A : Ap;
+            endcase
+        end    
     end 
 
     //Register outputs to ports
