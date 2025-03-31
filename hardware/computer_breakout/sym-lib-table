@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "MC14489BDWE")(type "KiCad")(uri "${KIPRJMOD}/parts/MC14489BDWE.kicad_sym")(options "")(descr ""))
+)
