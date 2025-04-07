@@ -28,31 +28,33 @@ module double_edger_mdr(
     input LD_MDR_RE,
     input LD_MDRL_FE,
     input LD_MDRH_FE,
-    output reg [15:0] OUT
+    output reg [15:0] OUT_OUTWARD,
+    output reg [15:0] OUT_INWARD
     );
     
     initial begin
-        OUT <= 0;
+        OUT_OUTWARD <= 0;
+        OUT_INWARD <= 0;
     end
     
     always @(posedge CLK) begin
         if (!RESET) begin
-            OUT <= 0;
+            OUT_OUTWARD <= 0;
         end else begin
             if (LD_MDR_RE) begin
-                OUT <= MDR_MUX;
+                OUT_OUTWARD <= MDR_MUX;
             end
         end
     end
     
     always @(negedge CLK) begin
         if (!RESET) begin
-            OUT <= 0;
+            OUT_INWARD <= 0;
         end else begin
             if (LD_MDRL_FE) begin
-                OUT[7:0] <= D;
+                OUT_INWARD[7:0] <= D;
             end else if (LD_MDRH_FE) begin
-                OUT[15:8] <= D;
+                OUT_INWARD[15:8] <= D;
             end
         end
     end

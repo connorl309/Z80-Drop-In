@@ -70,14 +70,18 @@ module usequencer(
     wire [6:0] next_t_state;
 
     fsm t_cs(t_state, t_signals);
+    
+    //intermediate signal logic
+    reg temp_mreq, temp_iorq, temp_rd, temp_wr;
+    
 
     // Set signals to high impedence during bus grant
-    assign ext_mreq = t_signals[`BUSACK] ? 1'bz : mreq;
-    assign ext_iorq = t_signals[`BUSACK] ? 1'bz : iorq;
-    assign ext_rd   = t_signals[`BUSACK] ? 1'bz : rd;
-    assign ext_wr   = t_signals[`BUSACK] ? 1'bz : wr;
+    assign ext_mreq = t_signals[`BUSACK] ? 1'bz : temp_mreq;
+    assign ext_iorq = t_signals[`BUSACK] ? 1'bz : temp_iorq;
+    assign ext_rd   = t_signals[`BUSACK] ? 1'bz : temp_rd;
+    assign ext_wr   = t_signals[`BUSACK] ? 1'bz : temp_wr;
 
-
+    
     // Decode logic
 
     wire [249:0] exec_sigs;
@@ -144,6 +148,42 @@ module usequencer(
     
     assign jump_pc = m_signals[`PC_CONDLD] && cc_met && t_signals[`INC_PC];
 
+    //reg temp_mreq, temp_iorq, temp_rd, temp_wr;
+
+    always @(*) begin
+        if (t_signals[`MREQ_R] && ~clk) begin
+            temp_mreq = 0;
+        end else if (t_signals[`MREQ_S_FE] && ~clk) begin
+            temp_mreq = 1;
+        end else begin
+            temp_mreq = mreq;
+        end
+    
+        if (t_signals[`IORQ_R] && ~clk) begin
+            temp_iorq = 0;
+        end else if (t_signals[`IORQ_S_FE] && ~clk) begin
+            temp_iorq = 1;
+        end else begin
+            temp_iorq = iorq;
+        end
+    
+        if (t_signals[`RD_R] && ~clk) begin
+            temp_rd = 0;
+        end else if (t_signals[`RD_S_FE] && ~clk) begin
+            temp_rd = 1;
+        end else begin
+            temp_rd = rd;
+        end
+    
+        if (t_signals[`WR_R] && ~clk) begin
+            temp_wr = 0;
+        end else if (t_signals[`WR_S_FE] && ~clk) begin
+            temp_wr = 1;
+        end else begin
+            temp_wr = wr;
+        end
+    end
+    
 
     always @(posedge clk) begin
         // Update input latches
@@ -174,6 +214,27 @@ module usequencer(
             if(t_signals[`WR_R_RE])
                 wr <= 0;
         end
+        
+        if(t_signals[`MREQ_R])
+            mreq <= 0;
+        else if(t_signals[`MREQ_S_FE])
+            mreq <= 1;
+
+        if(t_signals[`IORQ_R])
+            iorq <= 0;
+        else if(t_signals[`IORQ_S_FE])
+            iorq <= 1;
+
+        if(t_signals[`RD_R])
+            rd <= 0;
+        else if(t_signals[`RD_S_FE])
+            rd <= 1;
+
+        if(t_signals[`WR_R])
+            wr <= 0;
+        else if(t_signals[`WR_S_FE])
+            wr <= 1;
+        
 
         if(t_signals[`CS_SET]) begin
             m_cycle_ctr <= 0;
@@ -229,25 +290,9 @@ module usequencer(
         wait_latch <= ext_wait;
 
         // Update output latches
-        if(t_signals[`MREQ_R])
-            mreq <= 0;
-        else if(t_signals[`MREQ_S_FE])
-            mreq <= 1;
+        
+        
 
-        if(t_signals[`IORQ_R])
-            iorq <= 0;
-        else if(t_signals[`IORQ_S_FE])
-            iorq <= 1;
-
-        if(t_signals[`RD_R])
-            rd <= 0;
-        else if(t_signals[`RD_S_FE])
-            rd <= 1;
-
-        if(t_signals[`WR_R])
-            wr <= 0;
-        else if(t_signals[`WR_S_FE])
-            wr <= 1;
 
         if(t_signals[`HALT_R] || m_signals[`HALT_SIG])
             ext_halt <= 0;
