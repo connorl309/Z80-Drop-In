@@ -7,8 +7,7 @@
       "name": "z80_top",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2024.1",
-      "validated": "true"
+      "tool_version": "2024.1"
     },
     "design_tree": {
       "ALU_0": "",
@@ -51,28 +50,8 @@
         "type": "clk",
         "direction": "I",
         "parameters": {
-          "ASSOCIATED_RESET": {
-            "value": "ext_reset",
-            "value_src": "default"
-          },
-          "CLK_DOMAIN": {
-            "value": "z80_top_CLK",
-            "value_src": "default"
-          },
           "FREQ_HZ": {
             "value": "4000000"
-          },
-          "FREQ_TOLERANCE_HZ": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "PHASE": {
-            "value": "0.0",
-            "value_src": "default"
           }
         }
       },
@@ -80,22 +59,12 @@
         "type": "data",
         "direction": "O",
         "left": "15",
-        "right": "0",
-        "parameters": {
-          "LAYERED_METADATA": {
-            "value": "undef",
-            "value_src": "default"
-          }
-        }
+        "right": "0"
       },
       "ext_nmi": {
         "type": "intr",
         "direction": "I",
         "parameters": {
-          "PortWidth": {
-            "value": "1",
-            "value_src": "default_prop"
-          },
           "SENSITIVITY": {
             "value": "LEVEL_LOW"
           }
@@ -105,10 +74,6 @@
         "type": "intr",
         "direction": "I",
         "parameters": {
-          "PortWidth": {
-            "value": "1",
-            "value_src": "default_prop"
-          },
           "SENSITIVITY": {
             "value": "LEVEL_LOW"
           }
@@ -116,17 +81,7 @@
       },
       "ext_reset": {
         "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW",
-            "value_src": "default"
-          }
-        }
+        "direction": "I"
       },
       "ext_busrq": {
         "direction": "I"
@@ -162,37 +117,19 @@
         "type": "data",
         "direction": "I",
         "left": "7",
-        "right": "0",
-        "parameters": {
-          "LAYERED_METADATA": {
-            "value": "undef",
-            "value_src": "default"
-          }
-        }
+        "right": "0"
       },
       "ADDR_IN": {
         "type": "data",
         "direction": "I",
         "left": "15",
-        "right": "0",
-        "parameters": {
-          "LAYERED_METADATA": {
-            "value": "undef",
-            "value_src": "default"
-          }
-        }
+        "right": "0"
       },
       "D_OUT": {
         "type": "data",
         "direction": "O",
         "left": "7",
-        "right": "0",
-        "parameters": {
-          "LAYERED_METADATA": {
-            "value": "undef",
-            "value_src": "default"
-          }
-        }
+        "right": "0"
       }
     },
     "components": {
@@ -1423,14 +1360,6 @@
               "ASSOCIATED_RESET": {
                 "value": "RESET",
                 "value_src": "constant"
-              },
-              "FREQ_HZ": {
-                "value": "4000000",
-                "value_src": "user_prop"
-              },
-              "CLK_DOMAIN": {
-                "value": "z80_top_CLK",
-                "value_src": "default_prop"
               }
             }
           },
@@ -1446,13 +1375,7 @@
           "D": {
             "direction": "I",
             "left": "7",
-            "right": "0",
-            "parameters": {
-              "LAYERED_METADATA": {
-                "value": "undef",
-                "value_src": "default_prop"
-              }
-            }
+            "right": "0"
           },
           "LD_MDR_RE": {
             "direction": "I"
@@ -1462,6 +1385,11 @@
           },
           "LD_MDRH_FE": {
             "direction": "I"
+          },
+          "OUT_OUTWARD": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
           },
           "OUT": {
             "direction": "O",
@@ -1714,17 +1642,17 @@
           "IR/clk",
           "MAR/clk",
           "z80RegisterFile_0/CLK",
-          "double_edger_mdr_0/CLK",
           "PC/CLK",
           "ALU_0/CLK",
-          "usequencer_0/clk"
+          "usequencer_0/clk",
+          "double_edger_mdr_0/CLK"
         ]
       },
       "D_IN_1": {
         "ports": [
           "D_IN",
-          "double_edger_mdr_0/D",
-          "IR/D"
+          "IR/D",
+          "double_edger_mdr_0/D"
         ]
       },
       "FF_dout": {
@@ -1782,8 +1710,6 @@
         "ports": [
           "double_edger_mdr_0/OUT",
           "MDR_A_CONCAT/In1",
-          "MDRH/Din",
-          "MDRL/Din",
           "MDR_SEXT/In0",
           "MDR_BIT_7/Din",
           "A_MUX/in9",
@@ -2039,6 +1965,13 @@
           "D_OUT"
         ]
       },
+      "double_edger_mdr_0_OUT_OUTWARD": {
+        "ports": [
+          "double_edger_mdr_0/OUT_OUTWARD",
+          "MDRH/Din",
+          "MDRL/Din"
+        ]
+      },
       "ext_busrq_1": {
         "ports": [
           "ext_busrq",
@@ -2061,10 +1994,10 @@
         "ports": [
           "ext_reset",
           "MAR/reset",
-          "double_edger_mdr_0/RESET",
           "IR/reset",
           "PC/RESET",
-          "usequencer_0/ext_reset"
+          "usequencer_0/ext_reset",
+          "double_edger_mdr_0/RESET"
         ]
       },
       "ext_wait_1": {
