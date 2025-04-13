@@ -225,10 +225,10 @@
               }
             }
           },
-          "ADDR_IN": {
+          "D_OUT": {
             "type": "data",
-            "direction": "I",
-            "left": "15",
+            "direction": "O",
+            "left": "7",
             "right": "0",
             "parameters": {
               "LAYERED_METADATA": {
@@ -237,10 +237,10 @@
               }
             }
           },
-          "D_OUT": {
+          "ADDR_IN": {
             "type": "data",
-            "direction": "O",
-            "left": "7",
+            "direction": "I",
+            "left": "15",
             "right": "0",
             "parameters": {
               "LAYERED_METADATA": {

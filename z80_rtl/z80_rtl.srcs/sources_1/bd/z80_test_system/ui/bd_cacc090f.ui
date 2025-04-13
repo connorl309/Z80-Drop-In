@@ -1,7 +1,11 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
+<<<<<<< HEAD
    "Default View_TopLeft":"-584,-329",
+=======
+   "Default View_TopLeft":"-144,-210",
+>>>>>>> origin/main
    "ExpandedHierarchyInLayout":"",
    "comment_0":"IR",
    "comment_1":"Y << 3
