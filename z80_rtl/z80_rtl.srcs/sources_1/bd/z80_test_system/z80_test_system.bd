@@ -255,7 +255,7 @@
         "variant_info": {
           "z80_top.bd": {
             "scoped_diagram": "z80_top_inst_0.bd",
-            "design_checksum": "0xA72AE534D9DC1890",
+            "design_checksum": "0x4695CAB4D9DC1890",
             "ref_name": "z80_top",
             "ref_subinst_path": "z80_test_system_z80_top_0",
             "ref_type": "Block Design",

@@ -1463,6 +1463,11 @@
           "LD_MDRH_FE": {
             "direction": "I"
           },
+          "OUT_OUTWARD": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
           "OUT": {
             "direction": "O",
             "left": "15",
@@ -1713,18 +1718,18 @@
           "add_1/CLK",
           "IR/clk",
           "MAR/clk",
-          "z80RegisterFile_0/CLK",
-          "double_edger_mdr_0/CLK",
           "PC/CLK",
           "ALU_0/CLK",
-          "usequencer_0/clk"
+          "double_edger_mdr_0/CLK",
+          "usequencer_0/clk",
+          "z80RegisterFile_0/CLK"
         ]
       },
       "D_IN_1": {
         "ports": [
           "D_IN",
-          "double_edger_mdr_0/D",
-          "IR/D"
+          "IR/D",
+          "double_edger_mdr_0/D"
         ]
       },
       "FF_dout": {
@@ -1782,8 +1787,6 @@
         "ports": [
           "double_edger_mdr_0/OUT",
           "MDR_A_CONCAT/In1",
-          "MDRH/Din",
-          "MDRL/Din",
           "MDR_SEXT/In0",
           "MDR_BIT_7/Din",
           "A_MUX/in9",
@@ -1813,8 +1816,8 @@
       "OPCODE_Y_Dout": {
         "ports": [
           "OPCODE_Y/Dout",
-          "z80RegisterFile_0/OPCODE_Y",
-          "shift_3_0/in"
+          "shift_3_0/in",
+          "z80RegisterFile_0/OPCODE_Y"
         ]
       },
       "OPCODE_Z_Dout": {
@@ -1919,15 +1922,15 @@
       "control_signal_slicer_0_GATE_SP_DEC": {
         "ports": [
           "control_signal_slicer_0/GATE_SP_DEC",
-          "z80RegisterFile_0/Gate_SP_DEC",
-          "addr_bus_gater_0/GATE_SP_DEC"
+          "addr_bus_gater_0/GATE_SP_DEC",
+          "z80RegisterFile_0/Gate_SP_DEC"
         ]
       },
       "control_signal_slicer_0_GATE_SP_INC": {
         "ports": [
           "control_signal_slicer_0/GATE_SP_INC",
-          "z80RegisterFile_0/Gate_SP_INC",
-          "addr_bus_gater_0/GATE_SP_INC"
+          "addr_bus_gater_0/GATE_SP_INC",
+          "z80RegisterFile_0/Gate_SP_INC"
         ]
       },
       "control_signal_slicer_0_INC_PC": {
@@ -2039,6 +2042,13 @@
           "D_OUT"
         ]
       },
+      "double_edger_mdr_0_OUT_OUTWARD": {
+        "ports": [
+          "double_edger_mdr_0/OUT_OUTWARD",
+          "MDRH/Din",
+          "MDRL/Din"
+        ]
+      },
       "ext_busrq_1": {
         "ports": [
           "ext_busrq",
@@ -2061,9 +2071,9 @@
         "ports": [
           "ext_reset",
           "MAR/reset",
-          "double_edger_mdr_0/RESET",
           "IR/reset",
           "PC/RESET",
+          "double_edger_mdr_0/RESET",
           "usequencer_0/ext_reset"
         ]
       },

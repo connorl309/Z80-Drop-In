@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-584,-314",
+   "Default View_TopLeft":"-584,-329",
    "ExpandedHierarchyInLayout":"",
    "comment_0":"IR",
    "comment_1":"Y << 3
@@ -52,22 +52,22 @@ r[z]",
    "font_comment_5":"14",
    "font_comment_6":"14",
    "font_comment_7":"14",
-   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0 threadsafe
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
 preplace port port-id_CLK -pg 1 -lvl 0 -x -90 -y 50 -defaultsOSRD
 preplace port port-id_RESET -pg 1 -lvl 0 -x -90 -y 110 -defaultsOSRD
 preplace inst z80_top_0 -pg 1 -lvl 2 -x 440 -y 20 -defaultsOSRD
 preplace inst memory_0 -pg 1 -lvl 2 -x 440 -y 300 -defaultsOSRD
 preplace inst xlconstant_0 -pg 1 -lvl 1 -x 20 -y 20 -defaultsOSRD
-preplace netloc CLK_1 1 0 2 -70 80 220
-preplace netloc RESET_1 1 0 2 NJ 110 230
-preplace netloc memory_0_DATA_OUT 1 1 2 280 170 610
-preplace netloc xlconstant_0_dout 1 1 1 240 -30n
-preplace netloc z80_top_0_ADDR_OUT 1 1 2 260 -140 620
-preplace netloc z80_top_0_D_OUT 1 1 2 240 180 600
-preplace netloc z80_top_0_ext_mreq 1 1 2 280 190 620
-preplace netloc z80_top_0_ext_rd 1 1 2 270 -130 600
-preplace netloc z80_top_0_ext_wr 1 1 2 250 -150 630
+preplace netloc CLK_1 1 0 2 -70 80 230
+preplace netloc RESET_1 1 0 2 NJ 110 240
+preplace netloc memory_0_DATA_OUT 1 1 2 290 170 600
+preplace netloc xlconstant_0_dout 1 1 1 250 -30n
+preplace netloc z80_top_0_ADDR_OUT 1 1 2 270 -140 610
+preplace netloc z80_top_0_D_OUT 1 1 2 250 180 590
+preplace netloc z80_top_0_ext_mreq 1 1 2 290 190 610
+preplace netloc z80_top_0_ext_rd 1 1 2 280 -130 590
+preplace netloc z80_top_0_ext_wr 1 1 2 260 -150 620
 preplace cgraphic comment_3 place top 0 0 textcolor 4 linecolor 3
 preplace cgraphic comment_2 place top 0 0 textcolor 4 linecolor 3
 preplace cgraphic comment_1 place top 0 0 textcolor 4 linecolor 3

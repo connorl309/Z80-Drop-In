@@ -5,7 +5,7 @@
     "cell_name": "fifo_generator_0",
     "component_reference": "xilinx.com:ip:fifo_generator:13.2",
     "ip_revision": "10",
-    "gen_directory": "../../../../../../z80_rtl.gen/sources_1/bd/bd_tb_uart/ip/bd_tb_uart_fifo_generator_0_0",
+    "gen_directory": ".",
     "parameters": {
       "component_parameters": {
         "Component_Name": [ { "value": "bd_tb_uart_fifo_generator_0_0", "resolve_type": "user", "usage": "all" } ],
@@ -398,8 +398,9 @@
       "runtime_parameters": {
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "10" } ],
+        "LOCKEDBYUSER": [ { "value": "TRUE" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../z80_rtl.gen/sources_1/bd/bd_tb_uart/ip/bd_tb_uart_fifo_generator_0_0" } ],
+        "OUTPUTDIR": [ { "value": "." } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
         "SHAREDDIR": [ { "value": "../../ipshared" } ],
         "SWVERSION": [ { "value": "2024.1" } ],

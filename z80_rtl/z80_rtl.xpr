@@ -58,20 +58,20 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="61"/>
+    <Option Name="WTXSimLaunchSim" Val="71"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="57"/>
-    <Option Name="WTModelSimExportSim" Val="57"/>
-    <Option Name="WTQuestaExportSim" Val="57"/>
+    <Option Name="WTXSimExportSim" Val="65"/>
+    <Option Name="WTModelSimExportSim" Val="65"/>
+    <Option Name="WTQuestaExportSim" Val="65"/>
     <Option Name="WTIesExportSim" Val="0"/>
-    <Option Name="WTVcsExportSim" Val="57"/>
-    <Option Name="WTRivieraExportSim" Val="57"/>
-    <Option Name="WTActivehdlExportSim" Val="57"/>
+    <Option Name="WTVcsExportSim" Val="65"/>
+    <Option Name="WTRivieraExportSim" Val="65"/>
+    <Option Name="WTActivehdlExportSim" Val="65"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -89,7 +89,35 @@
   <FileSets Version="1" Minor="32">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/new/memory.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/z80_defines.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/ALU.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/control_signal_slicer.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/z80_datapath_modules.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -103,17 +131,127 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/ALU.v">
+      <File Path="$PSRCDIR/sources_1/new/fsm.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/z80core.v">
+      <File Path="$PSRCDIR/sources_1/new/usequencer.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/z80RegisterFile.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/data_bus_gater.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/addr_bus_gater.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/double_edger_mdr.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/z80_test_system/z80_test_system.bd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+        <CompFileExtendedInfo CompFileName="z80_test_system.bd" FileRelPathName="ip/z80_test_system_memory_0_0/z80_test_system_memory_0_0.xci">
+          <Proxy FileSetName="z80_test_system_memory_0_0"/>
+        </CompFileExtendedInfo>
+      </File>
+      <File Path="$PGENDIR/sources_1/bd/z80_test_system/hdl/z80_test_system_wrapper.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/z80_top/z80_top.bd">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+        </FileInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_ALU_0_0/z80_top_ALU_0_0.xci">
+          <Proxy FileSetName="z80_top_ALU_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_PC_0/z80_top_PC_0.xci">
+          <Proxy FileSetName="z80_top_PC_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_addr_bus_gater_0_0/z80_top_addr_bus_gater_0_0.xci">
+          <Proxy FileSetName="z80_top_addr_bus_gater_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_c_addsub_0_0/z80_top_c_addsub_0_0.xci">
+          <Proxy FileSetName="z80_top_c_addsub_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_control_signal_slicer_0_0/z80_top_control_signal_slicer_0_0.xci">
+          <Proxy FileSetName="z80_top_control_signal_slicer_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_data_bus_gater_0_0/z80_top_data_bus_gater_0_0.xci">
+          <Proxy FileSetName="z80_top_data_bus_gater_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_ff_16_0_0/z80_top_ff_16_0_0.xci">
+          <Proxy FileSetName="z80_top_ff_16_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_mux_16_0_0/z80_top_mux_16_0_0.xci">
+          <Proxy FileSetName="z80_top_mux_16_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_mux_2_0_4/z80_top_mux_2_0_4.xci">
+          <Proxy FileSetName="z80_top_mux_2_0_4"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_mux_2_1_0/z80_top_mux_2_1_0.xci">
+          <Proxy FileSetName="z80_top_mux_2_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_mux_4_0_1/z80_top_mux_4_0_1.xci">
+          <Proxy FileSetName="z80_top_mux_4_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_mux_4_0_2/z80_top_mux_4_0_2.xci">
+          <Proxy FileSetName="z80_top_mux_4_0_2"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_mux_8_0_0/z80_top_mux_8_0_0.xci">
+          <Proxy FileSetName="z80_top_mux_8_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_mux_8_0_1/z80_top_mux_8_0_1.xci">
+          <Proxy FileSetName="z80_top_mux_8_0_1"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_pc_bypass_0_0/z80_top_pc_bypass_0_0.xci">
+          <Proxy FileSetName="z80_top_pc_bypass_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_shift_3_0_0/z80_top_shift_3_0_0.xci">
+          <Proxy FileSetName="z80_top_shift_3_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top.bd" FileRelPathName="ip/z80_top_util_ff_0_1/z80_top_util_ff_0_1.xci">
+          <Proxy FileSetName="z80_top_util_ff_0_1"/>
+        </CompFileExtendedInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/z80core.v">
+        <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -127,17 +265,9 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/bd/z80_top/z80_top.bd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/ip/vio_0/vio_0.xci">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -145,7 +275,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/ip/ila_0_1/ila_0.xci">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -159,7 +289,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/bd/bd_tb_uart/bd_tb_uart.bd">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -167,21 +297,13 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/uart.v">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/datapath.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/usequencer.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -197,87 +319,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/z80_datapath_modules.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/memory.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/fsm.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/new/z80RegisterFile.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/z80RegisterFile.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/control_signal_slicer.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/data_bus_gater.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/addr_bus_gater.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/double_edger_mdr.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/bd/z80_test_system/z80_test_system.bd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PGENDIR/sources_1/bd/z80_test_system/hdl/z80_test_system_wrapper.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -287,7 +329,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="decode"/>
+        <Option Name="TopModule" Val="z80_test_system_wrapper"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
@@ -298,7 +340,7 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1" RelGenDir="$PGENDIR/sim_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sim_1/new/tb_z80.v">
+      <File Path="$PSRCDIR/sim_1/new/tb_z80_system.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -313,28 +355,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/tb_ALU_behav.wcfg">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sim_1/new/tb_datapath.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/new/tb_uart.v">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sim_1/new/tb_registerfile.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -350,6 +371,35 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sim_1/new/tb_registerfile.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/new/tb_uart.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/new/tb_z80.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/tb_ALU_behav.wcfg">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PPRDIR/z80_test_system_wrapper_behav.wcfg">
         <FileInfo>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -357,11 +407,11 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="tb_z80"/>
-        <Option Name="TopLib" Val="xil_defaultlib"/>
+        <Option Name="TopModule" Val="tb_z80_system"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
+        <Option Name="SimMode" Val="post-synthesis"/>
         <Option Name="PamDesignTestbench" Val=""/>
         <Option Name="PamDutBypassFile" Val="xil_dut_bypass"/>
         <Option Name="PamSignalDriverFile" Val="xil_bypass_driver"/>
@@ -369,6 +419,7 @@
         <Option Name="SrcSet" Val="sources_1"/>
         <Option Name="XSimWcfgFile" Val="$PPRDIR/tb_ALU_behav.wcfg"/>
         <Option Name="XSimWcfgFile" Val="$PPRDIR/z80_test_system_wrapper_behav.wcfg"/>
+        <Option Name="NLNetlistMode" Val="funcsim"/>
       </Config>
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
@@ -388,11 +439,61 @@
     <FileSet Name="z80_top_inst_0" Type="BlockSrcs" RelSrcDir="$PGENDIR/sources_1/bd/z80_test_system/bd/z80_top_inst_0" RelGenDir="$PGENDIR/sources_1/bd/z80_test_system/bd/z80_top_inst_0">
       <File Path="$PGENDIR/sources_1/bd/z80_test_system/bd/z80_top_inst_0/z80_top_inst_0.bd">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_ALU_0_0/z80_top_inst_0_ALU_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_ALU_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_A_MUX_0/z80_top_inst_0_A_MUX_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_A_MUX_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_B_MUX_0/z80_top_inst_0_B_MUX_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_B_MUX_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_MARMUX_0/z80_top_inst_0_MARMUX_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_MARMUX_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_MDRMUX_0/z80_top_inst_0_MDRMUX_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_MDRMUX_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_MSR_SEXT_MUX_0/z80_top_inst_0_MSR_SEXT_MUX_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_MSR_SEXT_MUX_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_PC_0/z80_top_inst_0_PC_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_PC_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_PC_MUX_0/z80_top_inst_0_PC_MUX_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_PC_MUX_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_addr_bus_gater_0_0/z80_top_inst_0_addr_bus_gater_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_addr_bus_gater_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_control_signal_slicer_0_0/z80_top_inst_0_control_signal_slicer_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_control_signal_slicer_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_data_bus_gater_0_0/z80_top_inst_0_data_bus_gater_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_data_bus_gater_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_double_edger_mdr_0_0/z80_top_inst_0_double_edger_mdr_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_double_edger_mdr_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_mux_2_0_0/z80_top_inst_0_mux_2_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_mux_2_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_pc_bypass_0_0/z80_top_inst_0_pc_bypass_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_pc_bypass_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_shift_3_0_0/z80_top_inst_0_shift_3_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_shift_3_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_usequencer_0_0/z80_top_inst_0_usequencer_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_usequencer_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="z80_top_inst_0.bd" FileRelPathName="ip/z80_top_inst_0_z80RegisterFile_0_0/z80_top_inst_0_z80RegisterFile_0_0.xci">
+          <Proxy FileSetName="z80_top_inst_0_z80RegisterFile_0_0"/>
+        </CompFileExtendedInfo>
       </File>
       <Config>
         <Option Name="TopModule" Val="z80_top_inst_0"/>
@@ -402,7 +503,6 @@
     <FileSet Name="blk_mem_gen_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/blk_mem_gen_0" RelGenDir="$PGENDIR/blk_mem_gen_0">
       <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -410,6 +510,216 @@
       </File>
       <Config>
         <Option Name="TopModule" Val="blk_mem_gen_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_ALU_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_ALU_0_0" RelGenDir="$PGENDIR/z80_top_ALU_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_ALU_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_util_ff_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_util_ff_0_1" RelGenDir="$PGENDIR/z80_top_util_ff_0_1">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_util_ff_0_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_c_addsub_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_c_addsub_0_0" RelGenDir="$PGENDIR/z80_top_c_addsub_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_c_addsub_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_control_signal_slicer_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_control_signal_slicer_0_0" RelGenDir="$PGENDIR/z80_top_control_signal_slicer_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_control_signal_slicer_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_PC_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_PC_0" RelGenDir="$PGENDIR/z80_top_PC_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_PC_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_mux_16_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_mux_16_0_0" RelGenDir="$PGENDIR/z80_top_mux_16_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_mux_16_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_mux_4_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_mux_4_0_1" RelGenDir="$PGENDIR/z80_top_mux_4_0_1">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_mux_4_0_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_mux_8_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_mux_8_0_0" RelGenDir="$PGENDIR/z80_top_mux_8_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_mux_8_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_mux_4_0_2" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_mux_4_0_2" RelGenDir="$PGENDIR/z80_top_mux_4_0_2">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_mux_4_0_2"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_data_bus_gater_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_data_bus_gater_0_0" RelGenDir="$PGENDIR/z80_top_data_bus_gater_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_data_bus_gater_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_mux_2_0_4" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_mux_2_0_4" RelGenDir="$PGENDIR/z80_top_mux_2_0_4">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_mux_2_0_4"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_mux_2_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_mux_2_1_0" RelGenDir="$PGENDIR/z80_top_mux_2_1_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_mux_2_1_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_addr_bus_gater_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_addr_bus_gater_0_0" RelGenDir="$PGENDIR/z80_top_addr_bus_gater_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_addr_bus_gater_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_mux_8_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_mux_8_0_1" RelGenDir="$PGENDIR/z80_top_mux_8_0_1">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_mux_8_0_1"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_shift_3_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_shift_3_0_0" RelGenDir="$PGENDIR/z80_top_shift_3_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_shift_3_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_pc_bypass_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_pc_bypass_0_0" RelGenDir="$PGENDIR/z80_top_pc_bypass_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_pc_bypass_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_ff_16_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_ff_16_0_0" RelGenDir="$PGENDIR/z80_top_ff_16_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_ff_16_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_ALU_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_ALU_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_ALU_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_ALU_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_control_signal_slicer_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_control_signal_slicer_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_control_signal_slicer_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_control_signal_slicer_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_A_MUX_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_A_MUX_0" RelGenDir="$PGENDIR/z80_top_inst_0_A_MUX_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_A_MUX_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_B_MUX_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_B_MUX_0" RelGenDir="$PGENDIR/z80_top_inst_0_B_MUX_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_B_MUX_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_MARMUX_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_MARMUX_0" RelGenDir="$PGENDIR/z80_top_inst_0_MARMUX_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_MARMUX_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_MDRMUX_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_MDRMUX_0" RelGenDir="$PGENDIR/z80_top_inst_0_MDRMUX_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_MDRMUX_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_usequencer_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_usequencer_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_usequencer_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_usequencer_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_z80RegisterFile_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_z80RegisterFile_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_z80RegisterFile_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_z80RegisterFile_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_data_bus_gater_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_data_bus_gater_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_data_bus_gater_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_data_bus_gater_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_mux_2_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_mux_2_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_mux_2_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_mux_2_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_MSR_SEXT_MUX_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_MSR_SEXT_MUX_0" RelGenDir="$PGENDIR/z80_top_inst_0_MSR_SEXT_MUX_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_MSR_SEXT_MUX_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_addr_bus_gater_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_addr_bus_gater_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_addr_bus_gater_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_addr_bus_gater_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_double_edger_mdr_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_double_edger_mdr_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_double_edger_mdr_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_double_edger_mdr_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_PC_MUX_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_PC_MUX_0" RelGenDir="$PGENDIR/z80_top_inst_0_PC_MUX_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_PC_MUX_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_shift_3_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_shift_3_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_shift_3_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_shift_3_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_pc_bypass_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_pc_bypass_0_0" RelGenDir="$PGENDIR/z80_top_inst_0_pc_bypass_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_pc_bypass_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_top_inst_0_PC_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_top_inst_0_PC_0" RelGenDir="$PGENDIR/z80_top_inst_0_PC_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_top_inst_0_PC_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="z80_test_system_memory_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/z80_test_system_memory_0_0" RelGenDir="$PGENDIR/z80_test_system_memory_0_0">
+      <Config>
+        <Option Name="TopModule" Val="z80_test_system_memory_0_0"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -433,31 +743,379 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="22">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7s50csga324-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ALU.dcp" WriteIncrSynthDcp="false" State="current" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1" ParallelReportGen="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-      <RQSFiles/>
-    </Run>
-    <Run Id="blk_mem_gen_0_synth_1" Type="Ft3:Synth" SrcSet="blk_mem_gen_0" Part="xc7s50csga324-1" ConstrsSet="blk_mem_gen_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/blk_mem_gen_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/blk_mem_gen_0_synth_1" ParallelReportGen="true">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7s50csga324-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="true" IncrementalCheckpoint="$PSRCDIR/utils_1/imports/synth_1/ALU.dcp" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/synth_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
         <Step Id="synth_design"/>
       </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="blk_mem_gen_0_synth_1" Type="Ft3:Synth" SrcSet="blk_mem_gen_0" Part="xc7s50csga324-1" ConstrsSet="blk_mem_gen_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/blk_mem_gen_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/blk_mem_gen_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/blk_mem_gen_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_ALU_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_ALU_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_ALU_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_ALU_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_ALU_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_ALU_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_util_ff_0_1_synth_1" Type="Ft3:Synth" SrcSet="z80_top_util_ff_0_1" Part="xc7s50csga324-1" ConstrsSet="z80_top_util_ff_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_util_ff_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_util_ff_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_util_ff_0_1_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_c_addsub_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_c_addsub_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_c_addsub_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_c_addsub_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_c_addsub_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_c_addsub_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_control_signal_slicer_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_control_signal_slicer_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_control_signal_slicer_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_control_signal_slicer_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_control_signal_slicer_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_control_signal_slicer_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_PC_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_PC_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_PC_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_PC_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_PC_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_PC_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_16_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_mux_16_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_16_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_mux_16_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_16_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_16_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_4_0_1_synth_1" Type="Ft3:Synth" SrcSet="z80_top_mux_4_0_1" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_4_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_mux_4_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_1_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_8_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_mux_8_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_8_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_mux_8_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_4_0_2_synth_1" Type="Ft3:Synth" SrcSet="z80_top_mux_4_0_2" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_4_0_2" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_mux_4_0_2_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_2_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_2_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_data_bus_gater_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_data_bus_gater_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_data_bus_gater_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_data_bus_gater_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_data_bus_gater_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_data_bus_gater_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_2_0_4_synth_1" Type="Ft3:Synth" SrcSet="z80_top_mux_2_0_4" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_2_0_4" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_mux_2_0_4_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_0_4_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_0_4_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_2_1_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_mux_2_1_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_2_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_mux_2_1_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_1_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_1_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_addr_bus_gater_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_addr_bus_gater_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_addr_bus_gater_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_addr_bus_gater_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_addr_bus_gater_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_addr_bus_gater_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_8_0_1_synth_1" Type="Ft3:Synth" SrcSet="z80_top_mux_8_0_1" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_8_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_mux_8_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_1_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_shift_3_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_shift_3_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_shift_3_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_shift_3_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_shift_3_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_shift_3_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_pc_bypass_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_pc_bypass_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_pc_bypass_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_pc_bypass_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_pc_bypass_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_pc_bypass_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_ff_16_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_ff_16_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_ff_16_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_ff_16_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_ff_16_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_ff_16_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_ALU_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_ALU_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_ALU_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_ALU_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_ALU_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_ALU_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_control_signal_slicer_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_control_signal_slicer_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_control_signal_slicer_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_control_signal_slicer_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_control_signal_slicer_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_control_signal_slicer_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_A_MUX_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_A_MUX_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_A_MUX_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_A_MUX_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_A_MUX_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_A_MUX_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_B_MUX_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_B_MUX_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_B_MUX_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_B_MUX_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_B_MUX_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_B_MUX_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_MARMUX_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_MARMUX_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_MARMUX_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_MARMUX_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MARMUX_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MARMUX_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_MDRMUX_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_MDRMUX_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_MDRMUX_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_MDRMUX_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MDRMUX_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MDRMUX_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_usequencer_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_usequencer_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_usequencer_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_usequencer_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_usequencer_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_usequencer_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_z80RegisterFile_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_z80RegisterFile_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_z80RegisterFile_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_z80RegisterFile_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_z80RegisterFile_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_z80RegisterFile_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_data_bus_gater_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_data_bus_gater_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_data_bus_gater_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_data_bus_gater_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_data_bus_gater_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_data_bus_gater_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_mux_2_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_mux_2_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_mux_2_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_mux_2_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_mux_2_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_mux_2_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_MSR_SEXT_MUX_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_MSR_SEXT_MUX_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_MSR_SEXT_MUX_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_MSR_SEXT_MUX_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MSR_SEXT_MUX_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MSR_SEXT_MUX_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_addr_bus_gater_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_addr_bus_gater_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_addr_bus_gater_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_addr_bus_gater_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_addr_bus_gater_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_addr_bus_gater_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_double_edger_mdr_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_double_edger_mdr_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_double_edger_mdr_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_double_edger_mdr_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_double_edger_mdr_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_double_edger_mdr_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_PC_MUX_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_PC_MUX_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_PC_MUX_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_PC_MUX_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_MUX_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_MUX_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_shift_3_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_shift_3_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_shift_3_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_shift_3_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_shift_3_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_shift_3_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_pc_bypass_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_pc_bypass_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_pc_bypass_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_pc_bypass_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_pc_bypass_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_pc_bypass_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_PC_0_synth_1" Type="Ft3:Synth" SrcSet="z80_top_inst_0_PC_0" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_PC_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_top_inst_0_PC_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_test_system_memory_0_0_synth_1" Type="Ft3:Synth" SrcSet="z80_test_system_memory_0_0" Part="xc7s50csga324-1" ConstrsSet="z80_test_system_memory_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/z80_test_system_memory_0_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_test_system_memory_0_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_test_system_memory_0_0_synth_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2024"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2024"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" SynthRun="synth_1" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -473,6 +1131,601 @@
       <RQSFiles/>
     </Run>
     <Run Id="blk_mem_gen_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="blk_mem_gen_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="blk_mem_gen_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/blk_mem_gen_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/blk_mem_gen_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_ALU_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_ALU_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_ALU_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_ALU_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_ALU_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_util_ff_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_util_ff_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_util_ff_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_util_ff_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_util_ff_0_1_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_c_addsub_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_c_addsub_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_c_addsub_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_c_addsub_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_c_addsub_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_control_signal_slicer_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_control_signal_slicer_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_control_signal_slicer_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_control_signal_slicer_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_control_signal_slicer_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_PC_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_PC_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_PC_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_PC_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_PC_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_16_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_16_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_mux_16_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_16_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_16_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_4_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_4_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_mux_4_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_1_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_8_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_8_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_mux_8_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_4_0_2_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_4_0_2" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_mux_4_0_2_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_2_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_4_0_2_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_data_bus_gater_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_data_bus_gater_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_data_bus_gater_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_data_bus_gater_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_data_bus_gater_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_2_0_4_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_2_0_4" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_mux_2_0_4_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_0_4_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_0_4_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_2_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_2_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_mux_2_1_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_1_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_2_1_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_addr_bus_gater_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_addr_bus_gater_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_addr_bus_gater_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_addr_bus_gater_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_addr_bus_gater_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_mux_8_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_mux_8_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_mux_8_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_mux_8_0_1_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_shift_3_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_shift_3_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_shift_3_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_shift_3_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_shift_3_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_pc_bypass_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_pc_bypass_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_pc_bypass_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_pc_bypass_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_pc_bypass_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_ff_16_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_ff_16_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_ff_16_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_ff_16_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_ff_16_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_ALU_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_ALU_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_ALU_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_ALU_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_ALU_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_control_signal_slicer_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_control_signal_slicer_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_control_signal_slicer_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_control_signal_slicer_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_control_signal_slicer_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_A_MUX_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_A_MUX_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_A_MUX_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_A_MUX_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_A_MUX_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_B_MUX_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_B_MUX_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_B_MUX_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_B_MUX_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_B_MUX_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_MARMUX_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_MARMUX_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_MARMUX_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MARMUX_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MARMUX_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_MDRMUX_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_MDRMUX_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_MDRMUX_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MDRMUX_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MDRMUX_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_usequencer_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_usequencer_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_usequencer_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_usequencer_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_usequencer_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_z80RegisterFile_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_z80RegisterFile_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_z80RegisterFile_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_z80RegisterFile_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_z80RegisterFile_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_data_bus_gater_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_data_bus_gater_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_data_bus_gater_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_data_bus_gater_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_data_bus_gater_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_mux_2_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_mux_2_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_mux_2_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_mux_2_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_mux_2_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_MSR_SEXT_MUX_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_MSR_SEXT_MUX_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_MSR_SEXT_MUX_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MSR_SEXT_MUX_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_MSR_SEXT_MUX_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_addr_bus_gater_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_addr_bus_gater_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_addr_bus_gater_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_addr_bus_gater_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_addr_bus_gater_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_double_edger_mdr_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_double_edger_mdr_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_double_edger_mdr_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_double_edger_mdr_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_double_edger_mdr_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_PC_MUX_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_PC_MUX_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_PC_MUX_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_MUX_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_MUX_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_shift_3_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_shift_3_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_shift_3_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_shift_3_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_shift_3_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_pc_bypass_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_pc_bypass_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_pc_bypass_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_pc_bypass_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_pc_bypass_0_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_top_inst_0_PC_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_top_inst_0_PC_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_top_inst_0_PC_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_top_inst_0_PC_0_impl_1" ParallelReportGen="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2024"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+      <RQSFiles/>
+    </Run>
+    <Run Id="z80_test_system_memory_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7s50csga324-1" ConstrsSet="z80_test_system_memory_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="z80_test_system_memory_0_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/z80_test_system_memory_0_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/z80_test_system_memory_0_0_impl_1" ParallelReportGen="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2024"/>
         <Step Id="init_design"/>

@@ -1,7 +1,7 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.46883",
-   "Default View_TopLeft":"2433,-487",
+   "Default View_ScaleFactor":"1.16629",
+   "Default View_TopLeft":"4056,-798",
    "ExpandedHierarchyInLayout":"",
    "comment_0":"IR",
    "comment_1":"Y << 3
@@ -46,7 +46,7 @@ r[z]",
    "font_comment_5":"9",
    "font_comment_6":"9",
    "font_comment_7":"11",
-   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0 threadsafe
+   "guistr":"# # String gsaved with Nlview 7.7.1 2023-07-26 3bc4126617 VDI=43 GEI=38 GUI=JA:21.0
 #  -string -flagsOSRD
 preplace port port-id_CLK -pg 1 -lvl 0 -x -530 -y 180 -defaultsOSRD
 preplace port port-id_ext_nmi -pg 1 -lvl 0 -x -530 -y -190 -defaultsOSRD
@@ -54,143 +54,144 @@ preplace port port-id_ext_int -pg 1 -lvl 0 -x -530 -y -210 -defaultsOSRD
 preplace port port-id_ext_reset -pg 1 -lvl 0 -x -530 -y -170 -defaultsOSRD
 preplace port port-id_ext_busrq -pg 1 -lvl 0 -x -530 -y -150 -defaultsOSRD
 preplace port port-id_ext_wait -pg 1 -lvl 0 -x -530 -y -230 -defaultsOSRD
-preplace port port-id_ext_halt -pg 1 -lvl 23 -x 7000 -y -180 -defaultsOSRD
-preplace port port-id_ext_wr -pg 1 -lvl 23 -x 7000 -y -200 -defaultsOSRD
-preplace port port-id_ext_rd -pg 1 -lvl 23 -x 7000 -y -220 -defaultsOSRD
-preplace port port-id_ext_iorq -pg 1 -lvl 23 -x 7000 -y -240 -defaultsOSRD
-preplace port port-id_ext_mreq -pg 1 -lvl 23 -x 7000 -y -260 -defaultsOSRD
-preplace port port-id_ext_busack -pg 1 -lvl 23 -x 7000 -y -280 -defaultsOSRD
-preplace port port-id_ext_rfsh -pg 1 -lvl 23 -x 7000 -y -300 -defaultsOSRD
-preplace port port-id_ext_m1 -pg 1 -lvl 23 -x 7000 -y -990 -defaultsOSRD
-preplace portBus ADDR_OUT -pg 1 -lvl 23 -x 7000 -y 390 -defaultsOSRD
+preplace port port-id_ext_halt -pg 1 -lvl 23 -x 7140 -y -180 -defaultsOSRD
+preplace port port-id_ext_wr -pg 1 -lvl 23 -x 7140 -y -200 -defaultsOSRD
+preplace port port-id_ext_rd -pg 1 -lvl 23 -x 7140 -y -220 -defaultsOSRD
+preplace port port-id_ext_iorq -pg 1 -lvl 23 -x 7140 -y -240 -defaultsOSRD
+preplace port port-id_ext_mreq -pg 1 -lvl 23 -x 7140 -y -260 -defaultsOSRD
+preplace port port-id_ext_busack -pg 1 -lvl 23 -x 7140 -y -280 -defaultsOSRD
+preplace port port-id_ext_rfsh -pg 1 -lvl 23 -x 7140 -y -300 -defaultsOSRD
+preplace port port-id_ext_m1 -pg 1 -lvl 23 -x 7140 -y -990 -defaultsOSRD
+preplace portBus ADDR_OUT -pg 1 -lvl 23 -x 7140 -y 390 -defaultsOSRD
 preplace portBus D_IN -pg 1 -lvl 0 -x -530 -y 410 -defaultsOSRD
 preplace portBus ADDR_IN -pg 1 -lvl 0 -x -530 -y 640 -defaultsOSRD
-preplace portBus D_OUT -pg 1 -lvl 23 -x 7000 -y 820 -defaultsOSRD
-preplace inst ALU_0 -pg 1 -lvl 15 -x 4620 -y 410 -defaultsOSRD
-preplace inst MAR -pg 1 -lvl 17 -x 5350 -y 490 -defaultsOSRD
+preplace portBus D_OUT -pg 1 -lvl 23 -x 7140 -y 820 -defaultsOSRD
+preplace inst ALU_0 -pg 1 -lvl 15 -x 4690 -y 410 -defaultsOSRD
+preplace inst MAR -pg 1 -lvl 17 -x 5430 -y 490 -defaultsOSRD
 preplace inst add_1 -pg 1 -lvl 2 -x 630 -y 330 -defaultsOSRD
 preplace inst control_signal_slicer_0 -pg 1 -lvl 1 -x 150 -y 990 -defaultsOSRD
 preplace inst IR -pg 1 -lvl 6 -x 1890 -y 250 -defaultsOSRD
 preplace inst A_MUX -pg 1 -lvl 7 -x 2270 -y 770 -defaultsOSRD
 preplace inst ZERO -pg 1 -lvl 6 -x 1890 -y 790 -defaultsOSRD
-preplace inst B_MUX -pg 1 -lvl 15 -x 4620 -y 680 -defaultsOSRD
-preplace inst NEG_2_16BIT -pg 1 -lvl 13 -x 3890 -y 670 -defaultsOSRD
-preplace inst MARMUX -pg 1 -lvl 17 -x 5350 -y 920 -defaultsOSRD
-preplace inst MDR_A_CONCAT -pg 1 -lvl 16 -x 5070 -y 910 -defaultsOSRD
-preplace inst MDRMUX -pg 1 -lvl 19 -x 6020 -y 930 -defaultsOSRD
+preplace inst B_MUX -pg 1 -lvl 15 -x 4690 -y 680 -defaultsOSRD
+preplace inst NEG_2_16BIT -pg 1 -lvl 13 -x 3920 -y 670 -defaultsOSRD
+preplace inst MARMUX -pg 1 -lvl 17 -x 5430 -y 920 -defaultsOSRD
+preplace inst MDR_A_CONCAT -pg 1 -lvl 16 -x 5140 -y 910 -defaultsOSRD
+preplace inst MDRMUX -pg 1 -lvl 19 -x 6160 -y 930 -defaultsOSRD
 preplace inst usequencer_0 -pg 1 -lvl 8 -x 2650 -y -230 -defaultsOSRD
-preplace inst z80RegisterFile_0 -pg 1 -lvl 15 -x 4620 -y -520 -defaultsOSRD
-preplace inst MDRH -pg 1 -lvl 20 -x 6250 -y 570 -defaultsOSRD
-preplace inst MDRL -pg 1 -lvl 21 -x 6460 -y 590 -defaultsOSRD
-preplace inst data_bus_gater_0 -pg 1 -lvl 22 -x 6770 -y 500 -defaultsOSRD
-preplace inst MDR_SEXT -pg 1 -lvl 13 -x 3890 -y 930 -defaultsOSRD
+preplace inst z80RegisterFile_0 -pg 1 -lvl 15 -x 4690 -y -520 -defaultsOSRD
+preplace inst MDRH -pg 1 -lvl 20 -x 6390 -y 570 -defaultsOSRD
+preplace inst MDRL -pg 1 -lvl 21 -x 6600 -y 590 -defaultsOSRD
+preplace inst data_bus_gater_0 -pg 1 -lvl 22 -x 6910 -y 500 -defaultsOSRD
+preplace inst MDR_SEXT -pg 1 -lvl 13 -x 3920 -y 930 -defaultsOSRD
 preplace inst FF -pg 1 -lvl 9 -x 2930 -y 920 -defaultsOSRD
 preplace inst mux_2_0 -pg 1 -lvl 11 -x 3400 -y 1130 -defaultsOSRD
 preplace inst MDR_BIT_7 -pg 1 -lvl 10 -x 3120 -y 1200 -defaultsOSRD
-preplace inst xlslice_0 -pg 1 -lvl 12 -x 3630 -y 1130 -defaultsOSRD
-preplace inst MSR_SEXT_MUX -pg 1 -lvl 15 -x 4620 -y 910 -defaultsOSRD
-preplace inst addr_bus_gater_0 -pg 1 -lvl 22 -x 6770 -y 290 -defaultsOSRD
-preplace inst OPCODE_Z -pg 1 -lvl 14 -x 4200 -y -650 -defaultsOSRD
-preplace inst OPCODE_Y -pg 1 -lvl 14 -x 4200 -y -550 -defaultsOSRD
-preplace inst ALU_HIGH -pg 1 -lvl 14 -x 4200 -y -450 -defaultsOSRD
-preplace inst ALU_LOW -pg 1 -lvl 14 -x 4200 -y -350 -defaultsOSRD
-preplace inst double_edger_mdr_0 -pg 1 -lvl 18 -x 5720 -y 720 -defaultsOSRD
+preplace inst xlslice_0 -pg 1 -lvl 12 -x 3640 -y 1130 -defaultsOSRD
+preplace inst MSR_SEXT_MUX -pg 1 -lvl 15 -x 4690 -y 910 -defaultsOSRD
+preplace inst addr_bus_gater_0 -pg 1 -lvl 22 -x 6910 -y 290 -defaultsOSRD
+preplace inst OPCODE_Z -pg 1 -lvl 14 -x 4250 -y -650 -defaultsOSRD
+preplace inst OPCODE_Y -pg 1 -lvl 14 -x 4250 -y -550 -defaultsOSRD
+preplace inst ALU_HIGH -pg 1 -lvl 14 -x 4250 -y -450 -defaultsOSRD
+preplace inst ALU_LOW -pg 1 -lvl 14 -x 4250 -y -350 -defaultsOSRD
+preplace inst double_edger_mdr_0 -pg 1 -lvl 18 -x 5830 -y 720 -defaultsOSRD
 preplace inst PC_MUX -pg 1 -lvl 4 -x 1300 -y -90 -defaultsOSRD
 preplace inst xlconstant_0 -pg 1 -lvl 4 -x 1300 -y 90 -defaultsOSRD
 preplace inst shift_3_0 -pg 1 -lvl 3 -x 900 -y -70 -defaultsOSRD
 preplace inst pc_bypass_0 -pg 1 -lvl 3 -x 900 -y 80 -defaultsOSRD
 preplace inst PC -pg 1 -lvl 5 -x 1610 -y 510 -defaultsOSRD
-preplace netloc ALU_0_ALU_OUT 1 3 16 1160 -440 NJ -440 N -440 N -440 NJ -440 N -440 N -440 N -440 N -440 N -440 4100 -170 N -170 4860 400 5170 730 5530J 860 5890
-preplace netloc ALU_0_FLAG_OUT 1 14 2 4440 -840 4820
-preplace netloc ALU_HIGH_Dout 1 14 1 4350 -450n
-preplace netloc ALU_LOW_Dout 1 14 1 4310 -420n
-preplace netloc B_MUX_out 1 14 2 4440 580 4800
-preplace netloc CLK_1 1 0 18 N 180 420 400 NJ 400 N 400 1490J 300 1750 -290 N -290 2450 -410 N -410 N -410 N -410 N -410 N -410 4040 -280 4380 510 N 510 5210J 600 5540
-preplace netloc D_IN_1 1 0 18 -510J 240 NJ 240 NJ 240 1050 310 NJ 310 1790 340 2010J 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 5550
+preplace netloc ALU_0_ALU_OUT 1 3 16 1160 -440 NJ -440 N -440 N -440 NJ -440 N -440 N -440 N -440 N -440 N -440 4150 -170 N -170 4930 400 5250 730 5610J 860 6030
+preplace netloc ALU_0_FLAG_OUT 1 14 2 4510 -840 4890
+preplace netloc ALU_HIGH_Dout 1 14 1 4420 -450n
+preplace netloc ALU_LOW_Dout 1 14 1 4380 -420n
+preplace netloc B_MUX_out 1 14 2 4510 580 4870
+preplace netloc CLK_1 1 0 18 N 180 420 400 NJ 400 N 400 1490J 300 1750 -290 N -290 2450 -410 N -410 N -410 N -410 N -410 N -410 4070 -280 4450 510 N 510 5290J 600 5620
+preplace netloc D_IN_1 1 0 18 -510J 240 NJ 240 NJ 240 1050 310 NJ 310 1790 340 2010J 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 NJ 250 5630
 preplace netloc FF_dout 1 9 2 3010 930 3230
-preplace netloc IR_Q 1 3 11 1170 -260 N -260 N -260 1990 -260 2460J -450 N -450 N -450 N -450 N -450 N -450 4090
-preplace netloc MARMUX_out 1 16 2 5220 590 5480
-preplace netloc MAR_Q 1 17 5 5570 260 NJ 260 NJ 260 NJ 260 NJ
-preplace netloc MDRH_Dout 1 20 2 6360 510 NJ
-preplace netloc MDRL_Dout 1 21 1 6610 470n
-preplace netloc MDRMUX_out 1 17 3 5580 840 5890 830 6150
+preplace netloc IR_Q 1 3 11 1170 -260 N -260 N -260 1990 -260 2460J -450 N -450 N -450 N -450 N -450 N -450 4140
+preplace netloc MARMUX_out 1 16 2 5300 590 5560
+preplace netloc MAR_Q 1 17 5 5650 260 NJ 260 NJ 260 NJ 260 NJ
+preplace netloc MDRH_Dout 1 20 2 6500 510 NJ
+preplace netloc MDRL_Dout 1 21 1 6750 470n
+preplace netloc MDRMUX_out 1 17 3 5660 840 6030 830 6290
 preplace netloc MDR_BIT_7_Dout 1 10 1 3230 1150n
-preplace netloc MDR_Q 1 3 18 1150 720 NJ 720 N 720 2030 1090 NJ 1090 NJ 1090 3020 920 N 920 N 920 3790 860 N 860 4300 990 4970 840 5180 770 5510J 850 5860 570 6150 510 6350
-preplace netloc MDR_SEXT_dout 1 13 2 3990 910 N
-preplace netloc NEG_2_16BIT_dout 1 13 2 N 670 4300
-preplace netloc OPCODE_Y_Dout 1 2 13 770 -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 4070 -290 4300
-preplace netloc OPCODE_Z_Dout 1 14 1 4350 -650n
+preplace netloc MDR_Q 1 3 16 1150 720 NJ 720 N 720 2030 1090 NJ 1090 NJ 1090 3020 920 N 920 N 920 3820 860 N 860 4370 990 5040 840 5260 770 5590J 850 6000
+preplace netloc MDR_SEXT_dout 1 13 2 4020 910 N
+preplace netloc MSR_SEXT_MUX_out 1 14 2 4510 1000 4870
+preplace netloc NEG_2_16BIT_dout 1 13 2 N 670 4350
+preplace netloc OPCODE_Y_Dout 1 2 13 770 -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 N -430 4100 -290 4350
+preplace netloc OPCODE_Z_Dout 1 14 1 4420 -650n
 preplace netloc PC_MUX_out 1 4 1 1440 -90n
 preplace netloc PC_Q 1 1 21 540 260 NJ 260 1030 330 N 330 1720 430 2050 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N 220 N
 preplace netloc ZERO_dout 1 6 5 2000 1100 N 1100 N 1100 N 1100 3220
 preplace netloc add_1_S 1 2 2 720 -130 N
-preplace netloc addr_bus_gater_0_ADDR_OUT 1 22 1 6930 290n
+preplace netloc addr_bus_gater_0_ADDR_OUT 1 22 1 7070 290n
 preplace netloc control_signal_slicer_0_ALU_OP 1 1 14 420 410 N 410 N 410 N 410 1740 420 2110 430 N 430 N 430 N 430 N 430 N 430 N 430 N 430 N
 preplace netloc control_signal_slicer_0_A_MUX 1 1 6 N 660 N 660 N 660 N 660 N 660 2040
-preplace netloc control_signal_slicer_0_B_MUX 1 1 14 430 1080 N 1080 N 1080 N 1080 N 1080 N 1080 2450 1010 N 1010 N 1010 N 1010 N 1010 N 1010 N 1010 4380
-preplace netloc control_signal_slicer_0_DR_MUX 1 1 14 310 -510 NJ -510 N -510 NJ -510 N -510 NJ -510 NJ -510 NJ -510 N -510 N -510 N -510 N -510 4030 -760 4420
-preplace netloc control_signal_slicer_0_EXX 1 1 14 350 -420 NJ -420 N -420 NJ -420 N -420 NJ -420 NJ -420 NJ -420 N -420 N -420 N -420 N -420 4010 -260 N
-preplace netloc control_signal_slicer_0_GATE_MARH 1 1 21 470 440 NJ 440 1030 420 NJ 420 1770 410 2130J 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 4350 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 6590J
-preplace netloc control_signal_slicer_0_GATE_MARL 1 1 21 460 420 740J 390 1040 380 NJ 380 N 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 4360 290 NJ 290 NJ 290 NJ 290 NJ 290 NJ 290 NJ 290 6600J
-preplace netloc control_signal_slicer_0_GATE_MDRH 1 1 21 520 430 730J 380 1030 370 NJ 370 1730 360 NJ 360 NJ 360 NJ 360 N 360 N 360 N 360 N 360 N 360 4330 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 6580J
-preplace netloc control_signal_slicer_0_GATE_MDRL 1 1 21 540 600 NJ 600 N 600 NJ 600 1720 530 NJ 530 NJ 530 NJ 530 N 530 N 530 N 530 N 530 N 530 N 530 NJ 530 5200J 580 5580J 490 NJ 490 NJ 490 NJ 490 NJ
-preplace netloc control_signal_slicer_0_GATE_PC 1 1 21 480 610 NJ 610 N 610 NJ 610 1750 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 N 540 4930J 260 NJ 260 5560J 250 NJ 250 NJ 250 NJ 250 6600J
-preplace netloc control_signal_slicer_0_GATE_SP_DEC 1 1 21 500 460 NJ 460 1040 430 1500J 400 N 400 NJ 400 NJ 400 NJ 400 N 400 N 400 N 400 N 400 N 400 4340 310 N 310 N 310 N 310 N 310 N 310 N 310 6560
-preplace netloc control_signal_slicer_0_GATE_SP_INC 1 1 21 510 480 NJ 480 1050 440 1480J 390 N 390 NJ 390 NJ 390 NJ 390 N 390 N 390 N 390 N 390 N 390 4320 300 N 300 N 300 N 300 N 300 N 300 N 300 6570
-preplace netloc control_signal_slicer_0_LD_ACCUM 1 1 14 410 -500 NJ -500 N -500 NJ -500 N -500 NJ -500 NJ -500 NJ -500 N -500 N -500 N -500 N -500 4040 -750 4410
-preplace netloc control_signal_slicer_0_LD_I 1 1 14 320 -530 NJ -530 N -530 NJ -530 N -530 NJ -530 NJ -530 NJ -530 N -530 N -530 N -530 N -530 4010 -780 4300
+preplace netloc control_signal_slicer_0_B_MUX 1 1 14 430 1080 N 1080 N 1080 N 1080 N 1080 N 1080 2450 1010 N 1010 N 1010 N 1010 N 1010 N 1010 N 1010 4450
+preplace netloc control_signal_slicer_0_DR_MUX 1 1 14 310 -510 NJ -510 N -510 NJ -510 N -510 NJ -510 NJ -510 NJ -510 N -510 N -510 N -510 N -510 4060 -760 4490
+preplace netloc control_signal_slicer_0_EXX 1 1 14 350 -420 NJ -420 N -420 NJ -420 N -420 NJ -420 NJ -420 NJ -420 N -420 N -420 N -420 N -420 4040 -260 N
+preplace netloc control_signal_slicer_0_GATE_MARH 1 1 21 470 440 NJ 440 1030 420 NJ 420 1770 410 2130J 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 NJ 370 4420 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 NJ 280 6730J
+preplace netloc control_signal_slicer_0_GATE_MARL 1 1 21 460 420 740J 390 1040 380 NJ 380 N 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 NJ 380 4430 290 NJ 290 NJ 290 NJ 290 NJ 290 NJ 290 NJ 290 6740J
+preplace netloc control_signal_slicer_0_GATE_MDRH 1 1 21 520 430 730J 380 1030 370 NJ 370 1730 360 NJ 360 NJ 360 NJ 360 N 360 N 360 N 360 N 360 N 360 4400 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 NJ 270 6720J
+preplace netloc control_signal_slicer_0_GATE_MDRL 1 1 21 540 600 NJ 600 N 600 NJ 600 1720 530 NJ 530 NJ 530 NJ 530 N 530 N 530 N 530 N 530 N 530 N 530 NJ 530 5280J 580 5660J 490 NJ 490 NJ 490 NJ 490 NJ
+preplace netloc control_signal_slicer_0_GATE_PC 1 1 21 480 610 NJ 610 N 610 NJ 610 1750 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 NJ 540 N 540 5000J 260 NJ 260 5640J 250 NJ 250 NJ 250 NJ 250 6740J
+preplace netloc control_signal_slicer_0_GATE_SP_DEC 1 1 21 500 460 NJ 460 1040 430 1500J 400 N 400 NJ 400 NJ 400 NJ 400 N 400 N 400 N 400 N 400 N 400 4410 310 N 310 N 310 N 310 N 310 N 310 N 310 6700
+preplace netloc control_signal_slicer_0_GATE_SP_INC 1 1 21 510 480 NJ 480 1050 440 1480J 390 N 390 NJ 390 NJ 390 NJ 390 N 390 N 390 N 390 N 390 N 390 4390 300 N 300 N 300 N 300 N 300 N 300 N 300 6710
+preplace netloc control_signal_slicer_0_INC_PC 1 1 2 380 70 NJ
+preplace netloc control_signal_slicer_0_LD_ACCUM 1 1 14 410 -500 NJ -500 N -500 NJ -500 N -500 NJ -500 NJ -500 NJ -500 N -500 N -500 N -500 N -500 4070 -750 4480
+preplace netloc control_signal_slicer_0_LD_I 1 1 14 320 -530 NJ -530 N -530 NJ -530 N -530 NJ -530 NJ -530 NJ -530 N -530 N -530 N -530 N -530 4040 -780 4350
 preplace netloc control_signal_slicer_0_LD_IR 1 1 5 530 450 720 340 N 340 N 340 1760
-preplace netloc control_signal_slicer_0_LD_MAR 1 1 16 490 620 N 620 N 620 N 620 1770 550 N 550 NJ 550 N 550 N 550 N 550 N 550 N 550 N 550 N 550 NJ 550 5190J
-preplace netloc control_signal_slicer_0_LD_MDR 1 1 17 N 900 N 900 N 900 N 900 N 900 2010 1000 NJ 1000 N 1000 N 1000 N 1000 N 1000 N 1000 N 1000 4430 810 4970J 740 NJ 740 N
-preplace netloc control_signal_slicer_0_LD_MDRH 1 1 17 NJ 1340 NJ 1340 N 1340 NJ 1340 N 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 5560
-preplace netloc control_signal_slicer_0_LD_MDRL 1 1 17 NJ 1320 NJ 1320 N 1320 NJ 1320 1770 1290 NJ 1290 2430J 950 2800J 820 NJ 820 NJ 820 NJ 820 3740J 810 NJ 810 4350J 790 4950J 720 NJ 720 5540
+preplace netloc control_signal_slicer_0_LD_MAR 1 1 16 490 620 N 620 N 620 N 620 1770 550 N 550 NJ 550 N 550 N 550 N 550 N 550 N 550 N 550 N 550 NJ 550 5270J
+preplace netloc control_signal_slicer_0_LD_MDR 1 1 17 N 900 N 900 N 900 N 900 N 900 2010 1000 NJ 1000 N 1000 N 1000 N 1000 N 1000 N 1000 N 1000 4500 810 5040J 740 NJ 740 N
+preplace netloc control_signal_slicer_0_LD_MDRH 1 1 17 NJ 1340 NJ 1340 N 1340 NJ 1340 N 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 NJ 1340 5640
+preplace netloc control_signal_slicer_0_LD_MDRL 1 1 17 NJ 1320 NJ 1320 N 1320 NJ 1320 1770 1290 NJ 1290 2430J 950 2800J 820 NJ 820 NJ 820 NJ 820 3750J 810 NJ 810 4420J 790 5020J 720 NJ 720 5620
 preplace netloc control_signal_slicer_0_LD_PC 1 1 2 390 90 N
-preplace netloc control_signal_slicer_0_LD_R 1 1 14 370 -480 NJ -480 N -480 NJ -480 N -480 NJ -480 NJ -480 NJ -480 N -480 N -480 N -480 N -480 4060 -730 4360
-preplace netloc control_signal_slicer_0_LD_REG 1 1 14 360 -490 NJ -490 N -490 NJ -490 N -490 NJ -490 NJ -490 NJ -490 N -490 N -490 N -490 N -490 4050 -740 4400
-preplace netloc control_signal_slicer_0_MAR_MUX 1 1 16 400 1270 N 1270 N 1270 N 1270 N 1270 N 1270 NJ 1270 N 1270 N 1270 N 1270 N 1270 N 1270 N 1270 N 1270 NJ 1270 5220
-preplace netloc control_signal_slicer_0_MDR_MUX 1 1 18 440 730 N 730 N 730 N 730 N 730 2020 1010 2400J 940 2790 810 N 810 N 810 N 810 3730 800 N 800 4300 780 NJ 780 NJ 780 5490J 890 5860
+preplace netloc control_signal_slicer_0_LD_R 1 1 14 370 -480 NJ -480 N -480 NJ -480 N -480 NJ -480 NJ -480 NJ -480 N -480 N -480 N -480 N -480 4090 -730 4430
+preplace netloc control_signal_slicer_0_LD_REG 1 1 14 360 -490 NJ -490 N -490 NJ -490 N -490 NJ -490 NJ -490 NJ -490 N -490 N -490 N -490 N -490 4080 -740 4470
+preplace netloc control_signal_slicer_0_MAR_MUX 1 1 16 400 1270 N 1270 N 1270 N 1270 N 1270 N 1270 NJ 1270 N 1270 N 1270 N 1270 N 1270 N 1270 N 1270 N 1270 NJ 1270 5290
+preplace netloc control_signal_slicer_0_MDR_MUX 1 1 18 440 730 N 730 N 730 N 730 N 730 2020 1010 2400J 940 2790 810 N 810 N 810 N 810 3740 800 N 800 4350 780 NJ 780 NJ 780 5570J 890 6000
 preplace netloc control_signal_slicer_0_PCMUX 1 1 2 340 50 N
-preplace netloc control_signal_slicer_0_RP 1 1 14 450 -460 NJ -460 N -460 NJ -460 N -460 NJ -460 NJ -460 NJ -460 N -460 N -460 N -460 N -460 4080 -710 4390
-preplace netloc control_signal_slicer_0_RP_TABLE 1 1 14 330 -470 NJ -470 N -470 NJ -470 N -470 NJ -470 NJ -470 NJ -470 N -470 N -470 N -470 N -470 4070 -720 N
-preplace netloc control_signal_slicer_0_SEXT_MDR 1 1 14 NJ 1140 NJ 1140 N 1140 NJ 1140 1720 1110 NJ 1110 2440J 970 2820J 840 NJ 840 NJ 840 NJ 840 3760J 830 N 830 4310
-preplace netloc data_bus_gater_0_D_OUT 1 22 1 6980 500n
+preplace netloc control_signal_slicer_0_RP 1 1 14 450 -460 NJ -460 N -460 NJ -460 N -460 NJ -460 NJ -460 NJ -460 N -460 N -460 N -460 N -460 4110 -710 4460
+preplace netloc control_signal_slicer_0_RP_TABLE 1 1 14 330 -470 NJ -470 N -470 NJ -470 N -470 NJ -470 NJ -470 NJ -470 N -470 N -470 N -470 N -470 4100 -720 N
+preplace netloc control_signal_slicer_0_SEXT_MDR 1 1 14 NJ 1140 NJ 1140 N 1140 NJ 1140 1720 1110 NJ 1110 2440J 970 2820J 840 NJ 840 NJ 840 NJ 840 3770J 830 N 830 4380
+preplace netloc data_bus_gater_0_D_OUT 1 22 1 7120 500n
 preplace netloc ext_busrq_1 1 0 8 NJ -150 NJ -150 NJ -150 1050 -270 1490J -230 N -230 NJ -230 2400
 preplace netloc ext_int_1 1 0 8 NJ -210 NJ -210 NJ -210 1060 -240 1460J -250 N -250 NJ -250 2410
 preplace netloc ext_nmi_1 1 0 8 -510J -240 NJ -240 NJ -240 1030 -280 NJ -280 N -280 NJ -280 2470
-preplace netloc ext_reset_1 1 0 18 -490J -230 NJ -230 NJ -230 N -230 1470J 350 1780 350 2140J 410 2460 520 N 520 N 520 N 520 N 520 N 520 N 520 N 520 N 520 5180 680 N
+preplace netloc ext_reset_1 1 0 18 -490J -230 NJ -230 NJ -230 N -230 1470J 350 1780 350 2140J 410 2460 520 N 520 N 520 N 520 N 520 N 520 N 520 N 520 N 520 5260 680 N
 preplace netloc ext_wait_1 1 0 8 -500J -220 NJ -220 NJ -220 1040 -250 1430J -240 N -240 NJ -240 N
-preplace netloc mux_16_0_out 1 7 8 2490 420 N 420 N 420 N 420 N 420 N 420 N 420 4360
+preplace netloc mux_16_0_out 1 7 8 2490 420 N 420 N 420 N 420 N 420 N 420 N 420 4430
 preplace netloc mux_2_0_out 1 11 1 N 1130
+preplace netloc pc_bypass_0_LD_PC_NEW 1 3 2 1030J 160 1430
+preplace netloc pc_bypass_0_sel_out 1 3 1 1030 -10n
 preplace netloc shift_3_0_shifted 1 3 1 1030 -110n
-preplace netloc usequencer_0_ext_busack 1 8 15 N -310 N -310 N -310 N -310 N -310 3990 -270 4370 -190 4860J -220 NJ -220 NJ -220 NJ -220 NJ -220 N -220 N -220 6930
-preplace netloc usequencer_0_ext_halt 1 8 15 2820J -550 N -550 N -550 N -550 N -550 3990 -800 4380 -870 NJ -870 NJ -870 NJ -870 NJ -870 N -870 N -870 N -870 6970
-preplace netloc usequencer_0_ext_iorq 1 8 15 2830 -160 N -160 N -160 N -160 N -160 N -160 N -160 4900J -200 NJ -200 NJ -200 NJ -200 NJ -200 N -200 N -200 6950
+preplace netloc usequencer_0_ext_busack 1 8 15 N -310 N -310 N -310 N -310 N -310 4020 -270 4440 -190 4930J -220 NJ -220 NJ -220 NJ -220 NJ -220 N -220 N -220 7070
+preplace netloc usequencer_0_ext_halt 1 8 15 2820J -550 N -550 N -550 N -550 N -550 4020 -800 4430 -870 NJ -870 NJ -870 NJ -870 NJ -870 N -870 N -870 N -870 7110
+preplace netloc usequencer_0_ext_iorq 1 8 15 2830 -160 N -160 N -160 N -160 N -160 N -160 N -160 4970J -200 NJ -200 NJ -200 NJ -200 NJ -200 N -200 N -200 7090
 preplace netloc usequencer_0_ext_m1 1 8 15 2800 -990 N -990 N -990 N -990 N -990 N -990 N -990 NJ -990 NJ -990 NJ -990 NJ -990 NJ -990 N -990 N -990 N
-preplace netloc usequencer_0_ext_mreq 1 8 15 2840 -150 N -150 N -150 N -150 N -150 N -150 N -150 4890J -210 NJ -210 NJ -210 NJ -210 NJ -210 N -210 N -210 6940
-preplace netloc usequencer_0_ext_rd 1 8 15 N -250 N -250 N -250 N -250 N -250 N -250 4360 -200 4870J -190 NJ -190 NJ -190 NJ -190 NJ -190 N -190 N -190 6980
-preplace netloc usequencer_0_ext_rfsh 1 8 15 2840 -520 N -520 N -520 N -520 N -520 4020 -770 4430 -860 NJ -860 NJ -860 NJ -860 NJ -860 NJ -860 N -860 N -860 6930
-preplace netloc usequencer_0_ext_wr 1 8 15 N -230 N -230 N -230 N -230 N -230 N -230 4350 -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 N -180 N -180 6960
+preplace netloc usequencer_0_ext_mreq 1 8 15 2840 -150 N -150 N -150 N -150 N -150 N -150 N -150 4960J -210 NJ -210 NJ -210 NJ -210 NJ -210 N -210 N -210 7080
+preplace netloc usequencer_0_ext_rd 1 8 15 N -250 N -250 N -250 N -250 N -250 N -250 4430 -200 4940J -190 NJ -190 NJ -190 NJ -190 NJ -190 N -190 N -190 7120
+preplace netloc usequencer_0_ext_rfsh 1 8 15 2840 -520 N -520 N -520 N -520 N -520 4050 -770 4500 -860 NJ -860 NJ -860 NJ -860 NJ -860 NJ -860 N -860 N -860 7070
+preplace netloc usequencer_0_ext_wr 1 8 15 N -230 N -230 N -230 N -230 N -230 N -230 4420 -180 NJ -180 NJ -180 NJ -180 NJ -180 NJ -180 N -180 N -180 7100
+preplace netloc usequencer_0_jump_pc 1 2 7 770 170 NJ 170 NJ 170 1790J 160 NJ 160 NJ 160 2790
 preplace netloc usequencer_0_m_signals 1 0 9 -10 250 NJ 250 NJ 250 1040 320 NJ 320 1770 370 2120J 420 2470J 410 2820
 preplace netloc usequencer_0_t_signals 1 0 9 -20 190 NJ 190 NJ 190 1030 180 1450J 160 1720 150 NJ 150 NJ 150 2800
-preplace netloc xlconcat_0_dout 1 16 1 5220 880n
+preplace netloc xlconcat_0_dout 1 16 1 5300 880n
 preplace netloc xlconstant_0_dout 1 3 2 1170 150 1430
-preplace netloc xlslice_0_Dout 1 12 1 3730 940n
-preplace netloc z80RegisterFile_0_A_out 1 6 10 2140 1020 2420J 980 2830J 850 NJ 850 NJ 850 NJ 850 3770J 840 NJ 840 4420 830 4920J
-preplace netloc z80RegisterFile_0_BC_out 1 6 11 2080 1260 N 1260 N 1260 N 1260 N 1260 N 1260 N 1260 N 1260 4440 1050 4940J 980 5220
-preplace netloc z80RegisterFile_0_B_out 1 6 10 2060 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 N 1280 4850
-preplace netloc z80RegisterFile_0_DE_out 1 6 10 2090 1070 NJ 1070 NJ 1070 NJ 1070 3220J 1020 NJ 1020 NJ 1020 NJ 1020 4400 1010 4810
-preplace netloc z80RegisterFile_0_F_out 1 7 9 2490 -540 NJ -540 N -540 N -540 N -540 N -540 4000 -790 4420 -850 4800
-preplace netloc z80RegisterFile_0_HL_out 1 6 13 2110 1050 2410 960 2810 830 N 830 N 830 N 830 3750 820 N 820 4310 800 4880J 750 5210 750 5520 870 5880
-preplace netloc z80RegisterFile_0_I_out 1 6 10 2130 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 4410 1020 4830
-preplace netloc z80RegisterFile_0_R_out 1 6 10 2100 1060 2460J 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 4430 1040 4840
-preplace netloc z80RegisterFile_0_SP_out 1 15 7 NJ -570 NJ -570 NJ -570 NJ -570 NJ -570 NJ -570 6610
-preplace netloc z80RegisterFile_0_ry_out 1 6 11 2070 990 NJ 990 2840J 860 NJ 860 NJ 860 NJ 860 3780J 850 NJ 850 4330 820 4960 830 5190
-preplace netloc z80RegisterFile_0_rz_out 1 6 13 2120 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 4420 1030 4910 760 N 760 5500 880 5870
-preplace netloc pc_bypass_0_sel_out 1 3 1 1030 -10n
-preplace netloc control_signal_slicer_0_INC_PC 1 1 2 380 70 NJ
-preplace netloc MSR_SEXT_MUX_out 1 14 2 4440 1000 4800
-preplace netloc pc_bypass_0_LD_PC_NEW 1 3 2 1030J 160 1430
-preplace netloc usequencer_0_jump_pc 1 2 7 770 170 NJ 170 NJ 170 1790J 160 NJ 160 NJ 160 2790
+preplace netloc xlslice_0_Dout 1 12 1 3740 940n
+preplace netloc z80RegisterFile_0_A_out 1 6 10 2140 1020 2420J 980 2830J 850 NJ 850 NJ 850 NJ 850 3780J 840 NJ 840 4490 830 4990J
+preplace netloc z80RegisterFile_0_BC_out 1 6 11 2080 1260 N 1260 N 1260 N 1260 N 1260 N 1260 N 1260 N 1260 4510 1050 5010J 980 5300
+preplace netloc z80RegisterFile_0_B_out 1 6 10 2060 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 NJ 1280 N 1280 4920
+preplace netloc z80RegisterFile_0_DE_out 1 6 10 2090 1070 NJ 1070 NJ 1070 NJ 1070 3220J 1020 NJ 1020 NJ 1020 NJ 1020 4470 1010 4880
+preplace netloc z80RegisterFile_0_F_out 1 7 9 2490 -540 NJ -540 N -540 N -540 N -540 N -540 4030 -790 4470 -850 4870
+preplace netloc z80RegisterFile_0_HL_out 1 6 13 2110 1050 2410 960 2810 830 N 830 N 830 N 830 3760 820 N 820 4380 800 4950J 750 5290 750 5600 870 6020
+preplace netloc z80RegisterFile_0_I_out 1 6 10 2130 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 NJ 1030 4480 1020 4900
+preplace netloc z80RegisterFile_0_R_out 1 6 10 2100 1060 2460J 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 NJ 1050 4500 1040 4910
+preplace netloc z80RegisterFile_0_SP_out 1 15 7 NJ -570 NJ -570 NJ -570 NJ -570 NJ -570 NJ -570 6750
+preplace netloc z80RegisterFile_0_ry_out 1 6 11 2070 990 NJ 990 2840J 860 NJ 860 NJ 860 NJ 860 3790J 850 NJ 850 4400 820 5030 830 5270
+preplace netloc z80RegisterFile_0_rz_out 1 6 13 2120 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 NJ 1040 4490 1030 4980 760 N 760 5580 880 6010
+preplace netloc double_edger_mdr_0_OUT_OUTWARD 1 18 3 6000 570 6290J 510 6490
 preplace cgraphic comment_3 place bot 4574 -745 textcolor 4 linecolor 3 linewidth 2
 preplace cgraphic comment_2 place bot 2287 -756 textcolor 4 linecolor 3 linewidth 2
 preplace cgraphic comment_1 place left 944 -67 textcolor 4 linecolor 3 linewidth 2
@@ -199,8 +200,8 @@ preplace cgraphic comment_7 place bot 3736 -281 textcolor 4 linecolor 3 linewidt
 preplace cgraphic comment_6 place right -994 892 textcolor 4 linecolor 3 linewidth 2
 preplace cgraphic comment_5 place bot 2376 -442 textcolor 4 linecolor 3 linewidth 2
 preplace cgraphic comment_4 place bot 5392 -475 textcolor 4 linecolor 3 linewidth 2
-levelinfo -pg 1 -530 150 630 900 1300 1610 1890 2270 2650 2930 3120 3400 3630 3890 4200 4620 5070 5350 5720 6020 6250 6460 6770 7000
-pagesize -pg 1 -db -bbox -sgen -680 -1690 7170 1400
+levelinfo -pg 1 -530 150 630 900 1300 1610 1890 2270 2650 2930 3120 3400 3640 3920 4250 4690 5140 5430 5830 6160 6390 6600 6910 7140
+pagesize -pg 1 -db -bbox -sgen -680 -1690 7310 1400
 ",
    "linecolor_comment_2":"",
    "linecolor_comment_3":"",
