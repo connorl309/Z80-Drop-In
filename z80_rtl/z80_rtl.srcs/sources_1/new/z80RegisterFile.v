@@ -108,6 +108,7 @@ module z80RegisterFile(
    // reg [15:0] RP_TABLE_SELECTION; //holds a 16 bit entry from either RP1 or RP2
     reg sig_rfsh = 0;
     reg sig_rfsh_old = 0;
+    reg LAST_RESET = 1;
     
     
     /*  flipflops that toggle during register exchange operations (EX, EXX)
@@ -124,9 +125,9 @@ module z80RegisterFile(
     end
             
     //register writes 
-    always @(posedge CLK or negedge RESET) begin
+    always @(posedge CLK) begin
     
-        if(RESET == 1'b0)
+        if(RESET == 1'b0 && LAST_RESET == 1'b1)
         begin
             {A, F, B, C, D, E, H, L} <= 64'b0;
             {Ap, Fp, Bp, Cp, Dp, Ep, Hp, Lp} <= 64'b0;
@@ -353,15 +354,17 @@ module z80RegisterFile(
     
     
 //register reads
-    always @(negedge CLK or negedge RESET) begin
+    always @(negedge CLK) begin
   
-        if(RESET == 1'b0)
+        if(RESET == 1'b0 && LAST_RESET == 1'b1)
         begin
             {RY, RZ} = 32'b0;
+            LAST_RESET <= RESET;
         end
 
         else
         begin
+            LAST_RESET <= RESET;
             //reads to ADDR_BUS
             if(Gate_SP) ADDR_BUS <= SP; 
             else if(Gate_SP_INC) ADDR_BUS <= SP + 1;
