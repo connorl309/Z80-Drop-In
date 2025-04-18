@@ -71,11 +71,11 @@ module pc_bypass(
 endmodule
 
 module shift_3(
-    input [2:0] in,
+    input [2:0] in_put,
     output [15:0] shifted
 );
 
-    assign shifted = {8'b0, 2'b0, in, 3'b0};
+    assign shifted = {8'b0, 2'b0, in_put, 3'b0};
 
 endmodule
 

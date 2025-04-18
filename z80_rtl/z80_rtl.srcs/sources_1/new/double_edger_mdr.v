@@ -29,12 +29,12 @@ module double_edger_mdr(
     input LD_MDRL_FE,
     input LD_MDRH_FE,
     output reg [15:0] OUT_OUTWARD,
-    output reg [15:0] OUT
+    output reg [15:0] OUT_PUT
     );
     
     initial begin
         OUT_OUTWARD <= 0;
-        OUT <= 0;
+        OUT_PUT <= 0;
     end
     
     always @(posedge CLK) begin
@@ -49,12 +49,12 @@ module double_edger_mdr(
     
     always @(negedge CLK) begin
         if (!RESET) begin
-            OUT <= 0;
+            OUT_PUT <= 0;
         end else begin
             if (LD_MDRL_FE) begin
-                OUT[7:0] <= D;
+                OUT_PUT[7:0] <= D;
             end else if (LD_MDRH_FE) begin
-                OUT[15:8] <= D;
+                OUT_PUT[15:8] <= D;
             end
         end
     end

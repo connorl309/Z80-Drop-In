@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xDE8BE9AE392246CC",
+      "boundary_crc": "0x5C7F40352BC9C3E8",
       "device": "xc7s50csga324-1",
       "gen_directory": "../../../../z80_rtl.gen/sources_1/bd/z80_test_system",
       "name": "z80_test_system",
@@ -13,7 +13,8 @@
     "design_tree": {
       "z80_top_0": "",
       "memory_0": "",
-      "xlconstant_0": ""
+      "xlconstant_0": "",
+      "clk_wiz_0": ""
     },
     "ports": {
       "CLK": {
@@ -58,6 +59,30 @@
             "value_src": "default"
           }
         }
+      },
+      "P4": {
+        "type": "data",
+        "direction": "O",
+        "left": "7",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default_prop"
+          }
+        }
+      },
+      "P5": {
+        "type": "data",
+        "direction": "O",
+        "left": "15",
+        "right": "0",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": "undef",
+            "value_src": "default_prop"
+          }
+        }
       }
     },
     "components": {
@@ -96,12 +121,12 @@
                 "value_src": "strong"
               },
               "CLK_DOMAIN": {
-                "value": "z80_test_system_CLK",
-                "value_src": "default_prop"
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
               },
               "FREQ_HZ": {
-                "value": "10000000",
-                "value_src": "user_prop"
+                "value": "8000000",
+                "value_src": "ip_prop"
               },
               "FREQ_TOLERANCE_HZ": {
                 "value": "0",
@@ -113,7 +138,7 @@
               },
               "PHASE": {
                 "value": "0.0",
-                "value_src": "default_prop"
+                "value_src": "ip_prop"
               }
             }
           },
@@ -255,7 +280,7 @@
         "variant_info": {
           "z80_top.bd": {
             "scoped_diagram": "z80_top_inst_0.bd",
-            "design_checksum": "0x4695CAB4D9DC1890",
+            "design_checksum": "0x8F92F27BD9DC1890",
             "ref_name": "z80_top",
             "ref_subinst_path": "z80_test_system_z80_top_0",
             "ref_type": "Block Design",
@@ -281,12 +306,16 @@
             "direction": "I",
             "parameters": {
               "FREQ_HZ": {
-                "value": "10000000",
-                "value_src": "user_prop"
+                "value": "8000000",
+                "value_src": "ip_prop"
+              },
+              "PHASE": {
+                "value": "0.0",
+                "value_src": "ip_prop"
               },
               "CLK_DOMAIN": {
-                "value": "z80_test_system_CLK",
-                "value_src": "default_prop"
+                "value": "/clk_wiz_0_clk_out1",
+                "value_src": "ip_prop"
               }
             }
           },
@@ -334,20 +363,57 @@
         "xci_name": "z80_test_system_xlconstant_0_0",
         "xci_path": "ip\\z80_test_system_xlconstant_0_0\\z80_test_system_xlconstant_0_0.xci",
         "inst_hier_path": "xlconstant_0"
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "ip_revision": "14",
+        "xci_name": "z80_test_system_clk_wiz_0_0",
+        "xci_path": "ip\\z80_test_system_clk_wiz_0_0\\z80_test_system_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_wiz_0",
+        "parameters": {
+          "CLKOUT1_JITTER": {
+            "value": "957.892"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "8"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "80.000"
+          },
+          "RESET_PORT": {
+            "value": "resetn"
+          },
+          "RESET_TYPE": {
+            "value": "ACTIVE_LOW"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "true"
+          }
+        }
       }
     },
     "nets": {
       "CLK_1": {
         "ports": [
           "CLK",
-          "memory_0/CLK",
-          "z80_top_0/CLK"
+          "clk_wiz_0/clk_in1"
         ]
       },
       "RESET_1": {
         "ports": [
           "RESET",
-          "z80_top_0/ext_reset"
+          "z80_top_0/ext_reset",
+          "clk_wiz_0/resetn"
+        ]
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "z80_top_0/CLK",
+          "memory_0/CLK"
         ]
       },
       "memory_0_DATA_OUT": {
@@ -369,13 +435,15 @@
         "ports": [
           "z80_top_0/ADDR_OUT",
           "memory_0/ADDR",
-          "z80_top_0/ADDR_IN"
+          "z80_top_0/ADDR_IN",
+          "P5"
         ]
       },
       "z80_top_0_D_OUT": {
         "ports": [
           "z80_top_0/D_OUT",
-          "memory_0/DATA_IN"
+          "memory_0/DATA_IN",
+          "P4"
         ]
       },
       "z80_top_0_ext_mreq": {

@@ -115,9 +115,9 @@ module z80RegisterFile(
     reg DEHL_TOGGLE = 0, DEPHLP_TOGGLE = 0, EXX_TOGGLE = 0, AF_TOGGLE = 0; 
                
             
-    always @(negedge RFSH) begin 
-        sig_rfsh = ~sig_rfsh;
-    end
+//    always @(negedge RFSH) begin 
+//        sig_rfsh = ~sig_rfsh;
+//    end
             
     //register writes 
     always @(posedge CLK) begin

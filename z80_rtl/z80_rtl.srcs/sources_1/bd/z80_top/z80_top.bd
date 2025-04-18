@@ -1468,7 +1468,7 @@
             "left": "15",
             "right": "0"
           },
-          "OUT": {
+          "OUT_PUT": {
             "direction": "O",
             "left": "15",
             "right": "0"
@@ -1578,7 +1578,7 @@
           "boundary_crc": "0x0"
         },
         "ports": {
-          "in": {
+          "in_put": {
             "direction": "I",
             "left": "2",
             "right": "0"
@@ -1718,11 +1718,11 @@
           "add_1/CLK",
           "IR/clk",
           "MAR/clk",
-          "PC/CLK",
           "ALU_0/CLK",
-          "double_edger_mdr_0/CLK",
           "usequencer_0/clk",
-          "z80RegisterFile_0/CLK"
+          "z80RegisterFile_0/CLK",
+          "double_edger_mdr_0/CLK",
+          "PC/CLK"
         ]
       },
       "D_IN_1": {
@@ -1743,8 +1743,8 @@
           "IR/Q",
           "OPCODE_Z/Din",
           "OPCODE_Y/Din",
-          "PC_MUX/in1",
-          "usequencer_0/IR"
+          "usequencer_0/IR",
+          "PC_MUX/in1"
         ]
       },
       "MARMUX_out": {
@@ -1785,7 +1785,7 @@
       },
       "MDR_Q": {
         "ports": [
-          "double_edger_mdr_0/OUT",
+          "double_edger_mdr_0/OUT_PUT",
           "MDR_A_CONCAT/In1",
           "MDR_SEXT/In0",
           "MDR_BIT_7/Din",
@@ -1816,7 +1816,6 @@
       "OPCODE_Y_Dout": {
         "ports": [
           "OPCODE_Y/Dout",
-          "shift_3_0/in",
           "z80RegisterFile_0/OPCODE_Y"
         ]
       },
@@ -2072,9 +2071,9 @@
           "ext_reset",
           "MAR/reset",
           "IR/reset",
-          "PC/RESET",
+          "usequencer_0/ext_reset",
           "double_edger_mdr_0/RESET",
-          "usequencer_0/ext_reset"
+          "PC/RESET"
         ]
       },
       "ext_wait_1": {
